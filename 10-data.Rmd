@@ -34,6 +34,29 @@ diagnosis based on circulating plasma proteins*. EMBO Mol. Med., 7,
 
 To load this dataset:
 
+```{r crcread}
+crcdf <- read.csv("http://bit.ly/VisBiomedDataCrcCsv")
+```
 
+Conversion to an `MSnSet`
+
+```{r crcmsnset}
+i <- 1:72
+e <- t(crcdf[, i])
+colnames(e) <- 1:200
+crc <- readMSnSet2(data.frame(e), e = 1:200)
+
+pd <- crcdf[, -i]
+rownames(pd) <- paste0("X", rownames(pd))
+pData(crc) <- pd
+crc
+```
+
+
+Or load it direcly:
+
+```{r crcload}
+
+```
 
 ## ALL data
