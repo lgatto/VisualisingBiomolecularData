@@ -2,4 +2,38 @@
 
 ## CRC training data
 
+This dataset comes from the `r Biocexptpkg("MSstatsBioData")` package
+and was generated as follows:
+
+```{r crctrain, eval = FALSE}
+library("MSstats")
+library("MSstatsBioData")
+data(SRM_crc_training)
+Quant <- dataProcess(SRM_crc_training)
+subjectQuant <- quantification(Quant)
+```
+
+which provides quantitative information for 72 proteins, including two
+standard proteins, *AIAG-Bovine* and *FETUA-Bovine*. These proteins
+were targeted for plasma samples with SRM with isotope labeled
+reference peptides in order to identify candidate protein biomarker
+for non-invasive detection of CRC. The training cohort included 100
+subjects in control group and 100 subjects with CRC. Each sample for
+subject was measured in a single injection without technical
+replicate. The training cohort was analyzed with Skyline. The dataset
+was already normalized as described in manuscript. User do not need
+extra normalization. NAs should be considered as censored missing. Two
+standard proteins can be removed for statistical analysis.
+
+
+Then, clinical information where added.
+
+See Surinova, S. et al. (2015) *Prediction of colorectal cancer
+diagnosis based on circulating plasma proteins*. EMBO Mol. Med., 7,
+1166–1178 for details.
+
+To load this dataset:
+
+
+
 ## ALL data
