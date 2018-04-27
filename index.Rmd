@@ -1,0 +1,39 @@
+---
+title: "Visualisation of biomolecular data"
+author: "Laurent Gatto"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+description: "Visualisation of biomolecular data"
+github-repo: lgatto/VisualisingBiomolecularData
+---
+
+```{r setup, echo=FALSE, warning=FALSE}
+source("./src/setup.R")
+```
+
+# Preface
+
+This course material is aimed at people who are already familiar with
+the R language and syntax, and who would like to get a hands-on
+introduction to visualisation with a focus on biomolecular data.
+
+## Installation
+
+A set of packages that are used, either directly or indirectly are
+provided in the first chapter. A complete session information with all
+packages used to compile this document is available at the end.
+
+The source code for this document is available on GitHub at
+https://github.com/lgatto/VisualisingBiomolecularData
+
+A short URL for this book is http://bit.ly/biomolvis
+
+## License
+
+This material is licensed under the [Creative Commons
+Attribution-ShareAlike 3.0
+License](http://creativecommons.org/licenses/by-sa/3.0/). Some content
+is inspired by other sources though, see the *Credit* section in the
+material.
