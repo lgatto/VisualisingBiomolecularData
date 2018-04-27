@@ -1,0 +1,8 @@
+# Session information
+
+The session information below documents the packages and versions used
+to generate this material.
+
+```{r si}
+sessionInfo()
+```

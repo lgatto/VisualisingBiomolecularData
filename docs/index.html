@@ -33,7 +33,7 @@
   
   
 
-<link rel="next" href="introduction.html">
+<link rel="next" href="example-datasets.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -99,20 +99,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#installation"><i class="fa fa-check"></i><b>1.1</b> Installation</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.2</b> License</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#questions"><i class="fa fa-check"></i><b>1.2</b> Questions</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.3</b> License</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#references"><i class="fa fa-check"></i><b>1.4</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="example-datasets.html"><a href="example-datasets.html"><i class="fa fa-check"></i><b>3</b> Example datasets</a><ul>
-<li class="chapter" data-level="3.1" data-path="example-datasets.html"><a href="example-datasets.html#crc-training-data"><i class="fa fa-check"></i><b>3.1</b> CRC training data</a></li>
-<li class="chapter" data-level="3.2" data-path="example-datasets.html"><a href="example-datasets.html#all-data"><i class="fa fa-check"></i><b>3.2</b> ALL data</a></li>
+<li class="chapter" data-level="2" data-path="example-datasets.html"><a href="example-datasets.html"><i class="fa fa-check"></i><b>2</b> Example datasets</a><ul>
+<li class="chapter" data-level="2.1" data-path="example-datasets.html"><a href="example-datasets.html#crc-training-data"><i class="fa fa-check"></i><b>2.1</b> CRC training data</a></li>
+<li class="chapter" data-level="2.2" data-path="example-datasets.html"><a href="example-datasets.html#all-data"><i class="fa fa-check"></i><b>2.2</b> ALL data</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="plotting-data.html"><a href="plotting-data.html"><i class="fa fa-check"></i><b>4</b> Plotting data</a></li>
-<li class="chapter" data-level="5" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>5</b> Plotting with <code>ggplot2</code></a></li>
-<li class="chapter" data-level="6" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>6</b> Using R and Bioconductor for MS-based proteomics</a></li>
-<li class="chapter" data-level="7" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>7</b> Tools and plots</a></li>
-<li class="chapter" data-level="8" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html"><i class="fa fa-check"></i><b>8</b> Interactive visualisation</a></li>
+<li class="chapter" data-level="3" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html"><i class="fa fa-check"></i><b>3</b> Exploring and visualising biomolecular data</a></li>
+<li class="chapter" data-level="4" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Plotting with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="5" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>5</b> Using R and Bioconductor for MS-based proteomics</a></li>
+<li class="chapter" data-level="6" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>6</b> Tools and plots</a></li>
+<li class="chapter" data-level="7" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html"><i class="fa fa-check"></i><b>7</b> Interactive visualisation</a></li>
+<li class="chapter" data-level="8" data-path="session-information.html"><a href="session-information.html"><i class="fa fa-check"></i><b>8</b> Session information</a></li>
 </ul>
 
       </nav>
@@ -135,18 +137,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h4 class="author"><em>Laurent Gatto</em></h4>
 <h4 class="date"><em>2018-04-27</em></h4>
 </div>
-<div id="preface" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Preface</h1>
-<p>This course material is aimed at people who are already familiar with the R language and syntax, and who would like to get a hands-on introduction to visualisation with a focus on biomolecular data.</p>
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<p>This <em>Visualisation of biomolecular data</em> course is aimed at people who are already familiar with the R language and syntax, and who would like to get a hands-on introduction to visualisation with a focus on biomolecular data.</p>
 <div id="installation" class="section level2">
 <h2><span class="header-section-number">1.1</span> Installation</h2>
-<p>A set of packages that are used, either directly or indirectly are provided in the first chapter. A complete session information with all packages used to compile this document is available at the end.</p>
+<p>A set of packages that are used, either directly or indirectly are provided below. A complete session information with all packages used to compile this document is available at the end.</p>
 <p>The source code for this document is available on GitHub at <a href="https://github.com/lgatto/VisualisingBiomolecularData" class="uri">https://github.com/lgatto/VisualisingBiomolecularData</a></p>
 <p>A short URL for this book is <a href="http://bit.ly/biomolvis" class="uri">http://bit.ly/biomolvis</a></p>
 </div>
+<div id="questions" class="section level2">
+<h2><span class="header-section-number">1.2</span> Questions</h2>
+<p>For any questions or suggestions, please open an <a href="https://github.com/lgatto/VisualisingBiomolecularData/issues">issue</a>. Please do add the output of your session information and, of possible, a reproducible example describing your question or suggestion.</p>
+</div>
 <div id="license" class="section level2">
-<h2><span class="header-section-number">1.2</span> License</h2>
+<h2><span class="header-section-number">1.3</span> License</h2>
 <p>This material is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>. Some content is inspired by other sources though, see the <em>Credit</em> section in the material.</p>
+</div>
+<div id="references" class="section level2">
+<h2><span class="header-section-number">1.4</span> References</h2>
+<p>Gatto L, Breckels LM, Naake T, Gibb S. <em>Visualization of proteomics data using R and bioconductor</em>. Proteomics. 2015 Apr;15(8):1375-89. <a href="doi:%5B10.1002/pmic.201400392%5D(https://doi.org/10.1002/pmic.201400392)" class="uri">doi:[10.1002/pmic.201400392](https://doi.org/10.1002/pmic.201400392)</a>. PMID: 25690415; PMCID: PMC4510819.</p>
+<p>Key M. <em>A tutorial in displaying mass spectrometry-based proteomic data using heat maps</em>. BMC Bioinformatics. 2012;13 Suppl 16:S10. <a href="doi:%5B10.1186/1471-2105-13-S16-S10%5D(http://dx.doi.org/10.1186/1471-2105-13-S16-S10)" class="uri">doi:[10.1186/1471-2105-13-S16-S10](http://dx.doi.org/10.1186/1471-2105-13-S16-S10)</a>. Epub 2012 Nov 5. PMID: 23176119; PMCID: PMC3489527.</p>
+<p>Gatto L, Christoforou A. <em>Using R and Bioconductor for proteomics data analysis</em>. Biochim Biophys Acta. 2014 Jan;1844(1 Pt A):42-51. <a href="doi:%5B10.1016/j.bbapap.2013.04.032%5D(http://dx.doi.org/10.1016/j.bbapap.2013.04.032)" class="uri">doi:[10.1016/j.bbapap.2013.04.032](http://dx.doi.org/10.1016/j.bbapap.2013.04.032)</a>. Epub 2013 May 18. PMID: 23692960.</p>
 
 </div>
 </div>
@@ -156,7 +168,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         </div>
       </div>
 
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="example-datasets.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -13,22 +13,41 @@ github-repo: lgatto/VisualisingBiomolecularData
 source("./src/setup.R")
 ```
 
-# Preface
+# Introduction
 
-This course material is aimed at people who are already familiar with
-the R language and syntax, and who would like to get a hands-on
-introduction to visualisation with a focus on biomolecular data.
+This *Visualisation of biomolecular data* course is aimed at people
+who are already familiar with the R language and syntax, and who would
+like to get a hands-on introduction to visualisation with a focus on
+biomolecular data.
 
 ## Installation
 
 A set of packages that are used, either directly or indirectly are
-provided in the first chapter. A complete session information with all
-packages used to compile this document is available at the end.
+provided below. A complete session information with all packages used
+to compile this document is available at the end.
 
 The source code for this document is available on GitHub at
 https://github.com/lgatto/VisualisingBiomolecularData
 
 A short URL for this book is http://bit.ly/biomolvis
+
+
+```{r pkgs, echo=FALSE}
+library("ggplot2")
+library("MSnbase")
+library("pRolocdata")
+library("pRoloc")
+library("ALL")
+library("MSstatsBioData")
+```
+
+## Questions
+
+For any questions or suggestions, please open an
+[issue](https://github.com/lgatto/VisualisingBiomolecularData/issues). Please
+do add the output of your session information and, of possible, a
+reproducible example describing your question or suggestion.
+
 
 ## License
 
@@ -37,3 +56,20 @@ Attribution-ShareAlike 3.0
 License](http://creativecommons.org/licenses/by-sa/3.0/). Some content
 is inspired by other sources though, see the *Credit* section in the
 material.
+
+## References
+
+Gatto L, Breckels LM, Naake T, Gibb S. *Visualization of proteomics
+data using R and bioconductor*. Proteomics. 2015
+Apr;15(8):1375-89. doi:[10.1002/pmic.201400392](https://doi.org/10.1002/pmic.201400392).
+PMID: 25690415; PMCID: PMC4510819.
+
+Key M. *A tutorial in displaying mass spectrometry-based proteomic
+data using heat maps*. BMC Bioinformatics. 2012;13 Suppl
+16:S10. doi:[10.1186/1471-2105-13-S16-S10](http://dx.doi.org/10.1186/1471-2105-13-S16-S10). Epub
+2012 Nov 5. PMID: 23176119; PMCID: PMC3489527.
+
+Gatto L, Christoforou A. *Using R and Bioconductor for proteomics data
+analysis*. Biochim Biophys Acta. 2014 Jan;1844(1 Pt
+A):42-51. doi:[10.1016/j.bbapap.2013.04.032](http://dx.doi.org/10.1016/j.bbapap.2013.04.032). Epub
+2013 May 18. PMID: 23692960.
