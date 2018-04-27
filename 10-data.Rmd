@@ -26,21 +26,20 @@ extra normalization. NAs should be considered as censored missing. Two
 standard proteins can be removed for statistical analysis.
 
 
-Then, clinical information where added.
-
-See Surinova, S. et al. (2015) *Prediction of colorectal cancer
-diagnosis based on circulating plasma proteins*. EMBO Mol. Med., 7,
-1166–1178 for details.
+Clinical information where added manually thereafter.
 
 To load this dataset:
 
 ```{r crcread}
 crcdf <- read.csv("http://bit.ly/VisBiomedDataCrcCsv")
+crcdf[1:10, 1:3]
+crcdf[1:10, 73:79]
 ```
 
 Conversion to an `MSnSet`
 
 ```{r crcmsnset}
+library("MSnbase")
 i <- 1:72
 e <- t(crcdf[, i])
 colnames(e) <- 1:200
@@ -56,7 +55,37 @@ crc
 Or load it direcly:
 
 ```{r crcload}
-
+download.file("http://bit.ly/VisBiomedDataCrcMSnSet", "./data/crc.rda")
+load("./data/crc.rda")
+crc
 ```
 
+Reference:
+
+See Surinova, S. et al. (2015) *Prediction of colorectal cancer
+diagnosis based on circulating plasma proteins*. EMBO Mol. Med., 7,
+1166–1178 for details.
+
 ## ALL data
+
+```{r all}
+library("ALL")
+data(ALL)
+ALL
+```
+
+From the documentation page:
+
+> The *Acute Lymphoblastic Leukemia Data from the Ritz Laboratory*
+> consist of microarrays from 128 different individuals with acute
+> lymphoblastic leukemia (ALL). A number of additional covariates are
+> available. The data have been normalized (using rma) and it is the
+> jointly normalized data that are available here.
+
+Reference:
+
+Sabina Chiaretti, Xiaochun Li, Robert Gentleman, Antonella Vitale,
+Marco Vignetti, Franco Mandelli, Jerome Ritz, and Robin Foa *Gene
+expression profile of adult T-cell acute lymphocytic leukemia
+identifies distinct subsets of patients with different response to
+therapy and survival*. Blood, 1 April 2004, Vol. 103, No. 7.
