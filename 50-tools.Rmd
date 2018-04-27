@@ -1,0 +1,11 @@
+# Tools and plots
+
+
+- transformations
+- correlation
+- Pairs
+- volcano plots
+- Visualising intersections: Venn, Euler, upset plots
+- Heatmaps
+- Dimensionality reduction (PCA)
+- Clustering
