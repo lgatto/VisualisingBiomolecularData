@@ -1,1 +1,6 @@
 # Exploring and visualising biomolecular data
+
+This chapter provides an overview of a typical exploratory data
+analysis, statistical analysis and their associated visualisations. We
+will look into the respective figures and how to produce them in the
+later chapters.

@@ -2,7 +2,10 @@
 
 ## Base graphics
 
-
+We won't go through all base graphics plotting functions one by one
+here. We will encounter and learn several of these functions
+throughout the course and, if necessary, discuss them when questions
+arise.
 
 ## Plotting with `ggplot2`
 
@@ -104,6 +107,123 @@ Notes:
   and will return an error message.
 
 
+> **Challenge**
+>
+> * Repeat the plot above but displaying the raw intensities.
+> * Log-10 transform the raw intensities on the flight when plotting.
+
+<details>
+```{r}
+ggplot(data = iprg, aes(x = Run, y = Intensity)) + geom_boxplot()
+ggplot(data = iprg, aes(x = Run, y = log10(Intensity))) + geom_boxplot()
+```
+</details>
+
+
+## Customising plots
+
+First, let's colour the boxplot based on the condition:
+
+```{r}
+ggplot(data = iprg,
+	   aes(x = Run, y = Log2Intensity,
+		   fill = Condition)) +
+  geom_boxplot()
+```
+
+Now let's rename all axis labels and title, and rotate the x-axis
+labels 90 degrees. We can add those specifications using the `labs`
+and `theme` functions of the `ggplot2` package.
+
+```{r}
+ggplot(aes(x = Run, y = Log2Intensity, fill = Condition),
+	   data = iprg) +
+	geom_boxplot() +
+	labs(title = 'Log2 transformed intensity distribution per MS run',
+		 y = 'Log2(Intensity)',
+		 x = 'MS run') +
+	theme(axis.text.x = element_text(angle = 90))
+```
+
+
+And easily switch from a boxplot to a violin plot representation by
+changing the `geom` type.
+
+```{r}
+ggplot(aes(x = Run, y = Log2Intensity, fill = Condition),
+	   data = iprg) +
+	geom_violin() +
+	labs(title = 'Log2 transformed intensity distribution per Subject',
+		 y = 'Log2(Intensity)',
+		 x = 'MS run') +
+	theme(axis.text.x = element_text(angle = 90))
+```
+
+Finally, we can also overlay multiple geoms by simply *adding* them
+one after the other.
+
+```{r}
+p <- ggplot(aes(x = Run, y = Log2Intensity, fill = Condition),
+			data = iprg)
+p + geom_boxplot()
+p + geom_boxplot() + geom_jitter() ## not very usefull
+p + geom_jitter() + geom_boxplot()
+p + geom_jitter(alpha = 0.1) + geom_boxplot()
+```
+
+> **Challenge**
+>
+> * Overlay a boxplot goem on top of a jitter geom for the raw or
+>   log-10 transformed intensities.
+> * Customise the plot as suggested above.
+
+<details>
+```{r}
+## Note how the log10 transformation is applied to both geoms
+ggplot(data = iprg, aes(x = Run, y = log10(Intensity))) +
+	geom_jitter(alpha = 0.1) +
+	geom_boxplot()
+```
+</details>
+
+Finally, a very useful feature of `ggplot2` is **facetting**, that
+defines how to subset the data into different *panels* (facets).
+
+```{r}
+names(iprg)
+ggplot(data = iprg,
+	   aes(x = TechReplicate, y = Log2Intensity,
+		   fill = Condition)) +
+	geom_boxplot() +
+	facet_grid(~ Condition)
+```
+
+## Saving your figures
+
+You can save plots to a number of different file formats. PDF is by
+far the most common format because it's lightweight, cross-platform
+and scales up well but jpegs, pngs and a number of other file formats
+are also supported. Let's redo the last barplot but save it to the
+file system this time.
+
+Let's save the boxplot as pdf file.
+
+```{r, eval=FALSE}
+pdf()
+p + geom_jitter(alpha = 0.1) + geom_boxplot()
+dev.off()
+```
+
+The default file name is `Rplots.pdf`. We can customise that file name
+specifying it by passing the file name, as a character, to the `pdf()`
+function.
+
+> **Challenge**
+>
+> Save a figure of your choice to a pdf file. Read the manual for the
+> `png` function and save that same image to a png file.
+>
+> **Tip**: save your figures in a dedicated directory.
 
 
 ## References

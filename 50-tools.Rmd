@@ -2,9 +2,182 @@
 
 ## Transformations
 
-## Correlation
+Let's start with the comparison of two vectors of matching expression
+intensities such as those from two samples in the `iprg3`
+dataset. Let's extract the intensities of samples `r names(iprg3)[2]`
+(second column) and `r names(iprg3)[3]` (third column) and produce a
+scatter plot of one against the other.
 
-## Pairs
+```{r trans1}
+x <- iprg3[[2]]
+y <- iprg3[[3]]
+plot(x, y)
+```
+
+Due to the distribution of the raw intensities, where most of the
+intensities are low with very few high intensities (see density plots
+below), the majority of points are squeezed close to the origin of the
+scatter plot.
+
+```{r}
+plot(density(na.omit(x)), col = "blue")
+lines(density(na.omit(y)), col = "red")
+```
+
+This has negative effects as it (1) leads to overplotting in the low
+intensity range and (2) gives too much confidence in the correlation
+of the two vectors. A simple way to avoid this effect is to directly
+log-tranform the data or set the graph axes to log scales:
+
+```{r}
+plot(log10(x), log10(y))
+plot(x, y, log = "xy")
+```
+
+We will see better visualisations to detect correlation between sample
+replicates below.
+
+It is possible to generalise to production of scatter plots to more
+samples using the `pairs` function:
+
+```{r}
+pairs(iprg3[2:6], log = "xy")
+```
+
+A lot of space is wasted by repeating the same sets of plots in the
+upper right and lower left triangles of the matrix. See the `pairs`
+documentation page.
+
+
+Log-transformation also comes handy when computing fold-changes. Below
+we calculate the fold-changes and log2 fold-changes (omitting missing
+values)
+
+```{r fc}
+fc <- na.omit(iprg3[[2]] / iprg3[[3]])
+lfc <- log2(fc)
+```
+
+Below, we see how the log2 fold-changes become symmetrical around zero
+(the absence of change), with positive values corresponding to
+up-regulation and negative values to down-regulation.
+
+```{r}
+plot(density(lfc), ylim = c(0, 5))
+abline(v = median(lfc))
+lines(density(fc), col = "red")
+abline(v = median(fc), col = "red")
+```
+
+**Note**: when the data is already log-transformed, log fold-changes
+are computed by subtracting values.
+
+## Comparing samples and linear models
+
+Let's return to the scatter plot example above and focus on three
+replicates from consitions 1 and 4, remove missing values and
+log-tranform the intensites.
+
+```{r}
+x <- log2(na.omit(iprg3[, c(2, 3, 11)]))
+```
+
+Below, we use the `pairs` function and print the pairwise correlations
+in the upper right traingle.
+
+```{r}
+## put (absolute) correlations on the upper panels,
+## with size proportional to the correlations.
+## From ?pairs
+panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...) {
+	usr <- par("usr"); on.exit(par(usr))
+	par(usr = c(0, 1, 0, 1))
+	r <- abs(cor(x, y))
+	txt <- format(c(r, 0.123456789), digits = digits)[1]
+	txt <- paste0(prefix, txt)
+	if (missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+	text(0.5, 0.5, txt, cex = cex.cor * r)
+}
+pairs(x, lower.panel = panel.smooth, upper.panel = panel.cor)
+```
+
+It is often assumed that high correlation is a halmark of good
+replication. Rather than focus on the correlation of the data, a
+better measurement would be to look a the log2 fold-changes, i.e. the
+distance between repeated measurements. The ideal way to visualise
+this is on an MA-plot:
+
+
+```{r, fig.width = 12}
+par(mfrow = c(1, 2))
+r1 <- x[[1]]
+r2 <- x[[2]]
+M <- r1 - r2
+A <- (r1 + r2)/2
+plot(A, M); grid()
+library("affy")
+affy::ma.plot(A, M)
+```
+
+See also this
+[post](http://simplystatistics.org/2015/08/12/correlation-is-not-a-measure-of-reproducibility/)
+on the *Simply Statistics* blog.
+
+`abline(0, 1)` can be used to add a line with intercept 0 and
+slop 1. It we want to add the line that models the data linearly, we
+can calculate the parameters using the `lm` function:
+
+```{r}
+lmod <- lm(r2 ~ r1)
+summary(lmod)
+```
+
+which can be used to add the adequate line that reflects the (linear)
+relationship between the two data
+
+```{r}
+plot(r1, r2)
+abline(lmod, col = "red")
+```
+
+As we have seen in the beginning of this section, it is essential not
+to rely solely on the correlation value, but look at the data. This
+also holds true for linear (or any) modelling, which can be done by
+plotting the model:
+
+```{r}
+par(mfrow = c(2, 2))
+plot(lmod)
+```
+
+* *Cook's distance* is a commonly used estimate of the influence of a
+  data point when performing a least-squares regression analysis and
+  can be used to highlight points that particularly influence the
+  regression.
+
+* *Leverage* quantifies the influence of a given observation on the
+  regression due to its location in the space of the inputs.
+
+See also `?influence.measures`.
+
+> **Challenge**
+>
+> 1. Take any of the `iprg3` replicates, model and plot their linear
+>    relationship.
+> 2. The Anscombe quartet is available as `anscombe`. Load it, create
+>    a linear model for one $(x_i, y_i)$ pair of your choice and
+>    visualise/check the model.
+
+<details>
+```{r}
+x3 <- anscombe[, 3]
+y3 <- anscombe[, 7]
+lmod <- lm(y3 ~ x3)
+summary(lmod)
+par(mfrow = c(2, 2))
+plot(lmod)
+```
+</details>
 
 ## Volcano plots
 
@@ -65,5 +238,3 @@ See
 ### Colour mapping
 
 ### Colour palette
-
-###

@@ -20,9 +20,82 @@ the 2018 edition of the May Institute *Computation and statistics for
 mass spectrometry and proteomics* at Northeastern University, Boston
 MA. It is aimed at people who are already familiar with the R language
 and syntax, and who would like to get a hands-on introduction to
-visualisation with a focus on biomolecular data in general, and
+visualisation, with a focus on biomolecular data in general, and
 proteomics in particular. This course is meant to be mostly hands-on,
 with an intuitive understanding of the underlying techniques.
+
+Let's use the famous
+[*Anscombe's quartet*](https://en.wikipedia.org/wiki/Anscombe%27s_quartet)
+data as a motivating example. This data is composed of 4 pairs of
+values, $(x_1, y_1)$ to $(x_4, y_4)$:
+
+```{r anscombe, echo = FALSE, results='asis'}
+library("knitr")
+kable(anscombe)
+```
+
+Each of these $x$ and $y$ sets have the same variance, mean and
+correlation:
+
+```{r anscombetab, echo=FALSE}
+tab <- matrix(NA, 5, 4)
+colnames(tab) <- 1:4
+rownames(tab) <- c("var(x)", "mean(x)",
+				   "var(y)", "mean(y)",
+				   "cor(x,y)")
+
+for (i in 1:4)
+	tab[, i] <- c(var(anscombe[, i]),
+				  mean(anscombe[, i]),
+				  var(anscombe[, i+4]),
+				  mean(anscombe[, i+4]),
+				  cor(anscombe[, i], anscombe[, i+4]))
+
+```
+
+```{r anstabdisplay, echo=FALSE}
+kable(tab)
+```
+
+But...
+
+While the *residuals* of the linear regression clearly indicate
+fundamental differences in these data, the most simple and
+straightforward approach is *visualisation* to highlight the
+fundamental differences in the datasets.
+
+```{r anscombefig, echo=FALSE}
+ff <- y ~ x
+
+mods <- setNames(as.list(1:4), paste0("lm", 1:4))
+
+par(mfrow = c(2, 2), mar = c(4, 4, 1, 1))
+for (i in 1:4) {
+	ff[2:3] <- lapply(paste0(c("y","x"), i), as.name)
+	plot(ff, data = anscombe, pch = 19, xlim = c(3, 19), ylim = c(3, 13))
+	mods[[i]] <- lm(ff, data = anscombe)
+	abline(mods[[i]])
+}
+```
+
+See also another, more recent example:
+[The Datasaurus Dozen dataset](https://www.autodeskresearch.com/publications/samestats).
+
+![The Datasaurus Dozen dataset](https://d2f99xq7vri1nk.cloudfront.net/DinoSequentialSmaller.gif)
+
+
+
+
+We will focus on producing visualisation that will enable
+understanding important features of biomolecular data or the effect of
+their transformation and analyses. With this in mind, the beauty of
+the visualisations we will produce won't be assessed by how visually
+attractive the figures are, but how then help us understand and assess
+the data. In the process of data exploration and data analysis, we
+want to be able to quickly generate and interpret figures, to progress
+in our understanding of data. It is of course important to fine tune
+the graphics to make them visually appealing and improve communication
+with the audience, but we won't focus on these aspects here.
 
 An important aspect of data visualisation is data manipulation,
 transformation and the format of the data. These topics will be
@@ -47,6 +120,10 @@ library("pRolocdata")
 library("pRoloc")
 library("ALL")
 library("MSstatsBioData")
+library("readr")
+library("tidyr")
+library("plyr")
+library("magrittr")
 ```
 
 ## Questions
