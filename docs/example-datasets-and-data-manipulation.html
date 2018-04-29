@@ -110,13 +110,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#the-iprg-data"><i class="fa fa-check"></i><b>2.2</b> The iPRG data</a></li>
 <li class="chapter" data-level="2.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#crc-training-data"><i class="fa fa-check"></i><b>2.3</b> CRC training data</a></li>
 <li class="chapter" data-level="2.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#all-data"><i class="fa fa-check"></i><b>2.4</b> ALL data</a></li>
-<li class="chapter" data-level="2.5" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#using-dplyr-for-data-manipulation"><i class="fa fa-check"></i><b>2.5</b> Using <code>dplyr</code> for data manipulation</a></li>
-<li class="chapter" data-level="2.6" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>2.6</b> Selecting columns and filtering rows</a></li>
-<li class="chapter" data-level="2.7" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#pipes"><i class="fa fa-check"></i><b>2.7</b> Pipes</a></li>
-<li class="chapter" data-level="2.8" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>2.8</b> Mutate</a></li>
-<li class="chapter" data-level="2.9" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>2.9</b> Split-apply-combine data analysis and the summarize() function</a><ul>
-<li class="chapter" data-level="2.9.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#the-summarize-function"><i class="fa fa-check"></i><b>2.9.1</b> The <code>summarize()</code> function</a></li>
-<li class="chapter" data-level="2.9.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#tallying"><i class="fa fa-check"></i><b>2.9.2</b> Tallying</a></li>
+<li class="chapter" data-level="2.5" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#using-dplyr-for-data-manipulation"><i class="fa fa-check"></i><b>2.5</b> Using <code>dplyr</code> for data manipulation</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>2.5.1</b> Selecting columns and filtering rows</a></li>
+<li class="chapter" data-level="2.5.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#pipes"><i class="fa fa-check"></i><b>2.5.2</b> Pipes</a></li>
+<li class="chapter" data-level="2.5.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>2.5.3</b> Mutate</a></li>
+<li class="chapter" data-level="2.5.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>2.5.4</b> Split-apply-combine data analysis and the summarize() function</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html"><i class="fa fa-check"></i><b>3</b> Exploring and visualising biomolecular data</a></li>
@@ -509,9 +507,8 @@ iprg &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 <li>In addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit on one screen.</li>
 <li>Columns of class <code>character</code> are never converted into factors.</li>
 </ol>
-</div>
-<div id="selecting-columns-and-filtering-rows" class="section level2">
-<h2><span class="header-section-number">2.6</span> Selecting columns and filtering rows</h2>
+<div id="selecting-columns-and-filtering-rows" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Selecting columns and filtering rows</h3>
 <p>We’re going to learn some of the most common <strong><code>dplyr</code></strong> functions: <code>select()</code>, <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, and <code>summarize()</code>. To select columns of a data frame, use <code>select()</code>. The first argument to this function is the data frame, and the subsequent arguments are the columns to keep.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(iprg, Protein, Run, Condition)</code></pre></div>
 <p>To choose rows based on a specific criteria, use <code>filter()</code>:</p>
@@ -546,8 +543,8 @@ iprg &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 ## 10 sp|O13539|T…          25.9 JD_0623201… Conditio…            2    6.18e7
 ## # ... with 9,071 more rows, and 1 more variable: TechReplicate &lt;chr&gt;</code></pre>
 </div>
-<div id="pipes" class="section level2">
-<h2><span class="header-section-number">2.7</span> Pipes</h2>
+<div id="pipes" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Pipes</h3>
 <p>But what if you wanted to select and filter at the same time? There are three ways to do this: use intermediate steps, nested functions, or pipes.</p>
 <p>With intermediate steps, you essentially create a temporary data frame and use that as input to the next function. This can clutter up your workspace with lots of objects. You can also nest functions (i.e. one function inside of another). This is handy, but can be difficult to read if too many functions are nested as things are evaluated from the inside out.</p>
 <p>The last option, pipes, are a fairly recent addition to R. Pipes let you take the output of one function and send it directly to the next, which is useful when you need to do many things to the same dataset. Pipes in R look like <code>%&gt;%</code> and are made available via the <code>magrittr</code> package, installed automatically with <strong><code>dplyr</code></strong>. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a Mac.</p>
@@ -601,8 +598,8 @@ iprg <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">select</span>(Protein, Condition)</code></pre></div>
 <p></details></p>
 </div>
-<div id="mutate" class="section level2">
-<h2><span class="header-section-number">2.8</span> Mutate</h2>
+<div id="mutate" class="section level3">
+<h3><span class="header-section-number">2.5.3</span> Mutate</h3>
 <p>Frequently you’ll want to create new columns based on the values in existing columns, for example to do unit conversions, or find the ratio of values in two columns. For this we’ll use <code>mutate()</code>.</p>
 <p>To create a new column of weight in kg:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg <span class="op">%&gt;%</span>
@@ -730,11 +727,11 @@ iprg <span class="op">%&gt;%</span>
 ## # ... with 35,308 more rows, and 1 more variable: Log10Intensity &lt;dbl&gt;</code></pre>
 <p><code>is.na()</code> is a function that determines whether something is an <code>NA</code>. The <code>!</code> symbol negates the result, so we’re asking for everything that <em>is not</em> an <code>NA</code>.</p>
 </div>
-<div id="split-apply-combine-data-analysis-and-the-summarize-function" class="section level2">
-<h2><span class="header-section-number">2.9</span> Split-apply-combine data analysis and the summarize() function</h2>
+<div id="split-apply-combine-data-analysis-and-the-summarize-function" class="section level3">
+<h3><span class="header-section-number">2.5.4</span> Split-apply-combine data analysis and the summarize() function</h3>
 <p>Many data analysis tasks can be approached using the <em>split-apply-combine</em> paradigm: split the data into groups, apply some analysis to each group, and then combine the results. <strong><code>dplyr</code></strong> makes this very easy through the use of the <code>group_by()</code> function.</p>
-<div id="the-summarize-function" class="section level3">
-<h3><span class="header-section-number">2.9.1</span> The <code>summarize()</code> function</h3>
+<div id="the-summarize-function" class="section level4">
+<h4><span class="header-section-number">2.5.4.1</span> The <code>summarize()</code> function</h4>
 <p><code>group_by()</code> is often used together with <code>summarize()</code>, which collapses each group into a single-row summary of that group. <code>group_by()</code> takes as arguments the column names that contain the <strong>categorical</strong> variables for which you want to calculate the summary statistics. So to view the mean <code>weight</code> by sex:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprgna <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(Condition) <span class="op">%&gt;%</span>
@@ -778,8 +775,8 @@ iprg <span class="op">%&gt;%</span>
 ## 11 C                        3      63020774.
 ## 12 C                        4      62984686.</code></pre>
 </div>
-<div id="tallying" class="section level3">
-<h3><span class="header-section-number">2.9.2</span> Tallying</h3>
+<div id="tallying" class="section level4">
+<h4><span class="header-section-number">2.5.4.2</span> Tallying</h4>
 <p>When working with data, it is also common to want to know the number of observations found for each factor or combination of factors. For this, <strong><code>dplyr</code></strong> provides <code>tally()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprgna <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(Condition) <span class="op">%&gt;%</span>
@@ -841,6 +838,7 @@ iprgna <span class="op">%&gt;%</span>
 ## 4 sp|P48589|R… JD_06232014… Conditio…            4    2.88e9 A</code></pre>
 <p></details></p>
 
+</div>
 </div>
 </div>
 </div>

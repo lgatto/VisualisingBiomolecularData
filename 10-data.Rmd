@@ -287,7 +287,7 @@ our purposes the only differences are that:
    columns as fit on one screen.
 2. Columns of class `character` are never converted into factors.
 
-## Selecting columns and filtering rows
+### Selecting columns and filtering rows
 
 We're going to learn some of the most common **`dplyr`** functions:
 `select()`, `filter()`, `mutate()`, `group_by()`, and
@@ -308,7 +308,7 @@ filter(iprg, BioReplicate == 1)
 filter(iprg, Condition == 'Condition2')
 ```
 
-## Pipes
+### Pipes
 
 But what if you wanted to select and filter at the same time? There
 are three ways to do this: use intermediate steps, nested functions,
@@ -374,7 +374,7 @@ iprg %>%
 </details>
 
 
-## Mutate
+### Mutate
 
 Frequently you'll want to create new columns based on the values in existing
 columns, for example to do unit conversions, or find the ratio of values in two
@@ -456,7 +456,7 @@ iprgna %>%
 `NA`. The `!` symbol negates the result, so we're asking for
 everything that *is not* an `NA`.
 
-## Split-apply-combine data analysis and the summarize() function
+### Split-apply-combine data analysis and the summarize() function
 
 Many data analysis tasks can be approached using the
 *split-apply-combine* paradigm: split the data into groups, apply some
@@ -464,7 +464,7 @@ analysis to each group, and then combine the results. **`dplyr`**
 makes this very easy through the use of the `group_by()` function.
 
 
-### The `summarize()` function
+#### The `summarize()` function
 
 `group_by()` is often used together with `summarize()`, which
 collapses each group into a single-row summary of that group.
@@ -497,7 +497,7 @@ iprgna %>%
   summarize(mean_Intensity = mean(Intensity, na.rm = TRUE))
 ```
 
-### Tallying
+#### Tallying
 
 When working with data, it is also common to want to know the number of
 observations found for each factor or combination of factors. For this, **`dplyr`**
