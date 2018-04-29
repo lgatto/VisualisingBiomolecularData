@@ -1,7 +1,28 @@
-# Plotting with `ggplot2`
+# Plotting in R
+
+## Base graphics
 
 
-The components of `ggplot2`'s of graphics are
+
+## Plotting with `ggplot2`
+
+Base graphics uses a *canvas model* a series of instructions that
+sequentially fill the plotting canvas. While this model is very useful
+to build plots bits by bits bottom up, which is useful in some cases,
+it has some clear drawback:
+
+* Layout choices have to be made without global overview over what may
+  still be coming.
+* Different functions for different plot types with different
+  interfaces.
+* No standard data input.
+* Many routine tasks require a lot of boilerplate code.
+* No concept of facets/lattices/viewports.
+* Poor default colours.
+
+The `ggplot2` package implements a grammar of graphics. Users describe
+what and how to visualise data and the package then generates the
+figure. The components of `ggplot2`'s of graphics are
 
 1. A **tidy** dataset
 2. A choice of geometric objects that servers as the visual

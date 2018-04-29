@@ -15,11 +15,14 @@ source("./src/setup.R")
 
 # Introduction
 
-This *Visualisation of biomolecular data* course is aimed at people
-who are already familiar with the R language and syntax, and who would
-like to get a hands-on introduction to visualisation with a focus on
-biomolecular data. This course is meant to be mostly hands-on, with an
-intuitive understanding of the underlying techniques.
+This *Visualisation of biomolecular data* course was set up as part of
+the 2018 edition of the May Institute *Computation and statistics for
+mass spectrometry and proteomics* at Northeastern University, Boston
+MA. It is aimed at people who are already familiar with the R language
+and syntax, and who would like to get a hands-on introduction to
+visualisation with a focus on biomolecular data in general, and
+proteomics in particular. This course is meant to be mostly hands-on,
+with an intuitive understanding of the underlying techniques.
 
 An important aspect of data visualisation is data manipulation,
 transformation and the format of the data. These topics will be

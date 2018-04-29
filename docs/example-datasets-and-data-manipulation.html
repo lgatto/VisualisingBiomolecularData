@@ -106,14 +106,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#references"><i class="fa fa-check"></i><b>1.4</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Example datasets and data manipulation</a><ul>
-<li class="chapter" data-level="2.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#the-iprg-data"><i class="fa fa-check"></i><b>2.1</b> The iPRG data</a></li>
-<li class="chapter" data-level="2.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#crc-training-data"><i class="fa fa-check"></i><b>2.2</b> CRC training data</a></li>
-<li class="chapter" data-level="2.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#all-data"><i class="fa fa-check"></i><b>2.3</b> ALL data</a></li>
-<li class="chapter" data-level="2.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#using-dplyr-for-data-manipulation"><i class="fa fa-check"></i><b>2.4</b> Using <code>dplyr</code> for data manipulation</a></li>
+<li class="chapter" data-level="2.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#raw-ms-data"><i class="fa fa-check"></i><b>2.1</b> Raw MS data</a></li>
+<li class="chapter" data-level="2.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#the-iprg-data"><i class="fa fa-check"></i><b>2.2</b> The iPRG data</a></li>
+<li class="chapter" data-level="2.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#crc-training-data"><i class="fa fa-check"></i><b>2.3</b> CRC training data</a></li>
+<li class="chapter" data-level="2.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#all-data"><i class="fa fa-check"></i><b>2.4</b> ALL data</a></li>
+<li class="chapter" data-level="2.5" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#using-dplyr-for-data-manipulation"><i class="fa fa-check"></i><b>2.5</b> Using <code>dplyr</code> for data manipulation</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html"><i class="fa fa-check"></i><b>3</b> Exploring and visualising biomolecular data</a></li>
-<li class="chapter" data-level="4" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Plotting with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="4.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#references-1"><i class="fa fa-check"></i><b>4.1</b> References</a></li>
+<li class="chapter" data-level="4" data-path="plotting-in-r.html"><a href="plotting-in-r.html"><i class="fa fa-check"></i><b>4</b> Plotting in R</a><ul>
+<li class="chapter" data-level="4.1" data-path="plotting-in-r.html"><a href="plotting-in-r.html#base-graphics"><i class="fa fa-check"></i><b>4.1</b> Base graphics</a></li>
+<li class="chapter" data-level="4.2" data-path="plotting-in-r.html"><a href="plotting-in-r.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Plotting with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references-1"><i class="fa fa-check"></i><b>4.3</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>5</b> Using R and Bioconductor for MS-based proteomics</a></li>
 <li class="chapter" data-level="6" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>6</b> Tools and plots</a><ul>
@@ -160,8 +163,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="example-datasets-and-data-manipulation" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Example datasets and data manipulation</h1>
 <p>We will used various datasets throughout the course. These data are briefly described below, and we will explore them through various visualisations later. This section also introduces some techniques to manipulate data and transorm them into different formats.</p>
+<div id="raw-ms-data" class="section level2">
+<h2><span class="header-section-number">2.1</span> Raw MS data</h2>
+<p>Section <em>Using R and Bioconductor for MS-based proteomics</em> shows how to visualise raw mass spectrometry data. The raw data that will be using come from the <em><a href="http://bioconductor.org/packages/msdata">msdata</a></em> <em><a href="http://bioconductor.org/packages/MSnbase">MSnbase</a></em> packages. These data will be introduced later.</p>
+</div>
 <div id="the-iprg-data" class="section level2">
-<h2><span class="header-section-number">2.1</span> The iPRG data</h2>
+<h2><span class="header-section-number">2.2</span> The iPRG data</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgCsv&quot;</span>)
 <span class="kw">head</span>(iprg)</code></pre></div>
 <pre><code>##                Protein Log2Intensity                       Run  Condition
@@ -322,7 +329,7 @@ iprg3 &lt;-<span class="st"> </span><span class="kw">spread</span>(iprg2, Run, I
 ## 6 sp|O13563|RPN13_YEAST JD_06232014_sample1-A.raw  75530595</code></pre>
 </div>
 <div id="crc-training-data" class="section level2">
-<h2><span class="header-section-number">2.2</span> CRC training data</h2>
+<h2><span class="header-section-number">2.3</span> CRC training data</h2>
 <p>This dataset comes from the <em><a href="http://bioconductor.org/packages/MSstatsBioData">MSstatsBioData</a></em> package and was generated as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;MSstats&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;MSstatsBioData&quot;</span>)
@@ -418,7 +425,7 @@ crc</code></pre></div>
 </blockquote>
 </div>
 <div id="all-data" class="section level2">
-<h2><span class="header-section-number">2.3</span> ALL data</h2>
+<h2><span class="header-section-number">2.4</span> ALL data</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ALL&quot;</span>)
 <span class="kw">data</span>(ALL)
 ALL</code></pre></div>
@@ -445,7 +452,7 @@ ALL</code></pre></div>
 </blockquote>
 </div>
 <div id="using-dplyr-for-data-manipulation" class="section level2">
-<h2><span class="header-section-number">2.4</span> Using <code>dplyr</code> for data manipulation</h2>
+<h2><span class="header-section-number">2.5</span> Using <code>dplyr</code> for data manipulation</h2>
 
 </div>
 </div>
