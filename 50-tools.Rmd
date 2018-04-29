@@ -1,11 +1,69 @@
 # Tools and plots
 
+## Transformations
 
-- transformations
-- correlation
-- Pairs
-- volcano plots
-- Visualising intersections: Venn, Euler, upset plots
-- Heatmaps
-- Dimensionality reduction (PCA)
-- Clustering
+## Correlation
+
+## Pairs
+
+## Volcano plots
+
+## Visualising intersections: Venn, Euler, upset plots
+
+## Unsupervised learning
+
+In **unsupervised learning** (UML), no labels are provided, and the
+learning algorithm focuses solely on detecting structure in unlabelled
+input data. One generally differentiates between
+
+- **Clustering**, where the goal is to find homogeneous subgroups
+  within the data; the grouping is based on distance between
+  observations.
+
+- **Dimensionality reduction**, where the goal is to identify patterns in
+  the features of the data. Dimensionality reduction is often used to
+  facilitate visualisation of the data, as well as a pre-processing
+  method before supervised learning.
+
+UML presents specific challenges and benefits:
+
+- there is no single goal in UML
+- there is generally much more unlabelled data available than labelled
+  data.
+
+Unsupervised learning techniques are paramount for exploratory data
+analysis and visualisation.
+
+### Dimensionality reduction (PCA)
+
+
+
+### K-means clustering
+
+### Hierarchical clustering
+
+## Heatmaps
+
+See
+
+> Key M. *A tutorial in displaying mass spectrometry-based proteomic
+> data using heat maps*. BMC Bioinformatics. 2012;13 Suppl
+> 16:S10. doi:
+> [10.1186/1471-2105-13-S16-S10](https://doi.org/10.1186/1471-2105-13-S16-S10). Epub
+> 2012 Nov 5. Review. PMID: 23176119; PMCID: PMC3489527.
+
+### Heatmap components
+
+### Data reordering
+
+### Distance
+
+### Clustering (agglomeration)
+
+### Image representation
+
+### Colour mapping
+
+### Colour palette
+
+###

@@ -1,4 +1,94 @@
-# Example datasets
+# Example datasets and data manipulation
+
+We will used various datasets throughout the course. These data are
+briefly described below, and we will explore them through various
+visualisations later. This section also introduces some techniques to
+manipulate data and transorm them into different formats.
+
+## The iPRG data
+
+
+```{r irpg}
+iprg <- read.csv("http://bit.ly/VisBiomedDataIprgCsv")
+head(iprg)
+dim(iprg)
+table(iprg$Condition, iprg$TechReplicate)
+```
+Reference:
+
+> Choi M, Eren-Dogu ZF, Colangelo C, Cottrell J, Hoopmann MR, Kapp EA,
+> Kim S, Lam H, Neubert TA, Palmblad M, Phinney BS, Weintraub ST,
+> MacLean B, Vitek O. *ABRF Proteome Informatics Research Group (iPRG)
+> 2015 Study: Detection of Differentially Abundant Proteins in
+> Label-Free Quantitative LC-MS/MS Experiments*.  J Proteome Res. 2017
+> Feb 3;16(2):945-957. doi:
+> [10.1021/acs.jproteome.6b00881](https://doi.org/10.1021/acs.jproteome.6b00881)
+> Epub 2017 Jan 3. PMID: 27990823.
+
+This data is in the so-called long format. In some applications, it is
+more convenient to have the data in wide format, where rows contain
+the protein expression data for all samples.
+
+Let's start by simplifying the data to keep only the relevant columns:
+
+```{r}
+head(iprg2 <- iprg[, c(1, 3, 6)])
+```
+
+We can convert the `iPRG` into a wide format with `tidyr::spread`:
+
+```{r}
+library("tidyr")
+iprg3 <- spread(iprg2, Run, Intensity)
+head(iprg3)
+nrow(iprg3)
+```
+
+```{r echo=FALSE}
+stopifnot(identical(length(unique(iprg$Protein)), nrow(iprg3)))
+```
+
+Indeed, we started with
+
+```{r}
+length(unique(iprg$Protein))
+```
+
+unique proteins, which corresponds to the number of rows in the new
+wide dataset.
+
+The long format is ideal when using `ggplot2`, as we will see in a
+later chapter. The wide format has also advantages. For example, it
+becomes straighforward to verify if there are proteins that haven't
+been quantified in some samples.
+
+```{r}
+(k <- which(is.na(iprg3), arr.ind = dim(iprg3)))
+iprg3[k[, "row"], ]
+```
+
+The opposite operation to `spread` is `gather`, also from the `tidyr`
+package:
+
+```{r}
+head(iprg4 <- gather(iprg3, key = Run, value = Intensity, -Protein))
+```
+
+The two lond datasets, `iprg2` and `iprg4` are different due to the
+missing values shown above.
+
+```{r}
+nrow(iprg2)
+nrow(iprg4)
+nrow(na.omit(iprg4))
+```
+
+which can be accounted for by removing rows with missing values by
+setting `na.rm = TRUE`.
+
+```{r}
+head(iprg5 <- gather(iprg3, key = Run, value = Intensity, -Protein, na.rm = TRUE))
+```
 
 ## CRC training data
 
@@ -13,7 +103,7 @@ Quant <- dataProcess(SRM_crc_training)
 subjectQuant <- quantification(Quant)
 ```
 
-which provides quantitative information for 72 proteins, including two
+It provides quantitative information for 72 proteins, including two
 standard proteins, *AIAG-Bovine* and *FETUA-Bovine*. These proteins
 were targeted for plasma samples with SRM with isotope labeled
 reference peptides in order to identify candidate protein biomarker
@@ -25,7 +115,6 @@ was already normalized as described in manuscript. User do not need
 extra normalization. NAs should be considered as censored missing. Two
 standard proteins can be removed for statistical analysis.
 
-
 Clinical information where added manually thereafter.
 
 To load this dataset:
@@ -33,15 +122,57 @@ To load this dataset:
 ```{r crcread}
 crcdf <- read.csv("http://bit.ly/VisBiomedDataCrcCsv")
 crcdf[1:10, 1:3]
+```
+
+This dataset is in the wide format. It contains the intensity of the
+proteins in columns 1 to 72 for each of the 200 samples along the
+rows. Generally, omics datasets contain the features (proteins,
+transcripts, ...) along the rows and the samples along the columns.
+
+In columns 73 to 79, we sample metadata.
+
+```{r}
 crcdf[1:10, 73:79]
 ```
 
-Conversion to an `MSnSet`
+A widely used data structure for omics data follows the convention
+described in the figure below:
+
+![An eSet-type of expression data container](./img/msnset.png)
+
+This typical omics data structure, as defined by the `eSet` class in
+the Bioconductor `Biobase` package, is represented below. It’s main
+features are
+
+-  An assay data slot containing the quantitative omics data
+   (expression data), stored as a `matrix` and accessible with
+   `exprs`. Features defined along the rows and samples along the
+   columns.
+
+- A sample metadata slot containing sample co-variates, stored as an
+  annotated `data.frame` and accessible with `pData`. This data frame
+  is stored with rows representing samples and sample covariate along
+  the columns, and its rows match the expression data columns exactly.
+
+- A feature metadata slot containing feature co-variates, stored as an
+  annotated `data.frame` and accessible with `fData`. This dataframe’s
+  rows match the expression data rows exactly.
+
+The coordinated nature of the high throughput data guarantees that the
+dimensions of the different slots will always match (i.e the columns
+in the expression data and then rows in the sample metadata, as well
+as the rows in the expression data and feature metadata) during data
+manipulation. The metadata slots can grow additional co-variates
+(columns) without affecting the other structures.
+
+Below, we show how to transform the `crc` dataset into an `MSnSet`
+(implementing the data structure above for quantitative proteomics
+data) using the `readMSnSet2` function.
 
 ```{r crcmsnset}
 library("MSnbase")
-i <- 1:72
-e <- t(crcdf[, i])
+i <- 1:72 ## expression columns
+e <- t(crcdf[, i]) ## expression data
 colnames(e) <- 1:200
 crc <- readMSnSet2(data.frame(e), e = 1:200)
 
@@ -50,7 +181,6 @@ rownames(pd) <- paste0("X", rownames(pd))
 pData(crc) <- pd
 crc
 ```
-
 
 Or load it direcly:
 
@@ -62,9 +192,9 @@ crc
 
 Reference:
 
-See Surinova, S. et al. (2015) *Prediction of colorectal cancer
-diagnosis based on circulating plasma proteins*. EMBO Mol. Med., 7,
-1166–1178 for details.
+> See Surinova, S. et al. (2015) *Prediction of colorectal cancer
+> diagnosis based on circulating plasma proteins*. EMBO Mol. Med., 7,
+> 1166–1178 for details.
 
 ## ALL data
 
@@ -82,10 +212,15 @@ From the documentation page:
 > available. The data have been normalized (using rma) and it is the
 > jointly normalized data that are available here.
 
+The `ALL` data is of class `ExpressionSet`, which implements the data
+structure above for microarray expression data.
+
 Reference:
 
-Sabina Chiaretti, Xiaochun Li, Robert Gentleman, Antonella Vitale,
-Marco Vignetti, Franco Mandelli, Jerome Ritz, and Robin Foa *Gene
-expression profile of adult T-cell acute lymphocytic leukemia
-identifies distinct subsets of patients with different response to
-therapy and survival*. Blood, 1 April 2004, Vol. 103, No. 7.
+> Sabina Chiaretti, Xiaochun Li, Robert Gentleman, Antonella Vitale,
+> Marco Vignetti, Franco Mandelli, Jerome Ritz, and Robin Foa *Gene
+> expression profile of adult T-cell acute lymphocytic leukemia
+> identifies distinct subsets of patients with different response to
+> therapy and survival*. Blood, 1 April 2004, Vol. 103, No. 7.
+
+## Using `dplyr` for data manipulation

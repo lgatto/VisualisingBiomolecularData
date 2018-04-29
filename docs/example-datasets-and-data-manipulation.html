@@ -105,10 +105,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.3</b> License</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#references"><i class="fa fa-check"></i><b>1.4</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="example-datasets.html"><a href="example-datasets.html"><i class="fa fa-check"></i><b>2</b> Example datasets</a><ul>
-<li class="chapter" data-level="2.1" data-path="example-datasets.html"><a href="example-datasets.html#the-iprg-data"><i class="fa fa-check"></i><b>2.1</b> The iPRG data</a></li>
-<li class="chapter" data-level="2.2" data-path="example-datasets.html"><a href="example-datasets.html#crc-training-data"><i class="fa fa-check"></i><b>2.2</b> CRC training data</a></li>
-<li class="chapter" data-level="2.3" data-path="example-datasets.html"><a href="example-datasets.html#all-data"><i class="fa fa-check"></i><b>2.3</b> ALL data</a></li>
+<li class="chapter" data-level="2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Example datasets and data manipulation</a><ul>
+<li class="chapter" data-level="2.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#the-iprg-data"><i class="fa fa-check"></i><b>2.1</b> The iPRG data</a></li>
+<li class="chapter" data-level="2.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#crc-training-data"><i class="fa fa-check"></i><b>2.2</b> CRC training data</a></li>
+<li class="chapter" data-level="2.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#all-data"><i class="fa fa-check"></i><b>2.3</b> ALL data</a></li>
+<li class="chapter" data-level="2.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#using-dplyr-for-data-manipulation"><i class="fa fa-check"></i><b>2.4</b> Using <code>dplyr</code> for data manipulation</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html"><i class="fa fa-check"></i><b>3</b> Exploring and visualising biomolecular data</a></li>
 <li class="chapter" data-level="4" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Plotting with <code>ggplot2</code></a><ul>
@@ -156,9 +157,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="example-datasets" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Example datasets</h1>
-<p>We will used various datasets throughout the course. These data are briefly described below, and we will explore them through various visualisations later.</p>
+<div id="example-datasets-and-data-manipulation" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Example datasets and data manipulation</h1>
+<p>We will used various datasets throughout the course. These data are briefly described below, and we will explore them through various visualisations later. This section also introduces some techniques to manipulate data and transorm them into different formats.</p>
 <div id="the-iprg-data" class="section level2">
 <h2><span class="header-section-number">2.1</span> The iPRG data</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgCsv&quot;</span>)
@@ -192,9 +193,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </blockquote>
 <p>This data is in the so-called long format. In some applications, it is more convenient to have the data in wide format, where rows contain the protein expression data for all samples.</p>
 <p>Let’s start by simplifying the data to keep only the relevant columns:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg2 &lt;-<span class="st"> </span>iprg[, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iprg2 &lt;-<span class="st"> </span>iprg[, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>)])</code></pre></div>
+<pre><code>##                Protein                       Run Intensity
+## 1 sp|D6VTK4|STE2_YEAST JD_06232014_sample1_B.raw 117845016
+## 2 sp|D6VTK4|STE2_YEAST JD_06232014_sample1_C.raw 102273602
+## 3 sp|D6VTK4|STE2_YEAST JD_06232014_sample1-A.raw 100526837
+## 4 sp|D6VTK4|STE2_YEAST JD_06232014_sample2_A.raw 119765106
+## 5 sp|D6VTK4|STE2_YEAST JD_06232014_sample2_B.raw 116382798
+## 6 sp|D6VTK4|STE2_YEAST JD_06232014_sample2_C.raw 102328260</code></pre>
 <p>We can convert the <code>iPRG</code> into a wide format with <code>tidyr::spread</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg3 &lt;-<span class="st"> </span><span class="kw">spread</span>(iprg2, Run, Intensity)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyr&quot;</span>)
+iprg3 &lt;-<span class="st"> </span><span class="kw">spread</span>(iprg2, Run, Intensity)
 <span class="kw">head</span>(iprg3)</code></pre></div>
 <pre><code>##                 Protein JD_06232014_sample1-A.raw
 ## 1  sp|D6VTK4|STE2_YEAST                 100526837
@@ -248,14 +257,69 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(iprg3)</code></pre></div>
 <pre><code>## [1] 3027</code></pre>
 <p>Indeed, we started with</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="kw">unique</span>(iprg<span class="op">$</span>Proteins))</code></pre></div>
-<pre><code>## [1] 0</code></pre>
-<p>unique proteins, which corresponds to the number of rows in the new wide data set.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="kw">unique</span>(iprg<span class="op">$</span>Protein))</code></pre></div>
+<pre><code>## [1] 3027</code></pre>
+<p>unique proteins, which corresponds to the number of rows in the new wide dataset.</p>
 <p>The long format is ideal when using <code>ggplot2</code>, as we will see in a later chapter. The wide format has also advantages. For example, it becomes straighforward to verify if there are proteins that haven’t been quantified in some samples.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anyNA</span>(iprg3)</code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<p>This isn’t the case here, but we will see examples later on.</p>
-<p>The opposite operation</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(k &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(iprg3), <span class="dt">arr.ind =</span> <span class="kw">dim</span>(iprg3)))</code></pre></div>
+<pre><code>##       row col
+## [1,] 2721   2
+## [2,] 2721   3
+## [3,]  652  12</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg3[k[, <span class="st">&quot;row&quot;</span>], ]</code></pre></div>
+<pre><code>##                      Protein JD_06232014_sample1-A.raw
+## 2721    sp|Q08236|AVO1_YEAST                        NA
+## 2721.1  sp|Q08236|AVO1_YEAST                        NA
+## 652    sp|P28320|CWC16_YEAST                   1108670
+##        JD_06232014_sample1_B.raw JD_06232014_sample1_C.raw
+## 2721                          NA                  10989286
+## 2721.1                        NA                  10989286
+## 652                     961273.8                   1229085
+##        JD_06232014_sample2_A.raw JD_06232014_sample2_B.raw
+## 2721                   5407419.7                   2041424
+## 2721.1                 5407419.7                   2041424
+## 652                     449839.1                   1334009
+##        JD_06232014_sample2_C.raw JD_06232014_sample3_A.raw
+## 2721                    13108081                   4677052
+## 2721.1                  13108081                   4677052
+## 652                      1633894                   1493440
+##        JD_06232014_sample3_B.raw JD_06232014_sample3_C.raw
+## 2721                    10308957                  13639794
+## 2721.1                  10308957                  13639794
+## 652                      2205688                   2120321
+##        JD_06232014_sample4-A.raw JD_06232014_sample4_B.raw
+## 2721                  10377088.4                   2592511
+## 2721.1                10377088.4                   2592511
+## 652                     757082.7                        NA
+##        JD_06232014_sample4_C.raw
+## 2721                    10420338
+## 2721.1                  10420338
+## 652                      1264712</code></pre>
+<p>The opposite operation to <code>spread</code> is <code>gather</code>, also from the <code>tidyr</code> package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iprg4 &lt;-<span class="st"> </span><span class="kw">gather</span>(iprg3, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity, <span class="op">-</span>Protein))</code></pre></div>
+<pre><code>##                 Protein                       Run Intensity
+## 1  sp|D6VTK4|STE2_YEAST JD_06232014_sample1-A.raw 100526837
+## 2  sp|O13297|CET1_YEAST JD_06232014_sample1-A.raw  27598550
+## 3  sp|O13329|FOB1_YEAST JD_06232014_sample1-A.raw  11625198
+## 4  sp|O13539|THP2_YEAST JD_06232014_sample1-A.raw  20606703
+## 5 sp|O13547|CCW14_YEAST JD_06232014_sample1-A.raw 145493943
+## 6 sp|O13563|RPN13_YEAST JD_06232014_sample1-A.raw  75530595</code></pre>
+<p>The two lond datasets, <code>iprg2</code> and <code>iprg4</code> are different due to the missing values shown above.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(iprg2)</code></pre></div>
+<pre><code>## [1] 36321</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(iprg4)</code></pre></div>
+<pre><code>## [1] 36324</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(<span class="kw">na.omit</span>(iprg4))</code></pre></div>
+<pre><code>## [1] 36321</code></pre>
+<p>which can be accounted for by removing rows with missing values by setting <code>na.rm = TRUE</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iprg5 &lt;-<span class="st"> </span><span class="kw">gather</span>(iprg3, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity, <span class="op">-</span>Protein, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>##                 Protein                       Run Intensity
+## 1  sp|D6VTK4|STE2_YEAST JD_06232014_sample1-A.raw 100526837
+## 2  sp|O13297|CET1_YEAST JD_06232014_sample1-A.raw  27598550
+## 3  sp|O13329|FOB1_YEAST JD_06232014_sample1-A.raw  11625198
+## 4  sp|O13539|THP2_YEAST JD_06232014_sample1-A.raw  20606703
+## 5 sp|O13547|CCW14_YEAST JD_06232014_sample1-A.raw 145493943
+## 6 sp|O13563|RPN13_YEAST JD_06232014_sample1-A.raw  75530595</code></pre>
 </div>
 <div id="crc-training-data" class="section level2">
 <h2><span class="header-section-number">2.2</span> CRC training data</h2>
@@ -265,7 +329,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">data</span>(SRM_crc_training)
 Quant &lt;-<span class="st"> </span><span class="kw">dataProcess</span>(SRM_crc_training)
 subjectQuant &lt;-<span class="st"> </span><span class="kw">quantification</span>(Quant)</code></pre></div>
-<p>which provides quantitative information for 72 proteins, including two standard proteins, <em>AIAG-Bovine</em> and <em>FETUA-Bovine</em>. These proteins were targeted for plasma samples with SRM with isotope labeled reference peptides in order to identify candidate protein biomarker for non-invasive detection of CRC. The training cohort included 100 subjects in control group and 100 subjects with CRC. Each sample for subject was measured in a single injection without technical replicate. The training cohort was analyzed with Skyline. The dataset was already normalized as described in manuscript. User do not need extra normalization. NAs should be considered as censored missing. Two standard proteins can be removed for statistical analysis.</p>
+<p>It provides quantitative information for 72 proteins, including two standard proteins, <em>AIAG-Bovine</em> and <em>FETUA-Bovine</em>. These proteins were targeted for plasma samples with SRM with isotope labeled reference peptides in order to identify candidate protein biomarker for non-invasive detection of CRC. The training cohort included 100 subjects in control group and 100 subjects with CRC. Each sample for subject was measured in a single injection without technical replicate. The training cohort was analyzed with Skyline. The dataset was already normalized as described in manuscript. User do not need extra normalization. NAs should be considered as censored missing. Two standard proteins can be removed for statistical analysis.</p>
 <p>Clinical information where added manually thereafter.</p>
 <p>To load this dataset:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crcdf &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataCrcCsv&quot;</span>)
@@ -281,6 +345,8 @@ crcdf[<span class="dv">1</span><span class="op">:</span><span class="dv">10</spa
 ## 8  13.57086 17.11052 19.93833
 ## 9  15.83348 15.88189 18.64270
 ## 10 15.37996 16.22621 20.09992</code></pre>
+<p>This dataset is in the wide format. It contains the intensity of the proteins in columns 1 to 72 for each of the 200 samples along the rows. Generally, omics datasets contain the features (proteins, transcripts, …) along the rows and the samples along the columns.</p>
+<p>In columns 73 to 79, we sample metadata.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crcdf[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">73</span><span class="op">:</span><span class="dv">79</span>]</code></pre></div>
 <pre><code>##    Sample Group Age Gender Cancer_stage Tumour_location Sub_group
 ## 1   P1A10   CRC  60 female            1           colon       CRC
@@ -293,10 +359,22 @@ crcdf[<span class="dv">1</span><span class="op">:</span><span class="dv">10</spa
 ## 8    P1B6   CRC  52   male            4          rectum       CRC
 ## 9    P1B9   CRC  89 female            4           colon       CRC
 ## 10  P1C11   CRC  81   male            1          rectum       CRC</code></pre>
-<p>Conversion to an <code>MSnSet</code></p>
+<p>A widely used data structure for omics data follows the convention described in the figure below:</p>
+<div class="figure">
+<img src="img/msnset.png" alt="An eSet-type of expression data container" />
+<p class="caption">An eSet-type of expression data container</p>
+</div>
+<p>This typical omics data structure, as defined by the <code>eSet</code> class in the Bioconductor <code>Biobase</code> package, is represented below. It’s main features are</p>
+<ul>
+<li><p>An assay data slot containing the quantitative omics data (expression data), stored as a <code>matrix</code> and accessible with <code>exprs</code>. Features defined along the rows and samples along the columns.</p></li>
+<li><p>A sample metadata slot containing sample co-variates, stored as an annotated <code>data.frame</code> and accessible with <code>pData</code>. This data frame is stored with rows representing samples and sample covariate along the columns, and its rows match the expression data columns exactly.</p></li>
+<li><p>A feature metadata slot containing feature co-variates, stored as an annotated <code>data.frame</code> and accessible with <code>fData</code>. This dataframe’s rows match the expression data rows exactly.</p></li>
+</ul>
+<p>The coordinated nature of the high throughput data guarantees that the dimensions of the different slots will always match (i.e the columns in the expression data and then rows in the sample metadata, as well as the rows in the expression data and feature metadata) during data manipulation. The metadata slots can grow additional co-variates (columns) without affecting the other structures.</p>
+<p>Below, we show how to transform the <code>crc</code> dataset into an <code>MSnSet</code> (implementing the data structure above for quantitative proteomics data) using the <code>readMSnSet2</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;MSnbase&quot;</span>)
-i &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">72</span>
-e &lt;-<span class="st"> </span><span class="kw">t</span>(crcdf[, i])
+i &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">72</span> ## expression columns
+e &lt;-<span class="st"> </span><span class="kw">t</span>(crcdf[, i]) ## expression data
 <span class="kw">colnames</span>(e) &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">200</span>
 crc &lt;-<span class="st"> </span><span class="kw">readMSnSet2</span>(<span class="kw">data.frame</span>(e), <span class="dt">e =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">200</span>)
 
@@ -360,8 +438,14 @@ ALL</code></pre></div>
 <blockquote>
 <p>The <em>Acute Lymphoblastic Leukemia Data from the Ritz Laboratory</em> consist of microarrays from 128 different individuals with acute lymphoblastic leukemia (ALL). A number of additional covariates are available. The data have been normalized (using rma) and it is the jointly normalized data that are available here.</p>
 </blockquote>
+<p>The <code>ALL</code> data is of class <code>ExpressionSet</code>, which implements the data structure above for microarray expression data.</p>
 <p>Reference:</p>
+<blockquote>
 <p>Sabina Chiaretti, Xiaochun Li, Robert Gentleman, Antonella Vitale, Marco Vignetti, Franco Mandelli, Jerome Ritz, and Robin Foa <em>Gene expression profile of adult T-cell acute lymphocytic leukemia identifies distinct subsets of patients with different response to therapy and survival</em>. Blood, 1 April 2004, Vol. 103, No. 7.</p>
+</blockquote>
+</div>
+<div id="using-dplyr-for-data-manipulation" class="section level2">
+<h2><span class="header-section-number">2.4</span> Using <code>dplyr</code> for data manipulation</h2>
 
 </div>
 </div>
