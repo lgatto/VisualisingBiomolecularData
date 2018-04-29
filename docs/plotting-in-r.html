@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="interactive-visualisation.html">
-
+<link rel="prev" href="exploring-and-visualising-biomolecular-data.html">
+<link rel="next" href="using-r-and-bioconductor-for-ms-based-proteomics.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -167,87 +167,81 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="session-information" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Session information</h1>
-<p>The session information below documents the packages and versions used to generate this material.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
-<pre><code>## R Under development (unstable) (2018-04-02 r74505)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 14.04.5 LTS
-## 
-## Matrix products: default
-## BLAS: /usr/lib/atlas-base/atlas/libblas.so.3.0
-## LAPACK: /usr/lib/lapack/liblapack.so.3.0
-## 
-## locale:
-##  [1] LC_CTYPE=en_GB.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_GB.UTF-8        LC_COLLATE=en_GB.UTF-8    
-##  [5] LC_MONETARY=en_GB.UTF-8    LC_MESSAGES=en_GB.UTF-8   
-##  [7] LC_PAPER=en_GB.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_GB.UTF-8 LC_IDENTIFICATION=C       
-## 
-## attached base packages:
-## [1] stats4    parallel  stats     graphics  grDevices utils     datasets 
-## [8] methods   base     
-## 
-## other attached packages:
-##  [1] bindrcpp_0.2.2.9000  forcats_0.3.0        stringr_1.3.0       
-##  [4] dplyr_0.7.4.9003     purrr_0.2.4          tibble_1.4.2        
-##  [7] tidyverse_1.2.1      tidyr_0.8.0          MSstatsBioData_1.1.0
-## [10] ALL_1.21.0           pRoloc_1.19.4        MLInterfaces_1.59.1 
-## [13] cluster_2.0.7        annotate_1.57.3      XML_3.98-1.10       
-## [16] AnnotationDbi_1.41.4 IRanges_2.13.28      S4Vectors_0.17.41   
-## [19] pRolocdata_1.17.3    MSnbase_2.5.14       ProtGenerics_1.11.0 
-## [22] BiocParallel_1.13.3  mzR_2.13.6           Rcpp_0.12.16        
-## [25] Biobase_2.39.2       BiocGenerics_0.25.3  ggplot2_2.2.1       
-## [28] readr_1.1.1          BiocStyle_2.7.8     
-## 
-## loaded via a namespace (and not attached):
-##   [1] utf8_1.1.3            tidyselect_0.2.4      RSQLite_2.1.0        
-##   [4] htmlwidgets_1.0       grid_3.6.0            trimcluster_0.1-2    
-##   [7] lpSolve_5.6.13        rda_1.0.2-2           munsell_0.4.3        
-##  [10] codetools_0.2-15      preprocessCore_1.41.0 msdata_0.19.4        
-##  [13] withr_2.1.2           colorspace_1.3-2      BiocInstaller_1.29.6 
-##  [16] knitr_1.20            rstudioapi_0.7        robustbase_0.92-8    
-##  [19] dimRed_0.1.0          mzID_1.17.0           labeling_0.3         
-##  [22] mnormt_1.5-5          hwriter_1.3.2         bit64_0.9-7          
-##  [25] ggvis_0.4.3           rprojroot_1.3-2       ipred_0.9-6          
-##  [28] xfun_0.1              randomForest_4.6-14   diptest_0.75-7       
-##  [31] R6_2.2.2              doParallel_1.0.11     flexmix_2.3-14       
-##  [34] DRR_0.0.3             bitops_1.0-6          assertthat_0.2.0     
-##  [37] scales_0.5.0          nnet_7.3-12           gtable_0.2.0         
-##  [40] affy_1.57.0           ddalpha_1.3.1.1       timeDate_3043.102    
-##  [43] rlang_0.2.0           CVST_0.2-1            genefilter_1.61.1    
-##  [46] RcppRoll_0.2.2        splines_3.6.0         lazyeval_0.2.1       
-##  [49] ModelMetrics_1.1.0    impute_1.53.0         hexbin_1.27.2        
-##  [52] broom_0.4.4           yaml_2.1.18           reshape2_1.4.3       
-##  [55] modelr_0.1.1          threejs_0.3.1         crosstalk_1.0.0      
-##  [58] backports_1.1.2       httpuv_1.3.6.2        caret_6.0-78         
-##  [61] tools_3.6.0           lava_1.6.1            bookdown_0.7         
-##  [64] psych_1.8.3.3         affyio_1.49.2         RColorBrewer_1.1-2   
-##  [67] proxy_0.4-22          plyr_1.8.4            base64enc_0.1-3      
-##  [70] progress_1.1.2        zlibbioc_1.25.0       RCurl_1.95-4.10      
-##  [73] prettyunits_1.0.2     rpart_4.1-13          viridis_0.5.1        
-##  [76] sampling_2.8          sfsmisc_1.1-2         haven_1.1.1          
-##  [79] magrittr_1.5          pcaMethods_1.71.0     mvtnorm_1.0-7        
-##  [82] whisker_0.3-2         hms_0.4.2             mime_0.5             
-##  [85] evaluate_0.10.1       xtable_1.8-2          mclust_5.4           
-##  [88] readxl_1.0.0          gridExtra_2.3         compiler_3.6.0       
-##  [91] biomaRt_2.35.13       crayon_1.3.4          htmltools_0.3.6      
-##  [94] lubridate_1.7.4       DBI_0.8               MASS_7.3-49          
-##  [97] fpc_2.1-11            Matrix_1.2-13         cli_1.0.0            
-## [100] vsn_3.47.1           
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 43 entries ]</code></pre>
+<div id="plotting-in-r" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Plotting in R</h1>
+<div id="base-graphics" class="section level2">
+<h2><span class="header-section-number">4.1</span> Base graphics</h2>
+</div>
+<div id="plotting-with-ggplot2" class="section level2">
+<h2><span class="header-section-number">4.2</span> Plotting with <code>ggplot2</code></h2>
+<p>Base graphics uses a <em>canvas model</em> a series of instructions that sequentially fill the plotting canvas. While this model is very useful to build plots bits by bits bottom up, which is useful in some cases, it has some clear drawback:</p>
+<ul>
+<li>Layout choices have to be made without global overview over what may still be coming.</li>
+<li>Different functions for different plot types with different interfaces.</li>
+<li>No standard data input.</li>
+<li>Many routine tasks require a lot of boilerplate code.</li>
+<li>No concept of facets/lattices/viewports.</li>
+<li>Poor default colours.</li>
+</ul>
+<p>The <code>ggplot2</code> package implements a grammar of graphics. Users describe what and how to visualise data and the package then generates the figure. The components of <code>ggplot2</code>’s of graphics are</p>
+<ol style="list-style-type: decimal">
+<li>A <strong>tidy</strong> dataset</li>
+<li>A choice of geometric objects that servers as the visual representation of the data - for instance, points, lines, rectangles, contours.</li>
+<li>A description of how the variables in the data are mapped to visual properties (aesthetics) or the geometric objects, and an associated scale (e.g. linear, logarithmic, polar)</li>
+<li>A statistical summarisation rule</li>
+<li>A coordinate system.</li>
+<li>A facet specification, i.e. the use of several plots to look at the same data.</li>
+</ol>
+<p>Fist of all, we need to load the <code>ggplot2</code> package and load the <code>iprg</code> data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)
+iprg &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgCsv&quot;</span>)</code></pre></div>
+<p>ggplot graphics are built step by step by adding new elements.</p>
+<p>To build a ggplot we need to:</p>
+<ul>
+<li>bind the plot to a specific data frame using the <code>data</code> argument</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg)</code></pre></div>
+<ul>
+<li>define aesthetics (<code>aes</code>), by selecting the variables to be plotted and the variables to define the presentation such as plotting size, shape color, etc.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity))</code></pre></div>
+<ul>
+<li>add <code>geoms</code> – graphical representation of the data in the plot (points, lines, bars). To add a geom to the plot use <code>+</code> operator</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>See the <a href="http://ggplot2.tidyverse.org/reference/">documentation page</a> to explore the many available <code>geoms</code>.</p>
+<p>The <code>+</code> in the <code>ggplot2</code> package is particularly useful because it allows you to modify existing <code>ggplot</code> objects. This means you can easily set up plot “templates” and conveniently explore different types of plots, so the above plot can also be generated with code like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Assign plot to a variable
+ints_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity))
 
+## Draw the plot
+ints_plot <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p>Notes:</p>
+<ul>
+<li><p>Anything you put in the <code>ggplot()</code> function can be seen by any geom layers that you add (i.e., these are universal plot settings). This includes the x and y axis you set up in <code>aes()</code>.</p></li>
+<li><p>You can also specify aesthetics for a given geom independently of the aesthetics defined globally in the <code>ggplot()</code> function.</p></li>
+<li><p>The <code>+</code> sign used to add layers must be placed at the end of each line containing a layer. If, instead, the <code>+</code> sign is added in the line before the other layer, <code>ggplot2</code> will not add the new layer and will return an error message.</p></li>
+</ul>
+</div>
+<div id="references-1" class="section level2">
+<h2><span class="header-section-number">4.3</span> References</h2>
+<ul>
+<li><a href="http://www.ggplot2-exts.org/gallery/"><code>ggplot2</code> extensions - gallery</a></li>
+<li><a href="http://ggplot2.tidyverse.org/"><code>ggplot2</code> webpage</a> and documentation</li>
+<li><em>ggplot2: Elegant Graphics for Data Analysis</em> book (source of the book available for free <a href="t%20https://github.com/hadley/ggplot2-book">here</a>).</li>
+</ul>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="interactive-visualisation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="exploring-and-visualising-biomolecular-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="using-r-and-bioconductor-for-ms-based-proteomics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
