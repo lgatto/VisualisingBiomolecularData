@@ -116,6 +116,7 @@ https://github.com/lgatto/VisualisingBiomolecularData
 ```{r pkgs, eval=FALSE}
 library("ggplot2")
 library("MSnbase")
+library("limma")
 library("pRolocdata")
 library("pRoloc")
 library("ALL")
@@ -124,6 +125,8 @@ library("readr")
 library("tidyr")
 library("plyr")
 library("magrittr")
+library("Vennerable") ## on GitHub at js229/Vennerable
+library("UpSetR")
 ```
 
 ## Questions
@@ -142,7 +145,7 @@ License](http://creativecommons.org/licenses/by-sa/4.0/). Some content
 is inspired by other sources, see the *Credit* section in the
 material.
 
-## References
+## Useful references
 
 Gatto L, Breckels LM, Naake T, Gibb S. *Visualization of proteomics
 data using R and bioconductor*. Proteomics. 2015
@@ -158,3 +161,9 @@ Gatto L, Christoforou A. *Using R and Bioconductor for proteomics data
 analysis*. Biochim Biophys Acta. 2014 Jan;1844(1 Pt
 A):42-51. doi: [10.1016/j.bbapap.2013.04.032](http://dx.doi.org/10.1016/j.bbapap.2013.04.032). Epub
 2013 May 18. PMID: 23692960.
+
+Conway JR, Lex A, Gehlenborg N. UpSetR: an R package for the
+visualization of intersecting sets and their
+properties. Bioinformatics. 2017 Sep 15;33(18):2938-2940. doi:
+[10.1093/bioinformatics/btx364](https://doi.org/10.1093/bioinformatics/btx364). PMID:
+28645171; PMCID: PMC5870712.

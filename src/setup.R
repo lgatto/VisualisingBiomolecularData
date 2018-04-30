@@ -1,5 +1,6 @@
 set.seed(1L)
 
+suppressPackageStartupMessages(library("limma"))
 suppressPackageStartupMessages(library("BiocStyle"))
 suppressPackageStartupMessages(library("ggplot2"))
 suppressPackageStartupMessages(library("MSnbase"))
@@ -11,3 +12,5 @@ suppressPackageStartupMessages(library("MSstatsBioData"))
 suppressPackageStartupMessages(library("readr"))
 suppressPackageStartupMessages(library("tidyr"))
 suppressPackageStartupMessages(library("magrittr"))
+suppressPackageStartupMessages(library("Vennerable"))
+suppressPackageStartupMessages(library("UpSetR"))
