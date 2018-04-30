@@ -1,1 +1,6 @@
 # Using R and Bioconductor for MS-based proteomics
+
+To be based on second part of [`RforProteomics` visualisation
+vignette](https://lgatto.github.io/RforProteomics/articles/RProtVis.html)
+and the [`MSnbase`
+vignettes](https://lgatto.github.io/MSnbase/articles/index.html).
