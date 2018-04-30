@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="plotting-in-r.html">
-<link rel="next" href="tools-and-plots.html">
+<link rel="prev" href="tools-and-plots.html">
+<link rel="next" href="interactive-visualisation.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -107,14 +107,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Example datasets and data manipulation</a><ul>
 <li class="chapter" data-level="2.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#raw-ms-data"><i class="fa fa-check"></i><b>2.1</b> Raw MS data</a></li>
-<li class="chapter" data-level="2.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#the-iprg-data"><i class="fa fa-check"></i><b>2.2</b> The iPRG data</a></li>
-<li class="chapter" data-level="2.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#crc-training-data"><i class="fa fa-check"></i><b>2.3</b> CRC training data</a></li>
-<li class="chapter" data-level="2.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#all-data"><i class="fa fa-check"></i><b>2.4</b> ALL data</a></li>
-<li class="chapter" data-level="2.5" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#using-dplyr-for-data-manipulation"><i class="fa fa-check"></i><b>2.5</b> Using <code>dplyr</code> for data manipulation</a><ul>
-<li class="chapter" data-level="2.5.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>2.5.1</b> Selecting columns and filtering rows</a></li>
-<li class="chapter" data-level="2.5.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#pipes"><i class="fa fa-check"></i><b>2.5.2</b> Pipes</a></li>
-<li class="chapter" data-level="2.5.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>2.5.3</b> Mutate</a></li>
-<li class="chapter" data-level="2.5.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>2.5.4</b> Split-apply-combine data analysis and the summarize() function</a></li>
+<li class="chapter" data-level="2.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#mulvey-2015-time-course"><i class="fa fa-check"></i><b>2.2</b> Mulvey 2015 time course</a></li>
+<li class="chapter" data-level="2.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#the-iprg-data"><i class="fa fa-check"></i><b>2.3</b> The iPRG data</a></li>
+<li class="chapter" data-level="2.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#crc-training-data"><i class="fa fa-check"></i><b>2.4</b> CRC training data</a></li>
+<li class="chapter" data-level="2.5" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#all-data"><i class="fa fa-check"></i><b>2.5</b> ALL data</a></li>
+<li class="chapter" data-level="2.6" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#using-dplyr-for-data-manipulation"><i class="fa fa-check"></i><b>2.6</b> Using <code>dplyr</code> for data manipulation</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>2.6.1</b> Selecting columns and filtering rows</a></li>
+<li class="chapter" data-level="2.6.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#pipes"><i class="fa fa-check"></i><b>2.6.2</b> Pipes</a></li>
+<li class="chapter" data-level="2.6.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>2.6.3</b> Mutate</a></li>
+<li class="chapter" data-level="2.6.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>2.6.4</b> Split-apply-combine data analysis and the summarize() function</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html"><i class="fa fa-check"></i><b>3</b> Exploring and visualising biomolecular data</a></li>
@@ -125,33 +126,43 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4" data-path="plotting-in-r.html"><a href="plotting-in-r.html#saving-your-figures"><i class="fa fa-check"></i><b>4.4</b> Saving your figures</a></li>
 <li class="chapter" data-level="4.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references"><i class="fa fa-check"></i><b>4.5</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>5</b> Using R and Bioconductor for MS-based proteomics</a></li>
-<li class="chapter" data-level="6" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>6</b> Tools and plots</a><ul>
-<li class="chapter" data-level="6.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#transformations"><i class="fa fa-check"></i><b>6.1</b> Transformations</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#expression-data"><i class="fa fa-check"></i><b>6.1.1</b> Expression data</a></li>
-<li class="chapter" data-level="6.1.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#fold-changes"><i class="fa fa-check"></i><b>6.1.2</b> Fold changes</a></li>
+<li class="chapter" data-level="5" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>5</b> Tools and plots</a><ul>
+<li class="chapter" data-level="5.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#transformations"><i class="fa fa-check"></i><b>5.1</b> Transformations</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#expression-data"><i class="fa fa-check"></i><b>5.1.1</b> Expression data</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#fold-changes"><i class="fa fa-check"></i><b>5.1.2</b> Fold changes</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#comparing-samples-and-linear-models"><i class="fa fa-check"></i><b>6.2</b> Comparing samples and linear models</a></li>
-<li class="chapter" data-level="6.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#plots-for-statistical-analyses"><i class="fa fa-check"></i><b>6.3</b> Plots for statistical analyses</a></li>
-<li class="chapter" data-level="6.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualising-intersections"><i class="fa fa-check"></i><b>6.4</b> Visualising intersections</a></li>
-<li class="chapter" data-level="6.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#unsupervised-learning"><i class="fa fa-check"></i><b>6.5</b> Unsupervised learning</a><ul>
-<li class="chapter" data-level="6.5.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#k-means-clustering"><i class="fa fa-check"></i><b>6.5.1</b> k-means clustering</a></li>
-<li class="chapter" data-level="6.5.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#hierarchical-clustering"><i class="fa fa-check"></i><b>6.5.2</b> Hierarchical clustering</a></li>
-<li class="chapter" data-level="6.5.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pre-processing"><i class="fa fa-check"></i><b>6.5.3</b> Pre-processing</a></li>
-<li class="chapter" data-level="6.5.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>6.5.4</b> Principal component analysis (PCA)</a></li>
-<li class="chapter" data-level="6.5.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#t-distributed-stochastic-neighbour-embedding"><i class="fa fa-check"></i><b>6.5.5</b> t-Distributed Stochastic Neighbour Embedding</a></li>
-<li class="chapter" data-level="6.5.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadins-vs-differential-expression"><i class="fa fa-check"></i><b>6.5.6</b> PCA loadins vs differential expression</a></li>
+<li class="chapter" data-level="5.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#comparing-samples-and-linear-models"><i class="fa fa-check"></i><b>5.2</b> Comparing samples and linear models</a></li>
+<li class="chapter" data-level="5.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#plots-for-statistical-analyses"><i class="fa fa-check"></i><b>5.3</b> Plots for statistical analyses</a></li>
+<li class="chapter" data-level="5.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualising-intersections"><i class="fa fa-check"></i><b>5.4</b> Visualising intersections</a></li>
+<li class="chapter" data-level="5.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#unsupervised-learning"><i class="fa fa-check"></i><b>5.5</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="5.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#k-means-clustering"><i class="fa fa-check"></i><b>5.6</b> k-means clustering</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-k-means-work"><i class="fa fa-check"></i>How does k-means work</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-to-determine-the-number-of-clusters"><i class="fa fa-check"></i>How to determine the number of clusters</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge"><i class="fa fa-check"></i>Challenge</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmaps"><i class="fa fa-check"></i><b>6.6</b> Heatmaps</a><ul>
-<li class="chapter" data-level="6.6.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmap-components"><i class="fa fa-check"></i><b>6.6.1</b> Heatmap components</a></li>
-<li class="chapter" data-level="6.6.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#data-reordering"><i class="fa fa-check"></i><b>6.6.2</b> Data reordering</a></li>
-<li class="chapter" data-level="6.6.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#distance"><i class="fa fa-check"></i><b>6.6.3</b> Distance</a></li>
-<li class="chapter" data-level="6.6.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#clustering-agglomeration"><i class="fa fa-check"></i><b>6.6.4</b> Clustering (agglomeration)</a></li>
-<li class="chapter" data-level="6.6.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#image-representation"><i class="fa fa-check"></i><b>6.6.5</b> Image representation</a></li>
-<li class="chapter" data-level="6.6.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#colour-mapping"><i class="fa fa-check"></i><b>6.6.6</b> Colour mapping</a></li>
-<li class="chapter" data-level="6.6.7" data-path="tools-and-plots.html"><a href="tools-and-plots.html#colour-palette"><i class="fa fa-check"></i><b>6.6.7</b> Colour palette</a></li>
+<li class="chapter" data-level="5.7" data-path="tools-and-plots.html"><a href="tools-and-plots.html#hierarchical-clustering"><i class="fa fa-check"></i><b>5.7</b> Hierarchical clustering</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-hierarchical-clustering-work"><i class="fa fa-check"></i>How does hierarchical clustering work</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#defining-clusters"><i class="fa fa-check"></i>Defining clusters</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge-1"><i class="fa fa-check"></i>Challenge</a></li>
 </ul></li>
+<li class="chapter" data-level="5.8" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pre-processing"><i class="fa fa-check"></i><b>5.8</b> Pre-processing</a></li>
+<li class="chapter" data-level="5.9" data-path="tools-and-plots.html"><a href="tools-and-plots.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>5.9</b> Principal component analysis (PCA)</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-it-work"><i class="fa fa-check"></i>How does it work</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualisation"><i class="fa fa-check"></i>Visualisation</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#data-pre-processing"><i class="fa fa-check"></i>Data pre-processing</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#final-comments-on-pca"><i class="fa fa-check"></i>Final comments on PCA</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge-2"><i class="fa fa-check"></i>Challenge</a></li>
 </ul></li>
+<li class="chapter" data-level="5.10" data-path="tools-and-plots.html"><a href="tools-and-plots.html#t-distributed-stochastic-neighbour-embedding"><i class="fa fa-check"></i><b>5.10</b> t-Distributed Stochastic Neighbour Embedding</a><ul>
+<li class="chapter" data-level="5.10.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#parameter-tuning"><i class="fa fa-check"></i><b>5.10.1</b> Parameter tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadins-vs-differential-expression"><i class="fa fa-check"></i><b>5.11</b> PCA loadins vs differential expression</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#using-a-subset-of-genes"><i class="fa fa-check"></i>Using a subset of genes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmaps"><i class="fa fa-check"></i><b>5.12</b> Heatmaps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>6</b> Using R and Bioconductor for MS-based proteomics</a></li>
 <li class="chapter" data-level="7" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html"><i class="fa fa-check"></i><b>7</b> Interactive visualisation</a></li>
 <li class="chapter" data-level="8" data-path="session-information.html"><a href="session-information.html"><i class="fa fa-check"></i><b>8</b> Session information</a></li>
 </ul>
@@ -172,7 +183,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="using-r-and-bioconductor-for-ms-based-proteomics" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Using R and Bioconductor for MS-based proteomics</h1>
+<h1><span class="header-section-number">Chapter 6</span> Using R and Bioconductor for MS-based proteomics</h1>
 <p>To be based on second part of <a href="https://lgatto.github.io/RforProteomics/articles/RProtVis.html"><code>RforProteomics</code> visualisation vignette</a> and the <a href="https://lgatto.github.io/MSnbase/articles/index.html"><code>MSnbase</code> vignettes</a>.</p>
 
 </div>
@@ -181,8 +192,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="plotting-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tools-and-plots.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tools-and-plots.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="interactive-visualisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

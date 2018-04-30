@@ -21,7 +21,7 @@ intensities are low with very few high intensities (see density plots
 below), the majority of points are squeezed close to the origin of the
 scatter plot.
 
-```{r}
+```{r denstrans1}
 plot(density(na.omit(x)), col = "blue")
 lines(density(na.omit(y)), col = "red")
 ```
@@ -31,7 +31,7 @@ intensity range and (2) gives too much confidence in the correlation
 of the two vectors. A simple way to avoid this effect is to directly
 log-tranform the data or set the graph axes to log scales:
 
-```{r}
+```{r plotrans1log}
 par(mfrow = c(1, 2))
 plot(log10(x), log10(y))
 plot(x, y, log = "xy")
@@ -43,7 +43,7 @@ replicates below.
 It is possible to generalise to production of scatter plots to more
 samples using the `pairs` function:
 
-```{r}
+```{r pairs}
 pairs(iprg3[2:6], log = "xy")
 ```
 
@@ -54,7 +54,7 @@ documentation page.
 A general technique to overcome overplotting is to set the alpha scale
 (transparency), of to use `graphics::smoothScatter`:
 
-```{r}
+```{r smoothscatter}
 par(mfrow = c(1, 2))
 plot(x, y, pch = 19, col = "#00000010", log = "xy")
 smoothScatter(log10(x), log10(y))
@@ -75,7 +75,7 @@ Below, we see how the log2 fold-changes become symmetrical around zero
 (the absence of change), with positive values corresponding to
 up-regulation and negative values to down-regulation.
 
-```{r}
+```{r lfcplot}
 plot(density(lfc), ylim = c(0, 5))
 abline(v = median(lfc))
 lines(density(fc), col = "red")
@@ -92,14 +92,14 @@ replicates from consitions 1 and 4, remove missing values and
 log-tranform the intensites.
 
 
-```{r}
+```{r linmod1}
 x <- log2(na.omit(iprg3[, c(2, 3, 11)]))
 ```
 
 Below, we use the pairs function and print the pairwise correlations
 in the upper right traingle.
 
-```{r}
+```{r linmodpairs}
 ## put (absolute) correlations on the upper panels,
 ## with size proportional to the correlations.
 ## From ?pairs
@@ -122,7 +122,7 @@ distance between repeated measurements. The ideal way to visualise
 this is on an MA-plot:
 
 
-```{r, fig.width = 12}
+```{r ma, fig.width = 12}
 par(mfrow = c(1, 2))
 r1 <- x[[1]]
 r2 <- x[[2]]
@@ -141,7 +141,7 @@ on the *Simply Statistics* blog.
 slop 1. It we want to add the line that models the data linearly, we
 can calculate the parameters using the `lm` function:
 
-```{r}
+```{r lmod}
 lmod <- lm(r2 ~ r1)
 summary(lmod)
 ```
@@ -149,7 +149,7 @@ summary(lmod)
 which can be used to add the adequate line that reflects the (linear)
 relationship between the two data
 
-```{r}
+```{r lmodplot}
 plot(r1, r2)
 abline(lmod, col = "red")
 ```
@@ -159,7 +159,7 @@ to rely solely on the correlation value, but look at the data. This
 also holds true for linear (or any) modelling, which can be done by
 plotting the model:
 
-```{r}
+```{r lmodplot2}
 par(mfrow = c(2, 2))
 plot(lmod)
 ```
@@ -183,7 +183,7 @@ See also `?influence.measures`.
 >    visualise/check the model.
 
 <details>
-```{r}
+```{r anscombechallenge}
 x3 <- anscombe[, 3]
 y3 <- anscombe[, 7]
 lmod <- lm(y3 ~ x3)
@@ -380,7 +380,7 @@ UML presents specific challenges and benefits:
 Unsupervised learning techniques are paramount for exploratory data
 analysis and visualisation.
 
-### k-means clustering
+## k-means clustering
 
 The k-means clustering algorithms aims at partitioning *n*
 observations into a fixed number of *k* clusters. The algorithm will
@@ -436,7 +436,7 @@ plot(x, col = cl$cluster)
 ```
 </details>
 
-#### How does k-means work
+### How does k-means work {-}
 
 **Initialisation**: randomly assign class membership
 
@@ -479,7 +479,7 @@ membership.
 
 ![k-means convergence (credit Wikipedia)](https://upload.wikimedia.org/wikipedia/commons/e/ea/K-means_convergence.gif)
 
-#### Model selection
+### Model selection  {-}
 
 Due to the random initialisation, one can obtain different clustering
 results. When k-means is run multiple times, the best outcome,
@@ -524,7 +524,7 @@ plot(xr, col = cl2$cluster, pch = ifelse(diffres, 19, 1))
 ```
 </details>
 
-#### How to determine the number of clusters
+### How to determine the number of clusters  {-}
 
 1. Run k-means with `k=1`, `k=2`, ..., `k=n`
 2. Record total within SS for each value of k.
@@ -547,7 +547,7 @@ plot(ks, tot_within_ss, type = "b",
 > `x` test data, and reproduce the figure above.
 
 <details>
-```{r solkmelbow}
+```{r solkmelbow, eval = FALSE}
 ks <- 1:5
 tot_within_ss <- sapply(ks, function(k) {
 	cl <- kmeans(x, k, nstart = 10)
@@ -557,9 +557,72 @@ plot(ks, tot_within_ss, type = "b")
 ```
 </details>
 
-### Hierarchical clustering
+There exists other metrics, other than the total within cluster sum of
+squares that can be applied, such as the gap statistic (see
+`cluster::clusGap`), or the Akaike (AIC) and Bayesian (BIC)
+information criteria.
 
-#### How does hierarchical clustering work
+### Challenge {-}
+
+Let's use what we have learned to cluster the `r nrow(mulvey2015norm)`
+proteins from the `mulvey2015norm` data in 20 clusters.
+
+1. Use k-means to cluster the `mulvey2015norm` data, setting `centers
+   = 20`. Take care in repeating the clustering more than once.
+
+2. To plot the expression profiles for the 20 clusters, I suggest to
+   use `gplot2`. Do do so, create a `r nrow(mulvey2015norm)` proteins
+   by `r ncol(mulvey2015norm)` sample dataframe (or tibble), appending
+   the protein accession numbers (from the feature data - you can use
+   the `MSnbase::ms2df` helper function.) and cluster numbers as 2
+   additional columns.
+
+3. Use `gather` to transform the data in a long format.
+
+4. Use `ggplot2` to reproduce the figure below. Optional: use
+   `stat_summary` to add a mean profile for each cluster of proteins.
+
+![kmeans clustering on `mulvey2015norm`](./img/kmeans-mulvey-2.png)
+
+<details>
+```{r mulveykmeans, eval=FALSE}
+library("pRolocdata")
+data(mulvey2015norm)
+
+cl <- kmeans(MSnbase::exprs(mulvey2015norm),
+			 centers = 16, nstart = 10, iter.max = 50)
+
+x <- ms2df(mulvey2015norm, fcol = "Accession")
+x[["cluster"]] <- cl$cluster
+tb <- gather(x, key = sample, value = expression, -cluster, -Accession) %>%
+	as_tibble
+
+## Check dimensions
+stopifnot(nrow(tb) == prod(dim(mulvey2015norm)))
+
+pd <- pData(mulvey2015norm)
+tb$time <- pd[tb[["sample"]], "times"]
+tb$rep <- pd[tb[["sample"]], "rep"]
+
+## Plotting
+kmp <- ggplot(data = tb,
+			  aes(x = paste(time, rep), y = expression,
+				  group = Accession, colour = as.factor(cluster))) +
+	geom_line() +
+	facet_wrap(~ cluster) +
+	theme(legend.position = "none") +
+	scale_x_discrete("Time course")
+
+kmp2 <- kmp +
+	stat_summary(aes(group = cluster),
+				 fun.y = mean, geom = "line",
+				 colour = "black")
+```
+</details>
+
+## Hierarchical clustering
+
+### How does hierarchical clustering work {-}
 
 **Initialisation**:  Starts by assigning each of the n points its own cluster
 
@@ -614,7 +677,7 @@ plot(hcl)
 ```
 </details>
 
-#### Defining clusters
+### Defining clusters {-}
 
 After producing the hierarchical clustering result, we need to *cut
 the tree (dendrogram)* at a specific height to defined the
@@ -650,30 +713,21 @@ identical(cutree(hcl, k = 3), cutree(hcl, h = 3.9))
 ```
 </details>
 
+### Challenge {-}
 
-> Challenge
->
-> Using the same value `k = 3`, verify if k-means and hierarchical
-> clustering produce the same results on the `iris` data.
->
-> Which one, if any, is correct?
+Using the same `mulvey2015norm` dataset, generate a hierarchical
+cluster of samples (the dendrogram will have 18 leafs), as shown
+below. The cut it to obtain early, late and fully developed groups.
 
-
-<details>
-```{r iris2algs, fig.width = 12, fig.cap = ""}
-km <- kmeans(iris[, 1:4], centers = 3, nstart = 10)
-hcl <- hclust(dist(iris[, 1:4]))
-table(km$cluster, cutree(hcl, k = 3))
-par(mfrow = c(1, 2))
-plot(iris$Petal.Length, iris$Sepal.Length, col = km$cluster, main = "k-means")
-plot(iris$Petal.Length, iris$Sepal.Length, col = cutree(hcl, k = 3), main = "Hierarchical clustering")
-## Checking with the labels provided with the iris data
-table(iris$Species, km$cluster)
-table(iris$Species, cutree(hcl, k = 3))
+```{r mulveyhcl, echo=FALSE}
+d <- dist(t(MSnbase::exprs(mulvey2015norm)))
+hcl <- hclust(d)
+plot(hcl, main = "Mulvey et al. 2016")
+abline(h = 14, col = "red")
+cutree(hcl, k = 3)
 ```
-</details>
 
-### Pre-processing
+## Pre-processing
 
 Many of the machine learning methods that are regularly used are
 sensitive to difference scales. This applies to unsupervised methods
@@ -685,14 +739,13 @@ assures that all data columns have a mean of 0 and standard deviation of 1.
 
 In R, scaling is done with the `scale` function.
 
-> Challenge
->
-> Using the `mtcars` data as an example, verify that the variables are
-> of different scales, then scale the data. To observe the effect
-> different scales, compare the hierarchical clusters obtained on the
-> original and scaled data.
-
 <details>
+
+**Example**: Using the `mtcars` data as an example, verify that the
+variables are of different scales, then scale the data. To observe the
+effect different scales, compare the hierarchical clusters obtained on
+the original and scaled data.
+
 ```{r scalesol, fig.width=12, fig.cap=""}
 colMeans(mtcars)
 hcl1 <- hclust(dist(mtcars))
@@ -703,7 +756,7 @@ plot(hcl2, main = "scaled data")
 ```
 </details>
 
-### Principal component analysis (PCA)
+## Principal component analysis (PCA)
 
 **Dimensionality reduction** techniques are widely used and versatile
 techniques that can be used to:
@@ -718,7 +771,7 @@ whole data set along a reduced number of dimensions. These are then
 ideal candidates used to visualise the data along these reduced number
 of informative dimensions.
 
-#### How does it work
+### How does it work {-}
 
 Principal Component Analysis (PCA) is a technique that transforms the
 original n-dimensional data into a new n-dimensional space.
@@ -782,7 +835,7 @@ hist(irispca$x[iris$Species == "virginica", 1],  add = TRUE, col = "#0000FF30")
 rug(irispca$x[iris$Species == "virginica", 1], col = "blue")
 ```
 
-#### Visualisation
+### Visualisation {-}
 
 A **biplot** features all original points re-mapped (rotated) along the
 first two PCs as well as the original features as vectors along the
@@ -833,7 +886,7 @@ plot(irispca$x[, 3:4], col = iris$Species)
 ```
 </details>
 
-#### Data pre-processing
+### Data pre-processing {-}
 
 We haven't looked at other `prcomp` parameters, other that the first
 one, `x`. There are two other ones that are or importance, in
@@ -841,13 +894,12 @@ particular in the light of the section on pre-processing above, which
 are `center` and `scale.`. The former is set to `TRUE` by default,
 while the second one is set the `FALSE`.
 
-> Challenge
->
-> Repeat the analysis comparing the need for scaling on the `mtcars`
-> dataset, but using PCA instead of hierarchical clustering. When
-> comparing the two.
-
 <details>
+
+**Example** Repeat the analysis comparing the need for scaling on the
+`mtcars` dataset, but using PCA instead of hierarchical
+clustering. When comparing the two.
+
 ```{r scalepcasol, fig.with=12, fig.cap=""}
 par(mfrow = c(1, 2))
 biplot(prcomp(mtcars, scale = FALSE), main = "No scaling")  ## 1
@@ -857,19 +909,19 @@ biplot(prcomp(mtcars, scale = TRUE), main = "With scaling") ## 2
 Without scaling, `disp` and `hp` are the features with the highest
 loadings along PC1 and 2 (all others are negligible), which are also
 those with the highest units of measurement. Scaling removes this
-effect.  </details>
+effect.
 
-#### Final comments on PCA
+</details>
+
+### Final comments on PCA {-}
 
 Real datasets often come with **missing values**. In R, these should
-be encoded using `NA`. Unfortunately, PCA cannot deal with missing
-values, and observations containing `NA` values will be dropped
-automatically. This is a viable solution only when the proportion of
-missing values is low.
-
-It is also possible to impute missing values. This is described in
-greater details in the *Data pre-processing* section in the supervised
-machine learning chapter.
+be encoded using `NA`. Unfortunately, standard PCA cannot deal with
+missing values, and observations containing `NA` values will be
+dropped automatically. This is a viable solution only when the
+proportion of missing values is low. Alternatively, the *NIPALS*
+(non-linear iterative partial least squares) implementation does
+support missing values (see `nipals::nipals`).
 
 Finally, we should be careful when using categorical data in any of
 the unsupervised methods described above. Categories are generally
@@ -885,13 +937,40 @@ variables to encode the categories as:
 dfr <- data.frame(x = c(1, 0, 0),
 				  y = c(0, 1, 0))
 rownames(dfr) <- LETTERS[1:3]
-knitr::kable(dfr)
+dfr
 ```
 
-so that the distance between each category are approximately equal to
-1.
+so that the distance between each category are approximately equal to 1.
 
-### t-Distributed Stochastic Neighbour Embedding
+### Challenge {-}
+
+Produce the PCA plot for the `ALL_bcrneg` samples, and annotating the
+`NEG` and `BCR/ABL` samples on the plot. Do you think that the two
+first components offer enough resolution?
+
+<details>
+
+```{r pcachallenge0}
+pca <- prcomp(t(MSnbase::exprs(ALL_bcrneg)), scale = TRUE, center = TRUE)
+plot(pca$x[, 1:2], col = ALL_bcrneg$mol.bio, cex = 2)
+legend("bottomright", legend = unique(ALL_bcrneg$mol.bio),
+	   pch = 1, col = c("black", "red"), bty = "n")
+text(pca$x[, 1], pca$x[, 2], sampleNames(ALL_bcrneg), cex = 0.8)
+
+par(mfrow = c(1, 2))
+barplot(pca$sdev^2/sum(pca$sdev^2),
+		xlab="Principle component",
+		ylab="% of variance")
+
+barplot(cumsum(pca$sdev^2/sum(pca$sdev^2) ),
+		xlab="Principle component",
+		ylab="Pumulative % of variance")
+
+## Conclusion: the two first principle components are insufficient
+```
+</details>
+
+## t-Distributed Stochastic Neighbour Embedding
 
 [t-Distributed Stochastic Neighbour Embedding](https://lvdmaaten.github.io/tsne/) (t-SNE)
 is a *non-linear* dimensionality reduction technique, i.e. that
@@ -917,11 +996,10 @@ As with PCA, the data can be scaled and centred prior the running
 t-SNE (see the `pca_center` and `pca_scale` arguments). The algorithm
 is stochastic, and will produce different results at each repetition.
 
-#### Parameter tuning
+### Parameter tuning
 
-t-SNE (as well as many other methods, in particular classification
-algorithms) has two important parameters that can substantially
-influence the clustering of the data
+t-SNE has two important parameters that can substantially influence
+the clustering of the data
 
 - **Perplexity**: balances global and local aspects of the data.
 - **Iterations**: number of iterations before the clustering is
@@ -936,14 +1014,40 @@ localisation.
 As a comparison, below are the same data with PCA (left) and t-SNE
 (right).
 
-![PCA and t-SNE on hyperLOPIT](https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png)
+![PCA and t-SNE on [hyperLOPIT](https://www.ncbi.nlm.nih.gov/pubmed/28471460)(https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png)
 
-### PCA loadins vs differential expression
+## PCA loadings vs differential expression
 
+Let's now compare the PCA loadings as calculated above and the
+p-values. As we can see below, large loadings may or may not
+correspond to small p-values.
 
-#### Using a subset of genes {-}
+```{r pcaloadings}
+pca <- prcomp(t(MSnbase::exprs(ALL_bcrneg)), scale = TRUE, center = TRUE)
+plot(pca$rotation[, 1], fData(ALL_bcrneg)$adj.P.Val,
+	 xlab = "PCA Loading", ylab = "Adjusted p-values")
+```
 
+Let's now repeat the same camparison, focusing on differentially
+expressed genes.
 
+```{r allsgn}
+table(sign <- fData(ALL_bcrneg)$adj.P.Val < 0.05)
+ALL_sign <- ALL_bcrneg[sign, ]
+pca_sign <- prcomp(t(exprs(ALL_sign)), center = TRUE, scale = TRUE)
+```
+
+Below, we see that there is better separation when we focus on
+differentially expressed genes and better consistency between p-values
+and loadings. However we can't do this in practice!
+
+```{r pcasign}
+plot(pca_sign$x[,1:2], col = ALL_sign$mol.biol, pch = 19)
+legend("bottomleft", legend = unique(ALL_sign$mol.biol),
+	   col = 1:2, pch = 19, bty = "n")
+plot(pca_sign$rotation[, 1], fData(ALL_sign)$adj.P.Val,
+	 xlab = "PCA Loading", ylab = "Adjusted p-values")
+```
 
 ## Heatmaps
 
@@ -954,17 +1058,3 @@ See
 > 16:S10. doi:
 > [10.1186/1471-2105-13-S16-S10](https://doi.org/10.1186/1471-2105-13-S16-S10). Epub
 > 2012 Nov 5. Review. PMID: 23176119; PMCID: PMC3489527.
-
-### Heatmap components
-
-### Data reordering
-
-### Distance
-
-### Clustering (agglomeration)
-
-### Image representation
-
-### Colour mapping
-
-### Colour palette

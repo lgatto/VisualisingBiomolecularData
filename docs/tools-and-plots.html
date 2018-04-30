@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="using-r-and-bioconductor-for-ms-based-proteomics.html">
-<link rel="next" href="interactive-visualisation.html">
+<link rel="prev" href="plotting-in-r.html">
+<link rel="next" href="using-r-and-bioconductor-for-ms-based-proteomics.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -107,14 +107,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Example datasets and data manipulation</a><ul>
 <li class="chapter" data-level="2.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#raw-ms-data"><i class="fa fa-check"></i><b>2.1</b> Raw MS data</a></li>
-<li class="chapter" data-level="2.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#the-iprg-data"><i class="fa fa-check"></i><b>2.2</b> The iPRG data</a></li>
-<li class="chapter" data-level="2.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#crc-training-data"><i class="fa fa-check"></i><b>2.3</b> CRC training data</a></li>
-<li class="chapter" data-level="2.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#all-data"><i class="fa fa-check"></i><b>2.4</b> ALL data</a></li>
-<li class="chapter" data-level="2.5" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#using-dplyr-for-data-manipulation"><i class="fa fa-check"></i><b>2.5</b> Using <code>dplyr</code> for data manipulation</a><ul>
-<li class="chapter" data-level="2.5.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>2.5.1</b> Selecting columns and filtering rows</a></li>
-<li class="chapter" data-level="2.5.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#pipes"><i class="fa fa-check"></i><b>2.5.2</b> Pipes</a></li>
-<li class="chapter" data-level="2.5.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>2.5.3</b> Mutate</a></li>
-<li class="chapter" data-level="2.5.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>2.5.4</b> Split-apply-combine data analysis and the summarize() function</a></li>
+<li class="chapter" data-level="2.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#mulvey-2015-time-course"><i class="fa fa-check"></i><b>2.2</b> Mulvey 2015 time course</a></li>
+<li class="chapter" data-level="2.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#the-iprg-data"><i class="fa fa-check"></i><b>2.3</b> The iPRG data</a></li>
+<li class="chapter" data-level="2.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#crc-training-data"><i class="fa fa-check"></i><b>2.4</b> CRC training data</a></li>
+<li class="chapter" data-level="2.5" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#all-data"><i class="fa fa-check"></i><b>2.5</b> ALL data</a></li>
+<li class="chapter" data-level="2.6" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#using-dplyr-for-data-manipulation"><i class="fa fa-check"></i><b>2.6</b> Using <code>dplyr</code> for data manipulation</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>2.6.1</b> Selecting columns and filtering rows</a></li>
+<li class="chapter" data-level="2.6.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#pipes"><i class="fa fa-check"></i><b>2.6.2</b> Pipes</a></li>
+<li class="chapter" data-level="2.6.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>2.6.3</b> Mutate</a></li>
+<li class="chapter" data-level="2.6.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>2.6.4</b> Split-apply-combine data analysis and the summarize() function</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html"><i class="fa fa-check"></i><b>3</b> Exploring and visualising biomolecular data</a></li>
@@ -125,33 +126,43 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4" data-path="plotting-in-r.html"><a href="plotting-in-r.html#saving-your-figures"><i class="fa fa-check"></i><b>4.4</b> Saving your figures</a></li>
 <li class="chapter" data-level="4.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references"><i class="fa fa-check"></i><b>4.5</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>5</b> Using R and Bioconductor for MS-based proteomics</a></li>
-<li class="chapter" data-level="6" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>6</b> Tools and plots</a><ul>
-<li class="chapter" data-level="6.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#transformations"><i class="fa fa-check"></i><b>6.1</b> Transformations</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#expression-data"><i class="fa fa-check"></i><b>6.1.1</b> Expression data</a></li>
-<li class="chapter" data-level="6.1.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#fold-changes"><i class="fa fa-check"></i><b>6.1.2</b> Fold changes</a></li>
+<li class="chapter" data-level="5" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>5</b> Tools and plots</a><ul>
+<li class="chapter" data-level="5.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#transformations"><i class="fa fa-check"></i><b>5.1</b> Transformations</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#expression-data"><i class="fa fa-check"></i><b>5.1.1</b> Expression data</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#fold-changes"><i class="fa fa-check"></i><b>5.1.2</b> Fold changes</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#comparing-samples-and-linear-models"><i class="fa fa-check"></i><b>6.2</b> Comparing samples and linear models</a></li>
-<li class="chapter" data-level="6.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#plots-for-statistical-analyses"><i class="fa fa-check"></i><b>6.3</b> Plots for statistical analyses</a></li>
-<li class="chapter" data-level="6.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualising-intersections"><i class="fa fa-check"></i><b>6.4</b> Visualising intersections</a></li>
-<li class="chapter" data-level="6.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#unsupervised-learning"><i class="fa fa-check"></i><b>6.5</b> Unsupervised learning</a><ul>
-<li class="chapter" data-level="6.5.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#k-means-clustering"><i class="fa fa-check"></i><b>6.5.1</b> k-means clustering</a></li>
-<li class="chapter" data-level="6.5.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#hierarchical-clustering"><i class="fa fa-check"></i><b>6.5.2</b> Hierarchical clustering</a></li>
-<li class="chapter" data-level="6.5.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pre-processing"><i class="fa fa-check"></i><b>6.5.3</b> Pre-processing</a></li>
-<li class="chapter" data-level="6.5.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>6.5.4</b> Principal component analysis (PCA)</a></li>
-<li class="chapter" data-level="6.5.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#t-distributed-stochastic-neighbour-embedding"><i class="fa fa-check"></i><b>6.5.5</b> t-Distributed Stochastic Neighbour Embedding</a></li>
-<li class="chapter" data-level="6.5.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadins-vs-differential-expression"><i class="fa fa-check"></i><b>6.5.6</b> PCA loadins vs differential expression</a></li>
+<li class="chapter" data-level="5.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#comparing-samples-and-linear-models"><i class="fa fa-check"></i><b>5.2</b> Comparing samples and linear models</a></li>
+<li class="chapter" data-level="5.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#plots-for-statistical-analyses"><i class="fa fa-check"></i><b>5.3</b> Plots for statistical analyses</a></li>
+<li class="chapter" data-level="5.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualising-intersections"><i class="fa fa-check"></i><b>5.4</b> Visualising intersections</a></li>
+<li class="chapter" data-level="5.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#unsupervised-learning"><i class="fa fa-check"></i><b>5.5</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="5.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#k-means-clustering"><i class="fa fa-check"></i><b>5.6</b> k-means clustering</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-k-means-work"><i class="fa fa-check"></i>How does k-means work</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-to-determine-the-number-of-clusters"><i class="fa fa-check"></i>How to determine the number of clusters</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge"><i class="fa fa-check"></i>Challenge</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmaps"><i class="fa fa-check"></i><b>6.6</b> Heatmaps</a><ul>
-<li class="chapter" data-level="6.6.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmap-components"><i class="fa fa-check"></i><b>6.6.1</b> Heatmap components</a></li>
-<li class="chapter" data-level="6.6.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#data-reordering"><i class="fa fa-check"></i><b>6.6.2</b> Data reordering</a></li>
-<li class="chapter" data-level="6.6.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#distance"><i class="fa fa-check"></i><b>6.6.3</b> Distance</a></li>
-<li class="chapter" data-level="6.6.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#clustering-agglomeration"><i class="fa fa-check"></i><b>6.6.4</b> Clustering (agglomeration)</a></li>
-<li class="chapter" data-level="6.6.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#image-representation"><i class="fa fa-check"></i><b>6.6.5</b> Image representation</a></li>
-<li class="chapter" data-level="6.6.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#colour-mapping"><i class="fa fa-check"></i><b>6.6.6</b> Colour mapping</a></li>
-<li class="chapter" data-level="6.6.7" data-path="tools-and-plots.html"><a href="tools-and-plots.html#colour-palette"><i class="fa fa-check"></i><b>6.6.7</b> Colour palette</a></li>
+<li class="chapter" data-level="5.7" data-path="tools-and-plots.html"><a href="tools-and-plots.html#hierarchical-clustering"><i class="fa fa-check"></i><b>5.7</b> Hierarchical clustering</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-hierarchical-clustering-work"><i class="fa fa-check"></i>How does hierarchical clustering work</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#defining-clusters"><i class="fa fa-check"></i>Defining clusters</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge-1"><i class="fa fa-check"></i>Challenge</a></li>
 </ul></li>
+<li class="chapter" data-level="5.8" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pre-processing"><i class="fa fa-check"></i><b>5.8</b> Pre-processing</a></li>
+<li class="chapter" data-level="5.9" data-path="tools-and-plots.html"><a href="tools-and-plots.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>5.9</b> Principal component analysis (PCA)</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-it-work"><i class="fa fa-check"></i>How does it work</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualisation"><i class="fa fa-check"></i>Visualisation</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#data-pre-processing"><i class="fa fa-check"></i>Data pre-processing</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#final-comments-on-pca"><i class="fa fa-check"></i>Final comments on PCA</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge-2"><i class="fa fa-check"></i>Challenge</a></li>
 </ul></li>
+<li class="chapter" data-level="5.10" data-path="tools-and-plots.html"><a href="tools-and-plots.html#t-distributed-stochastic-neighbour-embedding"><i class="fa fa-check"></i><b>5.10</b> t-Distributed Stochastic Neighbour Embedding</a><ul>
+<li class="chapter" data-level="5.10.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#parameter-tuning"><i class="fa fa-check"></i><b>5.10.1</b> Parameter tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadins-vs-differential-expression"><i class="fa fa-check"></i><b>5.11</b> PCA loadins vs differential expression</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#using-a-subset-of-genes"><i class="fa fa-check"></i>Using a subset of genes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmaps"><i class="fa fa-check"></i><b>5.12</b> Heatmaps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>6</b> Using R and Bioconductor for MS-based proteomics</a></li>
 <li class="chapter" data-level="7" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html"><i class="fa fa-check"></i><b>7</b> Interactive visualisation</a></li>
 <li class="chapter" data-level="8" data-path="session-information.html"><a href="session-information.html"><i class="fa fa-check"></i><b>8</b> Session information</a></li>
 </ul>
@@ -172,11 +183,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="tools-and-plots" class="section level1">
-<h1><span class="header-section-number">Chapter 6</span> Tools and plots</h1>
+<h1><span class="header-section-number">Chapter 5</span> Tools and plots</h1>
 <div id="transformations" class="section level2">
-<h2><span class="header-section-number">6.1</span> Transformations</h2>
+<h2><span class="header-section-number">5.1</span> Transformations</h2>
 <div id="expression-data" class="section level3">
-<h3><span class="header-section-number">6.1.1</span> Expression data</h3>
+<h3><span class="header-section-number">5.1.1</span> Expression data</h3>
 <p>Let’s start with the comparison of two vectors of matching expression intensities such as those from two samples in the <code>iprg3</code> dataset. Let’s extract the intensities of samples JD_06232014_sample1-A.raw (second column) and JD_06232014_sample1_B.raw (third column) and produce a scatter plot of one against the other.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>iprg3[[<span class="dv">2</span>]]
 y &lt;-<span class="st"> </span>iprg3[[<span class="dv">3</span>]]
@@ -185,25 +196,25 @@ y &lt;-<span class="st"> </span>iprg3[[<span class="dv">3</span>]]
 <p>Due to the distribution of the raw intensities, where most of the intensities are low with very few high intensities (see density plots below), the majority of points are squeezed close to the origin of the scatter plot.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">density</span>(<span class="kw">na.omit</span>(x)), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
 <span class="kw">lines</span>(<span class="kw">density</span>(<span class="kw">na.omit</span>(y)), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/denstrans1-1.png" width="672" /></p>
 <p>This has negative effects as it (1) leads to overplotting in the low intensity range and (2) gives too much confidence in the correlation of the two vectors. A simple way to avoid this effect is to directly log-tranform the data or set the graph axes to log scales:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
 <span class="kw">plot</span>(<span class="kw">log10</span>(x), <span class="kw">log10</span>(y))
 <span class="kw">plot</span>(x, y, <span class="dt">log =</span> <span class="st">&quot;xy&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/plotrans1log-1.png" width="672" /></p>
 <p>We will see better visualisations to detect correlation between sample replicates below.</p>
 <p>It is possible to generalise to production of scatter plots to more samples using the <code>pairs</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairs</span>(iprg3[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">log =</span> <span class="st">&quot;xy&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/pairs-1.png" width="672" /></p>
 <p>A lot of space is wasted by repeating the same sets of plots in the upper right and lower left triangles of the matrix. See the <code>pairs</code> documentation page.</p>
 <p>A general technique to overcome overplotting is to set the alpha scale (transparency), of to use <code>graphics::smoothScatter</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
 <span class="kw">plot</span>(x, y, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;#00000010&quot;</span>, <span class="dt">log =</span> <span class="st">&quot;xy&quot;</span>)
 <span class="kw">smoothScatter</span>(<span class="kw">log10</span>(x), <span class="kw">log10</span>(y))</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/smoothscatter-1.png" width="672" /></p>
 </div>
 <div id="fold-changes" class="section level3">
-<h3><span class="header-section-number">6.1.2</span> Fold changes</h3>
+<h3><span class="header-section-number">5.1.2</span> Fold changes</h3>
 <p>Log-transformation also comes handy when computing fold-changes. Below we calculate the fold-changes and log2 fold-changes (omitting missing values)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fc &lt;-<span class="st"> </span><span class="kw">na.omit</span>(iprg3[[<span class="dv">2</span>]] <span class="op">/</span><span class="st"> </span>iprg3[[<span class="dv">3</span>]])
 lfc &lt;-<span class="st"> </span><span class="kw">log2</span>(fc)</code></pre></div>
@@ -212,12 +223,12 @@ lfc &lt;-<span class="st"> </span><span class="kw">log2</span>(fc)</code></pre><
 <span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">median</span>(lfc))
 <span class="kw">lines</span>(<span class="kw">density</span>(fc), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
 <span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">median</span>(fc), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/lfcplot-1.png" width="672" /></p>
 <p><strong>Note</strong>: when the data is already log-transformed, log fold-changes are computed by subtracting values.</p>
 </div>
 </div>
 <div id="comparing-samples-and-linear-models" class="section level2">
-<h2><span class="header-section-number">6.2</span> Comparing samples and linear models</h2>
+<h2><span class="header-section-number">5.2</span> Comparing samples and linear models</h2>
 <p>Let’s return to the scatter plot example above and focus on three replicates from consitions 1 and 4, remove missing values and log-tranform the intensites.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">log2</span>(<span class="kw">na.omit</span>(iprg3[, <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">11</span>)]))</code></pre></div>
 <p>Below, we use the pairs function and print the pairwise correlations in the upper right traingle.</p>
@@ -234,7 +245,7 @@ panel.cor &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, <
     <span class="kw">text</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, txt, <span class="dt">cex =</span> cex.cor <span class="op">*</span><span class="st"> </span>r)
 }
 <span class="kw">pairs</span>(x, <span class="dt">lower.panel =</span> panel.smooth, <span class="dt">upper.panel =</span> panel.cor)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/linmodpairs-1.png" width="672" /></p>
 <p>It is often assumed that high correlation is a halmark of good replication. Rather than focus on the correlation of the data, a better measurement would be to look a the log2 fold-changes, i.e. the distance between repeated measurements. The ideal way to visualise this is on an MA-plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
 r1 &lt;-<span class="st"> </span>x[[<span class="dv">1</span>]]
@@ -244,7 +255,7 @@ A &lt;-<span class="st"> </span>(r1 <span class="op">+</span><span class="st"> <
 <span class="kw">plot</span>(A, M); <span class="kw">grid</span>()
 <span class="kw">library</span>(<span class="st">&quot;affy&quot;</span>)
 affy<span class="op">::</span><span class="kw">ma.plot</span>(A, M)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-53-1.png" width="1152" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/ma-1.png" width="1152" /></p>
 <p>See also this <a href="http://simplystatistics.org/2015/08/12/correlation-is-not-a-measure-of-reproducibility/">post</a> on the <em>Simply Statistics</em> blog.</p>
 <p><code>abline(0, 1)</code> can be used to add a line with intercept 0 and slop 1. It we want to add the line that models the data linearly, we can calculate the parameters using the <code>lm</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmod &lt;-<span class="st"> </span><span class="kw">lm</span>(r2 <span class="op">~</span><span class="st"> </span>r1)
@@ -270,11 +281,11 @@ affy<span class="op">::</span><span class="kw">ma.plot</span>(A, M)</code></pre>
 <p>which can be used to add the adequate line that reflects the (linear) relationship between the two data</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(r1, r2)
 <span class="kw">abline</span>(lmod, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/lmodplot-1.png" width="672" /></p>
 <p>As we have seen in the beginning of this section, it is essential not to rely solely on the correlation value, but look at the data. This also holds true for linear (or any) modelling, which can be done by plotting the model:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))
 <span class="kw">plot</span>(lmod)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/lmodplot2-1.png" width="672" /></p>
 <ul>
 <li><p><em>Cook’s distance</em> is a commonly used estimate of the influence of a data point when performing a least-squares regression analysis and can be used to highlight points that particularly influence the regression.</p></li>
 <li><p><em>Leverage</em> quantifies the influence of a given observation on the regression due to its location in the space of the inputs.</p></li>
@@ -312,16 +323,16 @@ lmod &lt;-<span class="st"> </span><span class="kw">lm</span>(y3 <span class="op
 ## F-statistic: 17.97 on 1 and 9 DF,  p-value: 0.002176</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))
 <span class="kw">plot</span>(lmod)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-57-1.png" width="672" /> </details></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/anscombechallenge-1.png" width="672" /> </details></p>
 </div>
 <div id="plots-for-statistical-analyses" class="section level2">
-<h2><span class="header-section-number">6.3</span> Plots for statistical analyses</h2>
+<h2><span class="header-section-number">5.3</span> Plots for statistical analyses</h2>
 <p>Let’s use the <code>ALL_bclneg</code> dataset, that we already have analysed with <em><a href="http://bioconductor.org/packages/limma">limma</a></em> in the <em>Data</em> chapter.</p>
 <p>Whenever performing a statistical test, it is important to quality check the distribution of non-adjusted p-values. Below, we see an enrichment of small p-values, as opposed to a uniform distribution to be expected under the null hypothesis of absence of changes between groups.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fvarLabels</span>(ALL_bcrneg)</code></pre></div>
 <pre><code>## [1] &quot;logFC&quot;     &quot;AveExpr&quot;   &quot;t&quot;         &quot;P.Value&quot;   &quot;adj.P.Val&quot; &quot;B&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(<span class="kw">fData</span>(ALL_bcrneg)<span class="op">$</span>P.Value)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p>The histograms below illustrate <a href="http://varianceexplained.org/statistics/interpreting-pvalue-histogram/">other distributions</a> to beware of.</p>
 <div class="figure">
 <img src="img/plot_melted-1.png" />
@@ -335,7 +346,7 @@ bh &lt;-<span class="st"> </span><span class="kw">fData</span>(ALL_bcrneg)<span 
      <span class="dt">xlab =</span> <span class="kw">expression</span>(log[<span class="dv">2</span>]<span class="op">~</span>fold<span class="op">-</span>change),
      <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="op">-</span>log[<span class="dv">10</span>]<span class="op">~</span>adjusted<span class="op">~</span>p<span class="op">-</span>value))
 <span class="kw">grid</span>()</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <p>The volcano plot can further be annotated using vertical and horizontal lines depicting thresholds of interest or points can be colour-coded based on their interest.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lfc &lt;-<span class="st"> </span><span class="kw">fData</span>(ALL_bcrneg)<span class="op">$</span>logFC
 bh &lt;-<span class="st"> </span><span class="kw">fData</span>(ALL_bcrneg)<span class="op">$</span>adj.P.Val
@@ -349,13 +360,13 @@ sign &lt;-<span class="st"> </span><span class="kw">abs</span>(lfc) <span class=
 <span class="kw">grid</span>()
 <span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">lty =</span> <span class="st">&quot;dotted&quot;</span>)
 <span class="kw">abline</span>(<span class="dt">h =</span> <span class="op">-</span><span class="kw">log10</span>(<span class="fl">0.05</span>), <span class="dt">lty =</span> <span class="st">&quot;dotted&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>It is also possible to identify and label individual points on the plot using the <code>identify</code> function</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">identify</span>(lfc, <span class="op">-</span><span class="kw">log10</span>(bh), <span class="kw">featureNames</span>(ALL_bcrneg))</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 </div>
 <div id="visualising-intersections" class="section level2">
-<h2><span class="header-section-number">6.4</span> Visualising intersections</h2>
+<h2><span class="header-section-number">5.4</span> Visualising intersections</h2>
 <p>Venn and Euler diagrams are popular representation when comparing sets and their intersection. Two useful R packages to generate such plots are <em><a href="https://CRAN.R-project.org/package=venneuler">venneuler</a></em> and <em><a href="https://github.com/js229/Vennerable">Vennerable</a></em>.</p>
 <p>We will use the <code>crc</code> feature names to generate a test data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
@@ -367,28 +378,28 @@ x &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="d
 ## 000 100 010 110 001 101 011 111 
 ##   0  11   9   6   5  10  12   8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(v)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <p>The <em><a href="https://CRAN.R-project.org/package=UpSetR">UpSetR</a></em> visualises intersections of sets as a matrix in which the rows represent the sets and the columns represent their intersection sizes. For each set that is part of a given intersection, a black filled circle is placed in the corresponding matrix cell. If a set is not part of the intersection, a light gray circle is shown. A vertical black line connects the topmost black circle with the bottom most black circle in each column to emphasise the column-based relationships. The size of the intersections is shown as a bar chart placed on top of the matrix so that each column lines up with exactly one bar. A second bar chart showing the size of the each set is shown to the left of the matrix.</p>
 <p>We will first make use of the <code>fromList</code> function to convert our list to a <code>UpSetR</code> compatible input and then generate the figure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;UpSetR&quot;</span>)
 x2 &lt;-<span class="st"> </span><span class="kw">fromList</span>(x)
 <span class="kw">upset</span>(x2)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 <p>The following <a href="https://twitter.com/ngehlenborg/status/986354574989709312">tweet</a> by the author of the package illustrates how Venn and upset diagrams relate to each other.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">upset</span>(x2, <span class="dt">order.by =</span> <span class="st">&quot;freq&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">upset</span>(x2, <span class="dt">order.by =</span> <span class="st">&quot;degree&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-65-2.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-55-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">upset</span>(x2, <span class="dt">order.by =</span> <span class="kw">c</span>(<span class="st">&quot;freq&quot;</span>, <span class="st">&quot;degree&quot;</span>))</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-65-3.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-55-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">upset</span>(x2, <span class="dt">order.by =</span> <span class="kw">c</span>(<span class="st">&quot;degree&quot;</span>, <span class="st">&quot;freq&quot;</span>))</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-65-4.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-55-4.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">upset</span>(x2, <span class="dt">sets =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>))</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-65-5.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-55-5.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">upset</span>(x2, <span class="dt">sets =</span> <span class="kw">c</span>(<span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;A&quot;</span>), <span class="dt">keep.order =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-65-6.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-55-6.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">upset</span>(x2, <span class="dt">group.by =</span> <span class="st">&quot;sets&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-65-7.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-55-7.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Add set D with a single intersection
 x3 &lt;-<span class="st"> </span>x2
 x3<span class="op">$</span>D &lt;-<span class="st"> </span><span class="dv">0</span>
@@ -402,9 +413,9 @@ x3[<span class="dv">1</span>, <span class="st">&quot;D&quot;</span>] &lt;-<span 
 ## 5 1 0 0 0
 ## 6 1 0 0 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">upset</span>(x3)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-65-8.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-55-8.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">upset</span>(x3, <span class="dt">empty.intersections =</span> <span class="st">&quot;on&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-65-9.png" width="672" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-55-9.png" width="672" /></p>
 <p>Visualising intersections with <code>UpSetR</code> shines with more that 4 sets, as Venn diagrams become practically useless.</p>
 <blockquote>
 <p><strong>Challenge</strong></p>
@@ -416,7 +427,7 @@ x &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="d
 <p>When the number of sets become larger, the options above, as well as <code>nsets</code>, the number of sets (default is 5) and <code>nintersects</code>, the number of intersectios (default is 40) becomes useful.</p>
 </div>
 <div id="unsupervised-learning" class="section level2">
-<h2><span class="header-section-number">6.5</span> Unsupervised learning</h2>
+<h2><span class="header-section-number">5.5</span> Unsupervised learning</h2>
 <p>In <strong>unsupervised learning</strong> (UML), no labels are provided, and the learning algorithm focuses solely on detecting structure in unlabelled input data. One generally differentiates between</p>
 <ul>
 <li><p><strong>Clustering</strong>, where the goal is to find homogeneous subgroups within the data; the grouping is based on distance between observations.</p></li>
@@ -428,8 +439,9 @@ x &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="d
 <li>there is generally much more unlabelled data available than labelled data.</li>
 </ul>
 <p>Unsupervised learning techniques are paramount for exploratory data analysis and visualisation.</p>
-<div id="k-means-clustering" class="section level3">
-<h3><span class="header-section-number">6.5.1</span> k-means clustering</h3>
+</div>
+<div id="k-means-clustering" class="section level2">
+<h2><span class="header-section-number">5.6</span> k-means clustering</h2>
 <p>The k-means clustering algorithms aims at partitioning <em>n</em> observations into a fixed number of <em>k</em> clusters. The algorithm will find homogeneous clusters.</p>
 <p>In R, we use</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stats<span class="op">::</span><span class="kw">kmeans</span>(x, <span class="dt">centers =</span> <span class="dv">3</span>, <span class="dt">nstart =</span> <span class="dv">10</span>)</code></pre></div>
@@ -458,7 +470,7 @@ x &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="d
 <div class="figure"><span id="fig:solkmplot"></span>
 <img src="VisualisingBiomolecularData_files/figure-html/solkmplot-1.png" alt="k-means algorithm on sepal and petal lengths" width="672" />
 <p class="caption">
-Figure 6.1: k-means algorithm on sepal and petal lengths
+Figure 5.1: k-means algorithm on sepal and petal lengths
 </p>
 </div>
 <p><details></p>
@@ -467,8 +479,8 @@ x &lt;-<span class="st"> </span>iris[, i]
 cl &lt;-<span class="st"> </span><span class="kw">kmeans</span>(x, <span class="dv">3</span>, <span class="dt">nstart =</span> <span class="dv">10</span>)
 <span class="kw">plot</span>(x, <span class="dt">col =</span> cl<span class="op">$</span>cluster)</code></pre></div>
 <p></details></p>
-<div id="how-does-k-means-work" class="section level4">
-<h4><span class="header-section-number">6.5.1.1</span> How does k-means work</h4>
+<div id="how-does-k-means-work" class="section level3 unnumbered">
+<h3>How does k-means work</h3>
 <p><strong>Initialisation</strong>: randomly assign class membership</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">12</span>)
 init &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">3</span>, <span class="kw">nrow</span>(x), <span class="dt">replace =</span> <span class="ot">TRUE</span>)
@@ -476,7 +488,7 @@ init &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="d
 <div class="figure"><span id="fig:kmworksinit"></span>
 <img src="VisualisingBiomolecularData_files/figure-html/kmworksinit-1.png" alt="k-means random intialisation" width="672" />
 <p class="caption">
-Figure 6.2: k-means random intialisation
+Figure 5.2: k-means random intialisation
 </p>
 </div>
 <p><strong>Iteration</strong>:</p>
@@ -502,7 +514,7 @@ ki &lt;-<span class="st"> </span>ki[<span class="op">-</span>(<span class="dv">1
 <div class="figure"><span id="fig:kmworksiter"></span>
 <img src="VisualisingBiomolecularData_files/figure-html/kmworksiter-1.png" alt="k-means iteration: calculate centers (left) and assign new cluster membership (right)" width="1152" />
 <p class="caption">
-Figure 6.3: k-means iteration: calculate centers (left) and assign new cluster membership (right)
+Figure 5.3: k-means iteration: calculate centers (left) and assign new cluster membership (right)
 </p>
 </div>
 <p><strong>Termination</strong>: Repeat iteration until no point changes its cluster membership.</p>
@@ -511,8 +523,8 @@ Figure 6.3: k-means iteration: calculate centers (left) and assign new cluster m
 <p class="caption">k-means convergence (credit Wikipedia)</p>
 </div>
 </div>
-<div id="model-selection" class="section level4">
-<h4><span class="header-section-number">6.5.1.2</span> Model selection</h4>
+<div id="model-selection" class="section level3 unnumbered">
+<h3>Model selection</h3>
 <p>Due to the random initialisation, one can obtain different clustering results. When k-means is run multiple times, the best outcome, i.e. the one that generates the smallest <em>total within cluster sum of squares (SS)</em>, is selected. The total within SS is calculated as:</p>
 <p>For each cluster results:</p>
 <ul>
@@ -558,13 +570,13 @@ cl2 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(xr, <span class
 <div class="figure"><span id="fig:selrep"></span>
 <img src="VisualisingBiomolecularData_files/figure-html/selrep-1.png" alt="Different k-means results on the same (random) data" width="1152" />
 <p class="caption">
-Figure 6.4: Different k-means results on the same (random) data
+Figure 5.4: Different k-means results on the same (random) data
 </p>
 </div>
 <p></details></p>
 </div>
-<div id="how-to-determine-the-number-of-clusters" class="section level4">
-<h4><span class="header-section-number">6.5.1.3</span> How to determine the number of clusters</h4>
+<div id="how-to-determine-the-number-of-clusters" class="section level3 unnumbered">
+<h3>How to determine the number of clusters</h3>
 <ol style="list-style-type: decimal">
 <li>Run k-means with <code>k=1</code>, <code>k=2</code>, …, <code>k=n</code></li>
 <li>Record total within SS for each value of k.</li>
@@ -582,13 +594,61 @@ tot_within_ss &lt;-<span class="st"> </span><span class="kw">sapply</span>(ks, <
     cl<span class="op">$</span>tot.withinss
 })
 <span class="kw">plot</span>(ks, tot_within_ss, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/solkmelbow-1.png" width="672" /> </details></p>
+<p></details></p>
+<p>There exists other metrics, other than the total within cluster sum of squares that can be applied, such as the gap statistic (see <code>cluster::clusGap</code>), or the Akaike (AIC) and Bayesian (BIC) information criteria.</p>
+</div>
+<div id="challenge" class="section level3 unnumbered">
+<h3>Challenge</h3>
+<p>Let’s use what we have learned to cluster the 2337 proteins from the <code>mulvey2015norm</code> data in 20 clusters.</p>
+<ol style="list-style-type: decimal">
+<li><p>Use k-means to cluster the <code>mulvey2015norm</code> data, setting <code>centers    = 20</code>. Take care in repeating the clustering more than once.</p></li>
+<li><p>To plot the expression profiles for the 20 clusters, I suggest to use <code>gplot2</code>. Do do so, create a 2337 proteins by 18 sample dataframe (or tibble), appending the protein accession numbers (from the feature data - you can use the <code>MSnbase::ms2df</code> helper function.) and cluster numbers as 2 additional columns.</p></li>
+<li><p>Use <code>gather</code> to transform the data in a long format.</p></li>
+<li><p>Use <code>ggplot2</code> to reproduce the figure below. Optional: use <code>stat_summary</code> to add a mean profile for each cluster of proteins.</p></li>
+</ol>
+<div class="figure">
+<img src="img/kmeans-mulvey-2.png" alt="kmeans clustering on mulvey2015norm" />
+<p class="caption">kmeans clustering on <code>mulvey2015norm</code></p>
+</div>
+<p><details></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;pRolocdata&quot;</span>)
+<span class="kw">data</span>(mulvey2015norm)
+
+cl &lt;-<span class="st"> </span><span class="kw">kmeans</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(mulvey2015norm),
+             <span class="dt">centers =</span> <span class="dv">16</span>, <span class="dt">nstart =</span> <span class="dv">10</span>, <span class="dt">iter.max =</span> <span class="dv">50</span>)
+
+x &lt;-<span class="st"> </span><span class="kw">ms2df</span>(mulvey2015norm, <span class="dt">fcol =</span> <span class="st">&quot;Accession&quot;</span>)
+x[[<span class="st">&quot;cluster&quot;</span>]] &lt;-<span class="st"> </span>cl<span class="op">$</span>cluster
+tb &lt;-<span class="st"> </span><span class="kw">gather</span>(x, <span class="dt">key =</span> sample, <span class="dt">value =</span> expression, <span class="op">-</span>cluster, <span class="op">-</span>Accession) <span class="op">%&gt;%</span>
+<span class="st">    </span>as_tibble
+
+## Check dimensions
+<span class="kw">stopifnot</span>(<span class="kw">nrow</span>(tb) <span class="op">==</span><span class="st"> </span><span class="kw">prod</span>(<span class="kw">dim</span>(mulvey2015norm)))
+
+pd &lt;-<span class="st"> </span><span class="kw">pData</span>(mulvey2015norm)
+tb<span class="op">$</span>time &lt;-<span class="st"> </span>pd[tb[[<span class="st">&quot;sample&quot;</span>]], <span class="st">&quot;times&quot;</span>]
+tb<span class="op">$</span>rep &lt;-<span class="st"> </span>pd[tb[[<span class="st">&quot;sample&quot;</span>]], <span class="st">&quot;rep&quot;</span>]
+
+## Plotting
+kmp &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> tb,
+              <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">paste</span>(time, rep), <span class="dt">y =</span> expression,
+                  <span class="dt">group =</span> Accession, <span class="dt">colour =</span> <span class="kw">as.factor</span>(cluster))) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>cluster) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="st">&quot;Time course&quot;</span>)
+
+kmp2 &lt;-<span class="st"> </span>kmp <span class="op">+</span>
+<span class="st">    </span><span class="kw">stat_summary</span>(<span class="kw">aes</span>(<span class="dt">group =</span> cluster),
+                 <span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>,
+                 <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)</code></pre></div>
+<p></details></p>
 </div>
 </div>
-<div id="hierarchical-clustering" class="section level3">
-<h3><span class="header-section-number">6.5.2</span> Hierarchical clustering</h3>
-<div id="how-does-hierarchical-clustering-work" class="section level4">
-<h4><span class="header-section-number">6.5.2.1</span> How does hierarchical clustering work</h4>
+<div id="hierarchical-clustering" class="section level2">
+<h2><span class="header-section-number">5.7</span> Hierarchical clustering</h2>
+<div id="how-does-hierarchical-clustering-work" class="section level3 unnumbered">
+<h3>How does hierarchical clustering work</h3>
 <p><strong>Initialisation</strong>: Starts by assigning each of the n points its own cluster</p>
 <p><strong>Iteration</strong></p>
 <ol style="list-style-type: decimal">
@@ -599,14 +659,14 @@ tot_within_ss &lt;-<span class="st"> </span><span class="kw">sapply</span>(ks, <
 <div class="figure"><span id="fig:hcldata"></span>
 <img src="VisualisingBiomolecularData_files/figure-html/hcldata-1.png" alt="Hierarchical clustering: initialisation (left) and colour-coded results after iteration (right)." width="1152" />
 <p class="caption">
-Figure 6.5: Hierarchical clustering: initialisation (left) and colour-coded results after iteration (right).
+Figure 5.5: Hierarchical clustering: initialisation (left) and colour-coded results after iteration (right).
 </p>
 </div>
 <p>The results of hierarchical clustering are typically visualised along a <strong>dendrogram</strong>, where the distance between the clusters is proportional to the branch lengths.</p>
 <div class="figure"><span id="fig:hcldendro"></span>
 <img src="VisualisingBiomolecularData_files/figure-html/hcldendro-1.png" alt="Visualisation of the hierarchical clustering results on a dendrogram" width="672" />
 <p class="caption">
-Figure 6.6: Visualisation of the hierarchical clustering results on a dendrogram
+Figure 5.6: Visualisation of the hierarchical clustering results on a dendrogram
 </p>
 </div>
 <p>In R:</p>
@@ -632,13 +692,13 @@ hcl</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(hcl)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/hclsol-1.png" width="672" /> </details></p>
 </div>
-<div id="defining-clusters" class="section level4">
-<h4><span class="header-section-number">6.5.2.2</span> Defining clusters</h4>
+<div id="defining-clusters" class="section level3 unnumbered">
+<h3>Defining clusters</h3>
 <p>After producing the hierarchical clustering result, we need to <em>cut the tree (dendrogram)</em> at a specific height to defined the clusters. For example, on our test dataset above, we could decide to cut it at a distance around 1.5, with would produce 2 clusters.</p>
 <div class="figure"><span id="fig:cuthcl"></span>
 <img src="VisualisingBiomolecularData_files/figure-html/cuthcl-1.png" alt="Cutting the dendrogram at height 1.5." width="672" />
 <p class="caption">
-Figure 6.7: Cutting the dendrogram at height 1.5.
+Figure 5.7: Cutting the dendrogram at height 1.5.
 </p>
 </div>
 <p>In R we can us the <code>cutree</code> function to</p>
@@ -670,50 +730,26 @@ Figure 6.7: Cutting the dendrogram at height 1.5.
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">identical</span>(<span class="kw">cutree</span>(hcl, <span class="dt">k =</span> <span class="dv">3</span>), <span class="kw">cutree</span>(hcl, <span class="dt">h =</span> <span class="fl">3.9</span>))</code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p></details></p>
-<blockquote>
-<p>Challenge</p>
-<p>Using the same value <code>k = 3</code>, verify if k-means and hierarchical clustering produce the same results on the <code>iris</code> data.</p>
-<p>Which one, if any, is correct?</p>
-</blockquote>
-<p><details></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">km &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris[, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">centers =</span> <span class="dv">3</span>, <span class="dt">nstart =</span> <span class="dv">10</span>)
-hcl &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="kw">dist</span>(iris[, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]))
-<span class="kw">table</span>(km<span class="op">$</span>cluster, <span class="kw">cutree</span>(hcl, <span class="dt">k =</span> <span class="dv">3</span>))</code></pre></div>
-<pre><code>##    
-##      1  2  3
-##   1  0 38  0
-##   2 50  0  0
-##   3  0 34 28</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
-<span class="kw">plot</span>(iris<span class="op">$</span>Petal.Length, iris<span class="op">$</span>Sepal.Length, <span class="dt">col =</span> km<span class="op">$</span>cluster, <span class="dt">main =</span> <span class="st">&quot;k-means&quot;</span>)
-<span class="kw">plot</span>(iris<span class="op">$</span>Petal.Length, iris<span class="op">$</span>Sepal.Length, <span class="dt">col =</span> <span class="kw">cutree</span>(hcl, <span class="dt">k =</span> <span class="dv">3</span>), <span class="dt">main =</span> <span class="st">&quot;Hierarchical clustering&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/iris2algs-1.png" width="1152" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Checking with the labels provided with the iris data
-<span class="kw">table</span>(iris<span class="op">$</span>Species, km<span class="op">$</span>cluster)</code></pre></div>
-<pre><code>##             
-##               1  2  3
-##   setosa      0 50  0
-##   versicolor  2  0 48
-##   virginica  36  0 14</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(iris<span class="op">$</span>Species, <span class="kw">cutree</span>(hcl, <span class="dt">k =</span> <span class="dv">3</span>))</code></pre></div>
-<pre><code>##             
-##               1  2  3
-##   setosa     50  0  0
-##   versicolor  0 23 27
-##   virginica   0 49  1</code></pre>
-<p></details></p>
+</div>
+<div id="challenge-1" class="section level3 unnumbered">
+<h3>Challenge</h3>
+<p>Using the same <code>mulvey2015norm</code> dataset, generate a hierarchical cluster of samples (the dendrogram will have 18 leafs), as shown below. The cut it to obtain early, late and fully developed groups.</p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/mulveyhcl-1.png" width="672" /></p>
+<pre><code>##  rep1_0hr rep1_16hr rep1_24hr rep1_48hr rep1_72hr  rep1_XEN  rep2_0hr 
+##         1         1         1         2         2         3         1 
+## rep2_16hr rep2_24hr rep2_48hr rep2_72hr  rep2_XEN  rep3_0hr rep3_16hr 
+##         1         1         2         2         3         1         1 
+## rep3_24hr rep3_48hr rep3_72hr  rep3_XEN 
+##         1         2         2         3</code></pre>
 </div>
 </div>
-<div id="pre-processing" class="section level3">
-<h3><span class="header-section-number">6.5.3</span> Pre-processing</h3>
+<div id="pre-processing" class="section level2">
+<h2><span class="header-section-number">5.8</span> Pre-processing</h2>
 <p>Many of the machine learning methods that are regularly used are sensitive to difference scales. This applies to unsupervised methods as well as supervised methods, as we will see in the next chapter.</p>
 <p>A typical way to pre-process the data prior to learning is to scale the data, or apply principal component analysis (next section). Scaling assures that all data columns have a mean of 0 and standard deviation of 1.</p>
 <p>In R, scaling is done with the <code>scale</code> function.</p>
-<blockquote>
-<p>Challenge</p>
-<p>Using the <code>mtcars</code> data as an example, verify that the variables are of different scales, then scale the data. To observe the effect different scales, compare the hierarchical clusters obtained on the original and scaled data.</p>
-</blockquote>
 <p><details></p>
+<p><strong>Example</strong>: Using the <code>mtcars</code> data as an example, verify that the variables are of different scales, then scale the data. To observe the effect different scales, compare the hierarchical clusters obtained on the original and scaled data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colMeans</span>(mtcars)</code></pre></div>
 <pre><code>##        mpg        cyl       disp         hp       drat         wt 
 ##  20.090625   6.187500 230.721875 146.687500   3.596563   3.217250 
@@ -726,8 +762,8 @@ hcl2 &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="k
 <span class="kw">plot</span>(hcl2, <span class="dt">main =</span> <span class="st">&quot;scaled data&quot;</span>)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalesol-1.png" width="1152" /> </details></p>
 </div>
-<div id="principal-component-analysis-pca" class="section level3">
-<h3><span class="header-section-number">6.5.4</span> Principal component analysis (PCA)</h3>
+<div id="principal-component-analysis-pca" class="section level2">
+<h2><span class="header-section-number">5.9</span> Principal component analysis (PCA)</h2>
 <p><strong>Dimensionality reduction</strong> techniques are widely used and versatile techniques that can be used to:</p>
 <ul>
 <li>find structure in features</li>
@@ -735,8 +771,8 @@ hcl2 &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="k
 <li>aid in visualisation.</li>
 </ul>
 <p>The basic principle of dimensionality reduction techniques is to transform the data into a new space that summarise properties of the whole data set along a reduced number of dimensions. These are then ideal candidates used to visualise the data along these reduced number of informative dimensions.</p>
-<div id="how-does-it-work" class="section level4">
-<h4><span class="header-section-number">6.5.4.1</span> How does it work</h4>
+<div id="how-does-it-work" class="section level3 unnumbered">
+<h3>How does it work</h3>
 <p>Principal Component Analysis (PCA) is a technique that transforms the original n-dimensional data into a new n-dimensional space.</p>
 <ul>
 <li>These new dimensions are linear combinations of the original data, i.e. they are composed of proportions of the original variables.</li>
@@ -746,7 +782,7 @@ hcl2 &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="k
 <div class="figure"><span id="fig:pcaex"></span>
 <img src="VisualisingBiomolecularData_files/figure-html/pcaex-1.png" alt="Original data (left). PC1 will maximise the variability while minimising the residuals (centre). PC2 is orthogonal to PC1 (right)." width="1152" />
 <p class="caption">
-Figure 6.8: Original data (left). PC1 will maximise the variability while minimising the residuals (centre). PC2 is orthogonal to PC1 (right).
+Figure 5.8: Original data (left). PC1 will maximise the variability while minimising the residuals (centre). PC2 is orthogonal to PC1 (right).
 </p>
 </div>
 <p>In R, we can use the <code>prcomp</code> function.</p>
@@ -765,12 +801,12 @@ Figure 6.8: Original data (left). PC1 will maximise the variability while minimi
 <div class="figure"><span id="fig:histpc1"></span>
 <img src="VisualisingBiomolecularData_files/figure-html/histpc1-1.png" alt="Iris data along PC1." width="672" />
 <p class="caption">
-Figure 6.9: Iris data along PC1.
+Figure 5.9: Iris data along PC1.
 </p>
 </div>
 </div>
-<div id="visualisation" class="section level4">
-<h4><span class="header-section-number">6.5.4.2</span> Visualisation</h4>
+<div id="visualisation" class="section level3 unnumbered">
+<h3>Visualisation</h3>
 <p>A <strong>biplot</strong> features all original points re-mapped (rotated) along the first two PCs as well as the original features as vectors along the same PCs. Feature vectors that are in the same direction in PC space are also correlated in the original data space.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">biplot</span>(irispca)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/irisbiplot-1.png" width="672" /></p>
@@ -795,56 +831,37 @@ Figure 6.9: Iris data along PC1.
 <span class="kw">plot</span>(irispca<span class="op">$</span>x[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">col =</span> iris<span class="op">$</span>Species)</code></pre></div>
 <p></details></p>
 </div>
-<div id="data-pre-processing" class="section level4">
-<h4><span class="header-section-number">6.5.4.3</span> Data pre-processing</h4>
+<div id="data-pre-processing" class="section level3 unnumbered">
+<h3>Data pre-processing</h3>
 <p>We haven’t looked at other <code>prcomp</code> parameters, other that the first one, <code>x</code>. There are two other ones that are or importance, in particular in the light of the section on pre-processing above, which are <code>center</code> and <code>scale.</code>. The former is set to <code>TRUE</code> by default, while the second one is set the <code>FALSE</code>.</p>
-<blockquote>
-<p>Challenge</p>
-<p>Repeat the analysis comparing the need for scaling on the <code>mtcars</code> dataset, but using PCA instead of hierarchical clustering. When comparing the two.</p>
-</blockquote>
 <p><details></p>
+<p><strong>Example</strong> Repeat the analysis comparing the need for scaling on the <code>mtcars</code> dataset, but using PCA instead of hierarchical clustering. When comparing the two.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
 <span class="kw">biplot</span>(<span class="kw">prcomp</span>(mtcars, <span class="dt">scale =</span> <span class="ot">FALSE</span>), <span class="dt">main =</span> <span class="st">&quot;No scaling&quot;</span>)  ## 1
 <span class="kw">biplot</span>(<span class="kw">prcomp</span>(mtcars, <span class="dt">scale =</span> <span class="ot">TRUE</span>), <span class="dt">main =</span> <span class="st">&quot;With scaling&quot;</span>) ## 2</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalepcasol-1.png" width="672" /></p>
-<p>Without scaling, <code>disp</code> and <code>hp</code> are the features with the highest loadings along PC1 and 2 (all others are negligible), which are also those with the highest units of measurement. Scaling removes this effect. </details></p>
+<p>Without scaling, <code>disp</code> and <code>hp</code> are the features with the highest loadings along PC1 and 2 (all others are negligible), which are also those with the highest units of measurement. Scaling removes this effect.</p>
+<p></details></p>
 </div>
-<div id="final-comments-on-pca" class="section level4">
-<h4><span class="header-section-number">6.5.4.4</span> Final comments on PCA</h4>
-<p>Real datasets often come with <strong>missing values</strong>. In R, these should be encoded using <code>NA</code>. Unfortunately, PCA cannot deal with missing values, and observations containing <code>NA</code> values will be dropped automatically. This is a viable solution only when the proportion of missing values is low.</p>
-<p>It is also possible to impute missing values. This is described in greater details in the <em>Data pre-processing</em> section in the supervised machine learning chapter.</p>
+<div id="final-comments-on-pca" class="section level3 unnumbered">
+<h3>Final comments on PCA</h3>
+<p>Real datasets often come with <strong>missing values</strong>. In R, these should be encoded using <code>NA</code>. Unfortunately, standard PCA cannot deal with missing values, and observations containing <code>NA</code> values will be dropped automatically. This is a viable solution only when the proportion of missing values is low. Alternatively, the <em>NIPALS</em> (non-linear iterative partial least squares) implementation does support missing values (see <code>nipals::nipals</code>).</p>
 <p>Finally, we should be careful when using categorical data in any of the unsupervised methods described above. Categories are generally represented as factors, which are encoded as integer levels, and might give the impression that a distance between levels is a relevant measure (which it is not, unless the factors are ordered). In such situations, categorical data can be dropped, or it is possible to encode categories as binary <strong>dummy variables</strong>. For example, if we have 3 categories, say <code>A</code>, <code>B</code> and <code>C</code>, we would create two dummy variables to encode the categories as:</p>
-<table>
-<thead>
-<tr class="header">
-<th></th>
-<th align="right">x</th>
-<th align="right">y</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>A</td>
-<td align="right">1</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>B</td>
-<td align="right">0</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>C</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-</tbody>
-</table>
+<pre><code>##   x y
+## A 1 0
+## B 0 1
+## C 0 0</code></pre>
 <p>so that the distance between each category are approximately equal to 1.</p>
 </div>
+<div id="challenge-2" class="section level3 unnumbered">
+<h3>Challenge</h3>
+<p>Produce the PCA plot for the <code>ALL_bcrneg</code> samples, and annotating the <code>NEG</code> and <code>BCR/ABL</code> samples on the plot. Do you think that the two first components offer enough resolution?</p>
+<p><details></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/pcachallenge0-1.png" width="672" /><img src="VisualisingBiomolecularData_files/figure-html/pcachallenge0-2.png" width="672" /><img src="VisualisingBiomolecularData_files/figure-html/pcachallenge0-3.png" width="672" /> </details></p>
 </div>
-<div id="t-distributed-stochastic-neighbour-embedding" class="section level3">
-<h3><span class="header-section-number">6.5.5</span> t-Distributed Stochastic Neighbour Embedding</h3>
+</div>
+<div id="t-distributed-stochastic-neighbour-embedding" class="section level2">
+<h2><span class="header-section-number">5.10</span> t-Distributed Stochastic Neighbour Embedding</h2>
 <p><a href="https://lvdmaaten.github.io/tsne/">t-Distributed Stochastic Neighbour Embedding</a> (t-SNE) is a <em>non-linear</em> dimensionality reduction technique, i.e. that different regions of the data space will be subjected to different transformations. t-SNE will compress small distances, thus bringing close neighbours together, and will ignore large distances. It is particularly well suited for <a href="https://distill.pub/2016/misread-tsne/">very high dimensional data</a>.</p>
 <p>In R, we can use the <code>Rtsne</code> function from the <em><a href="https://CRAN.R-project.org/package=Rtsne">Rtsne</a></em>. Before, we however need to remove any duplicated entries in the dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;Rtsne&quot;</span>)
@@ -853,9 +870,9 @@ iristsne &lt;-<span class="st"> </span><span class="kw">Rtsne</span>(uiris[, <sp
 <span class="kw">plot</span>(iristsne<span class="op">$</span>Y, <span class="dt">col =</span> uiris<span class="op">$</span>Species)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/iristsne-1.png" width="672" /></p>
 <p>As with PCA, the data can be scaled and centred prior the running t-SNE (see the <code>pca_center</code> and <code>pca_scale</code> arguments). The algorithm is stochastic, and will produce different results at each repetition.</p>
-<div id="parameter-tuning" class="section level4">
-<h4><span class="header-section-number">6.5.5.1</span> Parameter tuning</h4>
-<p>t-SNE (as well as many other methods, in particular classification algorithms) has two important parameters that can substantially influence the clustering of the data</p>
+<div id="parameter-tuning" class="section level3">
+<h3><span class="header-section-number">5.10.1</span> Parameter tuning</h3>
+<p>t-SNE has two important parameters that can substantially influence the clustering of the data</p>
 <ul>
 <li><strong>Perplexity</strong>: balances global and local aspects of the data.</li>
 <li><strong>Iterations</strong>: number of iterations before the clustering is stopped.</li>
@@ -866,47 +883,75 @@ iristsne &lt;-<span class="st"> </span><span class="kw">Rtsne</span>(uiris[, <sp
 <p class="caption">Effect of different perplexity and iterations when running t-SNE</p>
 </div>
 <p>As a comparison, below are the same data with PCA (left) and t-SNE (right).</p>
-<div class="figure">
-<img src="https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png" alt="PCA and t-SNE on hyperLOPIT" />
-<p class="caption">PCA and t-SNE on hyperLOPIT</p>
+<p>![PCA and t-SNE on <a href="https://www.ncbi.nlm.nih.gov/pubmed/28471460">hyperLOPIT</a>(<a href="https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png" class="uri">https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png</a>)</p>
 </div>
 </div>
-</div>
-<div id="pca-loadins-vs-differential-expression" class="section level3">
-<h3><span class="header-section-number">6.5.6</span> PCA loadins vs differential expression</h3>
-<div id="using-a-subset-of-genes" class="section level4 unnumbered">
-<h4>Using a subset of genes</h4>
-</div>
+<div id="pca-loadins-vs-differential-expression" class="section level2">
+<h2><span class="header-section-number">5.11</span> PCA loadins vs differential expression</h2>
+<p>Let’s now repeat the PCA analysis of the <code>ALL_bcrneg</code> features.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(ALL_bcrneg), <span class="dt">scale =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>)
+pca</code></pre></div>
+<pre><code>## Standard deviations (1, .., p=79):
+##  [1] 8.63117004 0.84942702 0.67458818 0.55352873 0.45824711 0.43513853
+##  [7] 0.40343006 0.38822909 0.37252103 0.34257748 0.33387386 0.30756094
+## [13] 0.29209977 0.28631144 0.26738003 0.26298310 0.25728368 0.24763048
+## [19] 0.23770497 0.23534997 0.22119589 0.21677454 0.20836050 0.20506106
+## [25] 0.19636623 0.19472840 0.19237269 0.18860986 0.18643713 0.18299860
+## [31] 0.17919611 0.17659571 0.17571013 0.17163636 0.17033878 0.16717228
+## [37] 0.16574640 0.16401760 0.16004103 0.15904172 0.15675282 0.15281419
+## [43] 0.15151812 0.14998140 0.14791449 0.14713764 0.14502099 0.14403366
+## [49] 0.14054168 0.13997131 0.13714763 0.13610264 0.13517742 0.13435114
+## [55] 0.13198913 0.13065753 0.12867200 0.12556655 0.12526105 0.12431610
+## [61] 0.12284763 0.12152170 0.12012337 0.11860170 0.11588845 0.11563741
+## [67] 0.11369274 0.11317822 0.11067998 0.10902901 0.10661729 0.10479911
+## [73] 0.10231779 0.10135905 0.10012962 0.09995357 0.09709713 0.09524840
+## [79] 0.08186223
+## 
+## Rotation (n x k) = (79 x 79):
+##              PC1           PC2          PC3           PC4          PC5
+## 01005 -0.1140362  0.0676907295 -0.117152054  0.0633915621 -0.022485610
+##                PC6          PC7           PC8           PC9          PC10
+## 01005  0.034224935 -0.057536547  0.0600493809 -0.0580450336  0.1314541175
+##               PC11          PC12          PC13         PC14         PC15
+## 01005  0.032026379 -0.0106465046  0.0145044071 -0.037084811  0.064355378
+##                PC16         PC17         PC18         PC19          PC20
+## 01005 -0.0347480679  0.003361801 -0.043312942  0.076263541 -0.0067297799
+##                PC21          PC22         PC23         PC24         PC25
+## 01005  0.0120102996 -0.0753724089  0.037364757 -0.047358106  0.092619419
+##               PC26         PC27          PC28         PC29         PC30
+## 01005  0.141024033 -0.012126187 -0.0714992961 -0.236156235  0.060031360
+##                PC31         PC32          PC33         PC34          PC35
+## 01005  0.0968214600  0.052422481 -0.1898755068 -0.030075133 -0.1183694657
+##                PC36          PC37          PC38          PC39         PC40
+## 01005  0.0119724177  0.0040250077  0.0430946224  0.0196620144  0.014805278
+##               PC41          PC42         PC43         PC44         PC45
+## 01005  0.104804511 -0.0414116703 -0.054164504 -0.058448530 -0.134424303
+##                PC46          PC47          PC48          PC49         PC50
+## 01005  0.0612633087  0.0195261040  0.0716667805  0.1017514304  0.043317386
+##               PC51          PC52         PC53         PC54         PC55
+## 01005 -0.109892715 -0.1824220151 -0.080258666 -0.026829982 -0.091607536
+##                PC56          PC57          PC58         PC59         PC60
+## 01005 -0.0513078664  0.0114206340  0.1979896221  0.055081068  0.142588822
+##                PC61         PC62         PC63          PC64         PC65
+## 01005  0.0105014137 -0.149810834 -0.008425949 -0.2221192078 -0.101967883
+##                PC66         PC67         PC68          PC69          PC70
+## 01005  0.0099795604  0.084420310  0.067110879  0.1485105765  0.1883873830
+##               PC71         PC72          PC73          PC74          PC75
+## 01005 -0.229914583 -0.094708718 -0.4273442544  4.216124e-02  0.2344299834
+##                PC76          PC77          PC78          PC79
+## 01005  0.0793931853 -0.2741264915  0.1772058232 -0.0282922255
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 78 rows ]</code></pre>
+<div id="using-a-subset-of-genes" class="section level3 unnumbered">
+<h3>Using a subset of genes</h3>
 </div>
 </div>
 <div id="heatmaps" class="section level2">
-<h2><span class="header-section-number">6.6</span> Heatmaps</h2>
+<h2><span class="header-section-number">5.12</span> Heatmaps</h2>
 <p>See</p>
 <blockquote>
 <p>Key M. <em>A tutorial in displaying mass spectrometry-based proteomic data using heat maps</em>. BMC Bioinformatics. 2012;13 Suppl 16:S10. doi: <a href="https://doi.org/10.1186/1471-2105-13-S16-S10">10.1186/1471-2105-13-S16-S10</a>. Epub 2012 Nov 5. Review. PMID: 23176119; PMCID: PMC3489527.</p>
 </blockquote>
-<div id="heatmap-components" class="section level3">
-<h3><span class="header-section-number">6.6.1</span> Heatmap components</h3>
-</div>
-<div id="data-reordering" class="section level3">
-<h3><span class="header-section-number">6.6.2</span> Data reordering</h3>
-</div>
-<div id="distance" class="section level3">
-<h3><span class="header-section-number">6.6.3</span> Distance</h3>
-</div>
-<div id="clustering-agglomeration" class="section level3">
-<h3><span class="header-section-number">6.6.4</span> Clustering (agglomeration)</h3>
-</div>
-<div id="image-representation" class="section level3">
-<h3><span class="header-section-number">6.6.5</span> Image representation</h3>
-</div>
-<div id="colour-mapping" class="section level3">
-<h3><span class="header-section-number">6.6.6</span> Colour mapping</h3>
-</div>
-<div id="colour-palette" class="section level3">
-<h3><span class="header-section-number">6.6.7</span> Colour palette</h3>
 
-</div>
 </div>
 </div>
             </section>
@@ -914,8 +959,8 @@ iristsne &lt;-<span class="st"> </span><span class="kw">Rtsne</span>(uiris[, <sp
           </div>
         </div>
       </div>
-<a href="using-r-and-bioconductor-for-ms-based-proteomics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="interactive-visualisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="plotting-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="using-r-and-bioconductor-for-ms-based-proteomics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
