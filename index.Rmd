@@ -114,19 +114,25 @@ https://github.com/lgatto/VisualisingBiomolecularData
 
 
 ```{r pkgs, eval=FALSE}
-library("ggplot2")
-library("MSnbase")
-library("limma")
-library("pRolocdata")
-library("pRoloc")
+library("affy")
 library("ALL")
-library("MSstatsBioData")
-library("readr")
-library("tidyr")
-library("plyr")
+library("ggplot2")
+library("knitr")
+library("limma")
 library("magrittr")
-library("Vennerable") ## on GitHub at js229/Vennerable
+library("MSnbase")
+library("msdata")
+library("MSstats")
+library("MSstatsBioData")
+library("plyr")
+library("pRoloc")
+library("pRolocdata")
+library("readr")
+library("Rtsne")
+library("tidyr")
+library("tidyverse")
 library("UpSetR")
+library("Vennerable") ## on GitHub at js229/Vennerable
 ```
 
 ## Questions

@@ -157,9 +157,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.10" data-path="tools-and-plots.html"><a href="tools-and-plots.html#t-distributed-stochastic-neighbour-embedding"><i class="fa fa-check"></i><b>5.10</b> t-Distributed Stochastic Neighbour Embedding</a><ul>
 <li class="chapter" data-level="5.10.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#parameter-tuning"><i class="fa fa-check"></i><b>5.10.1</b> Parameter tuning</a></li>
 </ul></li>
-<li class="chapter" data-level="5.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadins-vs-differential-expression"><i class="fa fa-check"></i><b>5.11</b> PCA loadins vs differential expression</a><ul>
-<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#using-a-subset-of-genes"><i class="fa fa-check"></i>Using a subset of genes</a></li>
-</ul></li>
+<li class="chapter" data-level="5.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadings-vs-differential-expression"><i class="fa fa-check"></i><b>5.11</b> PCA loadings vs differential expression</a></li>
 <li class="chapter" data-level="5.12" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmaps"><i class="fa fa-check"></i><b>5.12</b> Heatmaps</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>6</b> Using R and Bioconductor for MS-based proteomics</a></li>
@@ -556,6 +554,7 @@ res &lt;-<span class="st"> </span><span class="kw">topTable</span>(fit3, <span c
 ## ✖ magrittr::extract()      masks tidyr::extract()
 ## ✖ dplyr::filter()          masks stats::filter()
 ## ✖ dplyr::first()           masks S4Vectors::first()
+## ✖ dplyr::ident()           masks msdata::ident()
 ## ✖ dplyr::lag()             masks stats::lag()
 ## ✖ BiocGenerics::Position() masks ggplot2::Position(), base::Position()
 ## ✖ purrr::reduce()          masks IRanges::reduce(), MSnbase::reduce()

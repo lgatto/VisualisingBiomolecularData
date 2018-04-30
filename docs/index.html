@@ -157,9 +157,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.10" data-path="tools-and-plots.html"><a href="tools-and-plots.html#t-distributed-stochastic-neighbour-embedding"><i class="fa fa-check"></i><b>5.10</b> t-Distributed Stochastic Neighbour Embedding</a><ul>
 <li class="chapter" data-level="5.10.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#parameter-tuning"><i class="fa fa-check"></i><b>5.10.1</b> Parameter tuning</a></li>
 </ul></li>
-<li class="chapter" data-level="5.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadins-vs-differential-expression"><i class="fa fa-check"></i><b>5.11</b> PCA loadins vs differential expression</a><ul>
-<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#using-a-subset-of-genes"><i class="fa fa-check"></i>Using a subset of genes</a></li>
-</ul></li>
+<li class="chapter" data-level="5.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadings-vs-differential-expression"><i class="fa fa-check"></i><b>5.11</b> PCA loadings vs differential expression</a></li>
 <li class="chapter" data-level="5.12" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmaps"><i class="fa fa-check"></i><b>5.12</b> Heatmaps</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>6</b> Using R and Bioconductor for MS-based proteomics</a></li>
@@ -381,19 +379,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">1.1</span> Installation</h2>
 <p>A set of packages that are used, either directly or indirectly are provided below. A complete session information with all packages used to compile this document is available at the end.</p>
 <p>The source code for this document is available on GitHub at <a href="https://github.com/lgatto/VisualisingBiomolecularData" class="uri">https://github.com/lgatto/VisualisingBiomolecularData</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;MSnbase&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;limma&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;pRolocdata&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;pRoloc&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;affy&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;ALL&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;MSstatsBioData&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;tidyr&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;knitr&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;limma&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;magrittr&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;Vennerable&quot;</span>) ## on GitHub at js229/Vennerable
-<span class="kw">library</span>(<span class="st">&quot;UpSetR&quot;</span>)</code></pre></div>
+<span class="kw">library</span>(<span class="st">&quot;MSnbase&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;msdata&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;MSstats&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;MSstatsBioData&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;pRoloc&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;pRolocdata&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;Rtsne&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;tidyr&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;UpSetR&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;Vennerable&quot;</span>) ## on GitHub at js229/Vennerable</code></pre></div>
 </div>
 <div id="questions" class="section level2">
 <h2><span class="header-section-number">1.2</span> Questions</h2>

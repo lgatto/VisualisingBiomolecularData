@@ -157,9 +157,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.10" data-path="tools-and-plots.html"><a href="tools-and-plots.html#t-distributed-stochastic-neighbour-embedding"><i class="fa fa-check"></i><b>5.10</b> t-Distributed Stochastic Neighbour Embedding</a><ul>
 <li class="chapter" data-level="5.10.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#parameter-tuning"><i class="fa fa-check"></i><b>5.10.1</b> Parameter tuning</a></li>
 </ul></li>
-<li class="chapter" data-level="5.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadins-vs-differential-expression"><i class="fa fa-check"></i><b>5.11</b> PCA loadins vs differential expression</a><ul>
-<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#using-a-subset-of-genes"><i class="fa fa-check"></i>Using a subset of genes</a></li>
-</ul></li>
+<li class="chapter" data-level="5.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadings-vs-differential-expression"><i class="fa fa-check"></i><b>5.11</b> PCA loadings vs differential expression</a></li>
 <li class="chapter" data-level="5.12" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmaps"><i class="fa fa-check"></i><b>5.12</b> Heatmaps</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>6</b> Using R and Bioconductor for MS-based proteomics</a></li>
@@ -857,7 +855,23 @@ Figure 5.9: Iris data along PC1.
 <h3>Challenge</h3>
 <p>Produce the PCA plot for the <code>ALL_bcrneg</code> samples, and annotating the <code>NEG</code> and <code>BCR/ABL</code> samples on the plot. Do you think that the two first components offer enough resolution?</p>
 <p><details></p>
-<p><img src="VisualisingBiomolecularData_files/figure-html/pcachallenge0-1.png" width="672" /><img src="VisualisingBiomolecularData_files/figure-html/pcachallenge0-2.png" width="672" /><img src="VisualisingBiomolecularData_files/figure-html/pcachallenge0-3.png" width="672" /> </details></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span class="kw">t</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(ALL_bcrneg)), <span class="dt">scale =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>)
+<span class="kw">plot</span>(pca<span class="op">$</span>x[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">col =</span> ALL_bcrneg<span class="op">$</span>mol.bio, <span class="dt">cex =</span> <span class="dv">2</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend =</span> <span class="kw">unique</span>(ALL_bcrneg<span class="op">$</span>mol.bio),
+       <span class="dt">pch =</span> <span class="dv">1</span>, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)
+<span class="kw">text</span>(pca<span class="op">$</span>x[, <span class="dv">1</span>], pca<span class="op">$</span>x[, <span class="dv">2</span>], <span class="kw">sampleNames</span>(ALL_bcrneg), <span class="dt">cex =</span> <span class="fl">0.8</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/pcachallenge0-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
+<span class="kw">barplot</span>(pca<span class="op">$</span>sdev<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="kw">sum</span>(pca<span class="op">$</span>sdev<span class="op">^</span><span class="dv">2</span>),
+        <span class="dt">xlab=</span><span class="st">&quot;Principle component&quot;</span>,
+        <span class="dt">ylab=</span><span class="st">&quot;% of variance&quot;</span>)
+
+<span class="kw">barplot</span>(<span class="kw">cumsum</span>(pca<span class="op">$</span>sdev<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="kw">sum</span>(pca<span class="op">$</span>sdev<span class="op">^</span><span class="dv">2</span>) ),
+        <span class="dt">xlab=</span><span class="st">&quot;Principle component&quot;</span>,
+        <span class="dt">ylab=</span><span class="st">&quot;Pumulative % of variance&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/pcachallenge0-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Conclusion: the two first principle components are insufficient</code></pre></div>
+<p></details></p>
 </div>
 </div>
 <div id="t-distributed-stochastic-neighbour-embedding" class="section level2">
@@ -886,64 +900,28 @@ iristsne &lt;-<span class="st"> </span><span class="kw">Rtsne</span>(uiris[, <sp
 <p>![PCA and t-SNE on <a href="https://www.ncbi.nlm.nih.gov/pubmed/28471460">hyperLOPIT</a>(<a href="https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png" class="uri">https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png</a>)</p>
 </div>
 </div>
-<div id="pca-loadins-vs-differential-expression" class="section level2">
-<h2><span class="header-section-number">5.11</span> PCA loadins vs differential expression</h2>
-<p>Let’s now repeat the PCA analysis of the <code>ALL_bcrneg</code> features.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(ALL_bcrneg), <span class="dt">scale =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>)
-pca</code></pre></div>
-<pre><code>## Standard deviations (1, .., p=79):
-##  [1] 8.63117004 0.84942702 0.67458818 0.55352873 0.45824711 0.43513853
-##  [7] 0.40343006 0.38822909 0.37252103 0.34257748 0.33387386 0.30756094
-## [13] 0.29209977 0.28631144 0.26738003 0.26298310 0.25728368 0.24763048
-## [19] 0.23770497 0.23534997 0.22119589 0.21677454 0.20836050 0.20506106
-## [25] 0.19636623 0.19472840 0.19237269 0.18860986 0.18643713 0.18299860
-## [31] 0.17919611 0.17659571 0.17571013 0.17163636 0.17033878 0.16717228
-## [37] 0.16574640 0.16401760 0.16004103 0.15904172 0.15675282 0.15281419
-## [43] 0.15151812 0.14998140 0.14791449 0.14713764 0.14502099 0.14403366
-## [49] 0.14054168 0.13997131 0.13714763 0.13610264 0.13517742 0.13435114
-## [55] 0.13198913 0.13065753 0.12867200 0.12556655 0.12526105 0.12431610
-## [61] 0.12284763 0.12152170 0.12012337 0.11860170 0.11588845 0.11563741
-## [67] 0.11369274 0.11317822 0.11067998 0.10902901 0.10661729 0.10479911
-## [73] 0.10231779 0.10135905 0.10012962 0.09995357 0.09709713 0.09524840
-## [79] 0.08186223
-## 
-## Rotation (n x k) = (79 x 79):
-##              PC1           PC2          PC3           PC4          PC5
-## 01005 -0.1140362  0.0676907295 -0.117152054  0.0633915621 -0.022485610
-##                PC6          PC7           PC8           PC9          PC10
-## 01005  0.034224935 -0.057536547  0.0600493809 -0.0580450336  0.1314541175
-##               PC11          PC12          PC13         PC14         PC15
-## 01005  0.032026379 -0.0106465046  0.0145044071 -0.037084811  0.064355378
-##                PC16         PC17         PC18         PC19          PC20
-## 01005 -0.0347480679  0.003361801 -0.043312942  0.076263541 -0.0067297799
-##                PC21          PC22         PC23         PC24         PC25
-## 01005  0.0120102996 -0.0753724089  0.037364757 -0.047358106  0.092619419
-##               PC26         PC27          PC28         PC29         PC30
-## 01005  0.141024033 -0.012126187 -0.0714992961 -0.236156235  0.060031360
-##                PC31         PC32          PC33         PC34          PC35
-## 01005  0.0968214600  0.052422481 -0.1898755068 -0.030075133 -0.1183694657
-##                PC36          PC37          PC38          PC39         PC40
-## 01005  0.0119724177  0.0040250077  0.0430946224  0.0196620144  0.014805278
-##               PC41          PC42         PC43         PC44         PC45
-## 01005  0.104804511 -0.0414116703 -0.054164504 -0.058448530 -0.134424303
-##                PC46          PC47          PC48          PC49         PC50
-## 01005  0.0612633087  0.0195261040  0.0716667805  0.1017514304  0.043317386
-##               PC51          PC52         PC53         PC54         PC55
-## 01005 -0.109892715 -0.1824220151 -0.080258666 -0.026829982 -0.091607536
-##                PC56          PC57          PC58         PC59         PC60
-## 01005 -0.0513078664  0.0114206340  0.1979896221  0.055081068  0.142588822
-##                PC61         PC62         PC63          PC64         PC65
-## 01005  0.0105014137 -0.149810834 -0.008425949 -0.2221192078 -0.101967883
-##                PC66         PC67         PC68          PC69          PC70
-## 01005  0.0099795604  0.084420310  0.067110879  0.1485105765  0.1883873830
-##               PC71         PC72          PC73          PC74          PC75
-## 01005 -0.229914583 -0.094708718 -0.4273442544  4.216124e-02  0.2344299834
-##                PC76          PC77          PC78          PC79
-## 01005  0.0793931853 -0.2741264915  0.1772058232 -0.0282922255
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 78 rows ]</code></pre>
-<div id="using-a-subset-of-genes" class="section level3 unnumbered">
-<h3>Using a subset of genes</h3>
-</div>
+<div id="pca-loadings-vs-differential-expression" class="section level2">
+<h2><span class="header-section-number">5.11</span> PCA loadings vs differential expression</h2>
+<p>Let’s now compare the PCA loadings as calculated above and the p-values. As we can see below, large loadings may or may not correspond to small p-values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span class="kw">t</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(ALL_bcrneg)), <span class="dt">scale =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>)
+<span class="kw">plot</span>(pca<span class="op">$</span>rotation[, <span class="dv">1</span>], <span class="kw">fData</span>(ALL_bcrneg)<span class="op">$</span>adj.P.Val,
+     <span class="dt">xlab =</span> <span class="st">&quot;PCA Loading&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Adjusted p-values&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/pcaloadings-1.png" width="672" /></p>
+<p>Let’s now repeat the same camparison, focusing on differentially expressed genes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(sign &lt;-<span class="st"> </span><span class="kw">fData</span>(ALL_bcrneg)<span class="op">$</span>adj.P.Val <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>)</code></pre></div>
+<pre><code>## 
+## FALSE  TRUE 
+## 12442   183</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALL_sign &lt;-<span class="st"> </span>ALL_bcrneg[sign, ]
+pca_sign &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span class="kw">t</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(ALL_sign)), <span class="dt">center =</span> <span class="ot">TRUE</span>, <span class="dt">scale =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Below, we see that there is better separation when we focus on differentially expressed genes and better consistency between p-values and loadings. However we can’t do this in practice!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(pca_sign<span class="op">$</span>x[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">col =</span> ALL_sign<span class="op">$</span>mol.biol, <span class="dt">pch =</span> <span class="dv">19</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomleft&quot;</span>, <span class="dt">legend =</span> <span class="kw">unique</span>(ALL_sign<span class="op">$</span>mol.biol),
+       <span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/pcasign-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(pca_sign<span class="op">$</span>rotation[, <span class="dv">1</span>], <span class="kw">fData</span>(ALL_sign)<span class="op">$</span>adj.P.Val,
+     <span class="dt">xlab =</span> <span class="st">&quot;PCA Loading&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Adjusted p-values&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/pcasign-2.png" width="672" /></p>
 </div>
 <div id="heatmaps" class="section level2">
 <h2><span class="header-section-number">5.12</span> Heatmaps</h2>

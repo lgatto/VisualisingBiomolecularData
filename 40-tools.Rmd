@@ -1034,7 +1034,7 @@ expressed genes.
 ```{r allsgn}
 table(sign <- fData(ALL_bcrneg)$adj.P.Val < 0.05)
 ALL_sign <- ALL_bcrneg[sign, ]
-pca_sign <- prcomp(t(exprs(ALL_sign)), center = TRUE, scale = TRUE)
+pca_sign <- prcomp(t(MSnbase::exprs(ALL_sign)), center = TRUE, scale = TRUE)
 ```
 
 Below, we see that there is better separation when we focus on
