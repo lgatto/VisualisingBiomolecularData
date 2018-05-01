@@ -204,7 +204,7 @@ enrichment of small p-values, as opposed to a uniform distribution to
 be expected under the null hypothesis of absence of changes between
 groups.
 
-```{r}
+```{r histpv}
 fvarLabels(ALL_bcrneg)
 hist(fData(ALL_bcrneg)$P.Value)
 ```
@@ -221,7 +221,7 @@ of the individual tests (adjusted p-values) and their magnitude of the
 effect (log2 fold-changes).
 
 
-```{r}
+```{r volc}
 lfc <- fData(ALL_bcrneg)$logFC
 bh <- fData(ALL_bcrneg)$adj.P.Val
 plot(lfc, -log10(bh),
@@ -235,7 +235,7 @@ The volcano plot can further be annotated using vertical and
 horizontal lines depicting thresholds of interest or points can be
 colour-coded based on their interest.
 
-```{r}
+```{r volc2}
 lfc <- fData(ALL_bcrneg)$logFC
 bh <- fData(ALL_bcrneg)$adj.P.Val
 sign <- abs(lfc) > 1 & bh < 0.01
@@ -253,11 +253,11 @@ abline(h = -log10(0.05), lty = "dotted")
 It is also possible to identify and label individual points on the
 plot using the `identify` function
 
-```{r, eval = FALSE}
+```{r identify, eval = FALSE}
 i <- identify(lfc, -log10(bh), featureNames(ALL_bcrneg))
 ```
 
-```{r, echo=FALSE}
+```{r volc3, echo=FALSE}
 lfc <- fData(ALL_bcrneg)$logFC
 bh <- fData(ALL_bcrneg)$adj.P.Val
 sign <- abs(lfc) > 1 & bh < 0.01
@@ -281,7 +281,7 @@ are `r CRANpkg("venneuler")` and `r Githubpkg("js229/Vennerable")`.
 
 We will use the `crc` feature names to generate a test data:
 
-```{r}
+```{r venn}
 set.seed(123)
 x <- replicate(3, sample(featureNames(crc), 35), simplify = FALSE)
 names(x) <- LETTERS[1:3]
@@ -304,7 +304,7 @@ to the left of the matrix.
 We will first make use of the `fromList` function to convert our list
 to a `UpSetR` compatible input and then generate the figure:
 
-```{r}
+```{r upset1}
 library("UpSetR")
 x2 <- fromList(x)
 upset(x2)
@@ -316,7 +316,7 @@ the author of the package illustrates how Venn and upset diagrams
 relate to each other.
 
 
-```{r}
+```{r upse2}
 upset(x2, order.by = "freq")
 upset(x2, order.by = "degree")
 upset(x2, order.by = c("freq", "degree"))
@@ -346,7 +346,7 @@ as Venn diagrams become practically useless.
 > Generate a bigger dataset containing 10 sets. Try to generate Venn
 > and upset diagrams as shown above.
 >
-> ```{r}
+> ```{r upsetchallenge}
 > set.seed(123)
 > x <- replicate(10, sample(featureNames(crc), 35), simplify = FALSE)
 > names(x) <- LETTERS[1:10]
@@ -388,7 +388,7 @@ find homogeneous clusters.
 
 In R, we use
 
-```{r, eval=FALSE}
+```{r kmeans1, eval=FALSE}
 stats::kmeans(x, centers = 3, nstart = 10)
 ```
 

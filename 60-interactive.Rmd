@@ -12,13 +12,13 @@ your plots interactive. [`ggvis`](http://ggvis.rstudio.com/) also
 incorporates shiny's reactive programming model (see later) and
 `dplyr`'s grammar of data transformation.
 
-```{r, eval = FALSE}
+```{r ggvis1, eval = FALSE}
 library("ggvis")
 sml <- sample(nrow(surveys_complete), 1e3)
 surveys_sml <- surveys_complete[sml, ]
 ```
 
-```{r, eval = FALSE}
+```{r ggvis2, eval = FALSE}
 p <- ggvis(surveys_sml, x = ~weight, y = ~hindfoot_length)
 p %>% layer_points()
 ```
@@ -30,14 +30,14 @@ surveys_sml %>%
 	layer_points()
 ```
 
-```{r, eval = FALSE}
+```{r ggvis3, eval = FALSE}
 p %>% layer_points(fill = ~species_id)
 p %>% layer_points(shape = ~species_id)
 ```
 
 To set fixed plotting parameters, use `:=`.
 
-```{r, eval = FALSE}
+```{r ggvis4, eval = FALSE}
 p %>% layer_points(fill := "red", stroke := "black")
 p %>% layer_points(size := 300, opacity := 0.4)
 p %>% layer_points(shape := "cross")
@@ -45,13 +45,13 @@ p %>% layer_points(shape := "cross")
 
 ### Interactivity {-}
 
-```{r, eval = FALSE}
+```{r ggvis5, eval = FALSE}
 p %>% layer_points(
 		  size := input_slider(10, 100),
 		  opacity := input_slider(0, 1))
 ```
 
-```{r, eval = FALSE}
+```{r ggvis6, eval = FALSE}
 p %>%
 	layer_points() %>%
 	add_tooltip(function(df) df$weight)
@@ -97,7 +97,7 @@ details.
 Like for `ggplot2`'s geoms, we can overly multiple layers:
 
 
-```{r, eval = FALSE}
+```{r ggvis7, eval = FALSE}
 p %>%
 	layer_points() %>%
 	layer_smooths(stroke := "red")
@@ -321,7 +321,7 @@ writeLines(lns[-grep("^\\s*$", lns)])
 Instead of defining the *ui* and *server* in their respective files,
 they can be combined into list to be passed directly to `runApp`:
 
-```{r, eval = FALSE}
+```{r singlefileapp, eval = FALSE}
 ui <- fluidPage(...)
 server <- function(input, output) { ... }
 
@@ -350,7 +350,7 @@ runApp(app)
 
 #### More interactivity {-}
 
-```{r, eval = FALSE}
+```{r moreinter, eval = FALSE}
  plotOutput("pca",
 			hover = "hover",
 			click = "click",

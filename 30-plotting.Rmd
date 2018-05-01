@@ -43,7 +43,7 @@ figure. The components of `ggplot2`'s of graphics are
 
 Fist of all, we need to load the `ggplot2` package and load the `iprg` data.
 
-```{r}
+```{r iprg}
 library("ggplot2")
 iprg <- read.csv("http://bit.ly/VisBiomedDataIprgCsv")
 ```
@@ -54,7 +54,7 @@ To build a ggplot we need to:
 
 * bind the plot to a specific data frame using the `data` argument
 
-```{r, eval=FALSE}
+```{r ggplot1, eval=FALSE}
 ggplot(data = iprg)
 ```
 
@@ -62,14 +62,14 @@ ggplot(data = iprg)
   and the variables to define the presentation such as plotting size,
   shape color, etc.
 
-```{r, eval=FALSE}
+```{r ggplot2, eval=FALSE}
 ggplot(data = iprg, aes(x = Run, y = Log2Intensity))
 ```
 
 * add `geoms` -- graphical representation of the data in the plot
 	 (points, lines, bars). To add a geom to the plot use `+` operator
 
-```{r}
+```{r ggplot3}
 ggplot(data = iprg, aes(x = Run, y = Log2Intensity)) +
   geom_boxplot()
 ```
@@ -84,7 +84,7 @@ easily set up plot "templates" and conveniently explore different
 types of plots, so the above plot can also be generated with code like
 this:
 
-```{r, eval=FALSE}
+```{r ggplot4, eval=FALSE}
 ## Assign plot to a variable
 ints_plot <- ggplot(data = iprg, aes(x = Run, y = Log2Intensity))
 
@@ -113,7 +113,7 @@ Notes:
 > * Log-10 transform the raw intensities on the flight when plotting.
 
 <details>
-```{r}
+```{r ggplotchallenge1}
 ggplot(data = iprg, aes(x = Run, y = Intensity)) + geom_boxplot()
 ggplot(data = iprg, aes(x = Run, y = log10(Intensity))) + geom_boxplot()
 ```
@@ -124,7 +124,7 @@ ggplot(data = iprg, aes(x = Run, y = log10(Intensity))) + geom_boxplot()
 
 First, let's colour the boxplot based on the condition:
 
-```{r}
+```{r ggplotbuild1}
 ggplot(data = iprg,
 	   aes(x = Run, y = Log2Intensity,
 		   fill = Condition)) +
@@ -135,7 +135,7 @@ Now let's rename all axis labels and title, and rotate the x-axis
 labels 90 degrees. We can add those specifications using the `labs`
 and `theme` functions of the `ggplot2` package.
 
-```{r}
+```{r ggplotbuild2}
 ggplot(aes(x = Run, y = Log2Intensity, fill = Condition),
 	   data = iprg) +
 	geom_boxplot() +
@@ -149,7 +149,7 @@ ggplot(aes(x = Run, y = Log2Intensity, fill = Condition),
 And easily switch from a boxplot to a violin plot representation by
 changing the `geom` type.
 
-```{r}
+```{r ggplotbuild3}
 ggplot(aes(x = Run, y = Log2Intensity, fill = Condition),
 	   data = iprg) +
 	geom_violin() +
@@ -162,7 +162,7 @@ ggplot(aes(x = Run, y = Log2Intensity, fill = Condition),
 Finally, we can also overlay multiple geoms by simply *adding* them
 one after the other.
 
-```{r}
+```{r ggplotbuild4}
 p <- ggplot(aes(x = Run, y = Log2Intensity, fill = Condition),
 			data = iprg)
 p + geom_boxplot()
@@ -178,7 +178,7 @@ p + geom_jitter(alpha = 0.1) + geom_boxplot()
 > * Customise the plot as suggested above.
 
 <details>
-```{r}
+```{r ggplotchallenge2}
 ## Note how the log10 transformation is applied to both geoms
 ggplot(data = iprg, aes(x = Run, y = log10(Intensity))) +
 	geom_jitter(alpha = 0.1) +
@@ -189,7 +189,7 @@ ggplot(data = iprg, aes(x = Run, y = log10(Intensity))) +
 Finally, a very useful feature of `ggplot2` is **facetting**, that
 defines how to subset the data into different *panels* (facets).
 
-```{r}
+```{r ggplotfacet}
 names(iprg)
 ggplot(data = iprg,
 	   aes(x = TechReplicate, y = Log2Intensity,
@@ -235,7 +235,7 @@ file system this time.
 
 Let's save the boxplot as pdf file.
 
-```{r, eval=FALSE}
+```{r figsave, eval=FALSE}
 pdf()
 p + geom_jitter(alpha = 0.1) + geom_boxplot()
 dev.off()
