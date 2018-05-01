@@ -1,6 +1,98 @@
 # Using R and Bioconductor for MS-based proteomics
 
-To be based on second part of [`RforProteomics` visualisation
-vignette](https://lgatto.github.io/RforProteomics/articles/RProtVis.html)
-and the [`MSnbase`
-vignettes](https://lgatto.github.io/MSnbase/articles/index.html).
+## Introduction
+
+R and Bioconductor offer a range of dedicated packages for the
+analysis of mass spectrometry-based proteomics. The advantage of such
+technology-infrastructure is that offer specific behaviour for these
+kind of data.
+
+The `r Biocexptpkg("RforProteomics")` package provides a first
+introduction to what is available. It is also possible to navigate the
+*biocViews* hierarchy (these are tags that are used to describe
+individual package's domain of action).
+
+The highest level defines 3 types of packages:
+
+- Software: packages providing a specific functionality.
+- AnnotationData: packages providing annotations, such as various
+  ontologies, species annotations, microarray annotations, ...
+- ExperimentData: packages distributing experiments.
+
+The *biocViews* that are relevant here are *Proteomcis*,
+*MassSpectrometry* and *MassSpectrometryData*.
+
+The *biocViews* page is available here
+
+- https://bioconductor.org/packages/release/BiocViews.html#___Software
+
+It is most easily accessed by clicking on the *software packages* link
+on the homepage, under *About Bioconductor*.
+
+![](./img/biocwww.png)
+
+See also
+this [page](https://bioconductor.org/developers/how-to/biocViews/) for
+additional information.
+
+Here, we will focus on the `r Biocpkg("MSnbase")` package, as it
+supports all types of MS-based proteomics data and files that one
+would generally encounter:
+
+- Raw data
+- Identification data
+- Quantiative data
+
+The respective types of data come in the form of
+
+- `mzML` files (`mzXML` and `netCDF` are also supported)
+- `mzIdentML` files (abbreviated `mzid`)
+- Arbitrary spreadsheets or `mzTab` files
+
+which can be read into R using
+
+- `readMSData`
+- `readMzIdData`
+- `readMSnSet2` or `readMzTabData`
+
+Once loaded in R, the data are stored as dedicated data structures
+
+- `MSnExp` (an MS experiment)
+- `data.frame`
+- `MSnSet` (an MS expression set)
+
+
+```{r summarytab, echo=FALSE}
+tab <- data.frame(data = c("raw", "identification",
+						   "quantitation", "quantitation"),
+				  `file type` = c("mzML", "mzIdentML",
+								  "spreadsheet", "mzTab"),
+				  `function` = c("readMSData", "readMzIdData",
+								 "readMSnSet2", "readMzTabdata"),
+				  class = c("MSnExp", "data.frame", "MSnSet", "MSnSet"))
+print(knitr::kable(tab))
+```
+
+To start, let's load the `MSnbase` package
+
+```{r loadmsnbase}
+library("MSnbase")
+```
+
+We will make use of test data that is provided by the experiment
+package `r Biocexptpkg("msdata")`, that we load below. We then extract
+the file names that will be used later on.
+
+```{r}
+library("msdata")
+rawf <- proteomics(full.names = TRUE, pattern = "TMT11")
+basename(rawf)
+idf <- ident(full.names = TRUE)
+basename(idf)
+```
+
+## Raw data
+
+## Identification data
+
+## Quantitative data
