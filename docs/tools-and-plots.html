@@ -757,13 +757,50 @@ Figure 5.7: Cutting the dendrogram at height 1.5.
 <div id="challenge-1" class="section level3 unnumbered">
 <h3>Challenge</h3>
 <p>Using the same <code>mulvey2015norm</code> dataset, generate a hierarchical cluster of samples (the dendrogram will have 18 leafs), as shown below. The cut it to obtain early, late and fully developed groups.</p>
-<p><img src="VisualisingBiomolecularData_files/figure-html/mulveyhcl-1.png" width="672" /></p>
-<pre><code>##  rep1_0hr rep1_16hr rep1_24hr rep1_48hr rep1_72hr  rep1_XEN  rep2_0hr 
-##         1         1         1         2         2         3         1 
-## rep2_16hr rep2_24hr rep2_48hr rep2_72hr  rep2_XEN  rep3_0hr rep3_16hr 
-##         1         1         2         2         3         1         1 
-## rep3_24hr rep3_48hr rep3_72hr  rep3_XEN 
-##         1         2         2         3</code></pre>
+<div class="figure">
+<img src="img/mulveyhcl-1.png" alt="Hierarchical clustering on mulvey2015norm" />
+<p class="caption">Hierarchical clustering on <code>mulvey2015norm</code></p>
+</div>
+<p><details></p>
+<p></details></p>
+<p>It is important to highlight that the type of distance and the type of clustering algorithms will affect the result. Let’s observe how using the euclidean or Pearson correlation distances between expression profiles can fundamentally change the results.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## toy example: 3 genes, 5 samples from Olga Vitek
+gene1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">7</span>)
+gene2 &lt;-<span class="st"> </span>gene1 <span class="op">+</span><span class="st"> </span><span class="dv">4</span>
+gene3 &lt;-<span class="st"> </span>gene2<span class="op">/</span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>)
+e &lt;-<span class="st"> </span><span class="kw">rbind</span>(gene1, gene2, gene3)
+<span class="kw">dimnames</span>(e) &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">paste0</span>(<span class="st">&quot;gene&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>),
+                    <span class="kw">paste0</span>(<span class="st">&quot;sample&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))
+e</code></pre></div>
+<pre><code>##        sample1   sample2 sample3  sample4   sample5
+## gene1 1.000000  6.000000       2 4.000000  7.000000
+## gene2 5.000000 10.000000       6 8.000000 11.000000
+## gene3 1.666667  5.333333       2 6.666667  3.666667</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">matplot</span>(<span class="kw">t</span>(e), <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Samples&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Expression&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/disttoyexample-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;bioDist&quot;</span>)
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
+<span class="kw">plot</span>(<span class="kw">hclust</span>(<span class="kw">euc</span>(e)), <span class="dt">main =</span> <span class="st">&quot;Euclidean distane&quot;</span>)
+<span class="kw">plot</span>(<span class="kw">hclust</span>(<span class="kw">cor.dist</span>(e)), <span class="dt">main =</span> <span class="st">&quot;Pearson correlational distance&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/hclbiodist-1.png" width="672" /></p>
+<p>Any data pre-processing can also affect the results. Below, we show how centering and scaling the data (row-wise, hence the transposition) affects the euclidean distance but not the Pearson correlation distance.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e2 &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">scale</span>(<span class="kw">t</span>(e)))
+<span class="kw">matplot</span>(<span class="kw">t</span>(e2), <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Samples&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Expression&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/hclscale-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))
+<span class="kw">plot</span>(<span class="kw">hclust</span>(<span class="kw">euc</span>(e)), <span class="dt">main =</span> <span class="st">&quot;Euclidean distance&quot;</span>)
+<span class="kw">plot</span>(<span class="kw">hclust</span>(<span class="kw">euc</span>(e2)), <span class="dt">main =</span> <span class="st">&quot;Euclidean distance (scaled/centred)&quot;</span>)
+<span class="kw">plot</span>(<span class="kw">hclust</span>(<span class="kw">cor.dist</span>(e)), <span class="dt">main =</span> <span class="st">&quot;Pearson correlational distance&quot;</span>)
+<span class="kw">plot</span>(<span class="kw">hclust</span>(<span class="kw">cor.dist</span>(e2)), <span class="dt">main =</span> <span class="st">&quot;Pearson correlational distance (scaled/centred)&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/hclscale-2.png" width="672" /></p>
+<p>Finally, the clustering method itself (the <code>method</code> argument in <code>hclust</code>) will also influence the results:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALL_sign &lt;-<span class="st"> </span>ALL_bcrneg[<span class="kw">fData</span>(ALL_bcrneg)<span class="op">$</span>adj.P.Val <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>, ]
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))
+<span class="kw">plot</span>(<span class="kw">hclust</span>(<span class="kw">dist</span>(ALL_sign), <span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>))
+<span class="kw">plot</span>(<span class="kw">hclust</span>(<span class="kw">dist</span>(ALL_sign), <span class="dt">method =</span> <span class="st">&quot;single&quot;</span>))
+<span class="kw">plot</span>(<span class="kw">hclust</span>(<span class="kw">dist</span>(ALL_sign), <span class="dt">method =</span> <span class="st">&quot;median&quot;</span>))
+<span class="kw">plot</span>(<span class="kw">hclust</span>(<span class="kw">dist</span>(ALL_sign), <span class="dt">method =</span> <span class="st">&quot;average&quot;</span>))</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 </div>
 <div id="pre-processing" class="section level2">
@@ -961,7 +998,36 @@ pca_sign &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span clas
 <h2><span class="header-section-number">5.12</span> Heatmaps</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">heatmap</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(mulvey2015norm))</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/heatmap_mulvey-1.png" width="672" /></p>
-<p>A heatmap is composed of two hierarchical clusters (one along the rows, one along the columns) and a intensity matrix. Each of these components is subject to parameters and options.</p>
+<p>A heatmap is composed of two hierarchical clusters (one along the rows, one along the columns, leading to their re-ordering based on their similarity) and a intensity matrix. Each of these components is subject to parameters and options.</p>
+<p>As we have seen above, the distance used for clustering can have a substantial effect on the results, which is conformed below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">heatmap</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(mulvey2015norm), <span class="dt">distfun =</span> cor.dist)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/heatmapcor-1.png" width="672" /></p>
+<p>Another important argument, <code>scale</code> controls whether rows, columns or none are scaled. Let’s re-use the toy data from the hierarchical clustering section below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">heatmap</span>(e, <span class="dt">scale =</span> <span class="st">&quot;none&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;No scaling&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/heatmapscale-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">heatmap</span>(e, <span class="dt">scale =</span> <span class="st">&quot;row&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Scaling along rows&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/heatmapscale-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">heatmap</span>(e, <span class="dt">scale =</span> <span class="st">&quot;column&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Scaling along columns&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/heatmapscale-3.png" width="672" /></p>
+<p>Based on the caveats above, it is essential to present and interpret heatmaps with great care. It is of course possible to use any type of data, not only expression data, to build a heatmap.</p>
+<p>There exists several packages that allow to produce heatmaps with various levels of sophistication, such as <code>heatmap.2</code> from the <em><a href="https://CRAN.R-project.org/package=gplots">gplots</a></em> package, the <em><a href="http://bioconductor.org/packages/Heatplus">Heatplus</a></em> package, or the <em><a href="http://bioconductor.org/packages/ComplexHeatmap">ComplexHeatmap</a></em> packages, demonstrated below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ComplexHeatmap&quot;</span>)
+x &lt;-<span class="st"> </span>MSnbase<span class="op">::</span><span class="kw">exprs</span>(mulvey2015norm)
+hcl &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="kw">dist</span>(x))
+cl &lt;-<span class="st"> </span><span class="kw">cutree</span>(hcl, <span class="dt">k =</span> <span class="dv">12</span>)
+ha1 &lt;-<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="kw">data.frame</span>(<span class="dt">time =</span> <span class="kw">factor</span>(mulvey2015norm<span class="op">$</span>time)))
+ha2 &lt;-<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">boxplot =</span> <span class="kw">anno_boxplot</span>(x))
+ha3 &lt;-<span class="st"> </span><span class="kw">rowAnnotation</span>(<span class="kw">data.frame</span>(<span class="dt">cluster =</span> <span class="kw">factor</span>(cl)))
+<span class="kw">Heatmap</span>(x,
+        <span class="dt">top_annotation =</span> ha1,
+        <span class="dt">bottom_annotation =</span> ha2,
+        <span class="dt">column_names_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontsize =</span> <span class="dv">8</span>),
+        <span class="dt">row_names_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontsize =</span> <span class="dv">3</span>),
+        <span class="dt">bottom_annotation_height =</span> <span class="kw">unit</span>(<span class="dv">3</span>, <span class="st">&quot;cm&quot;</span>)) <span class="op">+</span><span class="st"> </span>ha3</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/complexheatmap-1.png" width="672" /></p>
+<p>Finally, the <em><a href="https://github.com/talgalili/heatmaply">heatmaply</a></em> can be used to generate interactive heatmaps.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;heatmaply&quot;</span>)
+<span class="kw">heatmaply</span>(x[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, ])</code></pre></div>
 <p>Reference:</p>
 <blockquote>
 <p>Key M. <em>A tutorial in displaying mass spectrometry-based proteomic data using heat maps</em>. BMC Bioinformatics. 2012;13 Suppl 16:S10. doi: <a href="https://doi.org/10.1186/1471-2105-13-S16-S10">10.1186/1471-2105-13-S16-S10</a>. Epub 2012 Nov 5. Review. PMID: 23176119; PMCID: PMC3489527.</p>

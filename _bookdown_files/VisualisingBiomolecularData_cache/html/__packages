@@ -39,3 +39,5 @@ stringr
 forcats
 bindrcpp
 Rtsne
+KernSmooth
+bioDist

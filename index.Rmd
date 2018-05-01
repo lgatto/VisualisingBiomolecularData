@@ -124,6 +124,8 @@ https://github.com/lgatto/VisualisingBiomolecularData
 ```{r pkgs, eval=FALSE}
 library("affy")
 library("ALL")
+library("bioDist")
+library("ComplexHeatmap")
 library("ggplot2")
 library("ggvis")
 library("knitr")
