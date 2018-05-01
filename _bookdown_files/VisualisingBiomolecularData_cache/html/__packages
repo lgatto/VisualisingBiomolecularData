@@ -1,15 +1,8 @@
 base
-methods
-datasets
-utils
-grDevices
-graphics
-stats
 limma
 BiocStyle
 ggplot2
 msdata
-parallel
 BiocGenerics
 Biobase
 Rcpp
@@ -19,7 +12,6 @@ ProtGenerics
 MSnbase
 affy
 pRolocdata
-stats4
 S4Vectors
 IRanges
 AnnotationDbi

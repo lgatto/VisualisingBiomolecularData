@@ -1065,7 +1065,16 @@ plot(pca_sign$rotation[, 1], fData(ALL_sign)$adj.P.Val,
 
 ## Heatmaps
 
-See also
+```{r heatmap_mulvey, cache = TRUE}
+heatmap(MSnbase::exprs(mulvey2015norm))
+```
+
+A heatmap is composed of two hierarchical clusters (one along the
+rows, one along the columns) and a intensity matrix. Each of these
+components is subject to parameters and options.
+
+
+Reference:
 
 > Key M. *A tutorial in displaying mass spectrometry-based proteomic
 > data using heat maps*. BMC Bioinformatics. 2012;13 Suppl
