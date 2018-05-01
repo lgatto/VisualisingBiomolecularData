@@ -120,7 +120,7 @@ ggplot(data = iprg, aes(x = Run, y = log10(Intensity))) + geom_boxplot()
 </details>
 
 
-## Customising plots
+## Building complex plots
 
 First, let's colour the boxplot based on the condition:
 
@@ -198,6 +198,33 @@ ggplot(data = iprg,
 	facet_grid(~ Condition)
 ```
 
+## Customising plots
+
+Using `labs`:
+
+```{r labs, eval=FALSE}
+p + labs(title = "A title, at the top",
+		 subtitle = "A subtitle, under the title",
+		 caption = "Comes at the bottom of the plot",
+		 x = "x axis label",
+		 y = "y axis label")
+```
+
+Setting themes:
+
+```{r theme, eval = FALSE}
+p + theme_bw()
+p + theme_gray()
+p + theme_dark()
+p + theme_minimal()
+p + theme_light()
+p + theme_void()
+## ....
+```
+
+See also the `r CRANpkg("ggthemes")` package.
+
+
 ## Saving your figures
 
 You can save plots to a number of different file formats. PDF is by
@@ -225,11 +252,9 @@ function.
 >
 > **Tip**: save your figures in a dedicated directory.
 
-
 ## References
 
 - [`ggplot2` extensions - gallery](http://www.ggplot2-exts.org/gallery/)
 - [`ggplot2` webpage](http://ggplot2.tidyverse.org/) and documentation
 - *ggplot2: Elegant Graphics for Data Analysis* book (source of the
-  book available for free [here](t
-  https://github.com/hadley/ggplot2-book)).
+  book available for free [here](https://github.com/hadley/ggplot2-book)).

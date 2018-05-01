@@ -970,6 +970,20 @@ barplot(cumsum(pca$sdev^2/sum(pca$sdev^2) ),
 ```
 </details>
 
+Produce a PCA plot of the `mulvey2015norm` data to display the
+grouping of replicates and time points.
+
+<details>
+```{r pcachallenge2}
+pca2 <- prcomp(t(exprs(mulvey2015norm)), scale = TRUE, center = TRUE)
+plot(pca2$x[, 1:2], col = mulvey2015norm$times, cex = 3)
+grid()
+text(pca2$x[, 1], pca2$x[, 2], mulvey2015norm$rep)
+legend("bottomright", legend = unique(mulvey2015norm$times),
+	   pch = 1, col = 1:6, bty = "n")
+```
+</details>
+
 ## t-Distributed Stochastic Neighbour Embedding
 
 [t-Distributed Stochastic Neighbour Embedding](https://lvdmaaten.github.io/tsne/) (t-SNE)
@@ -1051,7 +1065,7 @@ plot(pca_sign$rotation[, 1], fData(ALL_sign)$adj.P.Val,
 
 ## Heatmaps
 
-See
+See also
 
 > Key M. *A tutorial in displaying mass spectrometry-based proteomic
 > data using heat maps*. BMC Bioinformatics. 2012;13 Suppl

@@ -1,0 +1,10 @@
+name: shiny-app2
+title:
+username:
+account: lgatto
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 231496
+bundleId: 1056854
+url: https://lgatto.shinyapps.io/shiny-app2/
+when: 1509655757.06093
