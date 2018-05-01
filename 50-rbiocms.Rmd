@@ -83,16 +83,100 @@ We will make use of test data that is provided by the experiment
 package `r Biocexptpkg("msdata")`, that we load below. We then extract
 the file names that will be used later on.
 
-```{r}
+```{r msfiles}
 library("msdata")
-rawf <- proteomics(full.names = TRUE, pattern = "TMT11")
+rawf <- msdata::proteomics(full.names = TRUE, pattern = "20141210")
 basename(rawf)
-idf <- ident(full.names = TRUE)
+idf <- msdata::ident(full.names = TRUE)
 basename(idf)
 ```
 
-## Raw data
+## Reading MS data into R
 
-## Identification data
+### Raw data
 
-## Quantitative data
+```{r readraw, cache = TRUE}
+rw <- readMSData(rawf, mode = "onDisk")
+rw
+```
+### Identification data
+
+```{r readid}
+id <- readMzIdData(idf)
+id
+```
+
+```{r addid}
+fvarLabels(rw)
+rw <- addIdentificationData(rw, idf)
+fvarLabels(rw)
+```
+
+### Quantitative data
+
+```{r readcsv}
+library("pRolocdata")
+qtf <- dir(system.file("extdata", package = "pRolocdata"),
+		   full.names = TRUE,
+		   pattern = "Dunkley2006")
+basename(qtf)
+qt <- readMSnSet2(qtf, ecol = 5:20)
+qt
+```
+
+## Manipulating and visualising raw data
+
+```{r readms3}
+rawf <- proteomics(full.names = TRUE, pattern = "MS3TMT11")
+basename(rawf)
+rw <- readMSData(rawf, mode = "onDisk")
+rw
+table(centroided(rw), msLevel(rw))
+```
+
+```{r extractprec}
+head(acquisitionNum(rw))
+i <- 21945
+rw2 <- filterPrecursorScan(rw, 21945)
+rw2
+```
+
+```{r ms1}
+rw2[[1]]
+plot(rw[[1]])
+```
+
+```{r ms2}
+rw2[[3]]
+plot(rw2[[3]], full = TRUE)
+```
+
+```{r ms3}
+rw2[[4]]
+plot(rw2[[4]], reporters = TMT11)
+```
+
+## Peptide spetrum matches
+
+```{r psm1}
+data(itraqdata)
+itraqdata <- pickPeaks(itraqdata)
+i <- 14
+s <- as.character(fData(itraqdata)[i, "PeptideSequence"])
+calculateFragments(s)
+plot(itraqdata[[i]], s, main = s)
+```
+
+```{r psm2}
+i <- c(41, 42)
+plot(itraqdata[[41]], itraqdata[[42]])
+```
+
+## Missing values
+
+```{r na}
+data(naset)
+image2(naset)
+image2(is.na(naset), col = c("black", "white"))
+naplot(naset)
+```
