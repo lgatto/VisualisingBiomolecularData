@@ -203,27 +203,58 @@ ggplot(data = iprg,
 Using `labs`:
 
 ```{r labs, eval=FALSE}
+p <- ggplot(data = iprg, aes(x = Run, y = log10(Intensity))) +
+	geom_jitter(alpha = 0.1) +
+	geom_boxplot()
 p + labs(title = "A title, at the top",
 		 subtitle = "A subtitle, under the title",
 		 caption = "Comes at the bottom of the plot",
 		 x = "x axis label",
 		 y = "y axis label")
+p
+p + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
 Setting themes:
 
-```{r theme, eval = FALSE}
-p + theme_bw()
-p + theme_gray()
-p + theme_dark()
-p + theme_minimal()
-p + theme_light()
-p + theme_void()
+```{r theme, eval = TRUE}
+p1 <- p + theme_bw()
+p2 <- p + theme_gray()
+p3 <- p + theme_dark()
+p4 <- p + theme_minimal()
+p5 <- p + theme_light()
+p6 <- p + theme_void()
 ## ....
 ```
 
 See also the `r CRANpkg("ggthemes")` package.
 
+## Combine `ggplot` figures
+
+> The goal of `r Githubpkg("thomasp85/patchwork")` patchwork is to
+> make it ridiculously simple to combine separate ggplots into the
+> same graphic. As such it tries to solve the same problem as
+> `gridExtra::grid.arrange()` and `cowplot::plot_grid` but using an
+> API that incites exploration and iteration.
+
+Installation:
+
+```{r installpatchwork, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("thomasp85/patchwork")
+```
+
+```{r usepatckwork1, }
+library("patchwork")
+p1 + p2
+p1 + p2 + p3 + p4 + plot_layout(ncol = 2)
+p1 + p2 + p3 + plot_layout(ncol = 1)
+p1 + p2 - p3 + plot_layout(ncol = 1)
+(p1 | p2 | p3) / p4
+(p1 + (p2 + p3) + p4 + plot_layout(ncol = 1))
+(p1 + (p2 + p3) + p4 + plot_layout(ncol = 1)) * theme_dark()
+(p1 + (p2 + p3) + p4 + plot_layout(ncol = 1)) & theme_dark()
+```
 
 ## Saving your figures
 

@@ -135,6 +135,7 @@ library("MSnbase")
 library("msdata")
 library("MSstats")
 library("MSstatsBioData")
+library("patchwork") ## on GitHub at thomasp85/patchwork
 library("plyr")
 library("pRoloc")
 library("pRolocdata")
