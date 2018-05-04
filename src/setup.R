@@ -14,10 +14,10 @@ suppressPackageStartupMessages(library("MSstatsBioData"))
 suppressPackageStartupMessages(library("readr"))
 suppressPackageStartupMessages(library("tidyr"))
 suppressPackageStartupMessages(library("magrittr"))
-suppressPackageStartupMessages(library("Vennerable"))
+suppressPackageStartupMessages(library("Vennerable")) ## js229/Vennerable
 suppressPackageStartupMessages(library("UpSetR"))
 suppressPackageStartupMessages(library("ggvis"))
 suppressPackageStartupMessages(library("shiny"))
 suppressPackageStartupMessages(library("RforProteomics"))
 suppressPackageStartupMessages(library("ComplexHeatmap"))
-suppressPackageStartupMessages(library("patchwork"))
+suppressPackageStartupMessages(library("patchwork")) ## thomasp85/patchwork
