@@ -4,6 +4,7 @@
 pks0 <- c("limma",
           "bioDist",
           "ggplot2",
+          "MSstats"
           "msdata",
           "MSnbase",
           "affy",
