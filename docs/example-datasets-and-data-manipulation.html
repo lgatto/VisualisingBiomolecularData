@@ -25,7 +25,7 @@
 <meta name="author" content="Laurent Gatto">
 
 
-<meta name="date" content="2018-05-01">
+<meta name="date" content="2018-05-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -124,8 +124,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2" data-path="plotting-in-r.html"><a href="plotting-in-r.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Plotting with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#building-complex-plots"><i class="fa fa-check"></i><b>4.3</b> Building complex plots</a></li>
 <li class="chapter" data-level="4.4" data-path="plotting-in-r.html"><a href="plotting-in-r.html#customising-plots"><i class="fa fa-check"></i><b>4.4</b> Customising plots</a></li>
-<li class="chapter" data-level="4.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#saving-your-figures"><i class="fa fa-check"></i><b>4.5</b> Saving your figures</a></li>
-<li class="chapter" data-level="4.6" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references"><i class="fa fa-check"></i><b>4.6</b> References</a></li>
+<li class="chapter" data-level="4.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#combine-ggplot-figures"><i class="fa fa-check"></i><b>4.5</b> Combine <code>ggplot</code> figures</a></li>
+<li class="chapter" data-level="4.6" data-path="plotting-in-r.html"><a href="plotting-in-r.html#saving-your-figures"><i class="fa fa-check"></i><b>4.6</b> Saving your figures</a></li>
+<li class="chapter" data-level="4.7" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references"><i class="fa fa-check"></i><b>4.7</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>5</b> Tools and plots</a><ul>
 <li class="chapter" data-level="5.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#transformations"><i class="fa fa-check"></i><b>5.1</b> Transformations</a><ul>
@@ -584,7 +585,7 @@ res &lt;-<span class="st"> </span><span class="kw">topTable</span>(fit3, <span c
 ## ✖ dplyr::desc()       masks IRanges::desc()
 ## ✖ purrr::detect()     masks RforProteomics::detect()
 ## ✖ tidyr::expand()     masks S4Vectors::expand()
-## ✖ dplyr::exprs()      masks affy::exprs(), MSnbase::exprs(), Biobase::exprs()
+## ✖ dplyr::exprs()      masks affy::exprs(), MSnbase::exprs(), ggplot2::exprs(), Biobase::exprs()
 ## ✖ magrittr::extract() masks tidyr::extract()
 ## ✖ dplyr::filter()     masks stats::filter()
 ## ✖ dplyr::first()      masks S4Vectors::first()
@@ -595,7 +596,8 @@ res &lt;-<span class="st"> </span><span class="kw">topTable</span>(fit3, <span c
 ## ✖ dplyr::rename()     masks S4Vectors::rename()
 ## ✖ dplyr::select()     masks AnnotationDbi::select()
 ## ✖ purrr::set_names()  masks magrittr::set_names()
-## ✖ dplyr::slice()      masks IRanges::slice()</code></pre>
+## ✖ dplyr::slice()      masks IRanges::slice()
+## ✖ dplyr::vars()       masks ggplot2::vars()</code></pre>
 <p>The <code>tidyverse</code> package tries to address 3 major problems with some of base R functions:</p>
 <ol style="list-style-type: decimal">
 <li>The results from a base R function sometimes depends on the type of data.</li>
@@ -930,12 +932,12 @@ iprgna <span class="op">%&gt;%</span>
                   <span class="dt">min_int =</span> <span class="kw">min</span>(Intensity),
                   <span class="dt">max_int =</span> <span class="kw">max</span>(Intensity))</code></pre></div>
 <pre><code>## # A tibble: 4 x 4
-##   Condition   mean_int min_int     max_int
-##   &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;
-## 1 Condition1 65144912. 254608. 2841953257.
-## 2 Condition2 64439756. 259513. 2757471311.
-## 3 Condition3 62475797.  88409. 2659018724.
-## 4 Condition4 63616488.  84850. 2881057105.</code></pre>
+##   Condition   mean_int min_int    max_int
+##   &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Condition1 65144912. 254608. 2841953257
+## 2 Condition2 64439756. 259513. 2757471311
+## 3 Condition3 62475797.  88409. 2659018724
+## 4 Condition4 63616488.  84850. 2881057105</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Answer 3
 iprgna <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Intensity)) <span class="op">%&gt;%</span>

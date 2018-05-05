@@ -107,7 +107,8 @@ visualisations will be much easier if the data is formatted in a
 certain way. As such, we will describe different formats (long, wide)
 and data structures (dataframes and more specialised data structure).
 
-
+The source code for this document is available on GitHub at
+https://github.com/lgatto/VisualisingBiomolecularData
 
 A short URL for this book is http://bit.ly/biomolvis
 
@@ -116,9 +117,6 @@ A short URL for this book is http://bit.ly/biomolvis
 A set of packages that are used, either directly or indirectly are
 provided below. A complete session information with all packages used
 to compile this document is available at the end.
-
-The source code for this document is available on GitHub at
-https://github.com/lgatto/VisualisingBiomolecularData
 
 
 ```{r pkgs, eval=FALSE}
@@ -147,6 +145,14 @@ library("tidyr")
 library("tidyverse")
 library("UpSetR")
 library("Vennerable") ## on GitHub at js229/Vennerable
+```
+
+To install all dependencies, you can run the [installation
+script](https://github.com/lgatto/VisualisingBiomolecularData/blob/master/src/install.R)
+by running the following line in R:
+
+```{r install, eval=FALSE}
+source("http://bit.ly/biomolvis_install")
 ```
 
 ## Questions

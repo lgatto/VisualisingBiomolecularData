@@ -25,7 +25,7 @@
 <meta name="author" content="Laurent Gatto">
 
 
-<meta name="date" content="2018-05-01">
+<meta name="date" content="2018-05-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -124,8 +124,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2" data-path="plotting-in-r.html"><a href="plotting-in-r.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Plotting with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#building-complex-plots"><i class="fa fa-check"></i><b>4.3</b> Building complex plots</a></li>
 <li class="chapter" data-level="4.4" data-path="plotting-in-r.html"><a href="plotting-in-r.html#customising-plots"><i class="fa fa-check"></i><b>4.4</b> Customising plots</a></li>
-<li class="chapter" data-level="4.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#saving-your-figures"><i class="fa fa-check"></i><b>4.5</b> Saving your figures</a></li>
-<li class="chapter" data-level="4.6" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references"><i class="fa fa-check"></i><b>4.6</b> References</a></li>
+<li class="chapter" data-level="4.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#combine-ggplot-figures"><i class="fa fa-check"></i><b>4.5</b> Combine <code>ggplot</code> figures</a></li>
+<li class="chapter" data-level="4.6" data-path="plotting-in-r.html"><a href="plotting-in-r.html#saving-your-figures"><i class="fa fa-check"></i><b>4.6</b> Saving your figures</a></li>
+<li class="chapter" data-level="4.7" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references"><i class="fa fa-check"></i><b>4.7</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>5</b> Tools and plots</a><ul>
 <li class="chapter" data-level="5.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#transformations"><i class="fa fa-check"></i><b>5.1</b> Transformations</a><ul>
@@ -208,7 +209,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Visualisation of biomolecular data</h1>
 <h4 class="author"><em>Laurent Gatto</em></h4>
-<h4 class="date"><em>2018-05-01</em></h4>
+<h4 class="date"><em>2018-05-04</em></h4>
 </div>
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
@@ -400,11 +401,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>We will focus on producing visualisation that will enable <strong>understanding important features</strong> of biomolecular data or the effect of their transformation and analyses. With this in mind, the beauty of the visualisations we will produce won’t be assessed by how visually attractive the figures are, but how they help us understand the data. In the process of data exploration and data analysis, we want to be able to quickly generate and interpret figures, to progress in our understanding. It is of course important to fine tune the graphics to make them visually appealing and improve communication with the audience, but we won’t focus on these aspects here.</p>
 <p>An important aspect of data visualisation is data <strong>manipulation</strong>, transformation and the format of the data. These topics will be introduced and documented throughout the course.</p>
 <p>A last feature of data that is intimately associated with its manipulation and visualisation is its <strong>structure</strong>. Some visualisations will be much easier if the data is formatted in a certain way. As such, we will describe different formats (long, wide) and data structures (dataframes and more specialised data structure).</p>
+<p>The source code for this document is available on GitHub at <a href="https://github.com/lgatto/VisualisingBiomolecularData" class="uri">https://github.com/lgatto/VisualisingBiomolecularData</a></p>
 <p>A short URL for this book is <a href="http://bit.ly/biomolvis" class="uri">http://bit.ly/biomolvis</a></p>
 <div id="installation" class="section level2">
 <h2><span class="header-section-number">1.1</span> Installation</h2>
 <p>A set of packages that are used, either directly or indirectly are provided below. A complete session information with all packages used to compile this document is available at the end.</p>
-<p>The source code for this document is available on GitHub at <a href="https://github.com/lgatto/VisualisingBiomolecularData" class="uri">https://github.com/lgatto/VisualisingBiomolecularData</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;affy&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;ALL&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;bioDist&quot;</span>)
@@ -418,6 +419,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">library</span>(<span class="st">&quot;msdata&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;MSstats&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;MSstatsBioData&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;patchwork&quot;</span>) ## on GitHub at thomasp85/patchwork
 <span class="kw">library</span>(<span class="st">&quot;plyr&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;pRoloc&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;pRolocdata&quot;</span>)
@@ -429,6 +431,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;UpSetR&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;Vennerable&quot;</span>) ## on GitHub at js229/Vennerable</code></pre></div>
+<p>To install all dependencies, you can run the <a href="https://github.com/lgatto/VisualisingBiomolecularData/blob/master/src/install.R">installation script</a> by running the following line in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;http://bit.ly/biomolvis_install&quot;</span>)</code></pre></div>
 </div>
 <div id="questions" class="section level2">
 <h2><span class="header-section-number">1.2</span> Questions</h2>

@@ -25,7 +25,7 @@
 <meta name="author" content="Laurent Gatto">
 
 
-<meta name="date" content="2018-05-01">
+<meta name="date" content="2018-05-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -124,8 +124,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2" data-path="plotting-in-r.html"><a href="plotting-in-r.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Plotting with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#building-complex-plots"><i class="fa fa-check"></i><b>4.3</b> Building complex plots</a></li>
 <li class="chapter" data-level="4.4" data-path="plotting-in-r.html"><a href="plotting-in-r.html#customising-plots"><i class="fa fa-check"></i><b>4.4</b> Customising plots</a></li>
-<li class="chapter" data-level="4.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#saving-your-figures"><i class="fa fa-check"></i><b>4.5</b> Saving your figures</a></li>
-<li class="chapter" data-level="4.6" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references"><i class="fa fa-check"></i><b>4.6</b> References</a></li>
+<li class="chapter" data-level="4.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#combine-ggplot-figures"><i class="fa fa-check"></i><b>4.5</b> Combine <code>ggplot</code> figures</a></li>
+<li class="chapter" data-level="4.6" data-path="plotting-in-r.html"><a href="plotting-in-r.html#saving-your-figures"><i class="fa fa-check"></i><b>4.6</b> Saving your figures</a></li>
+<li class="chapter" data-level="4.7" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references"><i class="fa fa-check"></i><b>4.7</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>5</b> Tools and plots</a><ul>
 <li class="chapter" data-level="5.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#transformations"><i class="fa fa-check"></i><b>5.1</b> Transformations</a><ul>
@@ -340,23 +341,54 @@ p <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplo
 <div id="customising-plots" class="section level2">
 <h2><span class="header-section-number">4.4</span> Customising plots</h2>
 <p>Using <code>labs</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A title, at the top&quot;</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> <span class="kw">log10</span>(Intensity))) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_boxplot</span>()
+p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A title, at the top&quot;</span>,
          <span class="dt">subtitle =</span> <span class="st">&quot;A subtitle, under the title&quot;</span>,
          <span class="dt">caption =</span> <span class="st">&quot;Comes at the bottom of the plot&quot;</span>,
          <span class="dt">x =</span> <span class="st">&quot;x axis label&quot;</span>,
-         <span class="dt">y =</span> <span class="st">&quot;y axis label&quot;</span>)</code></pre></div>
+         <span class="dt">y =</span> <span class="st">&quot;y axis label&quot;</span>)
+p
+p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
 <p>Setting themes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">theme_gray</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">theme_dark</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">theme_light</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">theme_void</span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()
+p2 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_gray</span>()
+p3 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_dark</span>()
+p4 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()
+p5 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_light</span>()
+p6 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_void</span>()
 ## ....</code></pre></div>
 <p>See also the <em><a href="https://CRAN.R-project.org/package=ggthemes">ggthemes</a></em> package.</p>
 </div>
+<div id="combine-ggplot-figures" class="section level2">
+<h2><span class="header-section-number">4.5</span> Combine <code>ggplot</code> figures</h2>
+<blockquote>
+<p>The goal of <em><a href="https://github.com/thomasp85/patchwork">patchwork</a></em> patchwork is to make it ridiculously simple to combine separate ggplots into the same graphic. As such it tries to solve the same problem as <code>gridExtra::grid.arrange()</code> and <code>cowplot::plot_grid</code> but using an API that incites exploration and iteration.</p>
+</blockquote>
+<p>Installation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;devtools&quot;)</span>
+devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;thomasp85/patchwork&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;patchwork&quot;</span>)
+p1 <span class="op">+</span><span class="st"> </span>p2</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">-</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(p1 <span class="op">|</span><span class="st"> </span>p2 <span class="op">|</span><span class="st"> </span>p3) <span class="op">/</span><span class="st"> </span>p4</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-5.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(p1 <span class="op">+</span><span class="st"> </span>(p2 <span class="op">+</span><span class="st"> </span>p3) <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>))</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-6.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(p1 <span class="op">+</span><span class="st"> </span>(p2 <span class="op">+</span><span class="st"> </span>p3) <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)) <span class="op">*</span><span class="st"> </span><span class="kw">theme_dark</span>()</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-7.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(p1 <span class="op">+</span><span class="st"> </span>(p2 <span class="op">+</span><span class="st"> </span>p3) <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)) <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme_dark</span>()</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-8.png" width="672" /></p>
+</div>
 <div id="saving-your-figures" class="section level2">
-<h2><span class="header-section-number">4.5</span> Saving your figures</h2>
+<h2><span class="header-section-number">4.6</span> Saving your figures</h2>
 <p>You can save plots to a number of different file formats. PDF is by far the most common format because it’s lightweight, cross-platform and scales up well but jpegs, pngs and a number of other file formats are also supported. Let’s redo the last barplot but save it to the file system this time.</p>
 <p>Let’s save the boxplot as pdf file.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>()
@@ -370,7 +402,7 @@ p <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter
 </blockquote>
 </div>
 <div id="references" class="section level2">
-<h2><span class="header-section-number">4.6</span> References</h2>
+<h2><span class="header-section-number">4.7</span> References</h2>
 <ul>
 <li><a href="http://www.ggplot2-exts.org/gallery/"><code>ggplot2</code> extensions - gallery</a></li>
 <li><a href="http://ggplot2.tidyverse.org/"><code>ggplot2</code> webpage</a> and documentation</li>
