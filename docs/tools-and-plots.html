@@ -780,49 +780,56 @@ Figure 5.6: Original data (left). PC1 will maximise the variability while minimi
 </p>
 </div>
 <p>In R, we can use the <code>prcomp</code> function.</p>
-<p>Let’s explore PCA on the <code>iris</code> data. While it contains only 4 variables, is already becomes difficult to visualise the 3 groups along all these dimensions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairs</span>(iris[, <span class="op">-</span><span class="dv">5</span>], <span class="dt">col =</span> iris[, <span class="dv">5</span>], <span class="dt">pch =</span> <span class="dv">19</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/irispairs-1.png" width="672" /></p>
-<p>Let’s use PCA to reduce the dimension.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">irispca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(iris[, <span class="op">-</span><span class="dv">5</span>])
-<span class="kw">summary</span>(irispca)</code></pre></div>
+<p>Let’s apply PCA on the <code>mulvey2015norm</code> samples.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(<span class="kw">t</span>(mulvey2015norm)))
+<span class="kw">summary</span>(pca)</code></pre></div>
 <pre><code>## Importance of components:
-##                           PC1     PC2    PC3     PC4
-## Standard deviation     2.0563 0.49262 0.2797 0.15439
-## Proportion of Variance 0.9246 0.05307 0.0171 0.00521
-## Cumulative Proportion  0.9246 0.97769 0.9948 1.00000</code></pre>
-<p>A summary of the <code>prcomp</code> output shows that along PC1 along, we are able to retain over 92% of the total variability in the data.</p>
-<div class="figure"><span id="fig:histpc1"></span>
-<img src="VisualisingBiomolecularData_files/figure-html/histpc1-1.png" alt="Iris data along PC1." width="672" />
-<p class="caption">
-Figure 5.7: Iris data along PC1.
-</p>
-</div>
+##                           PC1    PC2     PC3     PC4     PC5     PC6
+## Standard deviation     12.803 5.8737 2.32468 1.92711 1.50167 1.31702
+## Proportion of Variance  0.748 0.1574 0.02466 0.01695 0.01029 0.00791
+## Cumulative Proportion   0.748 0.9054 0.93003 0.94698 0.95727 0.96518
+##                            PC7     PC8     PC9    PC10    PC11    PC12
+## Standard deviation     1.27894 1.09257 1.06266 0.96421 0.83033 0.80686
+## Proportion of Variance 0.00746 0.00545 0.00515 0.00424 0.00315 0.00297
+## Cumulative Proportion  0.97265 0.97809 0.98325 0.98749 0.99063 0.99360
+##                           PC13    PC14    PC15   PC16    PC17      PC18
+## Standard deviation     0.72439 0.64802 0.57176 0.2582 0.25217 3.468e-15
+## Proportion of Variance 0.00239 0.00192 0.00149 0.0003 0.00029 0.000e+00
+## Cumulative Proportion  0.99600 0.99791 0.99941 0.9997 1.00000 1.000e+00</code></pre>
+<p>A summary of the <code>prcomp</code> output shows that along PC1 along, we are able to retain over 75% of the total variance in the data.</p>
 </div>
 <div id="visualisation" class="section level3 unnumbered">
 <h3>Visualisation</h3>
-<p>A <strong>biplot</strong> features all original points re-mapped (rotated) along the first two PCs as well as the original features as vectors along the same PCs. Feature vectors that are in the same direction in PC space are also correlated in the original data space.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">biplot</span>(irispca)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/irisbiplot-1.png" width="672" /></p>
+<p>A <strong>biplot</strong> features all original points re-mapped (rotated) along the first two PCs as well as the original features as vectors along the same PCs.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">biplot</span>(pca)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/mulveybiplot-1.png" width="672" /></p>
+<p>Feature vectors that are in the same direction in PC space are also correlated in the original data space. This can be seen below when running PCA on the protein (rather than the samples).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">biplot</span>(<span class="kw">prcomp</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(mulvey2015norm)))</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/pca2-1.png" width="672" /></p>
 <p>One important piece of information when using PCA is the proportion of variance explained along the PCs, in particular when dealing with high dimensional data, as PC1 and PC2 (that are generally used for visualisation), might only account for an insufficient proportion of variance to be relevant on their own.</p>
 <p>In the code chunk below, I extract the standard deviations from the PCA result to calculate the variances, then obtain the percentage of and cumulative variance along the PCs.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var &lt;-<span class="st"> </span>irispca<span class="op">$</span>sdev<span class="op">^</span><span class="dv">2</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var &lt;-<span class="st"> </span>pca<span class="op">$</span>sdev<span class="op">^</span><span class="dv">2</span>
 (pve &lt;-<span class="st"> </span>var<span class="op">/</span><span class="kw">sum</span>(var))</code></pre></div>
-<pre><code>## [1] 0.924618723 0.053066483 0.017102610 0.005212184</code></pre>
+<pre><code>##  [1] 7.479554e-01 1.574190e-01 2.465846e-02 1.694543e-02 1.028939e-02
+##  [6] 7.914534e-03 7.463453e-03 5.446791e-03 5.152624e-03 4.242092e-03
+## [11] 3.145870e-03 2.970534e-03 2.394341e-03 1.916061e-03 1.491659e-03
+## [16] 3.042167e-04 2.901557e-04 5.489151e-32</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cumsum</span>(pve)</code></pre></div>
-<pre><code>## [1] 0.9246187 0.9776852 0.9947878 1.0000000</code></pre>
+<pre><code>##  [1] 0.7479554 0.9053744 0.9300329 0.9469783 0.9572677 0.9651822 0.9726457
+##  [8] 0.9780924 0.9832451 0.9874872 0.9906330 0.9936036 0.9959979 0.9979140
+## [15] 0.9994056 0.9997098 1.0000000 1.0000000</code></pre>
 <blockquote>
 <p>Challenge</p>
 <ul>
-<li>Repeat the PCA analysis on the iris dataset above, reproducing the biplot and preparing a barplot of the percentage of variance explained by each PC.</li>
-<li>It is often useful to produce custom figures using the data coordinates in PCA space, which can be accessed as <code>x</code> in the <code>prcomp</code> object. Reproduce the PCA plots below, along PC1 and PC2 and PC3 and PC4 respectively.</li>
+<li><p>Repeat the PCA analysis above, reproducing the biplot and preparing a barplot of the percentage of variance explained by each PC.</p></li>
+<li><p>It is often useful to produce custom figures using the data coordinates in PCA space, which can be accessed as <code>x</code> in the <code>prcomp</code> object. Reproduce the PCA plots below, along PC1 and PC2 and PC3 and PC4 respectively.</p></li>
 </ul>
 </blockquote>
-<p><img src="VisualisingBiomolecularData_files/figure-html/irispcax-1.png" width="1152" /></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/pcax-1.png" width="1152" /></p>
 <p><details></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
-<span class="kw">plot</span>(irispca<span class="op">$</span>x[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">col =</span> iris<span class="op">$</span>Species)
-<span class="kw">plot</span>(irispca<span class="op">$</span>x[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">col =</span> iris<span class="op">$</span>Species)</code></pre></div>
+<span class="kw">plot</span>(pca<span class="op">$</span>x[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">col =</span> mulvey2015norm<span class="op">$</span>times)
+<span class="kw">plot</span>(pca<span class="op">$</span>x[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">col =</span> mulvey2015norm<span class="op">$</span>times)</code></pre></div>
 <p></details></p>
 </div>
 <div id="data-pre-processing" class="section level3 unnumbered">
@@ -868,26 +875,26 @@ Figure 5.7: Iris data along PC1.
 <p><img src="VisualisingBiomolecularData_files/figure-html/pcachallenge0-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Conclusion: the two first principle components are insufficient</code></pre></div>
 <p></details></p>
-<p>Produce a PCA plot of the <code>mulvey2015norm</code> data to display the grouping of replicates and time points.</p>
+<p>Repeat the kmeans clustering analysis on the <code>hml</code> data above and visualise the results on a PCA plot.</p>
 <p><details></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca2 &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span class="kw">t</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(mulvey2015norm)), <span class="dt">scale =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>)
-<span class="kw">plot</span>(pca2<span class="op">$</span>x[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">col =</span> mulvey2015norm<span class="op">$</span>times, <span class="dt">cex =</span> <span class="dv">3</span>)
-<span class="kw">grid</span>()
-<span class="kw">text</span>(pca2<span class="op">$</span>x[, <span class="dv">1</span>], pca2<span class="op">$</span>x[, <span class="dv">2</span>], mulvey2015norm<span class="op">$</span>rep)
-<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend =</span> <span class="kw">unique</span>(mulvey2015norm<span class="op">$</span>times),
-       <span class="dt">pch =</span> <span class="dv">1</span>, <span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cl &lt;-<span class="st"> </span><span class="kw">kmeans</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(hlm), <span class="kw">length</span>(<span class="kw">getMarkerClasses</span>(hlm)), <span class="dt">nstart =</span> <span class="dv">10</span>)
+pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(hlm), <span class="dt">scale =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>)
+<span class="kw">plot</span>(pca<span class="op">$</span>x[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">col =</span> cl<span class="op">$</span>cluster)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/pcachallenge2-1.png" width="672" /> </details></p>
+<p>Produce a PCA with the proteins of the complete <code>hyperLopit2015</code> experiment. Label the results using <code>final.assignment</code> feature variable (corresponding to the proteins assignment to they sub-cellular localisation) and scale to size of the points based on the assignment scores available in the <code>svm.score</code> feature variable (this might need to transform the scores to make differences visisble).</p>
+<p><details></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">prcomp</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(hyperLOPIT2015))
+<span class="kw">plot</span>(x<span class="op">$</span>x[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>],
+     <span class="dt">pch =</span> <span class="kw">ifelse</span>(<span class="kw">fData</span>(hyperLOPIT2015)<span class="op">$</span>final.assignment <span class="op">==</span><span class="st"> &quot;unknown&quot;</span>, <span class="dv">1</span>, <span class="dv">19</span>),
+     <span class="dt">col =</span> <span class="kw">as.factor</span>(<span class="kw">fData</span>(hyperLOPIT2015)<span class="op">$</span>final.assignment),
+     <span class="dt">cex =</span> <span class="kw">exp</span>(<span class="kw">fData</span>(hyperLOPIT2015)<span class="op">$</span>svm.score) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/pcachallenge3-1.png" width="672" /> </details></p>
 </div>
 </div>
 <div id="t-distributed-stochastic-neighbour-embedding" class="section level2">
 <h2><span class="header-section-number">5.9</span> t-Distributed Stochastic Neighbour Embedding</h2>
 <p><a href="https://lvdmaaten.github.io/tsne/">t-Distributed Stochastic Neighbour Embedding</a> (t-SNE) is a <em>non-linear</em> dimensionality reduction technique, i.e. that different regions of the data space will be subjected to different transformations. t-SNE will compress small distances, thus bringing close neighbours together, and will ignore large distances. It is particularly well suited for <a href="https://distill.pub/2016/misread-tsne/">very high dimensional data</a>.</p>
-<p>In R, we can use the <code>Rtsne</code> function from the <em><a href="https://CRAN.R-project.org/package=Rtsne">Rtsne</a></em>. Before, we however need to remove any duplicated entries in the dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;Rtsne&quot;</span>)
-uiris &lt;-<span class="st"> </span><span class="kw">unique</span>(iris[, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])
-iristsne &lt;-<span class="st"> </span><span class="kw">Rtsne</span>(uiris[, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])
-<span class="kw">plot</span>(iristsne<span class="op">$</span>Y, <span class="dt">col =</span> uiris<span class="op">$</span>Species)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/iristsne-1.png" width="672" /></p>
+<p>In R, we can use the <code>Rtsne</code> function from the <em><a href="https://CRAN.R-project.org/package=Rtsne">Rtsne</a></em>.</p>
 <p>As with PCA, the data can be scaled and centred prior the running t-SNE (see the <code>pca_center</code> and <code>pca_scale</code> arguments). The algorithm is stochastic, and will produce different results at each repetition.</p>
 <div id="parameter-tuning" class="section level3">
 <h3><span class="header-section-number">5.9.1</span> Parameter tuning</h3>
@@ -902,7 +909,10 @@ iristsne &lt;-<span class="st"> </span><span class="kw">Rtsne</span>(uiris[, <sp
 <p class="caption">Effect of different perplexity and iterations when running t-SNE</p>
 </div>
 <p>As a comparison, below are the same data with PCA (left) and t-SNE (right).</p>
-<p>![PCA and t-SNE on <a href="https://www.ncbi.nlm.nih.gov/pubmed/28471460">hyperLOPIT</a>(<a href="https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png" class="uri">https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png</a>)</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png" alt="PCA and t-SNE on hyperLOPIT" />
+<p class="caption">PCA and t-SNE on hyperLOPIT</p>
+</div>
 </div>
 </div>
 <div id="pca-loadings-vs-differential-expression" class="section level2">

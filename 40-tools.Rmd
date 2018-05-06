@@ -810,7 +810,7 @@ correlated in the original data space. This can be seen below when
 running PCA on the protein (rather than the samples).
 
 ```{r pca2}
-biplot(prcomp(exprs(mulvey2015norm)))
+biplot(prcomp(MSnbase::exprs(mulvey2015norm)))
 ```
 
 One important piece of information when using PCA is the proportion of
