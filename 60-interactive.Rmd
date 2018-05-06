@@ -122,6 +122,42 @@ p %>%
 
 ## Interactive apps
 
+## Motivating examples {-}
+
+In this section, we show how to build interactive `shiny`
+applications. `shiny` is widely used to explore and visualise
+biomolecular data. As motivating examples, we present here two such
+example for proteomics data.
+
+### Longitudinal proteomics QC
+
+
+### Spatial proteomics {-}
+
+The `Biocpkg("pRoloc")` package offers dedicated functionality to
+manipulate, annotate, analyse and visualise spatial proteomics
+data. Its companion package `Biocpkg("pRolocGUI")` offers support for
+interactive visualisation.
+
+You can start an app to visualise one of the published data as shown below
+
+```{r hyperlopit, eval = FALSE}
+library("pRoloc")
+library("pRolocdata")
+data(hyperLOPIT2015)
+library("pRolocGUI")
+pRolocVis(hyperLOPIT2015)
+```
+
+This same data is also available as a standalone on-line application:
+
+
+```{r pRolocGUI, echo = FALSE}
+knitr::include_app("https://lgatto.shinyapps.io/christoforou2015/",
+				   height = "650px")
+```
+
+
 ### Introduction {-}
 
 > This section is based on RStudio `shiny` tutorials.
