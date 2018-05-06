@@ -99,6 +99,11 @@ basename(idf)
 rw <- readMSData(rawf, mode = "onDisk")
 rw
 ```
+
+```{r chrom, cache = TRUE}
+chr <- chromatogram(rw)
+chr
+```
 ### Identification data
 
 ```{r readid}
@@ -125,6 +130,10 @@ qt
 ```
 
 ## Manipulating and visualising raw data
+
+```{r plotchr}
+plot(chr)
+```
 
 ```{r readms3}
 rawf <- proteomics(full.names = TRUE, pattern = "MS3TMT11")
