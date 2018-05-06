@@ -177,10 +177,24 @@ ms1 <- which(msLevel(rw) == 1)
 rtsel <- rtime(rw)[ms1] / 60 > 30 &
 	rtime(rw)[ms1] / 60 < 35
 
-M <- MSmap(rw2, scans = ms1[rtsel],
+M <- MSmap(rw, scans = ms1[rtsel],
 		   lowMz = 521, highMz = 523,
 		   resMz = .005)
+```
+
+```{r plotmap}
 plot(M, aspect = 1, allTicks = FALSE)
+```
+
+```{r map3d}
+plot3D(M)
+```
+
+```{r map3dMS2}
+i <- ms1[which(rtsel)][1]
+j <- ms1[which(rtsel)][2]
+M2 <- MSmap(rw, i:j, 100, 1000, 1)
+plot3D(M2)
 ```
 
 ## Peptide spetrum matches
