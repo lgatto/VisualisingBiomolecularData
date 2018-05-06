@@ -149,8 +149,8 @@ library("pRolocGUI")
 pRolocVis(hyperLOPIT2015)
 ```
 
-This same data is also available as a standalone on-line application:
-
+This same data is also available as a [standalone on-line
+application](https://lgatto.shinyapps.io/christoforou2015/):
 
 ```{r pRolocGUI, echo = FALSE}
 knitr::include_app("https://lgatto.shinyapps.io/christoforou2015/",
