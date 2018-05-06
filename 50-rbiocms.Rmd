@@ -117,7 +117,7 @@ rw <- addIdentificationData(rw, idf)
 fvarLabels(rw)
 ```
 
-### Quantitative data
+### Quantitative dat
 
 ```{r readcsv}
 library("pRolocdata")
@@ -165,6 +165,24 @@ rw2[[4]]
 plot(rw2[[4]], reporters = TMT11)
 ```
 
+## MS maps
+
+```{r map, cache = TRUE}
+rawf <- msdata::proteomics(full.names = TRUE, pattern = "20141210")
+basename(rawf)
+rw <- readMSData(rawf, mode = "onDisk")
+
+## indeices of MS1 with retention times 30 - 35
+ms1 <- which(msLevel(rw) == 1)
+rtsel <- rtime(rw)[ms1] / 60 > 30 &
+	rtime(rw)[ms1] / 60 < 35
+
+M <- MSmap(rw2, scans = ms1[rtsel],
+		   lowMz = 521, highMz = 523,
+		   resMz = .005)
+plot(M, aspect = 1, allTicks = FALSE)
+```
+
 ## Peptide spetrum matches
 
 ```{r psm1}
@@ -177,7 +195,6 @@ plot(itraqdata[[i]], s, main = s)
 ```
 
 ```{r psm2}
-i <- c(41, 42)
 plot(itraqdata[[41]], itraqdata[[42]])
 ```
 
