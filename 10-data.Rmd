@@ -13,6 +13,10 @@ to visualise raw mass spectrometry data. The raw data that will be
 using come from the `r Biocexptpkg("msdata")` `r Biocpkg("MSnbase")`
 packages. These data will be introduced later.
 
+```{r}
+library("msdata")
+```
+
 ## Time course from Mulvey *et al.* 2015
 
 This data comes from
@@ -309,6 +313,32 @@ Reference:
 > identifies distinct subsets of patients with different response to
 > therapy and survival*. Blood, 1 April 2004, Vol. 103, No. 7.
 
+
+## Spatial proteomics data
+
+The goal of spatial proteomics is to study the sub-cellular
+localisation of proteins. The data below comes from
+
+> Christoforou A, Mulvey CM, Breckels LM, Geladaki A, Hurrell T,
+> Hayward PC, Naake T, Gatto L, Viner R, Martinez Arias A, Lilley
+> KS. A draft map of the mouse pluripotent stem cell spatial
+> proteome. Nat Commun. 2016 Jan 12;7:8992. doi:
+> [10.1038/ncomms9992](https://doi.org/10.1038/ncomms9992). PMID:
+> 26754106; PMCID: PMC4729960.
+
+and investigated the sub-cellular location of over 5000 proteins in
+mouse pluripotent stem cells using a mass spectrometry-based technique
+called hyperLOPIT.
+
+```{r}
+library("pRolocdata")
+data(hyperLOPIT2015)
+dim(hyperLOPIT2015)
+```
+
+Here, the columns of the data represent fractions along a density
+gradient used to separate the sub-cellular proteome presented in this
+data.
 
 ## Using `dplyr` for data manipulation
 
