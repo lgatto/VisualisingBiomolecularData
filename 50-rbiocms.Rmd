@@ -233,9 +233,10 @@ plots, summary statistics and filtering.
 ## MS imaging
 
 There are (at least) two packages, namely and `r Biocpkg("Cardinal")`
-([www](http://cardinalmsi.org/))that support MS imaging.
+([web site](http://cardinalmsi.org/)) that support MS imaging.
 
 ![MALDIquant imaging - try the [shiny app](https://sgibb.shinyapps.io/ims-shiny/)](./img/mqmsi-1.png)
+
 ![Cardinal imaging](./img/cardinal.png)
 
 
@@ -246,4 +247,13 @@ data(naset)
 image2(naset)
 image2(is.na(naset), col = c("black", "white"))
 naplot(naset)
+```
+## PCA plots
+
+```{r plot2D}
+par(mfrow = c(1, 2))
+plot2D(hyperLOPIT2015, main = "Spatial proteomics - features")
+addLegend(hyperLOPIT2015, where = "bottomleft", cex = .5)
+plot2D(t(mulvey2015norm), fcol = "times", main = "Time course - samples")
+addLegend(t(mulvey2015norm), where = "bottomright", fcol = "times")
 ```
