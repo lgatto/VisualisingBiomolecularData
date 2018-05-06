@@ -18,6 +18,8 @@ suppressPackageStartupMessages(library("Vennerable")) ## js229/Vennerable
 suppressPackageStartupMessages(library("UpSetR"))
 suppressPackageStartupMessages(library("ggvis"))
 suppressPackageStartupMessages(library("shiny"))
+suppressPackageStartupMessages(library("RColorBrewer"))
+suppressPackageStartupMessages(library("viridis"))
 suppressPackageStartupMessages(library("RforProteomics"))
 suppressPackageStartupMessages(library("ComplexHeatmap"))
 suppressPackageStartupMessages(library("patchwork")) ## thomasp85/patchwork

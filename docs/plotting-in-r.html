@@ -32,7 +32,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="exploring-and-visualising-biomolecular-data.html">
+<link rel="prev" href="using-dplyr-for-data-manipulation.html">
 <link rel="next" href="tools-and-plots.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -105,85 +105,96 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.3</b> License</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#useful-references"><i class="fa fa-check"></i><b>1.4</b> Useful references</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Example datasets and data manipulation</a><ul>
-<li class="chapter" data-level="2.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#raw-ms-data"><i class="fa fa-check"></i><b>2.1</b> Raw MS data</a></li>
-<li class="chapter" data-level="2.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#time-course-from-mulvey-et-al.-2015"><i class="fa fa-check"></i><b>2.2</b> Time course from Mulvey <em>et al.</em> 2015</a></li>
-<li class="chapter" data-level="2.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#the-iprg-data"><i class="fa fa-check"></i><b>2.3</b> The iPRG data</a></li>
-<li class="chapter" data-level="2.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#crc-training-data"><i class="fa fa-check"></i><b>2.4</b> CRC training data</a></li>
-<li class="chapter" data-level="2.5" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#all-data"><i class="fa fa-check"></i><b>2.5</b> ALL data</a></li>
-<li class="chapter" data-level="2.6" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#spatial-proteomics-data"><i class="fa fa-check"></i><b>2.6</b> Spatial proteomics data</a></li>
-<li class="chapter" data-level="2.7" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#using-dplyr-for-data-manipulation"><i class="fa fa-check"></i><b>2.7</b> Using <code>dplyr</code> for data manipulation</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>2.7.1</b> Selecting columns and filtering rows</a></li>
-<li class="chapter" data-level="2.7.2" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#pipes"><i class="fa fa-check"></i><b>2.7.2</b> Pipes</a></li>
-<li class="chapter" data-level="2.7.3" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>2.7.3</b> Mutate</a></li>
-<li class="chapter" data-level="2.7.4" data-path="example-datasets-and-data-manipulation.html"><a href="example-datasets-and-data-manipulation.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>2.7.4</b> Split-apply-combine data analysis and the summarize() function</a></li>
+<li class="chapter" data-level="2" data-path="example-datasets.html"><a href="example-datasets.html"><i class="fa fa-check"></i><b>2</b> Example datasets</a><ul>
+<li class="chapter" data-level="2.1" data-path="example-datasets.html"><a href="example-datasets.html#raw-ms-data"><i class="fa fa-check"></i><b>2.1</b> Raw MS data</a></li>
+<li class="chapter" data-level="2.2" data-path="example-datasets.html"><a href="example-datasets.html#the-iprg-data"><i class="fa fa-check"></i><b>2.2</b> The iPRG data</a></li>
+<li class="chapter" data-level="2.3" data-path="example-datasets.html"><a href="example-datasets.html#crc-training-data"><i class="fa fa-check"></i><b>2.3</b> CRC training data</a></li>
+<li class="chapter" data-level="2.4" data-path="example-datasets.html"><a href="example-datasets.html#time-course-from-mulvey-et-al.-2015"><i class="fa fa-check"></i><b>2.4</b> Time course from Mulvey <em>et al.</em> 2015</a></li>
+<li class="chapter" data-level="2.5" data-path="example-datasets.html"><a href="example-datasets.html#all-data"><i class="fa fa-check"></i><b>2.5</b> ALL data</a></li>
+<li class="chapter" data-level="2.6" data-path="example-datasets.html"><a href="example-datasets.html#spatial-proteomics-data"><i class="fa fa-check"></i><b>2.6</b> Spatial proteomics data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html"><i class="fa fa-check"></i><b>3</b> Exploring and visualising biomolecular data</a><ul>
+<li class="chapter" data-level="" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html#tic-and-bpc-chromatograms"><i class="fa fa-check"></i>TIC and BPC chromatograms</a></li>
+<li class="chapter" data-level="" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html#tracking-an-ion-from-the-chromatogram-to-the-ms2-spectra"><i class="fa fa-check"></i>Tracking an ion from the chromatogram to the MS2 spectra</a></li>
+<li class="chapter" data-level="3.1" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html#exploring-the-experimental-design"><i class="fa fa-check"></i><b>3.1</b> Exploring the experimental design</a></li>
+<li class="chapter" data-level="3.2" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html#raw-data-qc"><i class="fa fa-check"></i><b>3.2</b> Raw data QC</a></li>
+<li class="chapter" data-level="3.3" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html#differential-expression"><i class="fa fa-check"></i><b>3.3</b> Differential expression</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Using <code>dplyr</code> for data manipulation</a><ul>
+<li class="chapter" data-level="4.1" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>4.1</b> Selecting columns and filtering rows</a></li>
+<li class="chapter" data-level="4.2" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html#pipes"><i class="fa fa-check"></i><b>4.2</b> Pipes</a></li>
+<li class="chapter" data-level="4.3" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>4.3</b> Mutate</a></li>
+<li class="chapter" data-level="4.4" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>4.4</b> Split-apply-combine data analysis and the summarize() function</a><ul>
+<li><a href="using-dplyr-for-data-manipulation.html#the-summarize-function">The <code>summarize()</code> function</a></li>
+<li class="chapter" data-level="" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html#tallying"><i class="fa fa-check"></i>Tallying</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html"><i class="fa fa-check"></i><b>3</b> Exploring and visualising biomolecular data</a></li>
-<li class="chapter" data-level="4" data-path="plotting-in-r.html"><a href="plotting-in-r.html"><i class="fa fa-check"></i><b>4</b> Plotting in R</a><ul>
-<li class="chapter" data-level="4.1" data-path="plotting-in-r.html"><a href="plotting-in-r.html#base-graphics"><i class="fa fa-check"></i><b>4.1</b> Base graphics</a></li>
-<li class="chapter" data-level="4.2" data-path="plotting-in-r.html"><a href="plotting-in-r.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Plotting with <code>ggplot2</code></a></li>
-<li class="chapter" data-level="4.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#building-complex-plots"><i class="fa fa-check"></i><b>4.3</b> Building complex plots</a></li>
-<li class="chapter" data-level="4.4" data-path="plotting-in-r.html"><a href="plotting-in-r.html#customising-plots"><i class="fa fa-check"></i><b>4.4</b> Customising plots</a></li>
-<li class="chapter" data-level="4.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#combine-ggplot-figures"><i class="fa fa-check"></i><b>4.5</b> Combine <code>ggplot</code> figures</a></li>
-<li class="chapter" data-level="4.6" data-path="plotting-in-r.html"><a href="plotting-in-r.html#saving-your-figures"><i class="fa fa-check"></i><b>4.6</b> Saving your figures</a></li>
-<li class="chapter" data-level="4.7" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references"><i class="fa fa-check"></i><b>4.7</b> References</a></li>
+<li class="chapter" data-level="5" data-path="plotting-in-r.html"><a href="plotting-in-r.html"><i class="fa fa-check"></i><b>5</b> Plotting in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="plotting-in-r.html"><a href="plotting-in-r.html#base-graphics"><i class="fa fa-check"></i><b>5.1</b> Base graphics</a></li>
+<li class="chapter" data-level="5.2" data-path="plotting-in-r.html"><a href="plotting-in-r.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>5.2</b> Plotting with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="5.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#building-complex-plots"><i class="fa fa-check"></i><b>5.3</b> Building complex plots</a></li>
+<li class="chapter" data-level="5.4" data-path="plotting-in-r.html"><a href="plotting-in-r.html#colour-scales"><i class="fa fa-check"></i><b>5.4</b> Colour scales</a></li>
+<li class="chapter" data-level="5.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#customising-plots"><i class="fa fa-check"></i><b>5.5</b> Customising plots</a></li>
+<li class="chapter" data-level="5.6" data-path="plotting-in-r.html"><a href="plotting-in-r.html#combine-ggplot-figures"><i class="fa fa-check"></i><b>5.6</b> Combine <code>ggplot</code> figures</a></li>
+<li class="chapter" data-level="5.7" data-path="plotting-in-r.html"><a href="plotting-in-r.html#saving-your-figures"><i class="fa fa-check"></i><b>5.7</b> Saving your figures</a></li>
+<li class="chapter" data-level="5.8" data-path="plotting-in-r.html"><a href="plotting-in-r.html#exercises"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
+<li class="chapter" data-level="5.9" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references"><i class="fa fa-check"></i><b>5.9</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>5</b> Tools and plots</a><ul>
-<li class="chapter" data-level="5.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#transformations"><i class="fa fa-check"></i><b>5.1</b> Transformations</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#expression-data"><i class="fa fa-check"></i><b>5.1.1</b> Expression data</a></li>
-<li class="chapter" data-level="5.1.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#fold-changes"><i class="fa fa-check"></i><b>5.1.2</b> Fold changes</a></li>
+<li class="chapter" data-level="6" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>6</b> Tools and plots</a><ul>
+<li class="chapter" data-level="6.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#transformations"><i class="fa fa-check"></i><b>6.1</b> Transformations</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#expression-data"><i class="fa fa-check"></i><b>6.1.1</b> Expression data</a></li>
+<li class="chapter" data-level="6.1.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#fold-changes"><i class="fa fa-check"></i><b>6.1.2</b> Fold changes</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#comparing-samples-and-linear-models"><i class="fa fa-check"></i><b>5.2</b> Comparing samples and linear models</a></li>
-<li class="chapter" data-level="5.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#plots-for-statistical-analyses"><i class="fa fa-check"></i><b>5.3</b> Plots for statistical analyses</a></li>
-<li class="chapter" data-level="5.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualising-intersections"><i class="fa fa-check"></i><b>5.4</b> Visualising intersections</a></li>
-<li class="chapter" data-level="5.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#unsupervised-learning"><i class="fa fa-check"></i><b>5.5</b> Unsupervised learning</a></li>
-<li class="chapter" data-level="5.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#hierarchical-clustering"><i class="fa fa-check"></i><b>5.6</b> Hierarchical clustering</a><ul>
+<li class="chapter" data-level="6.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#comparing-samples-and-linear-models"><i class="fa fa-check"></i><b>6.2</b> Comparing samples and linear models</a></li>
+<li class="chapter" data-level="6.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#plots-for-statistical-analyses"><i class="fa fa-check"></i><b>6.3</b> Plots for statistical analyses</a></li>
+<li class="chapter" data-level="6.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualising-intersections"><i class="fa fa-check"></i><b>6.4</b> Visualising intersections</a></li>
+<li class="chapter" data-level="6.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#unsupervised-learning"><i class="fa fa-check"></i><b>6.5</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="6.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#hierarchical-clustering"><i class="fa fa-check"></i><b>6.6</b> Hierarchical clustering</a><ul>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-hierarchical-clustering-work"><i class="fa fa-check"></i>How does hierarchical clustering work</a></li>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#defining-clusters"><i class="fa fa-check"></i>Defining clusters</a></li>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#effect-of-distance-and-clustering-algorithm"><i class="fa fa-check"></i>Effect of distance and clustering algorithm</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="tools-and-plots.html"><a href="tools-and-plots.html#k-means-clustering"><i class="fa fa-check"></i><b>5.7</b> k-means clustering</a><ul>
+<li class="chapter" data-level="6.7" data-path="tools-and-plots.html"><a href="tools-and-plots.html#k-means-clustering"><i class="fa fa-check"></i><b>6.7</b> k-means clustering</a><ul>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-k-means-work"><i class="fa fa-check"></i>How does k-means work</a></li>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-to-determine-the-number-of-clusters"><i class="fa fa-check"></i>How to determine the number of clusters</a></li>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge"><i class="fa fa-check"></i>Challenge</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="tools-and-plots.html"><a href="tools-and-plots.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>5.8</b> Principal component analysis (PCA)</a><ul>
+<li class="chapter" data-level="6.8" data-path="tools-and-plots.html"><a href="tools-and-plots.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>6.8</b> Principal component analysis (PCA)</a><ul>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-it-work"><i class="fa fa-check"></i>How does it work</a></li>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualisation"><i class="fa fa-check"></i>Visualisation</a></li>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#data-pre-processing"><i class="fa fa-check"></i>Data pre-processing</a></li>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#final-comments-on-pca"><i class="fa fa-check"></i>Final comments on PCA</a></li>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge-1"><i class="fa fa-check"></i>Challenge</a></li>
 </ul></li>
-<li class="chapter" data-level="5.9" data-path="tools-and-plots.html"><a href="tools-and-plots.html#t-distributed-stochastic-neighbour-embedding"><i class="fa fa-check"></i><b>5.9</b> t-Distributed Stochastic Neighbour Embedding</a><ul>
-<li class="chapter" data-level="5.9.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#parameter-tuning"><i class="fa fa-check"></i><b>5.9.1</b> Parameter tuning</a></li>
+<li class="chapter" data-level="6.9" data-path="tools-and-plots.html"><a href="tools-and-plots.html#t-distributed-stochastic-neighbour-embedding"><i class="fa fa-check"></i><b>6.9</b> t-Distributed Stochastic Neighbour Embedding</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#parameter-tuning"><i class="fa fa-check"></i><b>6.9.1</b> Parameter tuning</a></li>
 </ul></li>
-<li class="chapter" data-level="5.10" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadings-vs-differential-expression"><i class="fa fa-check"></i><b>5.10</b> PCA loadings vs differential expression</a></li>
-<li class="chapter" data-level="5.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmaps"><i class="fa fa-check"></i><b>5.11</b> Heatmaps</a></li>
+<li class="chapter" data-level="6.10" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadings-vs-differential-expression"><i class="fa fa-check"></i><b>6.10</b> PCA loadings vs differential expression</a></li>
+<li class="chapter" data-level="6.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmaps"><i class="fa fa-check"></i><b>6.11</b> Heatmaps</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>6</b> Using R and Bioconductor for MS-based proteomics</a><ul>
-<li class="chapter" data-level="6.1" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#reading-ms-data-into-r"><i class="fa fa-check"></i><b>6.2</b> Reading MS data into R</a><ul>
+<li class="chapter" data-level="7" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>7</b> Using R and Bioconductor for MS-based proteomics</a><ul>
+<li class="chapter" data-level="7.1" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#reading-ms-data-into-r"><i class="fa fa-check"></i><b>7.2</b> Reading MS data into R</a><ul>
 <li class="chapter" data-level="" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#raw-data"><i class="fa fa-check"></i>Raw data</a></li>
 <li class="chapter" data-level="" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#identification-data"><i class="fa fa-check"></i>Identification data</a></li>
 <li class="chapter" data-level="" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#quantitative-data"><i class="fa fa-check"></i>Quantitative data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#manipulating-and-visualising-raw-data"><i class="fa fa-check"></i><b>6.3</b> Manipulating and visualising raw data</a></li>
-<li class="chapter" data-level="6.4" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#ms-maps"><i class="fa fa-check"></i><b>6.4</b> MS maps</a></li>
-<li class="chapter" data-level="6.5" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#peptide-spetrum-matches"><i class="fa fa-check"></i><b>6.5</b> Peptide spetrum matches</a></li>
-<li class="chapter" data-level="6.6" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#ms-imaging"><i class="fa fa-check"></i><b>6.6</b> MS imaging</a></li>
-<li class="chapter" data-level="6.7" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#missing-values"><i class="fa fa-check"></i><b>6.7</b> Missing values</a></li>
+<li class="chapter" data-level="7.3" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#manipulating-and-visualising-raw-data"><i class="fa fa-check"></i><b>7.3</b> Manipulating and visualising raw data</a></li>
+<li class="chapter" data-level="7.4" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#ms-maps"><i class="fa fa-check"></i><b>7.4</b> MS maps</a></li>
+<li class="chapter" data-level="7.5" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#peptide-spetrum-matches"><i class="fa fa-check"></i><b>7.5</b> Peptide spetrum matches</a></li>
+<li class="chapter" data-level="7.6" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#ms-imaging"><i class="fa fa-check"></i><b>7.6</b> MS imaging</a></li>
+<li class="chapter" data-level="7.7" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#missing-values"><i class="fa fa-check"></i><b>7.7</b> Missing values</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html"><i class="fa fa-check"></i><b>7</b> Interactive visualisation</a><ul>
-<li class="chapter" data-level="7.1" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#interactivity-graphs"><i class="fa fa-check"></i><b>7.1</b> Interactivity graphs</a><ul>
+<li class="chapter" data-level="8" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html"><i class="fa fa-check"></i><b>8</b> Interactive visualisation</a><ul>
+<li class="chapter" data-level="8.1" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#interactivity-graphs"><i class="fa fa-check"></i><b>8.1</b> Interactivity graphs</a><ul>
 <li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#interactivity"><i class="fa fa-check"></i>Interactivity</a></li>
 <li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#layers"><i class="fa fa-check"></i>Layers</a></li>
 <li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#more-components"><i class="fa fa-check"></i>More components</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#interactive-apps"><i class="fa fa-check"></i><b>7.2</b> Interactive apps</a></li>
+<li class="chapter" data-level="8.2" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#interactive-apps"><i class="fa fa-check"></i><b>8.2</b> Interactive apps</a></li>
 <li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#motivating-examples"><i class="fa fa-check"></i>Motivating examples</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#longitudinal-proteomics-qc"><i class="fa fa-check"></i><b>7.2.1</b> Longitudinal proteomics QC</a></li>
+<li class="chapter" data-level="8.2.1" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#longitudinal-proteomics-qc"><i class="fa fa-check"></i><b>8.2.1</b> Longitudinal proteomics QC</a></li>
 <li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#spatial-proteomics"><i class="fa fa-check"></i>Spatial proteomics</a></li>
 <li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#introduction-2"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#creation-of-our-fist-shiny-app"><i class="fa fa-check"></i>Creation of our fist shiny app</a></li>
@@ -193,7 +204,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="interactive-visualisation.html#theres-more-to-shiny">There’s more to <code>shiny</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="session-information.html"><a href="session-information.html"><i class="fa fa-check"></i><b>8</b> Session information</a></li>
+<li class="chapter" data-level="9" data-path="session-information.html"><a href="session-information.html"><i class="fa fa-check"></i><b>9</b> Session information</a></li>
 </ul>
 
       </nav>
@@ -212,13 +223,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="plotting-in-r" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Plotting in R</h1>
+<h1><span class="header-section-number">Chapter 5</span> Plotting in R</h1>
 <div id="base-graphics" class="section level2">
-<h2><span class="header-section-number">4.1</span> Base graphics</h2>
+<h2><span class="header-section-number">5.1</span> Base graphics</h2>
 <p>We won’t go through all base graphics plotting functions one by one here. We will encounter and learn several of these functions throughout the course and, if necessary, discuss them when questions arise.</p>
 </div>
 <div id="plotting-with-ggplot2" class="section level2">
-<h2><span class="header-section-number">4.2</span> Plotting with <code>ggplot2</code></h2>
+<h2><span class="header-section-number">5.2</span> Plotting with <code>ggplot2</code></h2>
+<div class="figure">
+<img src="http://hexb.in/hexagons/ggplot2.png" />
+
+</div>
+<p>A useful <code>ggplot2</code> cheet sheet is available <a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">here</a>. More details are available on the <a href="http://ggplot2.tidyverse.org/reference/">documentation page</a>.</p>
 <p>Base graphics uses a <em>canvas model</em> a series of instructions that sequentially fill the plotting canvas. While this model is very useful to build plots bits by bits bottom up, which is useful in some cases, it has some clear drawback:</p>
 <ul>
 <li>Layout choices have to be made without global overview over what may still be coming.</li>
@@ -283,7 +299,7 @@ ints_plot <span class="op">+</span><span class="st"> </span><span class="kw">geo
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotchallenge1-2.png" width="672" /> </details></p>
 </div>
 <div id="building-complex-plots" class="section level2">
-<h2><span class="header-section-number">4.3</span> Building complex plots</h2>
+<h2><span class="header-section-number">5.3</span> Building complex plots</h2>
 <p>First, let’s colour the boxplot based on the condition:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg,
        <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity,
@@ -343,8 +359,43 @@ p <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplo
 <span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>Condition)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotfacet-1.png" width="672" /></p>
 </div>
+<div id="colour-scales" class="section level2">
+<h2><span class="header-section-number">5.4</span> Colour scales</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;viridis&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;RColorBrewer&quot;</span>)
+RColorBrewer<span class="op">::</span><span class="kw">display.brewer.all</span>()</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/scales-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> crcdf,
+            <span class="kw">aes</span>(<span class="dt">x =</span> A1AG2, <span class="dt">y =</span> AFM, <span class="dt">colour =</span> AHSG)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>()
+
+p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>()</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>(<span class="dt">option =</span> <span class="st">&quot;A&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Blues&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Purples&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-5.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Set1&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-6.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> crcdf,
+            <span class="kw">aes</span>(<span class="dt">x =</span> A1AG2, <span class="dt">y =</span> AFM, <span class="dt">colour =</span> Sub_group)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>()
+
+p ## uses scale_color_discrete()</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/scalesex2-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_grey</span>()</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/scalesex2-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/scalesex2-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>, <span class="dt">option =</span> <span class="st">&quot;A&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/scalesex2-4.png" width="672" /></p>
+</div>
 <div id="customising-plots" class="section level2">
-<h2><span class="header-section-number">4.4</span> Customising plots</h2>
+<h2><span class="header-section-number">5.5</span> Customising plots</h2>
 <p>Using <code>labs</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> <span class="kw">log10</span>(Intensity))) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span>
@@ -357,43 +408,50 @@ p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>
 p
 p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
 <p>Setting themes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()
-p2 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_gray</span>()
-p3 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_dark</span>()
-p4 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()
-p5 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_light</span>()
-p6 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_void</span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()
+p <span class="op">+</span><span class="st"> </span><span class="kw">theme_gray</span>()
+p <span class="op">+</span><span class="st"> </span><span class="kw">theme_dark</span>()
+p <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()
+p <span class="op">+</span><span class="st"> </span><span class="kw">theme_light</span>()
+p <span class="op">+</span><span class="st"> </span><span class="kw">theme_void</span>()
 ## ....</code></pre></div>
 <p>See also the <em><a href="https://CRAN.R-project.org/package=ggthemes">ggthemes</a></em> package.</p>
 </div>
 <div id="combine-ggplot-figures" class="section level2">
-<h2><span class="header-section-number">4.5</span> Combine <code>ggplot</code> figures</h2>
+<h2><span class="header-section-number">5.6</span> Combine <code>ggplot</code> figures</h2>
 <blockquote>
 <p>The goal of <em><a href="https://github.com/thomasp85/patchwork">patchwork</a></em> patchwork is to make it ridiculously simple to combine separate ggplots into the same graphic. As such it tries to solve the same problem as <code>gridExtra::grid.arrange()</code> and <code>cowplot::plot_grid</code> but using an API that incites exploration and iteration.</p>
 </blockquote>
 <p>Installation:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;devtools&quot;)</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## install.packages(&quot;devtools&quot;)
 devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;thomasp85/patchwork&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Condition, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> Condition)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)
+p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Intensity, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>()
+p3 &lt;-<span class="st"> </span>iprg <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(TechReplicate, BioReplicate) <span class="op">%&gt;%</span>
+<span class="st">    </span>tally <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> TechReplicate,
+               <span class="dt">y =</span> n,
+               <span class="dt">fill =</span> <span class="kw">as.factor</span>(BioReplicate))) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)
+p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iprg, <span class="kw">aes</span>(<span class="dt">x =</span> TechReplicate, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> Condition)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">coord_flip</span>()</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;patchwork&quot;</span>)
-p1 <span class="op">+</span><span class="st"> </span>p2</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-3.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">-</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-4.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(p1 <span class="op">|</span><span class="st"> </span>p2 <span class="op">|</span><span class="st"> </span>p3) <span class="op">/</span><span class="st"> </span>p4</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-5.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(p1 <span class="op">+</span><span class="st"> </span>(p2 <span class="op">+</span><span class="st"> </span>p3) <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>))</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-6.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(p1 <span class="op">+</span><span class="st"> </span>(p2 <span class="op">+</span><span class="st"> </span>p3) <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)) <span class="op">*</span><span class="st"> </span><span class="kw">theme_dark</span>()</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-7.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(p1 <span class="op">+</span><span class="st"> </span>(p2 <span class="op">+</span><span class="st"> </span>p3) <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)) <span class="op">&amp;</span><span class="st"> </span><span class="kw">theme_dark</span>()</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/usepatckwork1-8.png" width="672" /></p>
+p1 <span class="op">+</span><span class="st"> </span>p2
+p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">2</span>)
+p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)
+p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">-</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)
+(p1 <span class="op">|</span><span class="st"> </span>p2 <span class="op">|</span><span class="st"> </span>p3) <span class="op">/</span><span class="st"> </span>p4
+(p1 <span class="op">+</span><span class="st"> </span>(p2 <span class="op">+</span><span class="st"> </span>p3) <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>))</code></pre></div>
 </div>
 <div id="saving-your-figures" class="section level2">
-<h2><span class="header-section-number">4.6</span> Saving your figures</h2>
+<h2><span class="header-section-number">5.7</span> Saving your figures</h2>
 <p>You can save plots to a number of different file formats. PDF is by far the most common format because it’s lightweight, cross-platform and scales up well but jpegs, pngs and a number of other file formats are also supported. Let’s redo the last barplot but save it to the file system this time.</p>
 <p>Let’s save the boxplot as pdf file.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>()
@@ -406,8 +464,60 @@ p <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter
 <p><strong>Tip</strong>: save your figures in a dedicated directory.</p>
 </blockquote>
 </div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">5.8</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li>Count the number of quantified proteins for each group, gender and age and visualise the results (suggestion below).</li>
+</ol>
+<p><strong>Tips:</strong> For age, you can use <code>cut</code> to bin the ages. You’ll probably want to use <code>dplyr::group_by</code> and <code>dplyr::tally</code> to obtain the values after converting the <code>crc</code> data to a long format.</p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/ggex1-1.png" width="672" /></p>
+<p><details></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tbl &lt;-<span class="st"> </span><span class="kw">gather</span>(crcdf, <span class="dt">key =</span> Protein, <span class="dt">value =</span> expression,
+              <span class="op">-</span>Sample, <span class="op">-</span>Group, <span class="op">-</span>Age, <span class="op">-</span>Gender, <span class="op">-</span>Cancer_stage,
+              <span class="op">-</span>Tumour_location, <span class="op">-</span>Sub_group) <span class="op">%&gt;%</span>
+<span class="st">    </span>as_tibble
+
+tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(<span class="dt">age =</span> <span class="kw">cut</span>(tbl<span class="op">$</span>Age, <span class="dv">5</span>), Group, Gender) <span class="op">%&gt;%</span>
+<span class="st">    </span>tally <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Gender, <span class="dt">y =</span> n, <span class="dt">colour =</span> age)) <span class="op">+</span>
+<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span>
+<span class="st">        </span><span class="kw">facet_grid</span>( <span class="op">~</span><span class="st"> </span>Group)</code></pre></div>
+<p></details></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Experiment with <code>goem_line</code> to produce line plots showing the expression data for a subset of samples (below I used those starting with <code>&quot;P1F&quot;</code>). You will need to <strong>group</strong> proteins for the same protein data points in different samples to be linked.</li>
+</ol>
+<pre><code>## geom_path: Each group consists of only one observation. Do you need to
+## adjust the group aesthetic?</code></pre>
+<p><img src="VisualisingBiomolecularData_files/figure-html/ggex2-1.png" width="672" /></p>
+<p><details></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">filter</span>(tbl, <span class="kw">grepl</span>(<span class="st">&quot;P1F&quot;</span>, tbl<span class="op">$</span>Sample)),
+       <span class="kw">aes</span>(<span class="dt">x =</span> Sample, <span class="dt">y =</span> expression, <span class="dt">colour =</span> Protein)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> Protein)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_grid</span>(Gender <span class="op">~</span><span class="st"> </span>Group) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>,
+          <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>,
+                                     <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
+<p></details></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Plot the expression of all proteins in one sample (for example P1A10) against another one (for example P1A2) and use dataset-wide features such as the log-fold change of all CRC vs. Healthy samples and the grand mean expression intensity.</li>
+</ol>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="VisualisingBiomolecularData_files/figure-html/ggex3-1.png" width="672" /></p>
+<p><details></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>MSnbase<span class="op">::</span><span class="kw">ms2df</span>(crc) <span class="op">%&gt;%</span><span class="st"> </span>as_tibble
+
+x<span class="op">$</span>rm &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(crc), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+fc &lt;-<span class="st"> </span><span class="kw">rowSums</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(crc[, crc<span class="op">$</span>Group <span class="op">==</span><span class="st"> &quot;CRC&quot;</span>]), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span>
+<span class="st">    </span><span class="kw">rowSums</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(crc[, crc<span class="op">$</span>Group <span class="op">!=</span><span class="st"> &quot;CRC&quot;</span>]), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+x<span class="op">$</span>lfc &lt;-<span class="st"> </span><span class="kw">log2</span>(fc)
+
+<span class="kw">ggplot</span>(x, <span class="kw">aes</span>(P1A10, P1A2, <span class="dt">colour =</span> lfc, <span class="dt">size =</span> rm)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>)</code></pre></div>
+<p></details></p>
+</div>
 <div id="references" class="section level2">
-<h2><span class="header-section-number">4.7</span> References</h2>
+<h2><span class="header-section-number">5.9</span> References</h2>
 <ul>
 <li><a href="http://www.ggplot2-exts.org/gallery/"><code>ggplot2</code> extensions - gallery</a></li>
 <li><a href="http://ggplot2.tidyverse.org/"><code>ggplot2</code> webpage</a> and documentation</li>
@@ -421,7 +531,7 @@ p <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter
           </div>
         </div>
       </div>
-<a href="exploring-and-visualising-biomolecular-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="using-dplyr-for-data-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="tools-and-plots.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

@@ -258,6 +258,7 @@ i <- identify(lfc, -log10(bh), featureNames(ALL_bcrneg))
 ```
 
 ```{r volc3, echo=FALSE}
+i <- c(713L, 714L, 756L, 2456L, 7081L, 7082L, 7094L, 9823L, 10299L, 10604L)
 lfc <- fData(ALL_bcrneg)$logFC
 bh <- fData(ALL_bcrneg)$adj.P.Val
 sign <- abs(lfc) > 1 & bh < 0.01
@@ -1014,8 +1015,12 @@ correspond to small p-values.
 
 ```{r pcaloadings}
 pca <- prcomp(t(MSnbase::exprs(ALL_bcrneg)), scale = TRUE, center = TRUE)
-plot(pca$rotation[, 1], fData(ALL_bcrneg)$adj.P.Val,
-	 xlab = "PCA Loading", ylab = "Adjusted p-values")
+par(mfrow = c(1, 2))
+plot(pca$x[,1:2], col = ALL_sign$mol.biol, pch = 19)
+legend("bottomleft", legend = unique(ALL_sign$mol.biol),
+	   col = 1:2, pch = 19, bty = "n")
+smoothScatter(pca$rotation[, 1], fData(ALL_bcrneg)$adj.P.Val,
+			  xlab = "PCA Loading", ylab = "Adjusted p-values")
 ```
 
 Let's now repeat the same camparison, focusing on differentially
@@ -1032,6 +1037,7 @@ differentially expressed genes and better consistency between p-values
 and loadings. However we can't do this in practice!
 
 ```{r pcasign}
+par(mfrow = c(1, 2))
 plot(pca_sign$x[,1:2], col = ALL_sign$mol.biol, pch = 19)
 legend("bottomleft", legend = unique(ALL_sign$mol.biol),
 	   col = 1:2, pch = 19, bty = "n")

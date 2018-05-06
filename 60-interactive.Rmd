@@ -160,6 +160,9 @@ knitr::include_app("https://lgatto.shinyapps.io/christoforou2015/",
 
 ### Introduction {-}
 
+A useful `shiny` cheet sheet is available
+[here](https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf).
+
 > This section is based on RStudio `shiny` tutorials.
 
 From the [`shiny`](https://shiny.rstudio.com/)

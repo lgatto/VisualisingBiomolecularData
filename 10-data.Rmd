@@ -1,9 +1,8 @@
-# Example datasets and data manipulation
+# Example datasets
 
 We will used various datasets throughout the course. These data are
 briefly described below, and we will explore them through various
-visualisations later. This section also introduces some techniques to
-manipulate data and transorm them into different formats.
+visualisations later.
 
 
 ## Raw MS data
@@ -17,43 +16,16 @@ packages. These data will be introduced later.
 library("msdata")
 ```
 
-## Time course from Mulvey *et al.* 2015
-
-This data comes from
-
-> Mulvey CM, Schröter C, Gatto L, Dikicioglu D, Fidaner IB,
-> Christoforou A, Deery MJ, Cho LT, Niakan KK, Martinez-Arias A,
-> Lilley KS. Dynamic Proteomic Profiling of Extra-Embryonic Endoderm
-> Differentiation in Mouse Embryonic Stem Cells. Stem Cells. 2015
-> Sep;33(9):2712-25. doi:
-> [10.1002/stem.2067](https://doi.org/10.1002/stem.2067). Epub 2015
-> Jun 23. PMID: 26059426.
-
-
-```{r loadmulvey}
-library("pRolocdata")
-data(mulvey2015norm)
-```
-
-This `MSnSet`, available from the `r Biocexptpkg("pRolocdata")`
-package, measured the expression profiles of `r nrow(mulvey2015norm)`
-proteins along 6 time points in triplicate.
-
-```{r showmulvey}
-exprs(mulvey2015norm)[1:5, 1:3]
-pData(mulvey2015norm)
-```
 
 ## The iPRG data
 
+This iPRG data is a spiked-in exeriment, where 6 proteins where spiked
+at different ratios in a Yeast proteome background. Each run was
+repeated in triplicates and order was randomised. Participants in the
+study were asked to identify the differentially abundant spiked-in
+proteins.
 
-```{r irpg}
-iprg <- read.csv("http://bit.ly/VisBiomedDataIprgCsv")
-head(iprg)
-dim(iprg)
-table(iprg$Condition, iprg$TechReplicate)
-```
-Reference:
+![](./img/iprg.png)
 
 > Choi M, Eren-Dogu ZF, Colangelo C, Cottrell J, Hoopmann MR, Kapp EA,
 > Kim S, Lam H, Neubert TA, Palmblad M, Phinney BS, Weintraub ST,
@@ -63,6 +35,17 @@ Reference:
 > Feb 3;16(2):945-957. doi:
 > [10.1021/acs.jproteome.6b00881](https://doi.org/10.1021/acs.jproteome.6b00881)
 > Epub 2017 Jan 3. PMID: 27990823.
+
+
+
+
+```{r irpg, cache = TRUE}
+iprg <- read.csv("http://bit.ly/VisBiomedDataIprgCsv")
+head(iprg)
+dim(iprg)
+table(iprg$Condition, iprg$TechReplicate)
+```
+
 
 This data is in the so-called long format. In some applications, it is
 more convenient to have the data in wide format, where rows contain
@@ -163,7 +146,7 @@ Clinical information where added manually thereafter.
 
 To load this dataset:
 
-```{r crcread}
+```{r crcread, cache = TRUE}
 crcdf <- read.csv("http://bit.ly/VisBiomedDataCrcCsv")
 crcdf[1:10, 1:3]
 ```
@@ -226,9 +209,15 @@ pData(crc) <- pd
 crc
 ```
 
-Or load it direcly:
+Let's also set the sample names.
 
-```{r crcload}
+```{r}
+sampleNames(crc) <- crc$Sample
+```
+
+To download and load the `MSnSet` direcly:
+
+```{r crcload, cache = TRUE}
 download.file("http://bit.ly/VisBiomedDataCrcMSnSet", "./data/crc.rda")
 load("./data/crc.rda")
 crc
@@ -239,6 +228,33 @@ Reference:
 > See Surinova, S. et al. (2015) *Prediction of colorectal cancer
 > diagnosis based on circulating plasma proteins*. EMBO Mol. Med., 7,
 > 1166–1178 for details.
+
+## Time course from Mulvey *et al.* 2015
+
+This data comes from
+
+> Mulvey CM, Schröter C, Gatto L, Dikicioglu D, Fidaner IB,
+> Christoforou A, Deery MJ, Cho LT, Niakan KK, Martinez-Arias A,
+> Lilley KS. Dynamic Proteomic Profiling of Extra-Embryonic Endoderm
+> Differentiation in Mouse Embryonic Stem Cells. Stem Cells. 2015
+> Sep;33(9):2712-25. doi:
+> [10.1002/stem.2067](https://doi.org/10.1002/stem.2067). Epub 2015
+> Jun 23. PMID: 26059426.
+
+
+```{r loadmulvey}
+library("pRolocdata")
+data(mulvey2015norm)
+```
+
+This `MSnSet`, available from the `r Biocexptpkg("pRolocdata")`
+package, measured the expression profiles of `r nrow(mulvey2015norm)`
+proteins along 6 time points in triplicate.
+
+```{r showmulvey}
+MSnbase::exprs(mulvey2015norm)[1:5, 1:3]
+pData(mulvey2015norm)
+```
 
 ## ALL data
 
@@ -300,7 +316,7 @@ if (!file.exists("./data/ALL_bcrneg.rda"))
 This annotated `ExpressionSet` can be reproduced as shown above or
 downloaded and loaded using
 
-```{r downloadallbcrneg}
+```{r downloadallbcrneg, cache = TRUE}
 download.file("http://bit.ly/VisBiomedDataALL_bcrneg",  "./data/ALL_bcrneg.rda")
 load("./data/ALL_bcrneg.rda")
 ```
@@ -360,320 +376,3 @@ hlm <- markerMSnSet(hyperLOPIT2015[, hyperLOPIT2015$Replicate == 1])
 dim(hlm)
 getMarkerClasses(hlm) ## no unknowns anymore
 ```
-
-## Using `dplyr` for data manipulation
-
-> The following material is based on Data Carpentry's the [Data
-> analisis and
-> visualisation](http://www.datacarpentry.org/R-ecology-lesson/)
-> lessons.
-
-
-Bracket subsetting is handy, but it can be cumbersome and difficult to
-read, especially for complicated operations. Enter
-**`dplyr`**. **`dplyr`** is a package for making tabular data
-manipulation easier. It pairs nicely with **`tidyr`** which enables
-you to swiftly convert between different data formats for plotting and
-analysis.
-
-We will need the [`tidyverse`](https://www.tidyverse.org/)
-package. This is an "umbrella-package" that installs several packages
-useful for data analysis which work together well such as `dplyr`,
-`ggplot2` (for visualisation), `tibble`, etc.
-
-```{r tidyverse}
-library("tidyverse")
-```
-The `tidyverse` package tries to address 3 major problems with some of
-base R functions:
-
-1. The results from a base R function sometimes depends on the type of
-   data.
-2. Using R expressions in a non standard way, which can be confusing
-   for new learners.
-3. Hidden arguments, having default operations that new learners are
-   not aware of.
-
-
-To learn more about **`dplyr`** and **`tidyr`**, you may want to check
-out this [handy data transformation with **`dplyr`**
-cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
-and this [one about
-**`tidyr`**](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf).
-
-Let's start by reading the data using `readr::read_csv` that will
-produce a `tibble`.
-
-```{r readiprg,results = 'hide', purl = FALSE}
-library("readr")
-iprg <- read_csv("http://bit.ly/VisBiomedDataIprgCsv")
-```
-
-Tibbles are data frames, but they tweak some of the old behaviors of
-data frames. The data structure is very similar to a data frame. For
-our purposes the only differences are that:
-
-1. In addition to displaying the data type of each column under its
-   name, it only prints the first few rows of data and only as many
-   columns as fit on one screen.
-2. Columns of class `character` are never converted into factors.
-
-### Selecting columns and filtering rows
-
-We're going to learn some of the most common **`dplyr`** functions:
-`select()`, `filter()`, `mutate()`, `group_by()`, and
-`summarize()`. To select columns of a data frame, use `select()`. The
-first argument to this function is the data frame, and the subsequent
-arguments are the columns to keep.
-
-```{r selectiprg, results = 'hide', purl = FALSE}
-select(iprg, Protein, Run, Condition)
-```
-To choose rows based on a specific criteria, use `filter()`:
-
-```{r filteriprg, purl = FALSE}
-filter(iprg, BioReplicate == 1)
-```
-
-```{r filteriprg2, purl = FALSE}
-filter(iprg, Condition == 'Condition2')
-```
-
-### Pipes
-
-But what if you wanted to select and filter at the same time? There
-are three ways to do this: use intermediate steps, nested functions,
-or pipes.
-
-With intermediate steps, you essentially create a temporary data frame
-and use that as input to the next function. This can clutter up your
-workspace with lots of objects. You can also nest functions (i.e. one
-function inside of another).  This is handy, but can be difficult to
-read if too many functions are nested as things are evaluated from the
-inside out.
-
-The last option, pipes, are a fairly recent addition to R. Pipes let
-you take the output of one function and send it directly to the next,
-which is useful when you need to do many things to the same dataset.
-Pipes in R look like `%>%` and are made available via the `magrittr`
-package, installed automatically with **`dplyr`**. If you use RStudio,
-you can type the pipe with <kbd>Ctrl</kbd>
-+ <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> +
-<kbd>Shift</kbd> + <kbd>M</kbd> if you have a Mac.
-
-```{r pipes}
-iprg %>%
-  filter(Intensity > 1e8) %>%
-  select(Protein, Condition, Intensity)
-```
-
-In the above, we use the pipe to send the `iprg` dataset first through
-`filter()` to keep rows where `Intensity` is greater than 1e8, then
-through `select()` to keep only the `Protein`, `Condition`, and
-`Intensity` columns. Since `%>%` takes the object on its left and
-passes it as the first argument to the function on its right, we don't
-need to explicitly include it as an argument to the `filter()` and
-`select()` functions anymore.
-
-If we wanted to create a new object with this smaller version of the
-data, we could do so by assigning it a new name:
-
-```{r pipes2}
-iprg_sml <- iprg %>%
-	filter(Intensity > 1e8) %>%
-	select(Protein, Condition, Intensity)
-
-iprg_sml
-```
-
-Note that the final data frame is the leftmost part of this expression.
-
-> **Challenge**
->
->  Using pipes, subset the `iprg` data to include Proteins with a log2
->  intensity greater than 20 and retain only the columns `Proteins`,
->  and `Condition`.
-
-
-<details>
-```{r, eval=FALSE, purl=FALSE}
-## Answer
-iprg %>%
-	filter(Log2Intensity > 20) %>%
-	select(Protein, Condition)
-```
-</details>
-
-
-### Mutate
-
-Frequently you'll want to create new columns based on the values in existing
-columns, for example to do unit conversions, or find the ratio of values in two
-columns. For this we'll use `mutate()`.
-
-To create a new column of weight in kg:
-
-```{r mutate1}
-iprg %>%
-  mutate(Log10Intensity = log10(Intensity))
-```
-
-You can also create a second new column based on the first new column
-within the same call of `mutate()`:
-
-```{r mutate2}
-iprg %>%
-	mutate(Log10Intensity = log10(Intensity),
-		   Log10Intensity2 = Log10Intensity * 2)
-```
-
-If this runs off your screen and you just want to see the first few
-rows, you can use a pipe to view the `head()` of the data. (Pipes work
-with non-**`dplyr`** functions, too, as long as the **`dplyr`** or
-`magrittr` package is loaded).
-
-```{r mutate3}
-iprg %>%
-  mutate(Log10Intensity = log10(Intensity)) %>%
-  head
-```
-
-Note that we don't include parentheses at the end of our call to `head()` above.
-When piping into a function with no additional arguments, you can call the
-function with or without parentheses (e.g. `head` or `head()`).
-
-If you want to display more data, you can use the `print()` function
-at the end of your chain with the argument `n` specifying the number
-of rows to display:
-
-
-```{r mutate4}
-iprg %>%
-	mutate(Log10Intensity = log10(Intensity),
-			   Log10Intensity2 = Log10Intensity * 2) %>%
-	print(n = 20)
-```
-
-Let's use a modified `iprg` data that contains missing values for the
-next example. It can be loaded with
-
-```{r downlaodiprgna}
-download.file("http://bit.ly/VisBiomedDataIprgNA", "./data/iprgna.rda")
-load("./data/iprgna.rda")
-```
-
-
-> **Challenge**
->
-> Using the `iprgna` data repeat the creation of a new
-> `Log10Intensisty` column.
-
-<details>
-```{r}
-iprgna %>% mutate(Log10Intensity = log10(Intensity))
-```
-</details>
-
-The first few rows of the output are full of `NA`s, so if we wanted to remove
-those we could insert a `filter()` in the chain:
-
-```{r filtermutiprg}
-iprgna %>%
-	filter(!is.na(Intensity)) %>%
-	mutate(Log10Intensity = log10(Intensity))
-```
-
-`is.na()` is a function that determines whether something is an
-`NA`. The `!` symbol negates the result, so we're asking for
-everything that *is not* an `NA`.
-
-### Split-apply-combine data analysis and the summarize() function
-
-Many data analysis tasks can be approached using the
-*split-apply-combine* paradigm: split the data into groups, apply some
-analysis to each group, and then combine the results. **`dplyr`**
-makes this very easy through the use of the `group_by()` function.
-
-
-#### The `summarize()` function
-
-`group_by()` is often used together with `summarize()`, which
-collapses each group into a single-row summary of that group.
-`group_by()` takes as arguments the column names that contain the
-**categorical** variables for which you want to calculate the summary
-statistics. So to view the mean `weight` by sex:
-
-```{r group1}
-iprgna %>%
-  group_by(Condition) %>%
-  summarize(mean_Intensity = mean(Intensity))
-```
-
-Unfortunately, the `mean` of any vector that contains even a single
-missing value is `NA`. We need to remove missing values before
-calculating the mean, which is done easily with the `na.rm` argument.
-
-```{r group2}
-iprgna %>%
-  group_by(Condition) %>%
-  summarize(mean_Intensity = mean(Intensity, na.rm = TRUE))
-```
-
-
-You can also group by multiple columns:
-
-```{r group3}
-iprgna %>%
-  group_by(TechReplicate, BioReplicate) %>%
-  summarize(mean_Intensity = mean(Intensity, na.rm = TRUE))
-```
-
-#### Tallying
-
-When working with data, it is also common to want to know the number of
-observations found for each factor or combination of factors. For this, **`dplyr`**
-provides `tally()`.
-
-```{r tally}
-iprgna %>%
-  group_by(Condition) %>%
-  tally
-```
-
-Here, `tally()` is the action applied to the groups created by `group_by()` and
-counts the total number of records for each category.
-
-> **Challenge**
->
-> 1. How many proteins of each technical replicate are there?
->
-> 2. Use `group_by()` and `summarize()` to find the mean, min, and max intensity
-> for each condition.
->
-> 3. What are the proteins with the highest intensity in each
-> condition?
-
-
-<details>
-```{r}
-## Answer 1
-iprgna %>%
-	group_by(TechReplicate) %>%
-	tally
-
-## Answer 2
-iprgna %>%
-	filter(!is.na(Intensity)) %>%
-	group_by(Condition) %>%
-	summarize(mean_int = mean(Intensity),
-				  min_int = min(Intensity),
-				  max_int = max(Intensity))
-
-## Answer 3
-iprgna %>%
-	filter(!is.na(Intensity)) %>%
-	group_by(Condition) %>%
-	filter(Intensity == max(Intensity)) %>%
-	arrange(Intensity)
-```
-</details>

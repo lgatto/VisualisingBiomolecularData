@@ -43,3 +43,6 @@ KernSmooth
 bioDist
 ComplexHeatmap
 patchwork
+RColorBrewer
+viridisLite
+viridis

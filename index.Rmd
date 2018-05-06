@@ -81,8 +81,7 @@ for (i in 1:4) {
 See also another, more recent example:
 [The Datasaurus Dozen dataset](https://www.autodeskresearch.com/publications/samestats).
 
-![The Datasaurus Dozen dataset](https://d2f99xq7vri1nk.cloudfront.net/DinoSequentialSmaller.gif)
-
+![](https://d2f99xq7vri1nk.cloudfront.net/DinoSequentialSmaller.gif)
 
 
 
@@ -114,38 +113,6 @@ A short URL for this book is http://bit.ly/biomolvis
 
 ## Installation
 
-A set of packages that are used, either directly or indirectly are
-provided below. A complete session information with all packages used
-to compile this document is available at the end.
-
-
-```{r pkgs, eval=FALSE}
-library("affy")
-library("ALL")
-library("bioDist")
-library("ComplexHeatmap")
-library("ggplot2")
-library("ggvis")
-library("knitr")
-library("limma")
-library("magrittr")
-library("MSnbase")
-library("msdata")
-library("MSstats")
-library("MSstatsBioData")
-library("patchwork") ## on GitHub at thomasp85/patchwork
-library("plyr")
-library("pRoloc")
-library("pRolocdata")
-library("readr")
-library("RforProteomics")
-library("Rtsne")
-library("shiny")
-library("tidyr")
-library("tidyverse")
-library("UpSetR")
-library("Vennerable") ## on GitHub at js229/Vennerable
-```
 
 To install all dependencies, you can run the [installation
 script](https://github.com/lgatto/VisualisingBiomolecularData/blob/master/src/install.R)
@@ -154,6 +121,9 @@ by running the following line in R:
 ```{r install, eval=FALSE}
 source("http://bit.ly/biomolvis_install")
 ```
+
+A complete session information with all packages used to compile this
+document is available at the end.
 
 ## Questions
 

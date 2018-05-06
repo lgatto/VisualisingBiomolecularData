@@ -9,6 +9,12 @@ arise.
 
 ## Plotting with `ggplot2`
 
+![](http://hexb.in/hexagons/ggplot2.png)
+
+A useful `ggplot2` cheet sheet is available
+[here](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf). More
+details are available on the [documentation page](http://ggplot2.tidyverse.org/reference/).
+
 Base graphics uses a *canvas model* a series of instructions that
 sequentially fill the plotting canvas. While this model is very useful
 to build plots bits by bits bottom up, which is useful in some cases,
@@ -198,6 +204,38 @@ ggplot(data = iprg,
 	facet_grid(~ Condition)
 ```
 
+## Colour scales
+
+```{r scales}
+library("viridis")
+library("RColorBrewer")
+RColorBrewer::display.brewer.all()
+```
+
+```{r scalesex1}
+p <- ggplot(data = crcdf,
+			aes(x = A1AG2, y = AFM, colour = AHSG)) +
+	geom_point()
+
+p + scale_color_viridis()
+p + scale_color_viridis(option = "A")
+p + scale_color_distiller(palette = "Spectral")
+p + scale_color_distiller(palette = "Blues")
+p + scale_color_distiller(palette = "Purples")
+p + scale_color_distiller(palette = "Set1")
+```
+
+```{r scalesex2}
+p <- ggplot(data = crcdf,
+			aes(x = A1AG2, y = AFM, colour = Sub_group)) +
+	geom_point()
+
+p ## uses scale_color_discrete()
+p + scale_color_grey()
+p + scale_color_viridis(discrete = TRUE)
+p + scale_color_viridis(discrete = TRUE, option = "A")
+```
+
 ## Customising plots
 
 Using `labs`:
@@ -217,13 +255,13 @@ p + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 Setting themes:
 
-```{r theme, eval = TRUE}
-p1 <- p + theme_bw()
-p2 <- p + theme_gray()
-p3 <- p + theme_dark()
-p4 <- p + theme_minimal()
-p5 <- p + theme_light()
-p6 <- p + theme_void()
+```{r theme, eval = FALSE}
+p + theme_bw()
+p + theme_gray()
+p + theme_dark()
+p + theme_minimal()
+p + theme_light()
+p + theme_void()
 ## ....
 ```
 
@@ -240,11 +278,31 @@ See also the `r CRANpkg("ggthemes")` package.
 Installation:
 
 ```{r installpatchwork, eval=FALSE}
-# install.packages("devtools")
+## install.packages("devtools")
 devtools::install_github("thomasp85/patchwork")
 ```
 
-```{r usepatckwork1, }
+```{r patchworkdata}
+p1 <- ggplot(iprg, aes(x = Condition, y = Log2Intensity)) +
+	geom_boxplot(aes(fill = Condition)) +
+	theme(legend.position = "none")
+p2 <- ggplot(iprg, aes(x = Intensity, y = Log2Intensity)) +
+	geom_point()
+p3 <- iprg %>%
+	group_by(TechReplicate, BioReplicate) %>%
+	tally %>%
+	ggplot(aes(x = TechReplicate,
+			   y = n,
+			   fill = as.factor(BioReplicate))) +
+	geom_col() +
+	theme(legend.position = "none")
+p4 <- ggplot(iprg, aes(x = TechReplicate, y = Log2Intensity)) +
+	geom_violin(aes(fill = Condition)) +
+	theme(legend.position = "none") +
+	coord_flip()
+```
+
+```{r usepatckwork1, eval = FALSE}
 library("patchwork")
 p1 + p2
 p1 + p2 + p3 + p4 + plot_layout(ncol = 2)
@@ -252,8 +310,6 @@ p1 + p2 + p3 + plot_layout(ncol = 1)
 p1 + p2 - p3 + plot_layout(ncol = 1)
 (p1 | p2 | p3) / p4
 (p1 + (p2 + p3) + p4 + plot_layout(ncol = 1))
-(p1 + (p2 + p3) + p4 + plot_layout(ncol = 1)) * theme_dark()
-(p1 + (p2 + p3) + p4 + plot_layout(ncol = 1)) & theme_dark()
 ```
 
 ## Saving your figures
@@ -282,6 +338,108 @@ function.
 > `png` function and save that same image to a png file.
 >
 > **Tip**: save your figures in a dedicated directory.
+
+## Exercises
+
+1. Count the number of quantified proteins for each group, gender and
+age and visualise the results (suggestion below).
+
+   **Tips:** For age, you can use `cut` to bin the ages. You'll
+probably want to use `dplyr::group_by` and `dplyr::tally` to obtain
+the values after converting the `crc` data to a long format.
+
+```{r ggex1, echo=FALSE}
+tbl <- gather(crcdf, key = Protein, value = expression,
+			  -Sample, -Group, -Age, -Gender, -Cancer_stage,
+			  -Tumour_location, -Sub_group) %>%
+	as_tibble
+
+tbl %>% group_by(age = cut(tbl$Age, 5), Group, Gender) %>%
+	tally %>%
+		ggplot(aes(x = Gender, y = n, colour = age)) +
+		geom_point(size = 5) +
+		facet_grid( ~ Group)
+
+```
+
+<details>
+```{r ggex1res, eval=FALSE}
+tbl <- gather(crcdf, key = Protein, value = expression,
+			  -Sample, -Group, -Age, -Gender, -Cancer_stage,
+			  -Tumour_location, -Sub_group) %>%
+	as_tibble
+
+tbl %>% group_by(age = cut(tbl$Age, 5), Group, Gender) %>%
+	tally %>%
+		ggplot(aes(x = Gender, y = n, colour = age)) +
+		geom_point(size = 5) +
+		facet_grid( ~ Group)
+
+```
+</details>
+
+
+2. Experiment with `goem_line` to produce line plots showing the
+   expression data for a subset of samples (below I used those
+   starting with `"P1F"`). You will need to **group** proteins for the
+   same protein data points in different samples to be linked.
+
+```{r ggex2, echo=FALSE}
+ggplot(data = filter(tbl, grepl("P1F", tbl$Sample)),
+	   aes(x = Sample, y = expression, colour = Protein)) +
+	geom_line(aes(group = Protein)) +
+	facet_grid(Gender ~ Group) +
+	theme(legend.position = "none",
+		  axis.text.x = element_text(angle = 90,
+									 hjust = 1))
+```
+
+<details>
+```{r ggex2res, eval=FALSE}
+ggplot(data = filter(tbl, grepl("P1F", tbl$Sample)),
+	   aes(x = Sample, y = expression, colour = Protein)) +
+	geom_line(aes(group = Protein)) +
+	facet_grid(Gender ~ Group) +
+	theme(legend.position = "none",
+		  axis.text.x = element_text(angle = 90,
+									 hjust = 1))
+
+```
+</details>
+
+
+3. Plot the expression of all proteins in one sample (for example
+   P1A10) against another one (for example P1A2) and use dataset-wide
+   features such as the log-fold change of all CRC vs. Healthy samples
+   and the grand mean expression intensity.
+
+```{r ggex3, echo=FALSE}
+x <- MSnbase::ms2df(crc) %>% as_tibble
+
+x$rm <- rowMeans(MSnbase::exprs(crc), na.rm = TRUE)
+fc <- rowSums(MSnbase::exprs(crc[, crc$Group == "CRC"]), na.rm = TRUE) /
+	rowSums(MSnbase::exprs(crc[, crc$Group != "CRC"]), na.rm = TRUE)
+x$lfc <- log2(fc)
+
+ggplot(x, aes(P1A10, P1A2, colour = lfc, size = rm)) +
+	geom_point() +
+	scale_color_distiller(palette = "Spectral")
+```
+
+<details>
+```{r ggex3res, eval=FALSE}
+x <- MSnbase::ms2df(crc) %>% as_tibble
+
+x$rm <- rowMeans(MSnbase::exprs(crc), na.rm = TRUE)
+fc <- rowSums(MSnbase::exprs(crc[, crc$Group == "CRC"]), na.rm = TRUE) /
+	rowSums(MSnbase::exprs(crc[, crc$Group != "CRC"]), na.rm = TRUE)
+x$lfc <- log2(fc)
+
+ggplot(x, aes(P1A10, P1A2, colour = lfc, size = rm)) +
+	geom_point() +
+	scale_color_distiller(palette = "Spectral")
+```
+</details>
 
 ## References
 

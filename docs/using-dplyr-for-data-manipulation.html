@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Visualisation of biomolecular data</title>
+  <meta name="description" content="Visualisation of biomolecular data">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Visualisation of biomolecular data" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Visualisation of biomolecular data" />
+  <meta name="github-repo" content="lgatto/VisualisingBiomolecularData" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Visualisation of biomolecular data" />
+  
+  <meta name="twitter:description" content="Visualisation of biomolecular data" />
+  
+
+<meta name="author" content="Laurent Gatto">
+
+
+<meta name="date" content="2018-05-06">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="exploring-and-visualising-biomolecular-data.html">
+<link rel="next" href="plotting-in-r.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#installation"><i class="fa fa-check"></i><b>1.1</b> Installation</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#questions"><i class="fa fa-check"></i><b>1.2</b> Questions</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.3</b> License</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#useful-references"><i class="fa fa-check"></i><b>1.4</b> Useful references</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="example-datasets.html"><a href="example-datasets.html"><i class="fa fa-check"></i><b>2</b> Example datasets</a><ul>
+<li class="chapter" data-level="2.1" data-path="example-datasets.html"><a href="example-datasets.html#raw-ms-data"><i class="fa fa-check"></i><b>2.1</b> Raw MS data</a></li>
+<li class="chapter" data-level="2.2" data-path="example-datasets.html"><a href="example-datasets.html#the-iprg-data"><i class="fa fa-check"></i><b>2.2</b> The iPRG data</a></li>
+<li class="chapter" data-level="2.3" data-path="example-datasets.html"><a href="example-datasets.html#crc-training-data"><i class="fa fa-check"></i><b>2.3</b> CRC training data</a></li>
+<li class="chapter" data-level="2.4" data-path="example-datasets.html"><a href="example-datasets.html#time-course-from-mulvey-et-al.-2015"><i class="fa fa-check"></i><b>2.4</b> Time course from Mulvey <em>et al.</em> 2015</a></li>
+<li class="chapter" data-level="2.5" data-path="example-datasets.html"><a href="example-datasets.html#all-data"><i class="fa fa-check"></i><b>2.5</b> ALL data</a></li>
+<li class="chapter" data-level="2.6" data-path="example-datasets.html"><a href="example-datasets.html#spatial-proteomics-data"><i class="fa fa-check"></i><b>2.6</b> Spatial proteomics data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html"><i class="fa fa-check"></i><b>3</b> Exploring and visualising biomolecular data</a><ul>
+<li class="chapter" data-level="" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html#tic-and-bpc-chromatograms"><i class="fa fa-check"></i>TIC and BPC chromatograms</a></li>
+<li class="chapter" data-level="" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html#tracking-an-ion-from-the-chromatogram-to-the-ms2-spectra"><i class="fa fa-check"></i>Tracking an ion from the chromatogram to the MS2 spectra</a></li>
+<li class="chapter" data-level="3.1" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html#exploring-the-experimental-design"><i class="fa fa-check"></i><b>3.1</b> Exploring the experimental design</a></li>
+<li class="chapter" data-level="3.2" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html#raw-data-qc"><i class="fa fa-check"></i><b>3.2</b> Raw data QC</a></li>
+<li class="chapter" data-level="3.3" data-path="exploring-and-visualising-biomolecular-data.html"><a href="exploring-and-visualising-biomolecular-data.html#differential-expression"><i class="fa fa-check"></i><b>3.3</b> Differential expression</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Using <code>dplyr</code> for data manipulation</a><ul>
+<li class="chapter" data-level="4.1" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>4.1</b> Selecting columns and filtering rows</a></li>
+<li class="chapter" data-level="4.2" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html#pipes"><i class="fa fa-check"></i><b>4.2</b> Pipes</a></li>
+<li class="chapter" data-level="4.3" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>4.3</b> Mutate</a></li>
+<li class="chapter" data-level="4.4" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>4.4</b> Split-apply-combine data analysis and the summarize() function</a><ul>
+<li><a href="using-dplyr-for-data-manipulation.html#the-summarize-function">The <code>summarize()</code> function</a></li>
+<li class="chapter" data-level="" data-path="using-dplyr-for-data-manipulation.html"><a href="using-dplyr-for-data-manipulation.html#tallying"><i class="fa fa-check"></i>Tallying</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="plotting-in-r.html"><a href="plotting-in-r.html"><i class="fa fa-check"></i><b>5</b> Plotting in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="plotting-in-r.html"><a href="plotting-in-r.html#base-graphics"><i class="fa fa-check"></i><b>5.1</b> Base graphics</a></li>
+<li class="chapter" data-level="5.2" data-path="plotting-in-r.html"><a href="plotting-in-r.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>5.2</b> Plotting with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="5.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#building-complex-plots"><i class="fa fa-check"></i><b>5.3</b> Building complex plots</a></li>
+<li class="chapter" data-level="5.4" data-path="plotting-in-r.html"><a href="plotting-in-r.html#colour-scales"><i class="fa fa-check"></i><b>5.4</b> Colour scales</a></li>
+<li class="chapter" data-level="5.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#customising-plots"><i class="fa fa-check"></i><b>5.5</b> Customising plots</a></li>
+<li class="chapter" data-level="5.6" data-path="plotting-in-r.html"><a href="plotting-in-r.html#combine-ggplot-figures"><i class="fa fa-check"></i><b>5.6</b> Combine <code>ggplot</code> figures</a></li>
+<li class="chapter" data-level="5.7" data-path="plotting-in-r.html"><a href="plotting-in-r.html#saving-your-figures"><i class="fa fa-check"></i><b>5.7</b> Saving your figures</a></li>
+<li class="chapter" data-level="5.8" data-path="plotting-in-r.html"><a href="plotting-in-r.html#exercises"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
+<li class="chapter" data-level="5.9" data-path="plotting-in-r.html"><a href="plotting-in-r.html#references"><i class="fa fa-check"></i><b>5.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="tools-and-plots.html"><a href="tools-and-plots.html"><i class="fa fa-check"></i><b>6</b> Tools and plots</a><ul>
+<li class="chapter" data-level="6.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#transformations"><i class="fa fa-check"></i><b>6.1</b> Transformations</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#expression-data"><i class="fa fa-check"></i><b>6.1.1</b> Expression data</a></li>
+<li class="chapter" data-level="6.1.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#fold-changes"><i class="fa fa-check"></i><b>6.1.2</b> Fold changes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#comparing-samples-and-linear-models"><i class="fa fa-check"></i><b>6.2</b> Comparing samples and linear models</a></li>
+<li class="chapter" data-level="6.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#plots-for-statistical-analyses"><i class="fa fa-check"></i><b>6.3</b> Plots for statistical analyses</a></li>
+<li class="chapter" data-level="6.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualising-intersections"><i class="fa fa-check"></i><b>6.4</b> Visualising intersections</a></li>
+<li class="chapter" data-level="6.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#unsupervised-learning"><i class="fa fa-check"></i><b>6.5</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="6.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#hierarchical-clustering"><i class="fa fa-check"></i><b>6.6</b> Hierarchical clustering</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-hierarchical-clustering-work"><i class="fa fa-check"></i>How does hierarchical clustering work</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#defining-clusters"><i class="fa fa-check"></i>Defining clusters</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#effect-of-distance-and-clustering-algorithm"><i class="fa fa-check"></i>Effect of distance and clustering algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="tools-and-plots.html"><a href="tools-and-plots.html#k-means-clustering"><i class="fa fa-check"></i><b>6.7</b> k-means clustering</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-k-means-work"><i class="fa fa-check"></i>How does k-means work</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-to-determine-the-number-of-clusters"><i class="fa fa-check"></i>How to determine the number of clusters</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge"><i class="fa fa-check"></i>Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="tools-and-plots.html"><a href="tools-and-plots.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>6.8</b> Principal component analysis (PCA)</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#how-does-it-work"><i class="fa fa-check"></i>How does it work</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualisation"><i class="fa fa-check"></i>Visualisation</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#data-pre-processing"><i class="fa fa-check"></i>Data pre-processing</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#final-comments-on-pca"><i class="fa fa-check"></i>Final comments on PCA</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge-1"><i class="fa fa-check"></i>Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="tools-and-plots.html"><a href="tools-and-plots.html#t-distributed-stochastic-neighbour-embedding"><i class="fa fa-check"></i><b>6.9</b> t-Distributed Stochastic Neighbour Embedding</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#parameter-tuning"><i class="fa fa-check"></i><b>6.9.1</b> Parameter tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadings-vs-differential-expression"><i class="fa fa-check"></i><b>6.10</b> PCA loadings vs differential expression</a></li>
+<li class="chapter" data-level="6.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmaps"><i class="fa fa-check"></i><b>6.11</b> Heatmaps</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html"><i class="fa fa-check"></i><b>7</b> Using R and Bioconductor for MS-based proteomics</a><ul>
+<li class="chapter" data-level="7.1" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#reading-ms-data-into-r"><i class="fa fa-check"></i><b>7.2</b> Reading MS data into R</a><ul>
+<li class="chapter" data-level="" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#raw-data"><i class="fa fa-check"></i>Raw data</a></li>
+<li class="chapter" data-level="" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#identification-data"><i class="fa fa-check"></i>Identification data</a></li>
+<li class="chapter" data-level="" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#quantitative-data"><i class="fa fa-check"></i>Quantitative data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#manipulating-and-visualising-raw-data"><i class="fa fa-check"></i><b>7.3</b> Manipulating and visualising raw data</a></li>
+<li class="chapter" data-level="7.4" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#ms-maps"><i class="fa fa-check"></i><b>7.4</b> MS maps</a></li>
+<li class="chapter" data-level="7.5" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#peptide-spetrum-matches"><i class="fa fa-check"></i><b>7.5</b> Peptide spetrum matches</a></li>
+<li class="chapter" data-level="7.6" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#ms-imaging"><i class="fa fa-check"></i><b>7.6</b> MS imaging</a></li>
+<li class="chapter" data-level="7.7" data-path="using-r-and-bioconductor-for-ms-based-proteomics.html"><a href="using-r-and-bioconductor-for-ms-based-proteomics.html#missing-values"><i class="fa fa-check"></i><b>7.7</b> Missing values</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html"><i class="fa fa-check"></i><b>8</b> Interactive visualisation</a><ul>
+<li class="chapter" data-level="8.1" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#interactivity-graphs"><i class="fa fa-check"></i><b>8.1</b> Interactivity graphs</a><ul>
+<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#interactivity"><i class="fa fa-check"></i>Interactivity</a></li>
+<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#layers"><i class="fa fa-check"></i>Layers</a></li>
+<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#more-components"><i class="fa fa-check"></i>More components</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#interactive-apps"><i class="fa fa-check"></i><b>8.2</b> Interactive apps</a></li>
+<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#motivating-examples"><i class="fa fa-check"></i>Motivating examples</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#longitudinal-proteomics-qc"><i class="fa fa-check"></i><b>8.2.1</b> Longitudinal proteomics QC</a></li>
+<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#spatial-proteomics"><i class="fa fa-check"></i>Spatial proteomics</a></li>
+<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#introduction-2"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#creation-of-our-fist-shiny-app"><i class="fa fa-check"></i>Creation of our fist shiny app</a></li>
+<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#the-shiny-infrastructure"><i class="fa fa-check"></i>The shiny infrastructure</a></li>
+<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#another-shiny-app"><i class="fa fa-check"></i>Another shiny app</a></li>
+<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#single-file-app"><i class="fa fa-check"></i>Single-file app</a></li>
+<li><a href="interactive-visualisation.html#theres-more-to-shiny">There’s more to <code>shiny</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="session-information.html"><a href="session-information.html"><i class="fa fa-check"></i><b>9</b> Session information</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualisation of biomolecular data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="using-dplyr-for-data-manipulation" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Using <code>dplyr</code> for data manipulation</h1>
+<div class="figure">
+<img src="http://hexb.in/hexagons/dplyr.png" />
+
+</div>
+<p>A useful <code>dplyr</code> cheet sheet is available <a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">here</a>.</p>
+<blockquote>
+<p>The following material is based on Data Carpentry’s the <a href="http://www.datacarpentry.org/R-ecology-lesson/">Data analisis and visualisation</a> lessons.</p>
+</blockquote>
+<p>Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. Enter <strong><code>dplyr</code></strong>. <strong><code>dplyr</code></strong> is a package for making tabular data manipulation easier. It pairs nicely with <strong><code>tidyr</code></strong> which enables you to swiftly convert between different data formats for plotting and analysis.</p>
+<p>We will need the <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> package. This is an “umbrella-package” that installs several packages useful for data analysis which work together well such as <code>dplyr</code>, <code>ggplot2</code> (for visualisation), <code>tibble</code>, etc.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<pre><code>## ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ tibble  1.4.2          ✔ dplyr   0.7.4.9003
+## ✔ purrr   0.2.4          ✔ stringr 1.3.0     
+## ✔ tibble  1.4.2          ✔ forcats 0.3.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::collapse()   masks IRanges::collapse()
+## ✖ dplyr::combine()    masks MSnbase::combine(), Biobase::combine(), BiocGenerics::combine()
+## ✖ dplyr::desc()       masks IRanges::desc()
+## ✖ purrr::detect()     masks RforProteomics::detect()
+## ✖ tidyr::expand()     masks S4Vectors::expand()
+## ✖ dplyr::exprs()      masks affy::exprs(), MSnbase::exprs(), ggplot2::exprs(), Biobase::exprs()
+## ✖ magrittr::extract() masks tidyr::extract()
+## ✖ dplyr::filter()     masks stats::filter()
+## ✖ dplyr::first()      masks S4Vectors::first()
+## ✖ dplyr::ident()      masks msdata::ident()
+## ✖ dplyr::lag()        masks stats::lag()
+## ✖ ggplot2::Position() masks BiocGenerics::Position(), base::Position()
+## ✖ purrr::reduce()     masks IRanges::reduce(), MSnbase::reduce()
+## ✖ dplyr::rename()     masks S4Vectors::rename()
+## ✖ dplyr::select()     masks AnnotationDbi::select()
+## ✖ purrr::set_names()  masks magrittr::set_names()
+## ✖ dplyr::slice()      masks IRanges::slice()
+## ✖ dplyr::vars()       masks ggplot2::vars()</code></pre>
+<p>The <code>tidyverse</code> package tries to address 3 major problems with some of base R functions:</p>
+<ol style="list-style-type: decimal">
+<li>The results from a base R function sometimes depends on the type of data.</li>
+<li>Using R expressions in a non standard way, which can be confusing for new learners.</li>
+<li>Hidden arguments, having default operations that new learners are not aware of.</li>
+</ol>
+<p>To learn more about <strong><code>dplyr</code></strong> and <strong><code>tidyr</code></strong>, you may want to check out this <a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">handy data transformation with <strong><code>dplyr</code></strong> cheatsheet</a> and this <a href="https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf">one about <strong><code>tidyr</code></strong></a>.</p>
+<p>Let’s start by reading the data using <code>readr::read_csv</code> that will produce a <code>tibble</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)
+iprg &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgCsv&quot;</span>)</code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Protein = col_character(),
+##   Log2Intensity = col_double(),
+##   Run = col_character(),
+##   Condition = col_character(),
+##   BioReplicate = col_integer(),
+##   Intensity = col_double(),
+##   TechReplicate = col_character()
+## )</code></pre>
+<p>Tibbles are data frames, but they tweak some of the old behaviors of data frames. The data structure is very similar to a data frame. For our purposes the only differences are that:</p>
+<ol style="list-style-type: decimal">
+<li>In addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit on one screen.</li>
+<li>Columns of class <code>character</code> are never converted into factors.</li>
+</ol>
+<div id="selecting-columns-and-filtering-rows" class="section level2">
+<h2><span class="header-section-number">4.1</span> Selecting columns and filtering rows</h2>
+<p>We’re going to learn some of the most common <strong><code>dplyr</code></strong> functions: <code>select()</code>, <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, and <code>summarize()</code>. To select columns of a data frame, use <code>select()</code>. The first argument to this function is the data frame, and the subsequent arguments are the columns to keep.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(iprg, Protein, Run, Condition)</code></pre></div>
+<p>To choose rows based on a specific criteria, use <code>filter()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(iprg, BioReplicate <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<pre><code>## # A tibble: 9,079 x 7
+##    Protein      Log2Intensity Run         Condition BioReplicate Intensity
+##    &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt;     &lt;dbl&gt;
+##  1 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            1    1.18e8
+##  2 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            1    1.02e8
+##  3 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            1    1.01e8
+##  4 sp|O13297|C…          24.7 JD_0623201… Conditio…            1    2.76e7
+##  5 sp|O13297|C…          24.7 JD_0623201… Conditio…            1    2.68e7
+##  6 sp|O13297|C…          24.7 JD_0623201… Conditio…            1    2.76e7
+##  7 sp|O13329|F…          23.4 JD_0623201… Conditio…            1    1.09e7
+##  8 sp|O13329|F…          24.0 JD_0623201… Conditio…            1    1.69e7
+##  9 sp|O13329|F…          23.5 JD_0623201… Conditio…            1    1.16e7
+## 10 sp|O13539|T…          27.5 JD_0623201… Conditio…            1    1.92e8
+## # ... with 9,069 more rows, and 1 more variable: TechReplicate &lt;chr&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(iprg, Condition <span class="op">==</span><span class="st"> &#39;Condition2&#39;</span>)</code></pre></div>
+<pre><code>## # A tibble: 9,081 x 7
+##    Protein      Log2Intensity Run         Condition BioReplicate Intensity
+##    &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt;     &lt;dbl&gt;
+##  1 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            2    1.20e8
+##  2 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            2    1.16e8
+##  3 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            2    1.02e8
+##  4 sp|O13297|C…          24.5 JD_0623201… Conditio…            2    2.41e7
+##  5 sp|O13297|C…          24.7 JD_0623201… Conditio…            2    2.68e7
+##  6 sp|O13297|C…          24.6 JD_0623201… Conditio…            2    2.51e7
+##  7 sp|O13329|F…          23.2 JD_0623201… Conditio…            2    9.45e6
+##  8 sp|O13329|F…          23.4 JD_0623201… Conditio…            2    1.13e7
+##  9 sp|O13329|F…          23.8 JD_0623201… Conditio…            2    1.43e7
+## 10 sp|O13539|T…          25.9 JD_0623201… Conditio…            2    6.18e7
+## # ... with 9,071 more rows, and 1 more variable: TechReplicate &lt;chr&gt;</code></pre>
+</div>
+<div id="pipes" class="section level2">
+<h2><span class="header-section-number">4.2</span> Pipes</h2>
+<p>But what if you wanted to select and filter at the same time? There are three ways to do this: use intermediate steps, nested functions, or pipes.</p>
+<p>With intermediate steps, you essentially create a temporary data frame and use that as input to the next function. This can clutter up your workspace with lots of objects. You can also nest functions (i.e. one function inside of another). This is handy, but can be difficult to read if too many functions are nested as things are evaluated from the inside out.</p>
+<p>The last option, pipes, are a fairly recent addition to R. Pipes let you take the output of one function and send it directly to the next, which is useful when you need to do many things to the same dataset. Pipes in R look like <code>%&gt;%</code> and are made available via the <code>magrittr</code> package, installed automatically with <strong><code>dplyr</code></strong>. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a Mac.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(Intensity <span class="op">&gt;</span><span class="st"> </span><span class="fl">1e8</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(Protein, Condition, Intensity)</code></pre></div>
+<pre><code>## # A tibble: 4,729 x 3
+##    Protein              Condition   Intensity
+##    &lt;chr&gt;                &lt;chr&gt;           &lt;dbl&gt;
+##  1 sp|D6VTK4|STE2_YEAST Condition1 117845016.
+##  2 sp|D6VTK4|STE2_YEAST Condition1 102273602.
+##  3 sp|D6VTK4|STE2_YEAST Condition1 100526837.
+##  4 sp|D6VTK4|STE2_YEAST Condition2 119765106.
+##  5 sp|D6VTK4|STE2_YEAST Condition2 116382798.
+##  6 sp|D6VTK4|STE2_YEAST Condition2 102328260.
+##  7 sp|D6VTK4|STE2_YEAST Condition3 103830944.
+##  8 sp|D6VTK4|STE2_YEAST Condition4 102150172.
+##  9 sp|D6VTK4|STE2_YEAST Condition4 105724288.
+## 10 sp|O13539|THP2_YEAST Condition1 192490784.
+## # ... with 4,719 more rows</code></pre>
+<p>In the above, we use the pipe to send the <code>iprg</code> dataset first through <code>filter()</code> to keep rows where <code>Intensity</code> is greater than 1e8, then through <code>select()</code> to keep only the <code>Protein</code>, <code>Condition</code>, and <code>Intensity</code> columns. Since <code>%&gt;%</code> takes the object on its left and passes it as the first argument to the function on its right, we don’t need to explicitly include it as an argument to the <code>filter()</code> and <code>select()</code> functions anymore.</p>
+<p>If we wanted to create a new object with this smaller version of the data, we could do so by assigning it a new name:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg_sml &lt;-<span class="st"> </span>iprg <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(Intensity <span class="op">&gt;</span><span class="st"> </span><span class="fl">1e8</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">select</span>(Protein, Condition, Intensity)
+
+iprg_sml</code></pre></div>
+<pre><code>## # A tibble: 4,729 x 3
+##    Protein              Condition   Intensity
+##    &lt;chr&gt;                &lt;chr&gt;           &lt;dbl&gt;
+##  1 sp|D6VTK4|STE2_YEAST Condition1 117845016.
+##  2 sp|D6VTK4|STE2_YEAST Condition1 102273602.
+##  3 sp|D6VTK4|STE2_YEAST Condition1 100526837.
+##  4 sp|D6VTK4|STE2_YEAST Condition2 119765106.
+##  5 sp|D6VTK4|STE2_YEAST Condition2 116382798.
+##  6 sp|D6VTK4|STE2_YEAST Condition2 102328260.
+##  7 sp|D6VTK4|STE2_YEAST Condition3 103830944.
+##  8 sp|D6VTK4|STE2_YEAST Condition4 102150172.
+##  9 sp|D6VTK4|STE2_YEAST Condition4 105724288.
+## 10 sp|O13539|THP2_YEAST Condition1 192490784.
+## # ... with 4,719 more rows</code></pre>
+<p>Note that the final data frame is the leftmost part of this expression.</p>
+<blockquote>
+<p><strong>Challenge</strong></p>
+<p>Using pipes, subset the <code>iprg</code> data to include Proteins with a log2 intensity greater than 20 and retain only the columns <code>Proteins</code>, and <code>Condition</code>.</p>
+</blockquote>
+<p><details></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Answer
+iprg <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(Log2Intensity <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">select</span>(Protein, Condition)</code></pre></div>
+<p></details></p>
+</div>
+<div id="mutate" class="section level2">
+<h2><span class="header-section-number">4.3</span> Mutate</h2>
+<p>Frequently you’ll want to create new columns based on the values in existing columns, for example to do unit conversions, or find the ratio of values in two columns. For this we’ll use <code>mutate()</code>.</p>
+<p>To create a new column of weight in kg:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Log10Intensity =</span> <span class="kw">log10</span>(Intensity))</code></pre></div>
+<pre><code>## # A tibble: 36,321 x 8
+##    Protein      Log2Intensity Run         Condition BioReplicate Intensity
+##    &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt;     &lt;dbl&gt;
+##  1 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            1    1.18e8
+##  2 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            1    1.02e8
+##  3 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            1    1.01e8
+##  4 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            2    1.20e8
+##  5 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            2    1.16e8
+##  6 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            2    1.02e8
+##  7 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            3    1.04e8
+##  8 sp|D6VTK4|S…          26.5 JD_0623201… Conditio…            3    9.47e7
+##  9 sp|D6VTK4|S…          26.5 JD_0623201… Conditio…            3    9.69e7
+## 10 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            4    1.02e8
+## # ... with 36,311 more rows, and 2 more variables: TechReplicate &lt;chr&gt;,
+## #   Log10Intensity &lt;dbl&gt;</code></pre>
+<p>You can also create a second new column based on the first new column within the same call of <code>mutate()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Log10Intensity =</span> <span class="kw">log10</span>(Intensity),
+           <span class="dt">Log10Intensity2 =</span> Log10Intensity <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</code></pre></div>
+<pre><code>## # A tibble: 36,321 x 9
+##    Protein      Log2Intensity Run         Condition BioReplicate Intensity
+##    &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt;     &lt;dbl&gt;
+##  1 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            1    1.18e8
+##  2 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            1    1.02e8
+##  3 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            1    1.01e8
+##  4 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            2    1.20e8
+##  5 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            2    1.16e8
+##  6 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            2    1.02e8
+##  7 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            3    1.04e8
+##  8 sp|D6VTK4|S…          26.5 JD_0623201… Conditio…            3    9.47e7
+##  9 sp|D6VTK4|S…          26.5 JD_0623201… Conditio…            3    9.69e7
+## 10 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            4    1.02e8
+## # ... with 36,311 more rows, and 3 more variables: TechReplicate &lt;chr&gt;,
+## #   Log10Intensity &lt;dbl&gt;, Log10Intensity2 &lt;dbl&gt;</code></pre>
+<p>If this runs off your screen and you just want to see the first few rows, you can use a pipe to view the <code>head()</code> of the data. (Pipes work with non-<strong><code>dplyr</code></strong> functions, too, as long as the <strong><code>dplyr</code></strong> or <code>magrittr</code> package is loaded).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Log10Intensity =</span> <span class="kw">log10</span>(Intensity)) <span class="op">%&gt;%</span>
+<span class="st">  </span>head</code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+##   Protein      Log2Intensity Run          Condition BioReplicate Intensity
+##   &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;            &lt;int&gt;     &lt;dbl&gt;
+## 1 sp|D6VTK4|S…          26.8 JD_06232014… Conditio…            1    1.18e8
+## 2 sp|D6VTK4|S…          26.6 JD_06232014… Conditio…            1    1.02e8
+## 3 sp|D6VTK4|S…          26.6 JD_06232014… Conditio…            1    1.01e8
+## 4 sp|D6VTK4|S…          26.8 JD_06232014… Conditio…            2    1.20e8
+## 5 sp|D6VTK4|S…          26.8 JD_06232014… Conditio…            2    1.16e8
+## 6 sp|D6VTK4|S…          26.6 JD_06232014… Conditio…            2    1.02e8
+## # ... with 2 more variables: TechReplicate &lt;chr&gt;, Log10Intensity &lt;dbl&gt;</code></pre>
+<p>Note that we don’t include parentheses at the end of our call to <code>head()</code> above. When piping into a function with no additional arguments, you can call the function with or without parentheses (e.g. <code>head</code> or <code>head()</code>).</p>
+<p>If you want to display more data, you can use the <code>print()</code> function at the end of your chain with the argument <code>n</code> specifying the number of rows to display:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Log10Intensity =</span> <span class="kw">log10</span>(Intensity),
+               <span class="dt">Log10Intensity2 =</span> Log10Intensity <span class="op">*</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="dv">20</span>)</code></pre></div>
+<pre><code>## # A tibble: 36,321 x 9
+##    Protein      Log2Intensity Run         Condition BioReplicate Intensity
+##    &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt;     &lt;dbl&gt;
+##  1 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            1    1.18e8
+##  2 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            1    1.02e8
+##  3 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            1    1.01e8
+##  4 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            2    1.20e8
+##  5 sp|D6VTK4|S…          26.8 JD_0623201… Conditio…            2    1.16e8
+##  6 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            2    1.02e8
+##  7 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            3    1.04e8
+##  8 sp|D6VTK4|S…          26.5 JD_0623201… Conditio…            3    9.47e7
+##  9 sp|D6VTK4|S…          26.5 JD_0623201… Conditio…            3    9.69e7
+## 10 sp|D6VTK4|S…          26.6 JD_0623201… Conditio…            4    1.02e8
+## 11 sp|D6VTK4|S…          26.4 JD_0623201… Conditio…            4    8.77e7
+## 12 sp|D6VTK4|S…          26.7 JD_0623201… Conditio…            4    1.06e8
+## 13 sp|O13297|C…          24.7 JD_0623201… Conditio…            1    2.76e7
+## 14 sp|O13297|C…          24.7 JD_0623201… Conditio…            1    2.68e7
+## 15 sp|O13297|C…          24.7 JD_0623201… Conditio…            1    2.76e7
+## 16 sp|O13297|C…          24.5 JD_0623201… Conditio…            2    2.41e7
+## 17 sp|O13297|C…          24.7 JD_0623201… Conditio…            2    2.68e7
+## 18 sp|O13297|C…          24.6 JD_0623201… Conditio…            2    2.51e7
+## 19 sp|O13297|C…          24.4 JD_0623201… Conditio…            3    2.20e7
+## 20 sp|O13297|C…          24.6 JD_0623201… Conditio…            3    2.59e7
+## # ... with 3.63e+04 more rows, and 3 more variables: TechReplicate &lt;chr&gt;,
+## #   Log10Intensity &lt;dbl&gt;, Log10Intensity2 &lt;dbl&gt;</code></pre>
+<p>Let’s use a modified <code>iprg</code> data that contains missing values for the next example. It can be loaded with</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgNA&quot;</span>, <span class="st">&quot;./data/iprgna.rda&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;./data/iprgna.rda&quot;</span>)</code></pre></div>
+<blockquote>
+<p><strong>Challenge</strong></p>
+<p>Using the <code>iprgna</code> data repeat the creation of a new <code>Log10Intensisty</code> column.</p>
+</blockquote>
+<p><details></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprgna <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Log10Intensity =</span> <span class="kw">log10</span>(Intensity))</code></pre></div>
+<pre><code>## # A tibble: 36,321 x 7
+##    Protein      Run         Condition BioReplicate Intensity TechReplicate
+##    &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;        
+##  1 sp|D6VTK4|S… JD_0623201… Conditio…            1   NA      B            
+##  2 sp|D6VTK4|S… JD_0623201… Conditio…            1    1.02e8 C            
+##  3 sp|D6VTK4|S… JD_0623201… Conditio…            1   NA      A            
+##  4 sp|D6VTK4|S… JD_0623201… Conditio…            2    1.20e8 A            
+##  5 sp|D6VTK4|S… JD_0623201… Conditio…            2   NA      B            
+##  6 sp|D6VTK4|S… JD_0623201… Conditio…            2    1.02e8 C            
+##  7 sp|D6VTK4|S… JD_0623201… Conditio…            3    1.04e8 A            
+##  8 sp|D6VTK4|S… JD_0623201… Conditio…            3    9.47e7 B            
+##  9 sp|D6VTK4|S… JD_0623201… Conditio…            3    9.69e7 C            
+## 10 sp|D6VTK4|S… JD_0623201… Conditio…            4    1.02e8 B            
+## # ... with 36,311 more rows, and 1 more variable: Log10Intensity &lt;dbl&gt;</code></pre>
+<p></details></p>
+<p>The first few rows of the output are full of <code>NA</code>s, so if we wanted to remove those we could insert a <code>filter()</code> in the chain:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprgna <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Intensity)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Log10Intensity =</span> <span class="kw">log10</span>(Intensity))</code></pre></div>
+<pre><code>## # A tibble: 35,318 x 7
+##    Protein      Run         Condition BioReplicate Intensity TechReplicate
+##    &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;        
+##  1 sp|D6VTK4|S… JD_0623201… Conditio…            1    1.02e8 C            
+##  2 sp|D6VTK4|S… JD_0623201… Conditio…            2    1.20e8 A            
+##  3 sp|D6VTK4|S… JD_0623201… Conditio…            2    1.02e8 C            
+##  4 sp|D6VTK4|S… JD_0623201… Conditio…            3    1.04e8 A            
+##  5 sp|D6VTK4|S… JD_0623201… Conditio…            3    9.47e7 B            
+##  6 sp|D6VTK4|S… JD_0623201… Conditio…            3    9.69e7 C            
+##  7 sp|D6VTK4|S… JD_0623201… Conditio…            4    1.02e8 B            
+##  8 sp|D6VTK4|S… JD_0623201… Conditio…            4    8.77e7 C            
+##  9 sp|D6VTK4|S… JD_0623201… Conditio…            4    1.06e8 A            
+## 10 sp|O13297|C… JD_0623201… Conditio…            1    2.76e7 B            
+## # ... with 35,308 more rows, and 1 more variable: Log10Intensity &lt;dbl&gt;</code></pre>
+<p><code>is.na()</code> is a function that determines whether something is an <code>NA</code>. The <code>!</code> symbol negates the result, so we’re asking for everything that <em>is not</em> an <code>NA</code>.</p>
+</div>
+<div id="split-apply-combine-data-analysis-and-the-summarize-function" class="section level2">
+<h2><span class="header-section-number">4.4</span> Split-apply-combine data analysis and the summarize() function</h2>
+<p>Many data analysis tasks can be approached using the <em>split-apply-combine</em> paradigm: split the data into groups, apply some analysis to each group, and then combine the results. <strong><code>dplyr</code></strong> makes this very easy through the use of the <code>group_by()</code> function.</p>
+<div id="the-summarize-function" class="section level3 unnumbered">
+<h3>The <code>summarize()</code> function</h3>
+<p><code>group_by()</code> is often used together with <code>summarize()</code>, which collapses each group into a single-row summary of that group. <code>group_by()</code> takes as arguments the column names that contain the <strong>categorical</strong> variables for which you want to calculate the summary statistics. So to view the mean <code>weight</code> by sex:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprgna <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Condition) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_Intensity =</span> <span class="kw">mean</span>(Intensity))</code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   Condition  mean_Intensity
+##   &lt;chr&gt;               &lt;dbl&gt;
+## 1 Condition1             NA
+## 2 Condition2             NA
+## 3 Condition3             NA
+## 4 Condition4             NA</code></pre>
+<p>Unfortunately, the <code>mean</code> of any vector that contains even a single missing value is <code>NA</code>. We need to remove missing values before calculating the mean, which is done easily with the <code>na.rm</code> argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprgna <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Condition) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_Intensity =</span> <span class="kw">mean</span>(Intensity, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   Condition  mean_Intensity
+##   &lt;chr&gt;               &lt;dbl&gt;
+## 1 Condition1      65144912.
+## 2 Condition2      64439756.
+## 3 Condition3      62475797.
+## 4 Condition4      63616488.</code></pre>
+<p>You can also group by multiple columns:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprgna <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(TechReplicate, BioReplicate) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_Intensity =</span> <span class="kw">mean</span>(Intensity, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>## # A tibble: 12 x 3
+## # Groups:   TechReplicate [?]
+##    TechReplicate BioReplicate mean_Intensity
+##    &lt;chr&gt;                &lt;int&gt;          &lt;dbl&gt;
+##  1 A                        1      64891444.
+##  2 A                        2      63870255.
+##  3 A                        3      61648150.
+##  4 A                        4      63662564.
+##  5 B                        1      65563938.
+##  6 B                        2      65164270.
+##  7 B                        3      62758494.
+##  8 B                        4      64196979.
+##  9 C                        1      64978764.
+## 10 C                        2      64283727.
+## 11 C                        3      63020774.
+## 12 C                        4      62984686.</code></pre>
+</div>
+<div id="tallying" class="section level3 unnumbered">
+<h3>Tallying</h3>
+<p>When working with data, it is also common to want to know the number of observations found for each factor or combination of factors. For this, <strong><code>dplyr</code></strong> provides <code>tally()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprgna <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Condition) <span class="op">%&gt;%</span>
+<span class="st">  </span>tally</code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   Condition      n
+##   &lt;chr&gt;      &lt;int&gt;
+## 1 Condition1  9079
+## 2 Condition2  9081
+## 3 Condition3  9081
+## 4 Condition4  9080</code></pre>
+<p>Here, <code>tally()</code> is the action applied to the groups created by <code>group_by()</code> and counts the total number of records for each category.</p>
+<blockquote>
+<p><strong>Challenge</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>How many proteins of each technical replicate are there?</p></li>
+<li><p>Use <code>group_by()</code> and <code>summarize()</code> to find the mean, min, and max intensity for each condition.</p></li>
+<li><p>What are the proteins with the highest intensity in each condition?</p></li>
+</ol>
+</blockquote>
+<p><details></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Answer 1
+iprgna <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(TechReplicate) <span class="op">%&gt;%</span>
+<span class="st">    </span>tally</code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   TechReplicate     n
+##   &lt;chr&gt;         &lt;int&gt;
+## 1 A             12107
+## 2 B             12106
+## 3 C             12108</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Answer 2
+iprgna <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Intensity)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(Condition) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">mean_int =</span> <span class="kw">mean</span>(Intensity),
+                  <span class="dt">min_int =</span> <span class="kw">min</span>(Intensity),
+                  <span class="dt">max_int =</span> <span class="kw">max</span>(Intensity))</code></pre></div>
+<pre><code>## # A tibble: 4 x 4
+##   Condition   mean_int min_int    max_int
+##   &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Condition1 65144912. 254608. 2841953257
+## 2 Condition2 64439756. 259513. 2757471311
+## 3 Condition3 62475797.  88409. 2659018724
+## 4 Condition4 63616488.  84850. 2881057105</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Answer 3
+iprgna <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Intensity)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(Condition) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(Intensity <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(Intensity)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">arrange</span>(Intensity)</code></pre></div>
+<pre><code>## # A tibble: 4 x 6
+## # Groups:   Condition [4]
+##   Protein      Run          Condition BioReplicate Intensity TechReplicate
+##   &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;            &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;        
+## 1 sp|P48589|R… JD_06232014… Conditio…            3    2.66e9 B            
+## 2 sp|P48589|R… JD_06232014… Conditio…            2    2.76e9 B            
+## 3 sp|P48589|R… JD_06232014… Conditio…            1    2.84e9 A            
+## 4 sp|P48589|R… JD_06232014… Conditio…            4    2.88e9 A</code></pre>
+<p></details></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exploring-and-visualising-biomolecular-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plotting-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

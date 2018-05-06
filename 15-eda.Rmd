@@ -1,0 +1,44 @@
+# Exploring and visualising biomolecular data
+
+This chapter provides an overview of a typical omics data analysis,
+exploration of the data, statistical analysis and their associated
+visualisations. We will look into the respective figures and how to
+produce them in the later chapters.
+
+![A typical proteomics data processing and analysis workflow](./img/qprotda-with-plots.png)
+
+
+## TIC and BPC chromatograms {-}
+
+![](./img/chr.png)
+
+## Tracking an ion from the chromatogram to the MS2 spectra {-}
+
+See [here](https://lgatto.github.io/RforProteomics/articles/RProtVis.html#visualising-mass-spectrometry-data) for details and code.
+
+![](https://lgatto.github.io/RforProteomics/articles/RProtVis_files/figure-html/msdetailsplot-1.png)
+
+## Exploring the experimental design
+
+```{r crctab, echo=TRUE}
+pd <- pData(crc)
+table(cut(pd$Age, 5), pd$Gender)
+```
+
+```{r crchist, echo=TRUE}
+ggplot(pd, aes(x = Age)) + geom_histogram() + facet_grid(Gender ~ Group)
+```
+
+![](./img/niprg.png)
+
+## Raw data QC
+
+See [`?plotMzDelta`](https://lgatto.github.io/MSnbase/reference/plotMzDelta-methods.html) for details and code.
+
+![](./img/mzdelta.png)
+
+## Differential expression
+
+![]()
+
+![]()
