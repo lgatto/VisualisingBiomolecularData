@@ -197,6 +197,11 @@ M2 <- MSmap(rw, i:j, 100, 1000, 1)
 plot3D(M2)
 ```
 
+It is then possible to build maps for successive retention times
+(left) or M/Z ranges (right) and generate animations.
+
+![](https://lgatto.github.io/RforProteomics/articles/figures/msanim1.gif)![](https://lgatto.github.io/RforProteomics/articles/figures/msanim2.gif)
+
 ## Peptide spetrum matches
 
 ```{r psm1}
