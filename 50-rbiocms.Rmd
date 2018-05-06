@@ -93,7 +93,7 @@ basename(idf)
 
 ## Reading MS data into R
 
-### Raw data
+### Raw data {-}
 
 ```{r readraw, cache = TRUE}
 rw <- readMSData(rawf, mode = "onDisk")
@@ -104,7 +104,7 @@ rw
 chr <- chromatogram(rw)
 chr
 ```
-### Identification data
+### Identification data {-}
 
 ```{r readid}
 id <- readMzIdData(idf)
@@ -117,7 +117,7 @@ rw <- addIdentificationData(rw, idf)
 fvarLabels(rw)
 ```
 
-### Quantitative data
+### Quantitative data {-}
 
 ```{r readcsv}
 library("pRolocdata")
@@ -232,12 +232,11 @@ plots, summary statistics and filtering.
 
 ## MS imaging
 
-There are (at least) two packages, namely
-and `r Biocpkg("Cardinal")` that support MS imaging.
+There are (at least) two packages, namely and `r Biocpkg("Cardinal")`
+([www](http://cardinalmsi.org/))that support MS imaging.
 
 ![MALDIquant imaging - try the [shiny app](https://sgibb.shinyapps.io/ims-shiny/)](./img/mqmsi-1.png)
-![Cardinal imaging](./img/mqmsi-1.png)
-
+![Cardinal imaging](./img/cardinal.png)
 
 
 ## Missing values
