@@ -340,6 +340,17 @@ Here, the columns of the data represent fractions along a density
 gradient used to separate the sub-cellular proteome presented in this
 data.
 
+
+We will be using a simplified version of this data in the next
+chapters. Below, we retain the first replicate
+(`hyperLOPIT2015$Replicate == 1]`) and the marker proteins, i.e. those
+for which we already have confident sub-cellular localisation.
+
+```{r}
+hlm <- markerMSnSet(hyperLOPIT2015[, hyperLOPIT2015$Replicate == 1])
+dim(hlm)
+```
+
 ## Using `dplyr` for data manipulation
 
 > The following material is based on Data Carpentry's the [Data

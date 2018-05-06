@@ -41,3 +41,5 @@ bindrcpp
 Rtsne
 KernSmooth
 bioDist
+ComplexHeatmap
+patchwork

@@ -233,11 +233,17 @@ plots, summary statistics and filtering.
 ## MS imaging
 
 There are (at least) two packages, namely and `r Biocpkg("Cardinal")`
-([web site](http://cardinalmsi.org/)) that support MS imaging.
+([web site](http://cardinalmsi.org/))
+
+![Cardinal imaging](./img/cardinal.png)
+
+
+and `r CRANpkg("MALDIquant")`
+
 
 ![MALDIquant imaging - try the [shiny app](https://sgibb.shinyapps.io/ims-shiny/)](./img/mqmsi-1.png)
 
-![Cardinal imaging](./img/cardinal.png)
+that support MS imaging.
 
 
 ## Missing values
@@ -249,6 +255,7 @@ image2(is.na(naset), col = c("black", "white"))
 naplot(naset)
 ```
 ## PCA plots
+
 
 ```{r plot2D}
 par(mfrow = c(1, 2))
