@@ -117,7 +117,7 @@ rw <- addIdentificationData(rw, idf)
 fvarLabels(rw)
 ```
 
-### Quantitative dat
+### Quantitative data
 
 ```{r readcsv}
 library("pRolocdata")
@@ -197,10 +197,13 @@ M2 <- MSmap(rw, i:j, 100, 1000, 1)
 plot3D(M2)
 ```
 
-It is then possible to build maps for successive retention times
-(left) or M/Z ranges (right) and generate animations.
+It is then possible to build maps for successive retention times or
+M/Z ranges and generate animations (see
+[here])(https://lgatto.github.io/RforProteomics/articles/RProtVis.html#visualising-mass-spectrometry-data).
+for code)
 
-![](https://lgatto.github.io/RforProteomics/articles/figures/msanim1.gif)![](https://lgatto.github.io/RforProteomics/articles/figures/msanim2.gif)
+![](https://lgatto.github.io/RforProteomics/articles/figures/msanim1.gif)
+![](https://lgatto.github.io/RforProteomics/articles/figures/msanim2.gif)
 
 ## Peptide spetrum matches
 
@@ -216,6 +219,26 @@ plot(itraqdata[[i]], s, main = s)
 ```{r psm2}
 plot(itraqdata[[41]], itraqdata[[42]])
 ```
+
+See also the `r CRANpkg("protViz")` package for MS2 spectra annotation
+and visualisation.
+
+The `r Biocpkg("MSGFgui")` package provides an interactive interface
+to navigate and investigate identification data using interactive
+plots, summary statistics and filtering.
+
+![](https://lgatto.github.io/RforProteomics/articles/figures/MSGFgui.png)
+
+
+## MS imaging
+
+There are (at least) two packages, namely
+and `r Biocpkg("Cardinal")` that support MS imaging.
+
+![MALDIquant imaging - try the [shiny app](https://sgibb.shinyapps.io/ims-shiny/)](./img/mqmsi-1.png)
+![Cardinal imaging](./img/mqmsi-1.png)
+
+
 
 ## Missing values
 
