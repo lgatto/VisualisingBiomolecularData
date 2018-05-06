@@ -455,7 +455,7 @@ abline(h = 15, col = "red")
 In R we can us the `cutree` function to
 
 - cut the tree at a specific height: `cutree(hcl, h = 15)`
-- cut the tree to get a certain number of clusters: `cutree(hcl, k = 4)`
+- cut the tree to get a certain number of clusters: `cutree(hcl, k = 3)`
 
 > Challenge
 >
@@ -513,7 +513,7 @@ as well as supervised methods. Below, we show how centering and
 scaling the data (row-wise, hence the transposition) affects the
 euclidean distance but not the Pearson correlation distance.
 
-```{r hclscale}
+```{r hclscale, fig.with = 10, fig.height = 7}
 e2 <- t(scale(t(e)))
 ## or manually
 ## e2 <- (e - rowMeans(e)) / genefilter::rowSds(e)
@@ -528,15 +528,13 @@ plot(hclust(cor.dist(e2)), main = "Pearson correlational distance (scaled/centre
 Finally, the clustering method itself (the `method` argument in
 `hclust`) will also influence the results:
 
-```{r}
-ALL_sign <- ALL_bcrneg[fData(ALL_bcrneg)$adj.P.Val < 0.01, ]
-par(mfrow = c(2, 2))
+```{r allsignhcl, fig.height = 4, fig.width = 10}
+ALL_sign <- ALL_bcrneg[fData(ALL_bcrneg)$adj.P.Val < 0.005, ]
+par(mfrow = c(1, 3))
 plot(hclust(dist(ALL_sign), method = "complete"))
 plot(hclust(dist(ALL_sign), method = "single"))
-plot(hclust(dist(ALL_sign), method = "median"))
 plot(hclust(dist(ALL_sign), method = "average"))
 ```
-
 
 ## k-means clustering
 
@@ -559,48 +557,33 @@ where
 
 > Challenge:
 >
-> - To learn about k-means, let's use the `iris` dataset with the sepal and
->   petal length variables only (to facilitate visualisation). Create
->   such a data matrix and name it `x`
-
-```{r solirisx, echo=FALSE}
-i <- grep("Length", names(iris))
-x <- iris[, i]
-```
-
-> - Run the k-means algorithm on the newly generated data `x`, save
->   the results in a new variable `cl`, and explore its output when
->   printed.
-
-```{r solkmcl, echo=FALSE}
-cl <- kmeans(x, 3, nstart = 10)
-```
-
+> - Run the k-means algorithm on the reduce `hlm` spatial proteomics
+>   dataset, save the results in a new variable `cl`, and explore its
+>   output when printed. Set the number of clusters to be the number
+>   of annotated sub-cellular niches.
+>
 > - The actual results of the algorithms, i.e. the cluster membership
 >   can be accessed in the `clusters` element of the clustering result
->   output. Use it to colour the inferred clusters to generate a figure
->   like that shown below.
-
-```{r solkmplot, echo=FALSE, fig.cap = "k-means algorithm on sepal and petal lengths"}
-plot(x, col = cl$cluster)
-```
+>   output. Use it to colour the inferred clusters to generate a
+>   figure like that shown below.
 
 <details>
-```{r soliris, eval=FALSE}
-i <- grep("Length", names(iris))
-x <- iris[, i]
-cl <- kmeans(x, 3, nstart = 10)
-plot(x, col = cl$cluster)
+```{r solkmplot, echo=TRUE}
+cl <- kmeans(MSnbase::exprs(hlm), length(getMarkerClasses(hlm)), nstart = 10)
+pairs(MSnbase::exprs(hlm)[, c(1, 3, 5, 9)], col = cl$cluster)
 ```
 </details>
 
 ### How does k-means work {-}
 
+Below, we use a manually generated dataset with 3 clusters.
+
 **Initialisation**: randomly assign class membership
 
-
 ```{r kmworksinit, fig.cap="k-means random intialisation"}
-set.seed(12)
+set.seed(123)
+x <- data.frame(x = rnorm(100, 5, 4),
+		y = rnorm(100, 5, 4))
 init <- sample(3, nrow(x), replace = TRUE)
 plot(x, col = init)
 ```
@@ -653,12 +636,11 @@ For each cluster results:
 Note that this is a **local minimum**; there is no guarantee to obtain
 a global minimum.
 
-> Challenge:
->
-> Repeat k-means on our `x` data multiple times, setting the number of
-> iterations to 1 or greater and check whether you repeatedly obtain
-> the same results. Try the same with random data of identical
-> dimensions.
+
+Below, we see that if we repeat k-means on our `x` data multiple
+times, setting the number of iterations to 1 or greater and check
+whether you repeatedly obtain the same results.
+
 
 <details>
 ```{r selrep, fig.width = 12, fig.cap = "Different k-means results on the same (random) data"}
@@ -666,19 +648,10 @@ cl1 <- kmeans(x, centers = 3, nstart = 10)
 cl2 <- kmeans(x, centers = 3, nstart = 10)
 table(cl1$cluster, cl2$cluster)
 
-cl1 <- kmeans(x, centers = 3, nstart = 1)
-cl2 <- kmeans(x, centers = 3, nstart = 1)
-table(cl1$cluster, cl2$cluster)
+cl3 <- kmeans(x, centers = 3, nstart = 1)
+cl4 <- kmeans(x, centers = 3, nstart = 1)
+table(cl3$cluster, cl4$cluster)
 
-set.seed(42)
-xr <- matrix(rnorm(prod(dim(x))), ncol = ncol(x))
-cl1 <- kmeans(xr, centers = 3, nstart = 1)
-cl2 <- kmeans(xr, centers = 3, nstart = 1)
-table(cl1$cluster, cl2$cluster)
-diffres <- cl1$cluster != cl2$cluster
-par(mfrow = c(1, 2))
-plot(xr, col = cl1$cluster, pch = ifelse(diffres, 19, 1))
-plot(xr, col = cl2$cluster, pch = ifelse(diffres, 19, 1))
 ```
 </details>
 
@@ -688,8 +661,9 @@ plot(xr, col = cl2$cluster, pch = ifelse(diffres, 19, 1))
 2. Record total within SS for each value of k.
 3. Choose k at the *elbow* position, as illustrated below.
 
-```{r kmelbow, echo=FALSE, fig.cap = ""}
-ks <- 1:5
+```{r kmelbow}
+ks <- 5:20
+x <- MSnbase::exprs(hlm)
 tot_within_ss <- sapply(ks, function(k) {
 	cl <- kmeans(x, k, nstart = 10)
 	cl$tot.withinss
@@ -698,22 +672,6 @@ plot(ks, tot_within_ss, type = "b",
 	 ylab = "Total within squared distances",
 	 xlab = "Values of k tested")
 ```
-
-> Challenge
->
-> Calculate the total within sum of squares for k from 1 to 5 for our
-> `x` test data, and reproduce the figure above.
-
-<details>
-```{r solkmelbow, eval = FALSE}
-ks <- 1:5
-tot_within_ss <- sapply(ks, function(k) {
-	cl <- kmeans(x, k, nstart = 10)
-	cl$tot.withinss
-})
-plot(ks, tot_within_ss, type = "b")
-```
-</details>
 
 There exists other metrics, other than the total within cluster sum of
 squares that can be applied, such as the gap statistic (see
@@ -827,45 +785,32 @@ grid()
 
 In R, we can use the `prcomp` function.
 
-Let's explore PCA on the `iris` data. While it contains only 4
-variables, is already becomes difficult to visualise the 3 groups
-along all these dimensions.
+Let's apply PCA on the `mulvey2015norm` samples.
 
-```{r irispairs, fig.cap=""}
-pairs(iris[, -5], col = iris[, 5], pch = 19)
-```
-
-Let's use PCA to reduce the dimension.
-
-```{r irispca}
-irispca <- prcomp(iris[, -5])
-summary(irispca)
+```{r pca0}
+pca <- prcomp(MSnbase::exprs(t(mulvey2015norm)))
+summary(pca)
 ```
 
 A summary of the `prcomp` output shows that along PC1 along, we are
-able to retain over 92% of the total variability in the data.
-
-```{r histpc1, echo=FALSE, fig.cap="Iris data along PC1."}
-## boxplot(irispca$x[, 1] ~ iris[, 5], ylab = "PC1")
-hist(irispca$x[iris$Species == "setosa", 1],
-	 xlim = range(irispca$x[, 1]), col = "#FF000030",
-	 xlab = "PC1", main = "PC1 variance explained 92%")
-rug(irispca$x[iris$Species == "setosa", 1], col = "red")
-hist(irispca$x[iris$Species == "versicolor", 1], add = TRUE, col = "#00FF0030")
-rug(irispca$x[iris$Species == "versicolor", 1], col = "green")
-hist(irispca$x[iris$Species == "virginica", 1],  add = TRUE, col = "#0000FF30")
-rug(irispca$x[iris$Species == "virginica", 1], col = "blue")
-```
+able to retain over 75% of the total variance in the data.
 
 ### Visualisation {-}
 
 A **biplot** features all original points re-mapped (rotated) along the
 first two PCs as well as the original features as vectors along the
-same PCs. Feature vectors that are in the same direction in PC space
-are also correlated in the original data space.
+same PCs.
 
-```{r irisbiplot, fig.cap=""}
-biplot(irispca)
+```{r mulveybiplot, fig.cap=""}
+biplot(pca)
+```
+
+Feature vectors that are in the same direction in PC space are also
+correlated in the original data space. This can be seen below when
+running PCA on the protein (rather than the samples).
+
+```{r pca2}
+biplot(prcomp(exprs(mulvey2015norm)))
 ```
 
 One important piece of information when using PCA is the proportion of
@@ -878,33 +823,34 @@ In the code chunk below, I extract the standard deviations from the
 PCA result to calculate the variances, then obtain the percentage of
 and cumulative variance along the PCs.
 
-```{r irispcavar}
-var <- irispca$sdev^2
+```{r pcavar}
+var <- pca$sdev^2
 (pve <- var/sum(var))
 cumsum(pve)
 ```
 
 > Challenge
 >
-> - Repeat the PCA analysis on the iris dataset above, reproducing the
->   biplot and preparing a barplot of the percentage of variance
->   explained by each PC.
+> - Repeat the PCA analysis above, reproducing the biplot and
+>   preparing a barplot of the percentage of variance explained by
+>   each PC.
+>
 > - It is often useful to produce custom figures using the data
 >   coordinates in PCA space, which can be accessed as `x` in the
 >   `prcomp` object. Reproduce the PCA plots below, along PC1 and PC2
 >   and PC3 and PC4 respectively.
 
-```{r irispcax, echo=FALSE, fig.width=12, fig.cap=""}
+```{r pcax, echo=FALSE, fig.width=12, fig.cap=""}
 par(mfrow = c(1, 2))
-plot(irispca$x[, 1:2], col = iris$Species)
-plot(irispca$x[, 3:4], col = iris$Species)
+plot(pca$x[, 1:2], col = mulvey2015norm$times)
+plot(pca$x[, 3:4], col = mulvey2015norm$times)
 ```
 
 <details>
-```{r irispcaxcol, eval=FALSE}
+```{r pcaxcol, eval=FALSE}
 par(mfrow = c(1, 2))
-plot(irispca$x[, 1:2], col = iris$Species)
-plot(irispca$x[, 3:4], col = iris$Species)
+plot(pca$x[, 1:2], col = mulvey2015norm$times)
+plot(pca$x[, 3:4], col = mulvey2015norm$times)
 ```
 </details>
 
@@ -992,19 +938,36 @@ barplot(cumsum(pca$sdev^2/sum(pca$sdev^2) ),
 ```
 </details>
 
-Produce a PCA plot of the `mulvey2015norm` data to display the
-grouping of replicates and time points.
+Repeat the kmeans clustering analysis on the `hml` data above and
+visualise the results on a PCA plot.
 
 <details>
 ```{r pcachallenge2}
-pca2 <- prcomp(t(MSnbase::exprs(mulvey2015norm)), scale = TRUE, center = TRUE)
-plot(pca2$x[, 1:2], col = mulvey2015norm$times, cex = 3)
-grid()
-text(pca2$x[, 1], pca2$x[, 2], mulvey2015norm$rep)
-legend("bottomright", legend = unique(mulvey2015norm$times),
-	   pch = 1, col = 1:6, bty = "n")
+cl <- kmeans(MSnbase::exprs(hlm), length(getMarkerClasses(hlm)), nstart = 10)
+pca <- prcomp(MSnbase::exprs(hlm), scale = TRUE, center = TRUE)
+plot(pca$x[, 1:2], col = cl$cluster)
 ```
 </details>
+
+
+Produce a PCA with the proteins of the complete `hyperLopit2015`
+experiment. Label the results using `final.assignment` feature
+variable (corresponding to the proteins assignment to they
+sub-cellular localisation) and scale to size of the points based on
+the assignment scores available in the `svm.score` feature variable
+(this might need to transform the scores to make differences
+visisble).
+
+<details>
+```{r pcachallenge3}
+x <- prcomp(MSnbase::exprs(hyperLOPIT2015))
+plot(x$x[, 1:2],
+	 pch = ifelse(fData(hyperLOPIT2015)$final.assignment == "unknown", 1, 19),
+	 col = as.factor(fData(hyperLOPIT2015)$final.assignment),
+	 cex = exp(fData(hyperLOPIT2015)$svm.score) - 1)
+```
+</details>
+
 
 ## t-Distributed Stochastic Neighbour Embedding
 
@@ -1018,15 +981,6 @@ for
 [very high dimensional data](https://distill.pub/2016/misread-tsne/).
 
 In R, we can use the `Rtsne` function from the `r CRANpkg("Rtsne")`.
-Before, we however need to remove any duplicated entries in the
-dataset.
-
-```{r iristsne, fig.cap=""}
-library("Rtsne")
-uiris <- unique(iris[, 1:5])
-iristsne <- Rtsne(uiris[, 1:4])
-plot(iristsne$Y, col = uiris$Species)
-```
 
 As with PCA, the data can be scaled and centred prior the running
 t-SNE (see the `pca_center` and `pca_scale` arguments). The algorithm
@@ -1050,7 +1004,7 @@ localisation.
 As a comparison, below are the same data with PCA (left) and t-SNE
 (right).
 
-![PCA and t-SNE on [hyperLOPIT](https://www.ncbi.nlm.nih.gov/pubmed/28471460)(https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png)
+![PCA and t-SNE on hyperLOPIT](https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png)
 
 ## PCA loadings vs differential expression
 

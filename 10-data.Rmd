@@ -336,6 +336,15 @@ data(hyperLOPIT2015)
 dim(hyperLOPIT2015)
 ```
 
+In addition to the quantitative data, another important piece of data
+here are the spatial markers, proteins for which we can confidently
+assign them a sub-cellular location apriori. These markers are defined
+in the `markers` feature variable:
+
+```{r}
+table(fData(hyperLOPIT2015)$markers)
+```
+
 Here, the columns of the data represent fractions along a density
 gradient used to separate the sub-cellular proteome presented in this
 data.
@@ -343,12 +352,13 @@ data.
 
 We will be using a simplified version of this data in the next
 chapters. Below, we retain the first replicate
-(`hyperLOPIT2015$Replicate == 1]`) and the marker proteins, i.e. those
-for which we already have confident sub-cellular localisation.
+(`hyperLOPIT2015$Replicate == 1]`) and the marker proteins (using the
+`markerMSnSet` function):
 
 ```{r}
 hlm <- markerMSnSet(hyperLOPIT2015[, hyperLOPIT2015$Replicate == 1])
 dim(hlm)
+getMarkerClasses(hlm) ## no unknowns anymore
 ```
 
 ## Using `dplyr` for data manipulation
