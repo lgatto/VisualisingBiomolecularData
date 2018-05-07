@@ -51,6 +51,8 @@ A lot of space is wasted by repeating the same sets of plots in the
 upper right and lower left triangles of the matrix. See the `pairs`
 documentation page.
 
+See also `lattice::splom` and `GGally::ggairs` for alternatives.
+
 A general technique to overcome overplotting is to set the alpha scale
 (transparency), of to use `graphics::smoothScatter`:
 

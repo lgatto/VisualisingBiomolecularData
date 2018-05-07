@@ -25,7 +25,6 @@
 <meta name="author" content="Laurent Gatto">
 
 
-<meta name="date" content="2018-05-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -461,7 +460,9 @@ iprg <span class="op">%&gt;%</span>
 ## # ... with 3.63e+04 more rows, and 3 more variables: TechReplicate &lt;chr&gt;,
 ## #   Log10Intensity &lt;dbl&gt;, Log10Intensity2 &lt;dbl&gt;</code></pre>
 <p>Let’s use a modified <code>iprg</code> data that contains missing values for the next example. It can be loaded with</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgNA&quot;</span>, <span class="st">&quot;./data/iprgna.rda&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(<span class="st">&quot;./data/iprgna.rda&quot;</span>))
+    <span class="kw">download.file</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgNA&quot;</span>,
+                  <span class="st">&quot;./data/iprgna.rda&quot;</span>)
 <span class="kw">load</span>(<span class="st">&quot;./data/iprgna.rda&quot;</span>)</code></pre></div>
 <blockquote>
 <p><strong>Challenge</strong></p>

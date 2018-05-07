@@ -25,7 +25,6 @@
 <meta name="author" content="Laurent Gatto">
 
 
-<meta name="date" content="2018-05-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -248,6 +247,7 @@ y &lt;-<span class="st"> </span>iprg3[[<span class="dv">3</span>]]
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairs</span>(iprg3[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">log =</span> <span class="st">&quot;xy&quot;</span>)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/pairs-1.png" width="672" /></p>
 <p>A lot of space is wasted by repeating the same sets of plots in the upper right and lower left triangles of the matrix. See the <code>pairs</code> documentation page.</p>
+<p>See also <code>lattice::splom</code> and <code>GGally::ggairs</code> for alternatives.</p>
 <p>A general technique to overcome overplotting is to set the alpha scale (transparency), of to use <code>graphics::smoothScatter</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
 <span class="kw">plot</span>(x, y, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;#00000010&quot;</span>, <span class="dt">log =</span> <span class="st">&quot;xy&quot;</span>)

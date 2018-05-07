@@ -201,7 +201,9 @@ Let's use a modified `iprg` data that contains missing values for the
 next example. It can be loaded with
 
 ```{r downlaodiprgna}
-download.file("http://bit.ly/VisBiomedDataIprgNA", "./data/iprgna.rda")
+if (!file.exists("./data/iprgna.rda"))
+	download.file("http://bit.ly/VisBiomedDataIprgNA",
+				  "./data/iprgna.rda")
 load("./data/iprgna.rda")
 ```
 
