@@ -22,8 +22,9 @@ pks0 <- c("limma",
           "ggvis",
           "shiny",
           "RforProteomics",
-          "ComplexHeatmap",
-          "thomasp85/patchwork")
+          ## "thomasp85/patchwork"
+          "ComplexHeatmap")
+
 pks <- sub("^.+\\/", "", pks0) ## pkg names only
 
 ## installed packages
