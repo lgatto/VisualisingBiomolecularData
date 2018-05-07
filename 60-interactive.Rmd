@@ -157,6 +157,20 @@ knitr::include_app("https://lgatto.shinyapps.io/christoforou2015/",
 				   height = "650px")
 ```
 
+Reference:
+
+- Gatto L, Breckels LM, Wieczorek S, Burger T, Lilley
+  KS. Mass-spectrometry-based spatial proteomics data analysis using
+  pRoloc and pRolocdata. Bioinformatics. 2014 May 1;30(9):1322-4. doi:
+  [10.1093/bioinformatics/btu013](https://doi.org/10.1093/bioinformatics/btu013). Epub
+  2014 Jan 11. PubMed PMID: 24413670; PubMed Central PMCID:
+  PMC3998135.
+
+- Breckels LM, Mulvey CM, Lilley KS and Gatto L. A Bioconductor
+  workflow for processing and analysing spatial proteomics data
+  [version 1; referees: 1 approved, 1 approved with
+  reservations]. F1000Research 2016, 5:2926 (doi:
+  [10.12688/f1000research.10411.1](https://f1000research.com/articles/5-2926/))
 
 ### Introduction {-}
 
