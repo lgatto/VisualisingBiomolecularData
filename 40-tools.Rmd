@@ -989,7 +989,7 @@ As with PCA, the data can be scaled and centred prior the running
 t-SNE (see the `pca_center` and `pca_scale` arguments). The algorithm
 is stochastic, and will produce different results at each repetition.
 
-### Parameter tuning
+### Parameter tuning {-}
 
 t-SNE has two important parameters that can substantially influence
 the clustering of the data
@@ -1008,6 +1008,44 @@ As a comparison, below are the same data with PCA (left) and t-SNE
 (right).
 
 ![PCA and t-SNE on hyperLOPIT](https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png)
+
+## The curse of dimensionality
+
+There is one very well documented feature of high dimension data,
+known as the curse of dimensionality. When the numbers of dimensions
+increase, data become increasingly sparse, the definition of distance
+or density becomes difficult to define and more and more points become
+outliers.
+
+Below, we demonstrate how the number of outliers increases with the
+number of dimenstion ([source](https://lgatto.github.io/curse-dimensionality/)):
+
+> The simulation generates N points in hypercubes of d dimensions and
+> counts how many of those points are outliers, defined as being in
+> the 1% outer shell of the space. In 1 dimension, we have 1% of the
+> uniformely distributed points that are outliers. In 50 dimension,
+> there are already 60% of the points that are outliers; in 100
+> dimensions, almost 90% of the points are outliers.
+
+```{r curse, cache = FALSE}
+d <- 1:200
+N <- 1000
+dat <- lapply(d, function(i) replicate(i, runif(N)))
+
+nout <- function(m) mean(apply(m, 1, function(i) any(i < 0.01 | i > 0.99)))
+
+res <- sapply(dat, nout)
+
+plot(res, type = "l",
+	 xlab = "Number of dimensions",
+	 ylab = "Proportion of 1% outliers",
+	 main = "Curse of Dimensionality")
+grid()
+```
+
+See [this](https://www.nature.com/articles/nri.2017.150) comment
+scientific correspondance for a recent discussion related to flow and
+mass cytometry data.
 
 ## PCA loadings vs differential expression
 

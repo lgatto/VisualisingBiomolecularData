@@ -55,8 +55,8 @@ addLegend(t(mulvey2015norm), fcol = "times", where = "bottomright", cex = 2)
 
 ```{r norm, echo = FALSE, fig.width = 8, fig.height = 8}
 par(mfrow = c(2, 1))
-boxplot(exprs(hyperLOPIT2015))
-boxplot(exprs(normalise(hyperLOPIT2015, method = "quantiles")),
+boxplot(MSnbase::exprs(hyperLOPIT2015))
+boxplot(MSnbase::exprs(normalise(hyperLOPIT2015, method = "quantiles")),
 		main = "Variance stabilisation normalisation")
 ```
 
@@ -64,7 +64,7 @@ boxplot(exprs(normalise(hyperLOPIT2015, method = "quantiles")),
 setStockcol(NULL)
 cls <- getStockcol()
 i <- seq_len(ncol(mulvey2015norm))
-plot(density(exprs(mulvey2015norm)), ylim = c(0, 5), type = "n",
+plot(density(MSnbase::exprs(mulvey2015norm)), ylim = c(0, 5), type = "n",
 	 main = "Mulvey et al. 2015")
 tmp <- sapply(i, function(ii) {
 	lines(density(MSnbase::exprs(mulvey2015norm[, ii])),
