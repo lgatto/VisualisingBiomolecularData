@@ -22,6 +22,7 @@ pks0 <- c("limma",
           "ggvis",
           "shiny",
           "RforProteomics",
+          "Rtsne",
           ## "thomasp85/patchwork"
           "ComplexHeatmap")
 

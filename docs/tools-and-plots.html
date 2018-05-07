@@ -146,7 +146,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.1.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#fold-changes"><i class="fa fa-check"></i><b>6.1.2</b> Fold changes</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#comparing-samples-and-linear-models"><i class="fa fa-check"></i><b>6.2</b> Comparing samples and linear models</a></li>
-<li class="chapter" data-level="6.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#plots-for-statistical-analyses"><i class="fa fa-check"></i><b>6.3</b> Plots for statistical analyses</a></li>
+<li class="chapter" data-level="6.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#plots-for-statistical-analyses"><i class="fa fa-check"></i><b>6.3</b> Plots for statistical analyses</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#p-value-distributions"><i class="fa fa-check"></i><b>6.3.1</b> P-value distributions</a></li>
+<li class="chapter" data-level="6.3.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#volcano-plot"><i class="fa fa-check"></i><b>6.3.2</b> Volcano plot</a></li>
+<li class="chapter" data-level="6.3.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#treating-the-plot-as-a-statistic"><i class="fa fa-check"></i><b>6.3.3</b> Treating the plot as a statistic</a></li>
+</ul></li>
 <li class="chapter" data-level="6.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualising-intersections"><i class="fa fa-check"></i><b>6.4</b> Visualising intersections</a></li>
 <li class="chapter" data-level="6.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#unsupervised-learning"><i class="fa fa-check"></i><b>6.5</b> Unsupervised learning</a></li>
 <li class="chapter" data-level="6.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#hierarchical-clustering"><i class="fa fa-check"></i><b>6.6</b> Hierarchical clustering</a><ul>
@@ -170,7 +174,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.9" data-path="tools-and-plots.html"><a href="tools-and-plots.html#t-distributed-stochastic-neighbour-embedding"><i class="fa fa-check"></i><b>6.9</b> t-Distributed Stochastic Neighbour Embedding</a><ul>
 <li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#parameter-tuning"><i class="fa fa-check"></i>Parameter tuning</a></li>
 </ul></li>
-<li class="chapter" data-level="6.10" data-path="tools-and-plots.html"><a href="tools-and-plots.html#the-curse-of-dimensionality"><i class="fa fa-check"></i><b>6.10</b> The curse of dimensionality</a></li>
+<li class="chapter" data-level="6.10" data-path="tools-and-plots.html"><a href="tools-and-plots.html#the-curse-of-dimensionality"><i class="fa fa-check"></i><b>6.10</b> The curse of dimensionality</a><ul>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#as-the-number-of-noisy-proteins-increases-signal-may-be-lost"><i class="fa fa-check"></i>As the number of (noisy) proteins increases, signal may be lost</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#spurious-correlations-may-arise"><i class="fa fa-check"></i>Spurious correlations may arise</a></li>
+</ul></li>
 <li class="chapter" data-level="6.11" data-path="tools-and-plots.html"><a href="tools-and-plots.html#pca-loadings-vs-differential-expression"><i class="fa fa-check"></i><b>6.11</b> PCA loadings vs differential expression</a></li>
 <li class="chapter" data-level="6.12" data-path="tools-and-plots.html"><a href="tools-and-plots.html#heatmaps"><i class="fa fa-check"></i><b>6.12</b> Heatmaps</a></li>
 </ul></li>
@@ -369,6 +376,8 @@ lmod &lt;-<span class="st"> </span><span class="kw">lm</span>(y3 <span class="op
 </div>
 <div id="plots-for-statistical-analyses" class="section level2">
 <h2><span class="header-section-number">6.3</span> Plots for statistical analyses</h2>
+<div id="p-value-distributions" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> P-value distributions</h3>
 <p>Let’s use the <code>ALL_bclneg</code> dataset, that we already have analysed with <em><a href="http://bioconductor.org/packages/limma">limma</a></em> in the <em>Data</em> chapter.</p>
 <p>Whenever performing a statistical test, it is important to quality check the distribution of non-adjusted p-values. Below, we see an enrichment of small p-values, as opposed to a uniform distribution to be expected under the null hypothesis of absence of changes between groups.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fvarLabels</span>(ALL_bcrneg)</code></pre></div>
@@ -381,6 +390,9 @@ lmod &lt;-<span class="st"> </span><span class="kw">lm</span>(y3 <span class="op
 
 </div>
 <p>Another important visualisation for statistical results are the <em>Volcano plots</em>, that show the relationship between the significance of the individual tests (adjusted p-values) and their magnitude of the effect (log2 fold-changes).</p>
+</div>
+<div id="volcano-plot" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Volcano plot</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lfc &lt;-<span class="st"> </span><span class="kw">fData</span>(ALL_bcrneg)<span class="op">$</span>logFC
 bh &lt;-<span class="st"> </span><span class="kw">fData</span>(ALL_bcrneg)<span class="op">$</span>adj.P.Val
 <span class="kw">plot</span>(lfc, <span class="op">-</span><span class="kw">log10</span>(bh),
@@ -406,6 +418,19 @@ sign &lt;-<span class="st"> </span><span class="kw">abs</span>(lfc) <span class=
 <p>It is also possible to identify and label individual points on the plot using the <code>identify</code> function</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">identify</span>(lfc, <span class="op">-</span><span class="kw">log10</span>(bh), <span class="kw">featureNames</span>(ALL_bcrneg))</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/volc3-1.png" width="672" /></p>
+</div>
+<div id="treating-the-plot-as-a-statistic" class="section level3">
+<h3><span class="header-section-number">6.3.3</span> Treating the plot as a statistic</h3>
+<p>From</p>
+<blockquote>
+<p>Mahbubul Majumder, Heike Hofmann &amp; [Dianne Cook(<a href="http://www.dicook.org/" class="uri">http://www.dicook.org/</a>) (2013) Validation of Visual Statistical Inference, Applied to Linear Models, Journal of the American Statistical Association, 108:503, 942-956, DOI: <a href="https://www.tandfonline.com/doi/full/10.1080/01621459.2013.808157?scroll=top&amp;needAccess=true">10.1080/01621459.2013.808157</a>.</p>
+</blockquote>
+<div class="figure">
+<img src="img/uasa_a_808157_o_f0004g.jpg" />
+
+</div>
+<p><strong>Figure 4</strong> Lineup plot (m = 20) using scatterplots for testing H 0: β k = 0, where covariate Xk is continuous. One of these plots is the plot of the actual data, and the remaining are null plots, produced by simulating data from a null model that assumes H 0 is true. Which plot is the most different from the others, in the sense that there is the steepest slope? (The position of the actual data plot is provided in Section 5.2.) The online version of this figure is in color.</p>
+</div>
 </div>
 <div id="visualising-intersections" class="section level2">
 <h2><span class="header-section-number">6.4</span> Visualising intersections</h2>
@@ -908,7 +933,7 @@ pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(MSnbase<span cl
 <h2><span class="header-section-number">6.9</span> t-Distributed Stochastic Neighbour Embedding</h2>
 <p><a href="https://lvdmaaten.github.io/tsne/">t-Distributed Stochastic Neighbour Embedding</a> (t-SNE) is a <em>non-linear</em> dimensionality reduction technique, i.e. that different regions of the data space will be subjected to different transformations. t-SNE will compress small distances, thus bringing close neighbours together, and will ignore large distances. It is particularly well suited for <a href="https://distill.pub/2016/misread-tsne/">very high dimensional data</a>.</p>
 <p>In R, we can use the <code>Rtsne</code> function from the <em><a href="https://CRAN.R-project.org/package=Rtsne">Rtsne</a></em>.</p>
-<p>As with PCA, the data can be scaled and centred prior the running t-SNE (see the <code>pca_center</code> and <code>pca_scale</code> arguments). The algorithm is stochastic, and will produce different results at each repetition.</p>
+<p>The algorithm is stochastic, and will produce different results at each repetition.</p>
 <div id="parameter-tuning" class="section level3 unnumbered">
 <h3>Parameter tuning</h3>
 <p>t-SNE has two important parameters that can substantially influence the clustering of the data</p>
@@ -923,9 +948,22 @@ pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(MSnbase<span cl
 </div>
 <p>As a comparison, below are the same data with PCA (left) and t-SNE (right).</p>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png" alt="PCA and t-SNE on hyperLOPIT" />
-<p class="caption">PCA and t-SNE on hyperLOPIT</p>
+<img src="https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png" />
+
 </div>
+<blockquote>
+<p><strong>Challenge</strong></p>
+<p>Apply PCA and t-SNE to a data set (for example the <code>hyperLOPIT2015</code> or <code>hlm</code> data).</p>
+</blockquote>
+<p><details></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;Rtsne&quot;</span>)
+pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(hlm), <span class="dt">scale =</span> <span class="ot">TRUE</span>, <span class="dt">center =</span> <span class="ot">TRUE</span>)
+rtsne &lt;-<span class="st"> </span><span class="kw">Rtsne</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(hlm))
+
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
+<span class="kw">plot</span>(pca<span class="op">$</span>x[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">main =</span> <span class="st">&quot;PCA&quot;</span>)
+<span class="kw">plot</span>(rtsne<span class="op">$</span>Y[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">main =</span> <span class="st">&quot;t-SNE&quot;</span>)</code></pre></div>
+<p></details></p>
 </div>
 </div>
 <div id="the-curse-of-dimensionality" class="section level2">
@@ -949,7 +987,38 @@ res &lt;-<span class="st"> </span><span class="kw">sapply</span>(dat, nout)
      <span class="dt">main =</span> <span class="st">&quot;Curse of Dimensionality&quot;</span>)
 <span class="kw">grid</span>()</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/curse-1.png" width="672" /></p>
+<p>From</p>
+<blockquote>
+<p>Jianqing Fan, Fang Han, Han Liu; Challenges of Big Data analysis, National Science Review, Volume 1, Issue 2, 1 June 2014, Pages 293–314, <a href="https://academic.oup.com/nsr/article/1/2/293/1397586">https://doi.org/10.1093/nsr/nwt032</a>.</p>
+</blockquote>
+<div id="as-the-number-of-noisy-proteins-increases-signal-may-be-lost" class="section level3 unnumbered">
+<h3>As the number of (noisy) proteins increases, signal may be lost</h3>
+<ul>
+<li>Simulate n = 100 observations from 2 classes.</li>
+<li>Each observation is a point in m = 2, 40, 200, 1000 dimensions.</li>
+<li>Only first 10 dimensions are informative.</li>
+<li>Plot first 2 principle components.</li>
+<li>Informative data should show a good separation between the two classes.</li>
+</ul>
+<div class="figure">
+<img src="img/fan-nsr-1.png" />
+
+</div>
+</div>
+<div id="spurious-correlations-may-arise" class="section level3 unnumbered">
+<h3>Spurious correlations may arise</h3>
+<ul>
+<li>Simulate = 60 observations.</li>
+<li>Each observation is in d = 800, 6400 dimensions</li>
+<li>Left: max absolute correlation the first dimension and any other dimension</li>
+<li>Right: max absolute correlation the first dimension and a linear combination of any 4</li>
+</ul>
+<div class="figure">
+<img src="img/fan-nsr-2.png" />
+
+</div>
 <p>See <a href="https://www.nature.com/articles/nri.2017.150">this</a> comment scientific correspondance for a recent discussion related to flow and mass cytometry data.</p>
+</div>
 </div>
 <div id="pca-loadings-vs-differential-expression" class="section level2">
 <h2><span class="header-section-number">6.11</span> PCA loadings vs differential expression</h2>

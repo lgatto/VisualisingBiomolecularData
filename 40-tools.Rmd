@@ -197,6 +197,8 @@ plot(lmod)
 
 ## Plots for statistical analyses
 
+### P-value distributions
+
 Let's use the `ALL_bclneg` dataset, that we already have analysed with
 `r Biocpkg("limma")` in the *Data* chapter.
 
@@ -221,6 +223,9 @@ Another important visualisation for statistical results are the
 *Volcano plots*, that show the relationship between the significance
 of the individual tests (adjusted p-values) and their magnitude of the
 effect (log2 fold-changes).
+
+
+### Volcano plot
 
 
 ```{r volc}
@@ -275,6 +280,27 @@ abline(v = c(-1, 1), lty = "dotted")
 abline(h = -log10(0.05), lty = "dotted")
 text(lfc[i], -log10(bh)[i], featureNames(ALL_bcrneg)[i], pos = 2)
 ```
+
+### Treating the plot as a statistic
+
+From
+
+> Mahbubul Majumder, Heike Hofmann & [Dianne
+> Cook(http://www.dicook.org/) (2013) Validation of Visual Statistical
+> Inference, Applied to Linear Models, Journal of the American
+> Statistical Association, 108:503, 942-956, DOI:
+> [10.1080/01621459.2013.808157](https://www.tandfonline.com/doi/full/10.1080/01621459.2013.808157?scroll=top&needAccess=true).
+
+
+![](./img/uasa_a_808157_o_f0004g.jpg)
+
+**Figure 4** Lineup plot (m = 20) using scatterplots for testing H 0:
+β k = 0, where covariate Xk is continuous. One of these plots is the
+plot of the actual data, and the remaining are null plots, produced by
+simulating data from a null model that assumes H 0 is true. Which plot
+is the most different from the others, in the sense that there is the
+steepest slope? (The position of the actual data plot is provided in
+Section 5.2.) The online version of this figure is in color.
 
 ## Visualising intersections
 
@@ -985,9 +1011,8 @@ for
 
 In R, we can use the `Rtsne` function from the `r CRANpkg("Rtsne")`.
 
-As with PCA, the data can be scaled and centred prior the running
-t-SNE (see the `pca_center` and `pca_scale` arguments). The algorithm
-is stochastic, and will produce different results at each repetition.
+The algorithm is stochastic, and will produce different results at
+each repetition.
 
 ### Parameter tuning {-}
 
@@ -1007,7 +1032,24 @@ localisation.
 As a comparison, below are the same data with PCA (left) and t-SNE
 (right).
 
-![PCA and t-SNE on hyperLOPIT](https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png)
+![](https://raw.githubusercontent.com/lgatto/visualisation/master/figure/tsneex-1.png)
+
+> **Challenge**
+>
+> Apply PCA and t-SNE to a data set (for example the `hyperLOPIT2015`
+> or `hlm` data).
+
+<details>
+```{r, eval=FALSE}
+library("Rtsne")
+pca <- prcomp(MSnbase::exprs(hlm), scale = TRUE, center = TRUE)
+rtsne <- Rtsne(MSnbase::exprs(hlm))
+
+par(mfrow = c(1, 2))
+plot(pca$x[, 1:2], main = "PCA")
+plot(rtsne$Y[, 1:2], main = "t-SNE")
+```
+</details>
 
 ## The curse of dimensionality
 
@@ -1042,6 +1084,35 @@ plot(res, type = "l",
 	 main = "Curse of Dimensionality")
 grid()
 ```
+
+From
+
+> Jianqing Fan, Fang Han, Han Liu; Challenges of Big Data analysis,
+> National Science Review, Volume 1, Issue 2, 1 June 2014, Pages
+> 293–314,
+> [https://doi.org/10.1093/nsr/nwt032](https://academic.oup.com/nsr/article/1/2/293/1397586).
+
+### As the number of (noisy) proteins increases, signal may be lost {-}
+
+- Simulate n = 100 observations from 2 classes.
+- Each observation is a point in m = 2, 40, 200, 1000 dimensions.
+- Only first 10 dimensions are informative.
+- Plot first 2 principle components.
+- Informative data should show a good separation between the two
+  classes.
+
+![](./img/fan-nsr-1.png)
+
+### Spurious correlations may arise {-}
+
+- Simulate = 60 observations.
+- Each observation is in d = 800, 6400 dimensions
+- Left: max absolute correlation the first dimension and any other
+  dimension
+- Right: max absolute correlation the first dimension and a linear
+  combination of any 4
+
+![](./img/fan-nsr-2.png)
 
 See [this](https://www.nature.com/articles/nri.2017.150) comment
 scientific correspondance for a recent discussion related to flow and
