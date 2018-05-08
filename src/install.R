@@ -3,6 +3,7 @@
 ## packages/repos to install
 pks0 <- c("limma",
           "bioDist",
+          "remotes",
           "ggplot2",
           "MSstats",
           "msdata",
