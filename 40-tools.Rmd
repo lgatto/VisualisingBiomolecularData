@@ -1288,7 +1288,17 @@ generate interactive heatmaps.
 
 ```{r heatmaply, eval = FALSE}
 library("heatmaply")
-heatmaply(x[1:100, ])
+heatmaply(MSnbase::exprs(hlm)[1:100, ])
+```
+
+```{r heatmaply2, eval = FALSE}
+heatmaply(MSnbase::exprs(hlm)[1:100, ],
+		  RowSideColors = as.factor(fData(hlm)$markers[1:100]))
+```
+
+```{r d3hm, eval = FALSE}
+library("d3heatmap")
+d3heatmap(MSnbase::exprs(hlm))
 ```
 
 Reference:

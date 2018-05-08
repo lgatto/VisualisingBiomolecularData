@@ -1125,7 +1125,11 @@ ha3 &lt;-<span class="st"> </span><span class="kw">rowAnnotation</span>(<span cl
 <p><img src="VisualisingBiomolecularData_files/figure-html/complexheatmap-1.png" width="672" /></p>
 <p>Finally, the <em><a href="https://github.com/talgalili/heatmaply">heatmaply</a></em> and <em><a href="https://github.com/rstudio/d3heatmap">d3heatmap</a></em> packages can be used to generate interactive heatmaps.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;heatmaply&quot;</span>)
-<span class="kw">heatmaply</span>(x[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, ])</code></pre></div>
+<span class="kw">heatmaply</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(hlm)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, ])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">heatmaply</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(hlm)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, ],
+          <span class="dt">RowSideColors =</span> <span class="kw">as.factor</span>(<span class="kw">fData</span>(hlm)<span class="op">$</span>markers[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;d3heatmap&quot;</span>)
+<span class="kw">d3heatmap</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(hlm))</code></pre></div>
 <p>Reference:</p>
 <blockquote>
 <p>Key M. <em>A tutorial in displaying mass spectrometry-based proteomic data using heat maps</em>. BMC Bioinformatics. 2012;13 Suppl 16:S10. doi: <a href="https://doi.org/10.1186/1471-2105-13-S16-S10">10.1186/1471-2105-13-S16-S10</a>. Epub 2012 Nov 5. Review. PMID: 23176119; PMCID: PMC3489527.</p>

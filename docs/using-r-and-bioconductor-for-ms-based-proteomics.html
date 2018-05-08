@@ -486,7 +486,7 @@ rw</code></pre></div>
 ##  Number of spectra: 994 
 ##  MSn retention times: 45:27 - 47:6 minutes
 ## - - - Processing information - - -
-## Data loaded [Tue May  8 02:33:10 2018] 
+## Data loaded [Tue May  8 03:04:53 2018] 
 ##  MSnbase version: 2.6.0 
 ## - - - Meta data  - - -
 ## phenoData
@@ -519,8 +519,8 @@ rw2</code></pre></div>
 ##  Number of spectra: 35 
 ##  MSn retention times: 45:27 - 45:30 minutes
 ## - - - Processing information - - -
-## Data loaded [Tue May  8 02:33:10 2018] 
-## Filter: select parent/children scans for 21945 [Tue May  8 02:33:10 2018] 
+## Data loaded [Tue May  8 03:04:53 2018] 
+## Filter: select parent/children scans for 21945 [Tue May  8 03:04:53 2018] 
 ##  MSnbase version: 2.6.0 
 ## - - - Meta data  - - -
 ## phenoData
@@ -590,7 +590,7 @@ M2 &lt;-<span class="st"> </span><span class="kw">MSmap</span>(rw, i<span class=
 <pre><code>## 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot3D</span>(M2)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/map3dMS2-1.png" width="672" /></p>
-<p>It is then possible to build maps for successive retention times or M/Z ranges and generate animations (see [here])(<a href="https://lgatto.github.io/RforProteomics/articles/RProtVis.html#visualising-mass-spectrometry-data" class="uri">https://lgatto.github.io/RforProteomics/articles/RProtVis.html#visualising-mass-spectrometry-data</a>). for code)</p>
+<p>It is then possible to build maps for successive retention times or M/Z ranges and generate animations (see <a href="https://lgatto.github.io/RforProteomics/articles/RProtVis.html#visualising-mass-spectrometry-data">here</a>) for code).</p>
 <p><img src="https://lgatto.github.io/RforProteomics/articles/figures/msanim1.gif" /> <img src="https://lgatto.github.io/RforProteomics/articles/figures/msanim2.gif" /></p>
 </div>
 <div id="extracted-ion-chromatograms" class="section level2">
@@ -626,16 +626,8 @@ serine_cent &lt;-<span class="st"> </span>data_cent <span class="op">%&gt;%</spa
 <span class="st">    </span><span class="kw">filterMz</span>(mzr)
 
 ## Plot the centroided data for serine
-<span class="kw">plot</span>(serine_cent, <span class="dt">type =</span> <span class="st">&quot;XIC&quot;</span>)</code></pre></div>
-<pre><code>## Warning in trimMz_Spectrum(object, mzlim = mz, msLevel. = msLevel., ...): No data points between 106.039871 and 106.059871 for spectrum with
-## acquisition number 632. Returning empty spectrum.</code></pre>
-<pre><code>## Warning in trimMz_Spectrum(object, mzlim = mz, msLevel. = msLevel., ...): No data points between 106.039871 and 106.059871 for spectrum with
-## acquisition number 639. Returning empty spectrum.</code></pre>
-<pre><code>## Warning in trimMz_Spectrum(object, mzlim = mz, msLevel. = msLevel., ...): No data points between 106.039871 and 106.059871 for spectrum with
-## acquisition number 640. Returning empty spectrum.</code></pre>
-<pre><code>## Warning in trimMz_Spectrum(object, mzlim = mz, msLevel. = msLevel., ...): No data points between 106.039871 and 106.059871 for spectrum with
-## acquisition number 670. Returning empty spectrum.</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">abline</span>(<span class="dt">h =</span> serine_mz, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre></div>
+<span class="kw">plot</span>(serine_cent, <span class="dt">type =</span> <span class="st">&quot;XIC&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> serine_mz, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/centroiding-1.png" width="672" /></p>
 <p>For more details, see the <a href="https://lgatto.github.io/MSnbase/articles/MSnbase-centroiding.html"><em>MSnbase: centroiding of profile-mode MS data</em></a> vignette.</p>
 </div>
@@ -707,6 +699,14 @@ s &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class
 <span class="kw">plot2D</span>(<span class="kw">t</span>(mulvey2015norm), <span class="dt">fcol =</span> <span class="st">&quot;times&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Time course - samples&quot;</span>)
 <span class="kw">addLegend</span>(<span class="kw">t</span>(mulvey2015norm), <span class="dt">where =</span> <span class="st">&quot;bottomright&quot;</span>, <span class="dt">fcol =</span> <span class="st">&quot;times&quot;</span>)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/plot2D-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))
+<span class="kw">plot2D</span>(naset, <span class="dt">fcol =</span> <span class="ot">NULL</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;NA dropped&quot;</span>)</code></pre></div>
+<pre><code>## Removed 388 row(s) with &#39;NA&#39; values.
+## Consider using &#39;nipals&#39; to retain all features.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot2D</span>(<span class="kw">filterNA</span>(naset), <span class="dt">fcol =</span> <span class="ot">NULL</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;NA filtered&quot;</span>)
+<span class="kw">plot2D</span>(naset, <span class="dt">fcol =</span> <span class="ot">NULL</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;nipals&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;NIPALS&quot;</span>)</code></pre></div>
+<pre><code>## Loading required namespace: nipals</code></pre>
+<p><img src="VisualisingBiomolecularData_files/figure-html/plot2Dnipal-1.png" width="672" /></p>
 
 </div>
 </div>
