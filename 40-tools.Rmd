@@ -48,8 +48,30 @@ pairs(iprg3[2:6], log = "xy")
 ```
 
 A lot of space is wasted by repeating the same sets of plots in the
-upper right and lower left triangles of the matrix. See the `pairs`
-documentation page.
+upper right and lower left triangles of the matrix. Each can be
+populated independently by setting the `upper.panel` and `lower.panel`
+arguments. The `diag.panel` can be set to set the plots along the
+diagonal. The upper and lower panels are set by a function with
+signature `function(x, y, ...)` while the diagonal panel is controled
+by a function with signature `function(x, ...)`.
+
+> **Challenge**
+>
+> Update the output of `pairs` by defining the upper and lower panels
+> differently. You can use the `panel.smooth` or define your own
+> function. See also the `pairs` documentation page for a `panel.cor`
+> function that displays the correlation.
+
+<details>
+```{r pairsln}
+my.panel <- function(x, y, ...) {
+	points(x, y, col = "#00000030", ...)
+	grid()
+	abline(0, 1, col = "red")
+}
+pairs(iprg3[, 2:5], upper.panel = my.panel, log = "xy")
+```
+</details>
 
 See also `lattice::splom` and `GGally::ggairs` for alternatives.
 
@@ -139,9 +161,8 @@ See also this
 [post](http://simplystatistics.org/2015/08/12/correlation-is-not-a-measure-of-reproducibility/)
 on the *Simply Statistics* blog.
 
-`abline(0, 1)` can be used to add a line with intercept 0 and
-slop 1. It we want to add the line that models the data linearly, we
-can calculate the parameters using the `lm` function:
+It we want to add the line that models the data linearly, we can
+calculate the parameters using the `lm` function:
 
 ```{r lmod}
 lmod <- lm(r2 ~ r1)
@@ -185,7 +206,7 @@ See also `?influence.measures`.
 >    visualise/check the model.
 
 <details>
-```{r anscombechallenge}
+```{r anscombechallenge, echo = FALSE}
 x3 <- anscombe[, 3]
 y3 <- anscombe[, 7]
 lmod <- lm(y3 ~ x3)
@@ -194,6 +215,32 @@ par(mfrow = c(2, 2))
 plot(lmod)
 ```
 </details>
+
+
+### Challenge
+
+Write a panel function that calculates and plots the linear model
+between two samples. Bonus: highlight points that have extreme
+residuals.
+
+<details>
+```{r linmodsol}
+my.panel <- function(x, y, ...) {
+	sel <- !is.na(x) & !is.na(y)
+	x <- x[sel]
+	y <- y[sel]
+	lmod <- lm(y ~ x)
+	r <- residuals(lmod)/predict(lmod)
+	q1 <- quantile(r, 0.01)
+	q2 <- quantile(r, 0.99)
+	inq <- r > q1 & r < q2
+	points(x, y, col = ifelse(inq, "black", "steelblue"))
+	grid()
+	abline(lmod, col = "red")
+}
+pairs(log10(iprg3[, 2:5]), upper.panel = my.panel)
+```
+<details>
 
 ## Plots for statistical analyses
 
@@ -286,9 +333,9 @@ text(lfc[i], -log10(bh)[i], featureNames(ALL_bcrneg)[i], pos = 2)
 From
 
 > Mahbubul Majumder, Heike Hofmann & [Dianne
-> Cook(http://www.dicook.org/) (2013) Validation of Visual Statistical
-> Inference, Applied to Linear Models, Journal of the American
-> Statistical Association, 108:503, 942-956, DOI:
+> Cook](http://www.dicook.org/) (2013) Validation of Visual
+> Statistical Inference, Applied to Linear Models, Journal of the
+> American Statistical Association, 108:503, 942-956, DOI:
 > [10.1080/01621459.2013.808157](https://www.tandfonline.com/doi/full/10.1080/01621459.2013.808157?scroll=top&needAccess=true).
 
 
@@ -370,16 +417,17 @@ Visualising intersections with `UpSetR` shines with more that 4 sets,
 as Venn diagrams become practically useless.
 
 
-> **Challenge**
->
-> Generate a bigger dataset containing 10 sets. Try to generate Venn
-> and upset diagrams as shown above.
->
-> ```{r upsetchallenge}
-> set.seed(123)
-> x <- replicate(10, sample(featureNames(crc), 35), simplify = FALSE)
-> names(x) <- LETTERS[1:10]
-> ```
+### Challenge
+
+Generate a bigger dataset containing 10 sets. Try to generate Venn
+and upset diagrams as shown above.
+
+
+```{r upsetchallenge}
+set.seed(123)
+x <- replicate(10, sample(featureNames(crc), 35), simplify = FALSE)
+names(x) <- LETTERS[1:10]
+```
 
 When the number of sets become larger, the options above, as well as
 `nsets`, the number of sets (default is 5) and `nintersects`, the
@@ -565,6 +613,29 @@ plot(hclust(dist(ALL_sign), method = "single"))
 plot(hclust(dist(ALL_sign), method = "average"))
 ```
 
+### Challenge {-}
+
+Produce a hierarchical cluster showing relations between mean
+organelle profiles from the `hlm` data, such as shown below. To
+colour the labels, convert the `hclust` object to a dendrogram with
+`as.dendrogram` and set the label colours using `set(dendrogram,
+"labels_colors", col_vector))` from the
+[`dendextend`](https://github.com/talgalili/dendextend/) package.
+
+```{r makehclust, echo=FALSE}
+par(mar = c(15, 3, 0, 0))
+pRoloc::mrkHClust(hlm)
+```
+
+<details>
+```{r mkrhclust, eval=FALSE}
+x <- exprs(hlm)
+cm <- by(x, fData(hlm)$markers, colMeans)
+x <- do.call(rbind, as.list(cm))
+plot(hclust(dist(x)))
+```
+</details>
+
 ## k-means clustering
 
 The k-means clustering algorithms aims at partitioning *n*
@@ -710,16 +781,17 @@ information criteria.
 ### Challenge {-}
 
 Let's use what we have learned to cluster the `r nrow(mulvey2015norm)`
-proteins from the `mulvey2015norm` data in 20 clusters.
+proteins from the `mulvey2015norm` data in 16 clusters.
 
 1. Use k-means to cluster the `mulvey2015norm` data, setting `centers
-   = 20`. Take care in repeating the clustering more than once.
+   = 20`. Make sure you repeat the clustering more than once (setting
+   `nstart`).
 
 2. To plot the expression profiles for the 20 clusters, I suggest to
    use `gplot2`. Do do so, create a `r nrow(mulvey2015norm)` proteins
    by `r ncol(mulvey2015norm)` sample dataframe (or tibble), appending
    the protein accession numbers (from the feature data - you can use
-   the `MSnbase::ms2df` helper function.) and cluster numbers as 2
+   the `MSnbase::ms2df` helper function) and cluster numbers as 2
    additional columns.
 
 3. Use `gather` to transform the data in a long format.
@@ -739,7 +811,8 @@ cl <- kmeans(MSnbase::exprs(mulvey2015norm),
 
 x <- ms2df(mulvey2015norm, fcol = "Accession")
 x[["cluster"]] <- cl$cluster
-tb <- gather(x, key = sample, value = expression, -cluster, -Accession) %>%
+tb <- gather(x, key = sample, value = expression,
+			 -cluster, -Accession) %>%
 	as_tibble
 
 ## Check dimensions
@@ -822,7 +895,7 @@ summary(pca)
 ```
 
 A summary of the `prcomp` output shows that along PC1 along, we are
-able to retain over 75% of the total variance in the data.
+able to retain about 75% of the total variance in the data.
 
 ### Visualisation {-}
 
@@ -941,7 +1014,7 @@ so that the distance between each category are approximately equal to 1.
 
 ### Challenge {-}
 
-Produce the PCA plot for the `ALL_bcrneg` samples, and annotating the
+Produce the PCA plot for the `ALL_bcrneg` samples, and annotate the
 `NEG` and `BCR/ABL` samples on the plot. Do you think that the two
 first components offer enough resolution?
 
@@ -1209,7 +1282,8 @@ Heatmap(x,
 		bottom_annotation_height = unit(3, "cm")) + ha3
 ```
 
-Finally, the `r Githubpkg("talgalili/heatmaply")` can be used to
+Finally, the `r Githubpkg("talgalili/heatmaply")` and
+`r Githubpkg("rstudio/d3heatmap")` packages can be used to
 generate interactive heatmaps.
 
 ```{r heatmaply, eval = FALSE}

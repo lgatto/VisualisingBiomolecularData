@@ -163,3 +163,7 @@ visualization of intersecting sets and their
 properties. Bioinformatics. 2017 Sep 15;33(18):2938-2940. doi:
 [10.1093/bioinformatics/btx364](https://doi.org/10.1093/bioinformatics/btx364). PMID:
 28645171; PMCID: PMC5870712.
+
+
+[Data visualization: A view of every Points of View
+column](http://blogs.nature.com/methagora/2013/07/data-visualization-points-of-view.html)

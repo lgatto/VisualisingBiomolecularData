@@ -205,6 +205,54 @@ for code)
 ![](https://lgatto.github.io/RforProteomics/articles/figures/msanim1.gif)
 ![](https://lgatto.github.io/RforProteomics/articles/figures/msanim2.gif)
 
+## Extracted ion chromatograms
+
+```{r serinedata}
+library("MSnbase")
+library("msdata")
+library("magrittr")
+
+fl <- dir(system.file("sciex", package = "msdata"), full.names = TRUE)[2]
+basename(fl)
+data_prof <- readMSData(fl, mode = "onDisk", centroided = FALSE)
+```
+
+```{r serine}
+## Define the mz and retention time ranges
+serine_mz <- 106.049871
+mzr <- c(serine_mz - 0.01, serine_mz + 0.01)
+rtr <- c(175, 187)
+
+## Filtering the object
+serine <- data_prof %>%
+	filterRt(rtr) %>%
+	filterMz(mzr)
+```
+
+```{r plotxic}
+plot(serine, type = "XIC")
+abline(h = serine_mz, col = "red", lty = 2)
+abline(v = rtime(serine)[22], lty = 2)
+plot(serine[[22]])
+```
+
+```{r centroiding}
+data_cent <- data_prof %>%
+	pickPeaks()
+
+serine_cent <- data_cent %>%
+	filterRt(rtr) %>%
+	filterMz(mzr)
+
+## Plot the centroided data for serine
+plot(serine_cent, type = "XIC")
+abline(h = serine_mz, col = "red", lty = 2)
+```
+
+For more details, see the [*MSnbase: centroiding of profile-mode MS
+data*](https://lgatto.github.io/MSnbase/articles/MSnbase-centroiding.html)
+vignette.
+
 ## Peptide spetrum matches
 
 ```{r psm1}
@@ -254,6 +302,7 @@ image2(naset)
 image2(is.na(naset), col = c("black", "white"))
 naplot(naset)
 ```
+
 ## PCA plots
 
 
