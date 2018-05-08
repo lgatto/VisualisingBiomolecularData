@@ -146,7 +146,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.1.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#fold-changes"><i class="fa fa-check"></i><b>6.1.2</b> Fold changes</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="tools-and-plots.html"><a href="tools-and-plots.html#comparing-samples-and-linear-models"><i class="fa fa-check"></i><b>6.2</b> Comparing samples and linear models</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge"><i class="fa fa-check"></i><b>6.2.1</b> Challenge</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge"><i class="fa fa-check"></i>Challenge</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#plots-for-statistical-analyses"><i class="fa fa-check"></i><b>6.3</b> Plots for statistical analyses</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#p-value-distributions"><i class="fa fa-check"></i><b>6.3.1</b> P-value distributions</a></li>
@@ -154,7 +154,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.3.3" data-path="tools-and-plots.html"><a href="tools-and-plots.html#treating-the-plot-as-a-statistic"><i class="fa fa-check"></i><b>6.3.3</b> Treating the plot as a statistic</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="tools-and-plots.html"><a href="tools-and-plots.html#visualising-intersections"><i class="fa fa-check"></i><b>6.4</b> Visualising intersections</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge-1"><i class="fa fa-check"></i><b>6.4.1</b> Challenge</a></li>
+<li class="chapter" data-level="" data-path="tools-and-plots.html"><a href="tools-and-plots.html#challenge-1"><i class="fa fa-check"></i>Challenge</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="tools-and-plots.html"><a href="tools-and-plots.html#unsupervised-learning"><i class="fa fa-check"></i><b>6.5</b> Unsupervised learning</a></li>
 <li class="chapter" data-level="6.6" data-path="tools-and-plots.html"><a href="tools-and-plots.html#hierarchical-clustering"><i class="fa fa-check"></i><b>6.6</b> Hierarchical clustering</a><ul>
@@ -386,8 +386,8 @@ affy<span class="op">::</span><span class="kw">ma.plot</span>(A, M)</code></pre>
 ## Multiple R-squared:  0.6663, Adjusted R-squared:  0.6292 
 ## F-statistic: 17.97 on 1 and 9 DF,  p-value: 0.002176</code></pre>
 <p><img src="VisualisingBiomolecularData_files/figure-html/anscombechallenge-1.png" width="672" /> </details></p>
-<div id="challenge" class="section level3">
-<h3><span class="header-section-number">6.2.1</span> Challenge</h3>
+<div id="challenge" class="section level3 unnumbered">
+<h3>Challenge</h3>
 <p>Write a panel function that calculates and plots the linear model between two samples. Bonus: highlight points that have extreme residuals.</p>
 <p><details></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.panel &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...) {
@@ -463,6 +463,42 @@ sign &lt;-<span class="st"> </span><span class="kw">abs</span>(lfc) <span class=
 
 </div>
 <p><strong>Figure 4</strong> Lineup plot (m = 20) using scatterplots for testing H 0: β k = 0, where covariate Xk is continuous. One of these plots is the plot of the actual data, and the remaining are null plots, produced by simulating data from a null model that assumes H 0 is true. Which plot is the most different from the others, in the sense that there is the steepest slope? (The position of the actual data plot is provided in Section 5.2.) The online version of this figure is in color.</p>
+<blockquote>
+<p><strong>Challenge</strong></p>
+<p>Randomise the BCR/ABL and NEG labels in the <code>ALL_bcrneg</code> dataset and repeat the statistical analysis as described in the <em>Data</em> chapter. Repeat this 11 times and compare the p-value histograms of the actual data and the randomised replicates. Can you spot the original data?</p>
+</blockquote>
+<p><details></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+    <span class="kw">require</span>(<span class="st">&quot;limma&quot;</span>)
+    ## randomlise groups
+    <span class="kw">fData</span>(x) &lt;-<span class="st"> </span><span class="kw">fData</span>(x)[, <span class="kw">numeric</span>()]
+    x<span class="op">$</span>mol.biol &lt;-<span class="st"> </span><span class="kw">sample</span>(x<span class="op">$</span>mol.biol)
+
+    design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span><span class="st"> </span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>x<span class="op">$</span>mol.biol)
+    <span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BCR.ABL&quot;</span>, <span class="st">&quot;NEG&quot;</span>)
+
+    ## Step1: linear model. lmFit is a wrapper around lm in R
+    fit1 &lt;-<span class="st"> </span><span class="kw">lmFit</span>(x, design)
+
+    ## Step 2: fit contrasts: find genes that respond to estrogen
+    contrast.matrix &lt;-<span class="st"> </span><span class="kw">makeContrasts</span>(BCR.ABL<span class="op">-</span>NEG, <span class="dt">levels =</span> design)
+    fit2 &lt;-<span class="st"> </span><span class="kw">contrasts.fit</span>(fit1, contrast.matrix)
+
+    ## Step3: add empirical Bayes moderation
+    fit3 &lt;-<span class="st"> </span><span class="kw">eBayes</span>(fit2)
+
+    ## Extract results and set them to the feature data
+    res &lt;-<span class="st"> </span><span class="kw">topTable</span>(fit3, <span class="dt">n =</span> <span class="ot">Inf</span>)
+    res[, <span class="st">&quot;P.Value&quot;</span>]
+}
+
+res &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">11</span>, <span class="kw">f</span>(ALL_bcrneg))
+res &lt;-<span class="st"> </span><span class="kw">cbind</span>(res, <span class="kw">fData</span>(ALL_bcrneg)<span class="op">$</span>P.Value)
+res &lt;-<span class="st"> </span>res[, <span class="kw">sample</span>(<span class="kw">ncol</span>(res))]
+
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>))
+tmp &lt;-<span class="st"> </span><span class="kw">apply</span>(res, <span class="dv">2</span>, hist, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/randompvals-1.png" width="960" /> </details></p>
 </div>
 </div>
 <div id="visualising-intersections" class="section level2">
@@ -517,8 +553,8 @@ x3[<span class="dv">1</span>, <span class="st">&quot;D&quot;</span>] &lt;-<span 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">upset</span>(x3, <span class="dt">empty.intersections =</span> <span class="st">&quot;on&quot;</span>)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/upse2-9.png" width="672" /></p>
 <p>Visualising intersections with <code>UpSetR</code> shines with more that 4 sets, as Venn diagrams become practically useless.</p>
-<div id="challenge-1" class="section level3">
-<h3><span class="header-section-number">6.4.1</span> Challenge</h3>
+<div id="challenge-1" class="section level3 unnumbered">
+<h3>Challenge</h3>
 <p>Generate a bigger dataset containing 10 sets. Try to generate Venn and upset diagrams as shown above.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
 x &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10</span>, <span class="kw">sample</span>(<span class="kw">featureNames</span>(crc), <span class="dv">35</span>), <span class="dt">simplify =</span> <span class="ot">FALSE</span>)

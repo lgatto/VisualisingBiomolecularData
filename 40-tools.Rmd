@@ -217,7 +217,7 @@ plot(lmod)
 </details>
 
 
-### Challenge
+### Challenge {-}
 
 Write a panel function that calculates and plots the linear model
 between two samples. Bonus: highlight points that have extreme
@@ -349,6 +349,50 @@ is the most different from the others, in the sense that there is the
 steepest slope? (The position of the actual data plot is provided in
 Section 5.2.) The online version of this figure is in color.
 
+
+> **Challenge**
+>
+> Randomise the BCR/ABL and NEG labels in the `ALL_bcrneg` dataset and
+> repeat the statistical analysis as described in the *Data*
+> chapter. Repeat this 11 times and compare the p-value histograms of
+> the actual data and the randomised replicates. Can you spot the
+> original data?
+
+<details>
+```{r randompvals, fig.width = 10, fig.height=8}
+f <- function(x) {
+	require("limma")
+	## randomlise groups
+	fData(x) <- fData(x)[, numeric()]
+	x$mol.biol <- sample(x$mol.biol)
+
+	design <- model.matrix(~ 0 + x$mol.biol)
+	colnames(design) <- c("BCR.ABL", "NEG")
+
+	## Step1: linear model. lmFit is a wrapper around lm in R
+	fit1 <- lmFit(x, design)
+
+	## Step 2: fit contrasts: find genes that respond to estrogen
+	contrast.matrix <- makeContrasts(BCR.ABL-NEG, levels = design)
+	fit2 <- contrasts.fit(fit1, contrast.matrix)
+
+	## Step3: add empirical Bayes moderation
+	fit3 <- eBayes(fit2)
+
+	## Extract results and set them to the feature data
+	res <- topTable(fit3, n = Inf)
+	res[, "P.Value"]
+}
+
+res <- replicate(11, f(ALL_bcrneg))
+res <- cbind(res, fData(ALL_bcrneg)$P.Value)
+res <- res[, sample(ncol(res))]
+
+par(mfrow = c(3, 4))
+tmp <- apply(res, 2, hist, main = "")
+```
+</details>
+
 ## Visualising intersections
 
 Venn and Euler diagrams are popular representation when comparing sets
@@ -417,7 +461,7 @@ Visualising intersections with `UpSetR` shines with more that 4 sets,
 as Venn diagrams become practically useless.
 
 
-### Challenge
+### Challenge {-}
 
 Generate a bigger dataset containing 10 sets. Try to generate Venn
 and upset diagrams as shown above.
