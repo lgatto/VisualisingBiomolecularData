@@ -152,6 +152,23 @@ p <- ggplot(data = x,
 ggplotly(p)
 ```
 
+Two examples using MS data
+
+```{r plotly3}
+library("MSnbase")
+data(itraqdata)
+ms2 <- plot(itraqdata[[1]], full = TRUE)
+ggplotly(ms2) ## zoom in on iTRAQ4 reporter ions
+```
+
+```{r plotly4}
+library("msdata")
+f <- proteomics(full.names = TRUE, pattern = "TMT11")
+rw <- readMSData(f, mode = "onDisk")
+ms1 <- plot(rw[[1]])
+ggplotly(ms1) ## zoom in on isotopic envelope
+```
+
 See the [plotly for R](https://plotly-book.cpsievert.me/) book for more details.
 
 ## Interactive apps
