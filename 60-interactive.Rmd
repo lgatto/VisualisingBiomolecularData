@@ -1,6 +1,6 @@
 # Interactive visualisation
 
-## Interactivity graphs
+## Interactivity graphs with `ggiz`
 
 > This section is based on the on-line [`ggvis` documentation](http://ggvis.rstudio.com/)
 
@@ -13,26 +13,25 @@ incorporates shiny's reactive programming model (see later) and
 `dplyr`'s grammar of data transformation.
 
 ```{r ggvis1, eval = FALSE}
+crcdf <- readr::read_csv("./data/CRC_train.csv")
 library("ggvis")
-sml <- sample(nrow(surveys_complete), 1e3)
-surveys_sml <- surveys_complete[sml, ]
 ```
 
 ```{r ggvis2, eval = FALSE}
-p <- ggvis(surveys_sml, x = ~weight, y = ~hindfoot_length)
+p <- ggvis(crcdf, x = ~A1AG2, y = ~AFM)
 p %>% layer_points()
 ```
 
 ```{r, eval = FALSE}
-surveys_sml %>%
-	ggvis(x = ~weight, y = ~hindfoot_length,
-		  fill = ~species_id) %>%
+crcdf %>%
+	ggvis(x = ~A1AG2, y = ~AFM,
+		  fill = ~Group) %>%
 	layer_points()
 ```
 
 ```{r ggvis3, eval = FALSE}
-p %>% layer_points(fill = ~species_id)
-p %>% layer_points(shape = ~species_id)
+p %>% layer_points(fill = ~Group)
+p %>% layer_points(shape = ~Group)
 ```
 
 To set fixed plotting parameters, use `:=`.
@@ -47,16 +46,10 @@ p %>% layer_points(shape := "cross")
 
 ```{r ggvis5, eval = FALSE}
 p %>% layer_points(
-		  size := input_slider(10, 100),
+		  size := input_slider(10, 200),
 		  opacity := input_slider(0, 1))
 ```
-
-```{r ggvis6, eval = FALSE}
-p %>%
-	layer_points() %>%
-	add_tooltip(function(df) df$weight)
-```
-
+* `add_tooltip`
 * `input_slider()`
 * `input_checkbox()`
 * `input_checkboxgroup()`
@@ -80,7 +73,7 @@ for details.
 * `layer_ribbons()` for filled areas.
 * `layer_rects()`, `layer_text()`.
 
-**Compound layers**, which which combine data transformations with one
+**Compound layers**, which  combine data transformations with one
 or more simple layers.
 
 * `layer_lines()` which automatically orders by the x variable with
@@ -95,7 +88,6 @@ details.
 
 
 Like for `ggplot2`'s geoms, we can overly multiple layers:
-
 
 ```{r ggvis7, eval = FALSE}
 p %>%
@@ -120,6 +112,48 @@ p %>%
 > visualise that data along PC1 and PC2, controlling the point size
 > using a slide bar.
 
+<details>
+```{r ggpca, eval=FALSE}
+p <- ggvis(data.frame(pca$x), x = ~PC1, y = ~PC2)
+p %>% layer_points(
+		  size := input_slider(10, 200),
+		  opacity := input_slider(0, 1))
+```
+</details>
+
+
+## Interactive apps with `plotly`
+
+The [`plotly`](https://github.com/ropensci/plotly) package can be used
+for creating interactive web graphics via the open source JavaScript
+graphing library [plotly.js](https://github.com/plotly/plotly.js).
+
+```{r plotly1}
+library("plotly")
+p <- ggplot(data = crcdf,
+			aes(x = A1AG2, y = AFM, colour = Group)) +
+	geom_point()
+ggplotly(p)
+```
+
+```{r plotly2}
+crcdf <- crcdf[c(1:10, 191:200), c(70:74)]
+x <- gather(crcdf,
+			key = Protein, value = x,
+			-Sample,
+			-Group)
+p <- ggplot(data = x,
+			aes(x = Sample, y = x,
+				group = Protein,
+				colour = Protein)) +
+		geom_line()
+
+
+ggplotly(p)
+```
+
+See the [plotly for R](https://plotly-book.cpsievert.me/) book for more details.
+
 ## Interactive apps
 
 ## Motivating examples {-}
@@ -129,15 +163,24 @@ applications. `shiny` is widely used to explore and visualise
 biomolecular data. As motivating examples, we present here two such
 example for proteomics data.
 
-### Longitudinal proteomics QC
+### Longitudinal proteomics QC {-}
+
+`r Biocpkg("MSstatsQC")` uses control charts to monitor the instrument
+performance by tracking system suitability metrics including total
+peak area, retention time and full width at half maximum (FWHM) and
+peak assymetry. Additional metrics can also be analyzed by including
+them to the input file.
+
+An online application is available at
+https://eralpdogu.shinyapps.io/msstatsqc
 
 
 ### Spatial proteomics {-}
 
-The `Biocpkg("pRoloc")` package offers dedicated functionality to
+The `r Biocpkg("pRoloc")` package offers dedicated functionality to
 manipulate, annotate, analyse and visualise spatial proteomics
-data. Its companion package `Biocpkg("pRolocGUI")` offers support for
-interactive visualisation.
+data. Its companion package `r Biocpkg("pRolocGUI")` offers support
+for interactive visualisation.
 
 You can start an app to visualise one of the published data as shown below
 
@@ -149,13 +192,8 @@ library("pRolocGUI")
 pRolocVis(hyperLOPIT2015)
 ```
 
-This same data is also available as a [standalone on-line
-application](https://lgatto.shinyapps.io/christoforou2015/):
-
-```{r pRolocGUI, echo = FALSE}
-knitr::include_app("https://lgatto.shinyapps.io/christoforou2015/",
-				   height = "650px")
-```
+This same data is also available as a standalone on-line
+application at https://lgatto.shinyapps.io/christoforou2015
 
 Reference:
 
@@ -205,7 +243,7 @@ output is updated accordingly.
   functions, which are functions that are only called when their
   respective inputs are changed.
 
-- An application is run with the `shiny::runApp()` function, which
+- An application is run with the `shiny::runApp()` function, that
   takes the directory containing the two files as input.
 
 Before looking at the details of such an architecture, let's build a
@@ -322,52 +360,6 @@ writeLines(lns[-grep("^\\s*$", lns)])
 >
 > Write and your `shinyapp` applications, as described above.
 
-### The shiny infrastructure {-}
-
-The overview figure below is based and makes reference to lessons of
-the [written tutorial](https://shiny.rstudio.com/tutorial/).
-
-![](./img/shiny-overview.jpg)
-
-### Another shiny app {-}
-
-```{r shinyapp2, echo=FALSE}
-knitr::include_app("https://lgatto.shinyapps.io/shiny-app2/",
-				   height = "650px")
-```
-
-The *ui* uses the `fluidPage` UI and a sidebar layout. The sidebar
-panel contains a `textInput` with a caption, a `selectInput` to choose
-from the three possible datasets `rock`, `pressure` or `cars`, and a
-`numericInput` to define how many observations to show.
-
-The main panel use a `textOutput` to display the caption, a
-`verbatimOutput` to show the output of the `summary` function on the
-data chosen in the `selectInput` above, and a `tableOutput` to show
-the head of that same data.
-
-```{r ui2, comment = "", echo=FALSE}
-lns <- readLines('src/shiny-app2/ui.R')
-writeLines(lns[-grep("^\\s*$", lns)])
-```
-
-The *server* defines a `reactive` expression that sets the appropriate
-data based on the `selectInput` above. It produces three outputs:
-
-1. the caption using `renderText` and the caption defined above;
-2. the appropriate summary using `renderPrint` and the reactive data;
-3. the table using `renderTable` to produce the head with the reactive
-   data and number of observations defined by the `numbericInput`
-   above.
-
-```{r server2, comment = "", echo=FALSE}
-lns <- readLines('src/shiny-app2/server.R')
-writeLines(lns[-grep("^\\s*$", lns)])
-```
-
-> Challenge
->
-> Using the code above, implement and run the app.
 
 ### Single-file app {-}
 
@@ -418,4 +410,4 @@ Example [here](http://shiny.rstudio.com/gallery/plot-interaction-advanced.html).
 #### References {-}
 
 * [`shiny` page](http://shiny.rstudio.com/)
-* [`shiny` cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/01/shiny-cheatsheet.pdf)
+* [`shiny` cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf)

@@ -22,4 +22,5 @@ suppressPackageStartupMessages(library("RColorBrewer"))
 suppressPackageStartupMessages(library("viridis"))
 suppressPackageStartupMessages(library("RforProteomics"))
 suppressPackageStartupMessages(library("ComplexHeatmap"))
+suppressPackageStartupMessages(library("plotly"))
 suppressPackageStartupMessages(library("patchwork")) ## thomasp85/patchwork
