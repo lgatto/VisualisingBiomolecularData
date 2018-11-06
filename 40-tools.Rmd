@@ -1306,9 +1306,11 @@ heatmaps with great care. It is of course possible to use any type of
 data, not only expression data, to build a heatmap.
 
 There exists several packages that allow to produce heatmaps with
-various levels of sophistication, such as `heatmap.2` from the
-`r CRANpkg("gplots")` package, the `r Biocpkg("Heatplus")` package, or
-the `r Biocpkg("ComplexHeatmap")` packages, demonstrated below.
+various levels of sophistication, such as `heatmap.2` from the `r
+CRANpkg("gplots")` package, the `r Biocpkg("Heatplus")` package, or
+the `r Biocpkg("ComplexHeatmap")` packages (full documentation
+[here](https://jokergoo.github.io/ComplexHeatmap-reference/book/index.html)),
+demonstrated below.
 
 ```{r complexheatmap}
 library("ComplexHeatmap")

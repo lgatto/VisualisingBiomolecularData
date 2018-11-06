@@ -46,51 +46,77 @@
 
 
 
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.7.1/plotly.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotlyjs-1.29.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotlyjs-1.29.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -245,24 +271,37 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="example-datasets" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Example datasets</h1>
-<p>We will used various datasets throughout the course. These data are briefly described below, and we will explore them through various visualisations later.</p>
+<p>We will used various datasets throughout the course. These data are
+briefly described below, and we will explore them through various
+visualisations later.</p>
 <div id="raw-ms-data" class="section level2">
 <h2><span class="header-section-number">2.1</span> Raw MS data</h2>
-<p>Section <em>Using R and Bioconductor for MS-based proteomics</em> shows how to visualise raw mass spectrometry data. The raw data that will be using come from the <em><a href="http://bioconductor.org/packages/msdata">msdata</a></em> <em><a href="http://bioconductor.org/packages/MSnbase">MSnbase</a></em> packages. These data will be introduced later.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;msdata&quot;</span>)</code></pre></div>
+<p>Section <em>Using R and Bioconductor for MS-based proteomics</em> shows how
+to visualise raw mass spectrometry data. The raw data that will be
+using come from the <em><a href="https://bioconductor.org/packages/3.8/msdata">msdata</a></em> <em><a href="https://bioconductor.org/packages/3.8/MSnbase">MSnbase</a></em>
+packages. These data will be introduced later.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">library</span>(<span class="st">&quot;msdata&quot;</span>)</a></code></pre></div>
 </div>
 <div id="the-iprg-data" class="section level2">
 <h2><span class="header-section-number">2.2</span> The iPRG data</h2>
-<p>This iPRG data is a spiked-in exeriment, where 6 proteins where spiked at different ratios in a Yeast proteome background. Each run was repeated in triplicates and order was randomised. Participants in the study were asked to identify the differentially abundant spiked-in proteins.</p>
-<div class="figure">
-<img src="img/iprg.png" />
-
-</div>
+<p>This iPRG data is a spiked-in exeriment, where 6 proteins where spiked
+at different ratios in a Yeast proteome background. Each run was
+repeated in triplicates and order was randomised. Participants in the
+study were asked to identify the differentially abundant spiked-in
+proteins.</p>
+<p><img src="img/iprg.png" /></p>
 <blockquote>
-<p>Choi M, Eren-Dogu ZF, Colangelo C, Cottrell J, Hoopmann MR, Kapp EA, Kim S, Lam H, Neubert TA, Palmblad M, Phinney BS, Weintraub ST, MacLean B, Vitek O. <em>ABRF Proteome Informatics Research Group (iPRG) 2015 Study: Detection of Differentially Abundant Proteins in Label-Free Quantitative LC-MS/MS Experiments</em>. J Proteome Res. 2017 Feb 3;16(2):945-957. doi: <a href="https://doi.org/10.1021/acs.jproteome.6b00881">10.1021/acs.jproteome.6b00881</a> Epub 2017 Jan 3. PMID: 27990823.</p>
+<p>Choi M, Eren-Dogu ZF, Colangelo C, Cottrell J, Hoopmann MR, Kapp EA,
+Kim S, Lam H, Neubert TA, Palmblad M, Phinney BS, Weintraub ST,
+MacLean B, Vitek O. <em>ABRF Proteome Informatics Research Group (iPRG)
+2015 Study: Detection of Differentially Abundant Proteins in
+Label-Free Quantitative LC-MS/MS Experiments</em>. J Proteome Res. 2017
+Feb 3;16(2):945-957. doi:
+<a href="https://doi.org/10.1021/acs.jproteome.6b00881">10.1021/acs.jproteome.6b00881</a>
+Epub 2017 Jan 3. PMID: 27990823.</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgCsv&quot;</span>)
-<span class="kw">head</span>(iprg)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">iprg &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgCsv&quot;</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">head</span>(iprg)</a></code></pre></div>
 <pre><code>##                Protein Log2Intensity                       Run  Condition
 ## 1 sp|D6VTK4|STE2_YEAST      26.81232 JD_06232014_sample1_B.raw Condition1
 ## 2 sp|D6VTK4|STE2_YEAST      26.60786 JD_06232014_sample1_C.raw Condition1
@@ -277,18 +316,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 4            2 119765106             A
 ## 5            2 116382798             B
 ## 6            2 102328260             C</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(iprg)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">dim</span>(iprg)</a></code></pre></div>
 <pre><code>## [1] 36321     7</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(iprg<span class="op">$</span>Condition, iprg<span class="op">$</span>TechReplicate)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">table</span>(iprg<span class="op">$</span>Condition, iprg<span class="op">$</span>TechReplicate)</a></code></pre></div>
 <pre><code>##             
 ##                 A    B    C
 ##   Condition1 3026 3026 3027
 ##   Condition2 3027 3027 3027
 ##   Condition3 3027 3027 3027
 ##   Condition4 3027 3026 3027</code></pre>
-<p>This data is in the so-called long format. In some applications, it is more convenient to have the data in wide format, where rows contain the protein expression data for all samples.</p>
+<p>This data is in the so-called long format. In some applications, it is
+more convenient to have the data in wide format, where rows contain
+the protein expression data for all samples.</p>
 <p>Let’s start by simplifying the data to keep only the relevant columns:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iprg2 &lt;-<span class="st"> </span>iprg[, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>)])</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">head</span>(iprg2 &lt;-<span class="st"> </span>iprg[, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>)])</a></code></pre></div>
 <pre><code>##                Protein                       Run Intensity
 ## 1 sp|D6VTK4|STE2_YEAST JD_06232014_sample1_B.raw 117845016
 ## 2 sp|D6VTK4|STE2_YEAST JD_06232014_sample1_C.raw 102273602
@@ -297,23 +338,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 5 sp|D6VTK4|STE2_YEAST JD_06232014_sample2_B.raw 116382798
 ## 6 sp|D6VTK4|STE2_YEAST JD_06232014_sample2_C.raw 102328260</code></pre>
 <p>We can convert the <code>iPRG</code> into a wide format with <code>tidyr::spread</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyr&quot;</span>)
-iprg3 &lt;-<span class="st"> </span><span class="kw">spread</span>(iprg2, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity)
-<span class="kw">head</span>(iprg3)</code></pre></div>
-<pre><code>##                 Protein JD_06232014_sample1-A.raw
-## 1  sp|D6VTK4|STE2_YEAST                 100526837
-## 2  sp|O13297|CET1_YEAST                  27598550
-## 3  sp|O13329|FOB1_YEAST                  11625198
-## 4  sp|O13539|THP2_YEAST                  20606703
-## 5 sp|O13547|CCW14_YEAST                 145493943
-## 6 sp|O13563|RPN13_YEAST                  75530595
-##   JD_06232014_sample1_B.raw JD_06232014_sample1_C.raw
-## 1                 117845016                 102273602
-## 2                  27618234                  26774670
-## 3                  10892143                  16948335
-## 4                 192490784                 175282010
-## 5                 156581624                 117211277
-## 6                  71664672                  82193735
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">library</span>(<span class="st">&quot;tidyr&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" title="2">iprg3 &lt;-<span class="st"> </span><span class="kw">spread</span>(iprg2, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity)</a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="kw">head</span>(iprg3)</a></code></pre></div>
+<pre><code>##                 Protein JD_06232014_sample1_B.raw
+## 1  sp|D6VTK4|STE2_YEAST                 117845016
+## 2  sp|O13297|CET1_YEAST                  27618234
+## 3  sp|O13329|FOB1_YEAST                  10892143
+## 4  sp|O13539|THP2_YEAST                 192490784
+## 5 sp|O13547|CCW14_YEAST                 156581624
+## 6 sp|O13563|RPN13_YEAST                  71664672
+##   JD_06232014_sample1_C.raw JD_06232014_sample1-A.raw
+## 1                 102273602                 100526837
+## 2                  26774670                  27598550
+## 3                  16948335                  11625198
+## 4                 175282010                  20606703
+## 5                 117211277                 145493943
+## 6                  82193735                  75530595
 ##   JD_06232014_sample2_A.raw JD_06232014_sample2_B.raw
 ## 1                 119765106                 116382798
 ## 2                  24114625                  26803677
@@ -335,43 +376,47 @@ iprg3 &lt;-<span class="st"> </span><span class="kw">spread</span>(iprg2, <span 
 ## 4                  84856844                  63400641
 ## 5                 113287367                 129669642
 ## 6                  68877388                  72632994
-##   JD_06232014_sample4-A.raw JD_06232014_sample4_B.raw
-## 1                 105724288                 102150172
-## 2                  23860882                  26305424
-## 3                   8592981                   9414560
-## 4                  35363603                 109094905
-## 5                 141404829                 132444723
-## 6                  57600421                  70708409
-##   JD_06232014_sample4_C.raw
-## 1                  87702341
-## 2                  26612349
-## 3                  12783705
-## 4                  63392610
-## 5                 117065261
-## 6                  69675572</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(iprg3)</code></pre></div>
+##   JD_06232014_sample4_B.raw JD_06232014_sample4_C.raw
+## 1                 102150172                  87702341
+## 2                  26305424                  26612349
+## 3                   9414560                  12783705
+## 4                 109094905                  63392610
+## 5                 132444723                 117065261
+## 6                  70708409                  69675572
+##   JD_06232014_sample4-A.raw
+## 1                 105724288
+## 2                  23860882
+## 3                   8592981
+## 4                  35363603
+## 5                 141404829
+## 6                  57600421</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">nrow</span>(iprg3)</a></code></pre></div>
 <pre><code>## [1] 3027</code></pre>
 <div class="figure">
 <img src="img/spread.png" alt="Spreading data from long to wide format" />
 <p class="caption">Spreading data from long to wide format</p>
 </div>
 <p>Indeed, we started with</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="kw">unique</span>(iprg<span class="op">$</span>Protein))</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">length</span>(<span class="kw">unique</span>(iprg<span class="op">$</span>Protein))</a></code></pre></div>
 <pre><code>## [1] 3027</code></pre>
-<p>unique proteins, which corresponds to the number of rows in the new wide dataset.</p>
-<p>The long format is ideal when using <code>ggplot2</code>, as we will see in a later chapter. The wide format has also advantages. For example, it becomes straighforward to verify if there are proteins that haven’t been quantified in some samples.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(k &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(iprg3), <span class="dt">arr.ind =</span> <span class="kw">dim</span>(iprg3)))</code></pre></div>
+<p>unique proteins, which corresponds to the number of rows in the new
+wide dataset.</p>
+<p>The long format is ideal when using <code>ggplot2</code>, as we will see in a
+later chapter. The wide format has also advantages. For example, it
+becomes straighforward to verify if there are proteins that haven’t
+been quantified in some samples.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">(k &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(iprg3), <span class="dt">arr.ind =</span> <span class="kw">dim</span>(iprg3)))</a></code></pre></div>
 <pre><code>##       row col
 ## [1,] 2721   2
-## [2,] 2721   3
-## [3,]  652  12</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg3[<span class="kw">unique</span>(k[, <span class="st">&quot;row&quot;</span>]), ]</code></pre></div>
-<pre><code>##                    Protein JD_06232014_sample1-A.raw
+## [2,] 2721   4
+## [3,]  652  11</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">iprg3[<span class="kw">unique</span>(k[, <span class="st">&quot;row&quot;</span>]), ]</a></code></pre></div>
+<pre><code>##                    Protein JD_06232014_sample1_B.raw
 ## 2721  sp|Q08236|AVO1_YEAST                        NA
-## 652  sp|P28320|CWC16_YEAST                   1108670
-##      JD_06232014_sample1_B.raw JD_06232014_sample1_C.raw
-## 2721                        NA                  10989286
-## 652                   961273.8                   1229085
+## 652  sp|P28320|CWC16_YEAST                  961273.8
+##      JD_06232014_sample1_C.raw JD_06232014_sample1-A.raw
+## 2721                  10989286                        NA
+## 652                    1229085                   1108670
 ##      JD_06232014_sample2_A.raw JD_06232014_sample2_B.raw
 ## 2721                 5407419.7                   2041424
 ## 652                   449839.1                   1334009
@@ -381,55 +426,69 @@ iprg3 &lt;-<span class="st"> </span><span class="kw">spread</span>(iprg2, <span 
 ##      JD_06232014_sample3_B.raw JD_06232014_sample3_C.raw
 ## 2721                  10308957                  13639794
 ## 652                    2205688                   2120321
-##      JD_06232014_sample4-A.raw JD_06232014_sample4_B.raw
-## 2721                10377088.4                   2592511
-## 652                   757082.7                        NA
-##      JD_06232014_sample4_C.raw
-## 2721                  10420338
-## 652                    1264712</code></pre>
-<p>The opposite operation to <code>spread</code> is <code>gather</code>, also from the <code>tidyr</code> package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iprg4 &lt;-<span class="st"> </span><span class="kw">gather</span>(iprg3, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity, <span class="op">-</span>Protein))</code></pre></div>
+##      JD_06232014_sample4_B.raw JD_06232014_sample4_C.raw
+## 2721                   2592511                  10420338
+## 652                         NA                   1264712
+##      JD_06232014_sample4-A.raw
+## 2721                10377088.4
+## 652                   757082.7</code></pre>
+<p>The opposite operation to <code>spread</code> is <code>gather</code>, also from the <code>tidyr</code>
+package:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">head</span>(iprg4 &lt;-<span class="st"> </span><span class="kw">gather</span>(iprg3, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity, <span class="op">-</span>Protein))</a></code></pre></div>
 <pre><code>##                 Protein                       Run Intensity
-## 1  sp|D6VTK4|STE2_YEAST JD_06232014_sample1-A.raw 100526837
-## 2  sp|O13297|CET1_YEAST JD_06232014_sample1-A.raw  27598550
-## 3  sp|O13329|FOB1_YEAST JD_06232014_sample1-A.raw  11625198
-## 4  sp|O13539|THP2_YEAST JD_06232014_sample1-A.raw  20606703
-## 5 sp|O13547|CCW14_YEAST JD_06232014_sample1-A.raw 145493943
-## 6 sp|O13563|RPN13_YEAST JD_06232014_sample1-A.raw  75530595</code></pre>
+## 1  sp|D6VTK4|STE2_YEAST JD_06232014_sample1_B.raw 117845016
+## 2  sp|O13297|CET1_YEAST JD_06232014_sample1_B.raw  27618234
+## 3  sp|O13329|FOB1_YEAST JD_06232014_sample1_B.raw  10892143
+## 4  sp|O13539|THP2_YEAST JD_06232014_sample1_B.raw 192490784
+## 5 sp|O13547|CCW14_YEAST JD_06232014_sample1_B.raw 156581624
+## 6 sp|O13563|RPN13_YEAST JD_06232014_sample1_B.raw  71664672</code></pre>
 <div class="figure">
 <img src="img/gather.png" alt="Gathering data from wide to long format" />
 <p class="caption">Gathering data from wide to long format</p>
 </div>
-<p>The two lond datasets, <code>iprg2</code> and <code>iprg4</code> are different due to the missing values shown above.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(iprg2)</code></pre></div>
+<p>The two lond datasets, <code>iprg2</code> and <code>iprg4</code> are different due to the
+missing values shown above.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">nrow</span>(iprg2)</a></code></pre></div>
 <pre><code>## [1] 36321</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(iprg4)</code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">nrow</span>(iprg4)</a></code></pre></div>
 <pre><code>## [1] 36324</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(<span class="kw">na.omit</span>(iprg4))</code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">nrow</span>(<span class="kw">na.omit</span>(iprg4))</a></code></pre></div>
 <pre><code>## [1] 36321</code></pre>
-<p>which can be accounted for by removing rows with missing values by setting <code>na.rm = TRUE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iprg5 &lt;-<span class="st"> </span><span class="kw">gather</span>(iprg3, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity, <span class="op">-</span>Protein, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<p>which can be accounted for by removing rows with missing values by
+setting <code>na.rm = TRUE</code>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">head</span>(iprg5 &lt;-<span class="st"> </span><span class="kw">gather</span>(iprg3, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity, <span class="op">-</span>Protein, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
 <pre><code>##                 Protein                       Run Intensity
-## 1  sp|D6VTK4|STE2_YEAST JD_06232014_sample1-A.raw 100526837
-## 2  sp|O13297|CET1_YEAST JD_06232014_sample1-A.raw  27598550
-## 3  sp|O13329|FOB1_YEAST JD_06232014_sample1-A.raw  11625198
-## 4  sp|O13539|THP2_YEAST JD_06232014_sample1-A.raw  20606703
-## 5 sp|O13547|CCW14_YEAST JD_06232014_sample1-A.raw 145493943
-## 6 sp|O13563|RPN13_YEAST JD_06232014_sample1-A.raw  75530595</code></pre>
+## 1  sp|D6VTK4|STE2_YEAST JD_06232014_sample1_B.raw 117845016
+## 2  sp|O13297|CET1_YEAST JD_06232014_sample1_B.raw  27618234
+## 3  sp|O13329|FOB1_YEAST JD_06232014_sample1_B.raw  10892143
+## 4  sp|O13539|THP2_YEAST JD_06232014_sample1_B.raw 192490784
+## 5 sp|O13547|CCW14_YEAST JD_06232014_sample1_B.raw 156581624
+## 6 sp|O13563|RPN13_YEAST JD_06232014_sample1_B.raw  71664672</code></pre>
 </div>
 <div id="crc-training-data" class="section level2">
 <h2><span class="header-section-number">2.3</span> CRC training data</h2>
-<p>This dataset comes from the <em><a href="http://bioconductor.org/packages/MSstatsBioData">MSstatsBioData</a></em> package and was generated as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;MSstats&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;MSstatsBioData&quot;</span>)
-<span class="kw">data</span>(SRM_crc_training)
-Quant &lt;-<span class="st"> </span><span class="kw">dataProcess</span>(SRM_crc_training)
-subjectQuant &lt;-<span class="st"> </span><span class="kw">quantification</span>(Quant)</code></pre></div>
-<p>It provides quantitative information for 72 proteins, including two standard proteins, <em>AIAG-Bovine</em> and <em>FETUA-Bovine</em>. These proteins were targeted for plasma samples with SRM with isotope labeled reference peptides in order to identify candidate protein biomarker for non-invasive detection of CRC. The training cohort included 100 subjects in control group and 100 subjects with CRC. Each sample for subject was measured in a single injection without technical replicate. The training cohort was analyzed with Skyline. The dataset was already normalized as described in manuscript. User do not need extra normalization. NAs should be considered as censored missing. Two standard proteins can be removed for statistical analysis.</p>
+<p>This dataset comes from the <em><a href="https://bioconductor.org/packages/3.8/MSstatsBioData">MSstatsBioData</a></em> package
+and was generated as follows:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">library</span>(<span class="st">&quot;MSstats&quot;</span>)</a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="kw">library</span>(<span class="st">&quot;MSstatsBioData&quot;</span>)</a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="kw">data</span>(SRM_crc_training)</a>
+<a class="sourceLine" id="cb31-4" title="4">Quant &lt;-<span class="st"> </span><span class="kw">dataProcess</span>(SRM_crc_training)</a>
+<a class="sourceLine" id="cb31-5" title="5">subjectQuant &lt;-<span class="st"> </span><span class="kw">quantification</span>(Quant)</a></code></pre></div>
+<p>It provides quantitative information for 72 proteins, including two
+standard proteins, <em>AIAG-Bovine</em> and <em>FETUA-Bovine</em>. These proteins
+were targeted for plasma samples with SRM with isotope labeled
+reference peptides in order to identify candidate protein biomarker
+for non-invasive detection of CRC. The training cohort included 100
+subjects in control group and 100 subjects with CRC. Each sample for
+subject was measured in a single injection without technical
+replicate. The training cohort was analyzed with Skyline. The dataset
+was already normalized as described in manuscript. User do not need
+extra normalization. NAs should be considered as censored missing. Two
+standard proteins can be removed for statistical analysis.</p>
 <p>Clinical information where added manually thereafter.</p>
 <p>To load this dataset:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crcdf &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataCrcCsv&quot;</span>)
-crcdf[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">crcdf &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataCrcCsv&quot;</span>)</a>
+<a class="sourceLine" id="cb32-2" title="2">crcdf[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <pre><code>##       A1AG2      AFM     AHSG
 ## 1  14.23816 16.10302 19.95179
 ## 2  15.02411 16.02071 19.71592
@@ -441,9 +500,12 @@ crcdf[<span class="dv">1</span><span class="op">:</span><span class="dv">10</spa
 ## 8  13.57086 17.11052 19.93833
 ## 9  15.83348 15.88189 18.64270
 ## 10 15.37996 16.22621 20.09992</code></pre>
-<p>This dataset is in the wide format. It contains the intensity of the proteins in columns 1 to 72 for each of the 200 samples along the rows. Generally, omics datasets contain the features (proteins, transcripts, …) along the rows and the samples along the columns.</p>
+<p>This dataset is in the wide format. It contains the intensity of the
+proteins in columns 1 to 72 for each of the 200 samples along the
+rows. Generally, omics datasets contain the features (proteins,
+transcripts, …) along the rows and the samples along the columns.</p>
 <p>In columns 73 to 79, we sample metadata.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crcdf[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">73</span><span class="op">:</span><span class="dv">79</span>]</code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">crcdf[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">73</span><span class="op">:</span><span class="dv">79</span>]</a></code></pre></div>
 <pre><code>##    Sample Group Age Gender Cancer_stage Tumour_location Sub_group
 ## 1   P1A10   CRC  60 female            1           colon       CRC
 ## 2    P1A2   CRC  70   male            1          rectum       CRC
@@ -455,29 +517,47 @@ crcdf[<span class="dv">1</span><span class="op">:</span><span class="dv">10</spa
 ## 8    P1B6   CRC  52   male            4          rectum       CRC
 ## 9    P1B9   CRC  89 female            4           colon       CRC
 ## 10  P1C11   CRC  81   male            1          rectum       CRC</code></pre>
-<p>A widely used data structure for omics data follows the convention described in the figure below:</p>
+<p>A widely used data structure for omics data follows the convention
+described in the figure below:</p>
 <div class="figure">
 <img src="img/msnset.png" alt="An eSet-type of expression data container" />
 <p class="caption">An eSet-type of expression data container</p>
 </div>
-<p>This typical omics data structure, as defined by the <code>eSet</code> class in the Bioconductor <code>Biobase</code> package, is represented below. It’s main features are</p>
+<p>This typical omics data structure, as defined by the <code>eSet</code> class in
+the Bioconductor <code>Biobase</code> package, is represented below. It’s main
+features are</p>
 <ul>
-<li><p>An assay data slot containing the quantitative omics data (expression data), stored as a <code>matrix</code> and accessible with <code>exprs</code>. Features defined along the rows and samples along the columns.</p></li>
-<li><p>A sample metadata slot containing sample co-variates, stored as an annotated <code>data.frame</code> and accessible with <code>pData</code>. This data frame is stored with rows representing samples and sample covariate along the columns, and its rows match the expression data columns exactly.</p></li>
-<li><p>A feature metadata slot containing feature co-variates, stored as an annotated <code>data.frame</code> and accessible with <code>fData</code>. This dataframe’s rows match the expression data rows exactly.</p></li>
+<li><p>An assay data slot containing the quantitative omics data
+(expression data), stored as a <code>matrix</code> and accessible with
+<code>exprs</code>. Features defined along the rows and samples along the
+columns.</p></li>
+<li><p>A sample metadata slot containing sample co-variates, stored as an
+annotated <code>data.frame</code> and accessible with <code>pData</code>. This data frame
+is stored with rows representing samples and sample covariate along
+the columns, and its rows match the expression data columns exactly.</p></li>
+<li><p>A feature metadata slot containing feature co-variates, stored as an
+annotated <code>data.frame</code> and accessible with <code>fData</code>. This dataframe’s
+rows match the expression data rows exactly.</p></li>
 </ul>
-<p>The coordinated nature of the high throughput data guarantees that the dimensions of the different slots will always match (i.e the columns in the expression data and then rows in the sample metadata, as well as the rows in the expression data and feature metadata) during data manipulation. The metadata slots can grow additional co-variates (columns) without affecting the other structures.</p>
-<p>Below, we show how to transform the <code>crc</code> dataset into an <code>MSnSet</code> (implementing the data structure above for quantitative proteomics data) using the <code>readMSnSet2</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;MSnbase&quot;</span>)
-i &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">72</span> ## expression columns
-e &lt;-<span class="st"> </span><span class="kw">t</span>(crcdf[, i]) ## expression data
-<span class="kw">colnames</span>(e) &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">200</span>
-crc &lt;-<span class="st"> </span><span class="kw">readMSnSet2</span>(<span class="kw">data.frame</span>(e), <span class="dt">e =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">200</span>)
-
-pd &lt;-<span class="st"> </span>crcdf[, <span class="op">-</span>i]
-<span class="kw">rownames</span>(pd) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;X&quot;</span>, <span class="kw">rownames</span>(pd))
-<span class="kw">pData</span>(crc) &lt;-<span class="st"> </span>pd
-crc</code></pre></div>
+<p>The coordinated nature of the high throughput data guarantees that the
+dimensions of the different slots will always match (i.e the columns
+in the expression data and then rows in the sample metadata, as well
+as the rows in the expression data and feature metadata) during data
+manipulation. The metadata slots can grow additional co-variates
+(columns) without affecting the other structures.</p>
+<p>Below, we show how to transform the <code>crc</code> dataset into an <code>MSnSet</code>
+(implementing the data structure above for quantitative proteomics
+data) using the <code>readMSnSet2</code> function.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">library</span>(<span class="st">&quot;MSnbase&quot;</span>)</a>
+<a class="sourceLine" id="cb36-2" title="2">i &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">72</span> <span class="co">## expression columns</span></a>
+<a class="sourceLine" id="cb36-3" title="3">e &lt;-<span class="st"> </span><span class="kw">t</span>(crcdf[, i]) <span class="co">## expression data</span></a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="kw">colnames</span>(e) &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">200</span></a>
+<a class="sourceLine" id="cb36-5" title="5">crc &lt;-<span class="st"> </span><span class="kw">readMSnSet2</span>(<span class="kw">data.frame</span>(e), <span class="dt">e =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb36-6" title="6"></a>
+<a class="sourceLine" id="cb36-7" title="7">pd &lt;-<span class="st"> </span>crcdf[, <span class="op">-</span>i]</a>
+<a class="sourceLine" id="cb36-8" title="8"><span class="kw">rownames</span>(pd) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;X&quot;</span>, <span class="kw">rownames</span>(pd))</a>
+<a class="sourceLine" id="cb36-9" title="9"><span class="kw">pData</span>(crc) &lt;-<span class="st"> </span>pd</a>
+<a class="sourceLine" id="cb36-10" title="10">crc</a></code></pre></div>
 <pre><code>## MSnSet (storageMode: lockedEnvironment)
 ## assayData: 72 features, 200 samples 
 ##   element names: exprs 
@@ -490,13 +570,13 @@ crc</code></pre></div>
 ## experimentData: use &#39;experimentData(object)&#39;
 ## Annotation:  
 ## - - - Processing information - - -
-##  MSnbase version: 2.6.0</code></pre>
+##  MSnbase version: 2.8.0</code></pre>
 <p>Let’s also set the sample names.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sampleNames</span>(crc) &lt;-<span class="st"> </span>crc<span class="op">$</span>Sample</code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">sampleNames</span>(crc) &lt;-<span class="st"> </span>crc<span class="op">$</span>Sample</a></code></pre></div>
 <p>To download and load the <code>MSnSet</code> direcly:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataCrcMSnSet&quot;</span>, <span class="st">&quot;./data/crc.rda&quot;</span>)
-<span class="kw">load</span>(<span class="st">&quot;./data/crc.rda&quot;</span>)
-crc</code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">download.file</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataCrcMSnSet&quot;</span>, <span class="st">&quot;./data/crc.rda&quot;</span>)</a>
+<a class="sourceLine" id="cb39-2" title="2"><span class="kw">load</span>(<span class="st">&quot;./data/crc.rda&quot;</span>)</a>
+<a class="sourceLine" id="cb39-3" title="3">crc</a></code></pre></div>
 <pre><code>## MSnSet (storageMode: lockedEnvironment)
 ## assayData: 72 features, 200 samples 
 ##   element names: exprs 
@@ -512,26 +592,36 @@ crc</code></pre></div>
 ##  MSnbase version: 2.6.0</code></pre>
 <p>Reference:</p>
 <blockquote>
-<p>See Surinova, S. et al. (2015) <em>Prediction of colorectal cancer diagnosis based on circulating plasma proteins</em>. EMBO Mol. Med., 7, 1166–1178 for details.</p>
+<p>See Surinova, S. et al. (2015) <em>Prediction of colorectal cancer
+diagnosis based on circulating plasma proteins</em>. EMBO Mol. Med., 7,
+1166–1178 for details.</p>
 </blockquote>
 </div>
 <div id="time-course-from-mulvey-et-al.-2015" class="section level2">
 <h2><span class="header-section-number">2.4</span> Time course from Mulvey <em>et al.</em> 2015</h2>
 <p>This data comes from</p>
 <blockquote>
-<p>Mulvey CM, Schröter C, Gatto L, Dikicioglu D, Fidaner IB, Christoforou A, Deery MJ, Cho LT, Niakan KK, Martinez-Arias A, Lilley KS. Dynamic Proteomic Profiling of Extra-Embryonic Endoderm Differentiation in Mouse Embryonic Stem Cells. Stem Cells. 2015 Sep;33(9):2712-25. doi: <a href="https://doi.org/10.1002/stem.2067">10.1002/stem.2067</a>. Epub 2015 Jun 23. PMID: 26059426.</p>
+<p>Mulvey CM, Schröter C, Gatto L, Dikicioglu D, Fidaner IB,
+Christoforou A, Deery MJ, Cho LT, Niakan KK, Martinez-Arias A,
+Lilley KS. Dynamic Proteomic Profiling of Extra-Embryonic Endoderm
+Differentiation in Mouse Embryonic Stem Cells. Stem Cells. 2015
+Sep;33(9):2712-25. doi:
+<a href="https://doi.org/10.1002/stem.2067">10.1002/stem.2067</a>. Epub 2015
+Jun 23. PMID: 26059426.</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;pRolocdata&quot;</span>)
-<span class="kw">data</span>(mulvey2015norm)</code></pre></div>
-<p>This <code>MSnSet</code>, available from the <em><a href="http://bioconductor.org/packages/pRolocdata">pRolocdata</a></em> package, measured the expression profiles of 2337 proteins along 6 time points in triplicate.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MSnbase<span class="op">::</span><span class="kw">exprs</span>(mulvey2015norm)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">library</span>(<span class="st">&quot;pRolocdata&quot;</span>)</a>
+<a class="sourceLine" id="cb41-2" title="2"><span class="kw">data</span>(mulvey2015norm)</a></code></pre></div>
+<p>This <code>MSnSet</code>, available from the <em><a href="https://bioconductor.org/packages/3.8/pRolocdata">pRolocdata</a></em>
+package, measured the expression profiles of 2337
+proteins along 6 time points in triplicate.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">MSnbase<span class="op">::</span><span class="kw">exprs</span>(mulvey2015norm)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <pre><code>##          rep1_0hr rep1_16hr rep1_24hr
 ## P48432   2.479592  1.698630 1.0350877
 ## Q62315-2 1.979592  1.342466 0.9181287
 ## P55821   1.780612  1.767123 1.1578947
 ## P17809   1.637755  1.157534 0.9941520
 ## Q8K3F7   1.852041  1.623288 1.3040936</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pData</span>(mulvey2015norm)</code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">pData</span>(mulvey2015norm)</a></code></pre></div>
 <pre><code>##           rep times cond
 ## rep1_0hr    1     1    1
 ## rep1_16hr   1     2    1
@@ -554,9 +644,9 @@ crc</code></pre></div>
 </div>
 <div id="all-data" class="section level2">
 <h2><span class="header-section-number">2.5</span> ALL data</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ALL&quot;</span>)
-<span class="kw">data</span>(ALL)
-ALL</code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">library</span>(<span class="st">&quot;ALL&quot;</span>)</a>
+<a class="sourceLine" id="cb46-2" title="2"><span class="kw">data</span>(ALL)</a>
+<a class="sourceLine" id="cb46-3" title="3">ALL</a></code></pre></div>
 <pre><code>## ExpressionSet (storageMode: lockedEnvironment)
 ## assayData: 12625 features, 128 samples 
 ##   element names: exprs 
@@ -571,59 +661,82 @@ ALL</code></pre></div>
 ## Annotation: hgu95av2</code></pre>
 <p>From the documentation page:</p>
 <blockquote>
-<p>The <em>Acute Lymphoblastic Leukemia Data from the Ritz Laboratory</em> consist of microarrays from 128 different individuals with acute lymphoblastic leukemia (ALL). A number of additional covariates are available. The data have been normalized (using rma) and it is the jointly normalized data that are available here.</p>
+<p>The <em>Acute Lymphoblastic Leukemia Data from the Ritz Laboratory</em>
+consist of microarrays from 128 different individuals with acute
+lymphoblastic leukemia (ALL). A number of additional covariates are
+available. The data have been normalized (using rma) and it is the
+jointly normalized data that are available here.</p>
 </blockquote>
-<p>The <code>ALL</code> data is of class <code>ExpressionSet</code>, which implements the data structure above for microarray expression data, and contains normalised and summarised transcript intensities.</p>
-<p>Below, we select will patients with B-cell lymphomas and BCR/ABL abnormality and negative controls.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(ALL<span class="op">$</span>BT)</code></pre></div>
+<p>The <code>ALL</code> data is of class <code>ExpressionSet</code>, which implements the data
+structure above for microarray expression data, and contains
+normalised and summarised transcript intensities.</p>
+<p>Below, we select will patients with B-cell lymphomas and BCR/ABL
+abnormality and negative controls.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw">table</span>(ALL<span class="op">$</span>BT)</a></code></pre></div>
 <pre><code>## 
 ##  B B1 B2 B3 B4  T T1 T2 T3 T4 
 ##  5 19 36 23 12  5  1 15 10  2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(ALL<span class="op">$</span>mol.biol)</code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">table</span>(ALL<span class="op">$</span>mol.biol)</a></code></pre></div>
 <pre><code>## 
 ## ALL1/AF4  BCR/ABL E2A/PBX1      NEG   NUP-98  p15/p16 
 ##       10       37        5       74        1        1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALL_bcrneg &lt;-<span class="st"> </span>ALL[, ALL<span class="op">$</span>mol.biol <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NEG&quot;</span>, <span class="st">&quot;BCR/ABL&quot;</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;B&quot;</span>, ALL<span class="op">$</span>BT)]
-ALL_bcrneg<span class="op">$</span>mol.biol &lt;-<span class="st"> </span><span class="kw">factor</span>(ALL_bcrneg<span class="op">$</span>mol.biol)</code></pre></div>
-<p>We then use the <em><a href="http://bioconductor.org/packages/limma">limma</a></em> package to</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;limma&quot;</span>)
-design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span><span class="dv">0</span><span class="op">+</span>ALL_bcrneg<span class="op">$</span>mol.biol)
-<span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BCR.ABL&quot;</span>, <span class="st">&quot;NEG&quot;</span>)
-
-## Step1: linear model. lmFit is a wrapper around lm in R
-fit1 &lt;-<span class="st"> </span><span class="kw">lmFit</span>(ALL_bcrneg, design)
-
-## Step 2: fit contrasts: find genes that respond to estrogen
-contrast.matrix &lt;-<span class="st"> </span><span class="kw">makeContrasts</span>(BCR.ABL<span class="op">-</span>NEG, <span class="dt">levels =</span> design)
-fit2 &lt;-<span class="st"> </span><span class="kw">contrasts.fit</span>(fit1, contrast.matrix)
-
-## Step3: add empirical Bayes moderation
-fit3 &lt;-<span class="st"> </span><span class="kw">eBayes</span>(fit2)
-
-## Extract results and set them to the feature data
-res &lt;-<span class="st"> </span><span class="kw">topTable</span>(fit3, <span class="dt">n =</span> <span class="ot">Inf</span>)
-<span class="kw">fData</span>(ALL_bcrneg) &lt;-<span class="st"> </span>res[<span class="kw">featureNames</span>(ALL_bcrneg), ]</code></pre></div>
-<p>This annotated <code>ExpressionSet</code> can be reproduced as shown above or downloaded and loaded using</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataALL_bcrneg&quot;</span>,  <span class="st">&quot;./data/ALL_bcrneg.rda&quot;</span>)
-<span class="kw">load</span>(<span class="st">&quot;./data/ALL_bcrneg.rda&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">ALL_bcrneg &lt;-<span class="st"> </span>ALL[, ALL<span class="op">$</span>mol.biol <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NEG&quot;</span>, <span class="st">&quot;BCR/ABL&quot;</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;B&quot;</span>, ALL<span class="op">$</span>BT)]</a>
+<a class="sourceLine" id="cb52-2" title="2">ALL_bcrneg<span class="op">$</span>mol.biol &lt;-<span class="st"> </span><span class="kw">factor</span>(ALL_bcrneg<span class="op">$</span>mol.biol)</a></code></pre></div>
+<p>We then use the <em><a href="https://bioconductor.org/packages/3.8/limma">limma</a></em> package to</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="kw">library</span>(<span class="st">&quot;limma&quot;</span>)</a>
+<a class="sourceLine" id="cb53-2" title="2">design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span><span class="dv">0</span><span class="op">+</span>ALL_bcrneg<span class="op">$</span>mol.biol)</a>
+<a class="sourceLine" id="cb53-3" title="3"><span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BCR.ABL&quot;</span>, <span class="st">&quot;NEG&quot;</span>)</a>
+<a class="sourceLine" id="cb53-4" title="4"></a>
+<a class="sourceLine" id="cb53-5" title="5"><span class="co">## Step1: linear model. lmFit is a wrapper around lm in R</span></a>
+<a class="sourceLine" id="cb53-6" title="6">fit1 &lt;-<span class="st"> </span><span class="kw">lmFit</span>(ALL_bcrneg, design)</a>
+<a class="sourceLine" id="cb53-7" title="7"></a>
+<a class="sourceLine" id="cb53-8" title="8"><span class="co">## Step 2: fit contrasts: find genes that respond to estrogen</span></a>
+<a class="sourceLine" id="cb53-9" title="9">contrast.matrix &lt;-<span class="st"> </span><span class="kw">makeContrasts</span>(BCR.ABL<span class="op">-</span>NEG, <span class="dt">levels =</span> design)</a>
+<a class="sourceLine" id="cb53-10" title="10">fit2 &lt;-<span class="st"> </span><span class="kw">contrasts.fit</span>(fit1, contrast.matrix)</a>
+<a class="sourceLine" id="cb53-11" title="11"></a>
+<a class="sourceLine" id="cb53-12" title="12"><span class="co">## Step3: add empirical Bayes moderation</span></a>
+<a class="sourceLine" id="cb53-13" title="13">fit3 &lt;-<span class="st"> </span><span class="kw">eBayes</span>(fit2)</a>
+<a class="sourceLine" id="cb53-14" title="14"></a>
+<a class="sourceLine" id="cb53-15" title="15"><span class="co">## Extract results and set them to the feature data</span></a>
+<a class="sourceLine" id="cb53-16" title="16">res &lt;-<span class="st"> </span><span class="kw">topTable</span>(fit3, <span class="dt">n =</span> <span class="ot">Inf</span>)</a>
+<a class="sourceLine" id="cb53-17" title="17"><span class="kw">fData</span>(ALL_bcrneg) &lt;-<span class="st"> </span>res[<span class="kw">featureNames</span>(ALL_bcrneg), ]</a></code></pre></div>
+<p>This annotated <code>ExpressionSet</code> can be reproduced as shown above or
+downloaded and loaded using</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="kw">download.file</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataALL_bcrneg&quot;</span>,  <span class="st">&quot;./data/ALL_bcrneg.rda&quot;</span>)</a>
+<a class="sourceLine" id="cb54-2" title="2"><span class="kw">load</span>(<span class="st">&quot;./data/ALL_bcrneg.rda&quot;</span>)</a></code></pre></div>
 <p>Reference:</p>
 <blockquote>
-<p>Sabina Chiaretti, Xiaochun Li, Robert Gentleman, Antonella Vitale, Marco Vignetti, Franco Mandelli, Jerome Ritz, and Robin Foa <em>Gene expression profile of adult T-cell acute lymphocytic leukemia identifies distinct subsets of patients with different response to therapy and survival</em>. Blood, 1 April 2004, Vol. 103, No. 7.</p>
+<p>Sabina Chiaretti, Xiaochun Li, Robert Gentleman, Antonella Vitale,
+Marco Vignetti, Franco Mandelli, Jerome Ritz, and Robin Foa <em>Gene
+expression profile of adult T-cell acute lymphocytic leukemia
+identifies distinct subsets of patients with different response to
+therapy and survival</em>. Blood, 1 April 2004, Vol. 103, No. 7.</p>
 </blockquote>
 </div>
 <div id="spatial-proteomics-data" class="section level2">
 <h2><span class="header-section-number">2.6</span> Spatial proteomics data</h2>
-<p>The goal of spatial proteomics is to study the sub-cellular localisation of proteins. The data below comes from</p>
+<p>The goal of spatial proteomics is to study the sub-cellular
+localisation of proteins. The data below comes from</p>
 <blockquote>
-<p>Christoforou A, Mulvey CM, Breckels LM, Geladaki A, Hurrell T, Hayward PC, Naake T, Gatto L, Viner R, Martinez Arias A, Lilley KS. A draft map of the mouse pluripotent stem cell spatial proteome. Nat Commun. 2016 Jan 12;7:8992. doi: <a href="https://doi.org/10.1038/ncomms9992">10.1038/ncomms9992</a>. PMID: 26754106; PMCID: PMC4729960.</p>
+<p>Christoforou A, Mulvey CM, Breckels LM, Geladaki A, Hurrell T,
+Hayward PC, Naake T, Gatto L, Viner R, Martinez Arias A, Lilley
+KS. A draft map of the mouse pluripotent stem cell spatial
+proteome. Nat Commun. 2016 Jan 12;7:8992. doi:
+<a href="https://doi.org/10.1038/ncomms9992">10.1038/ncomms9992</a>. PMID:
+26754106; PMCID: PMC4729960.</p>
 </blockquote>
-<p>and investigated the sub-cellular location of over 5000 proteins in mouse pluripotent stem cells using a mass spectrometry-based technique called hyperLOPIT.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;pRolocdata&quot;</span>)
-<span class="kw">data</span>(hyperLOPIT2015)
-<span class="kw">dim</span>(hyperLOPIT2015)</code></pre></div>
+<p>and investigated the sub-cellular location of over 5000 proteins in
+mouse pluripotent stem cells using a mass spectrometry-based technique
+called hyperLOPIT.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">library</span>(<span class="st">&quot;pRolocdata&quot;</span>)</a>
+<a class="sourceLine" id="cb55-2" title="2"><span class="kw">data</span>(hyperLOPIT2015)</a>
+<a class="sourceLine" id="cb55-3" title="3"><span class="kw">dim</span>(hyperLOPIT2015)</a></code></pre></div>
 <pre><code>## [1] 5032   20</code></pre>
-<p>In addition to the quantitative data, another important piece of data here are the spatial markers, proteins for which we can confidently assign them a sub-cellular location apriori. These markers are defined in the <code>markers</code> feature variable:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(<span class="kw">fData</span>(hyperLOPIT2015)<span class="op">$</span>markers)</code></pre></div>
+<p>In addition to the quantitative data, another important piece of data
+here are the spatial markers, proteins for which we can confidently
+assign them a sub-cellular location apriori. These markers are defined
+in the <code>markers</code> feature variable:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw">table</span>(<span class="kw">fData</span>(hyperLOPIT2015)<span class="op">$</span>markers)</a></code></pre></div>
 <pre><code>## 
 ##                          40S Ribosome 
 ##                                    27 
@@ -655,12 +768,17 @@ res &lt;-<span class="st"> </span><span class="kw">topTable</span>(fit3, <span c
 ##                                    34 
 ##                               unknown 
 ##                                  4106</code></pre>
-<p>Here, the columns of the data represent fractions along a density gradient used to separate the sub-cellular proteome presented in this data.</p>
-<p>We will be using a simplified version of this data in the next chapters. Below, we retain the first replicate (<code>hyperLOPIT2015$Replicate == 1]</code>) and the marker proteins (using the <code>markerMSnSet</code> function):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hlm &lt;-<span class="st"> </span><span class="kw">markerMSnSet</span>(hyperLOPIT2015[, hyperLOPIT2015<span class="op">$</span>Replicate <span class="op">==</span><span class="st"> </span><span class="dv">1</span>])
-<span class="kw">dim</span>(hlm)</code></pre></div>
+<p>Here, the columns of the data represent fractions along a density
+gradient used to separate the sub-cellular proteome presented in this
+data.</p>
+<p>We will be using a simplified version of this data in the next
+chapters. Below, we retain the first replicate
+(<code>hyperLOPIT2015$Replicate == 1]</code>) and the marker proteins (using the
+<code>markerMSnSet</code> function):</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">hlm &lt;-<span class="st"> </span><span class="kw">markerMSnSet</span>(hyperLOPIT2015[, hyperLOPIT2015<span class="op">$</span>Replicate <span class="op">==</span><span class="st"> </span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb59-2" title="2"><span class="kw">dim</span>(hlm)</a></code></pre></div>
 <pre><code>## [1] 926  10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getMarkerClasses</span>(hlm) ## no unknowns anymore</code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="kw">getMarkerClasses</span>(hlm) <span class="co">## no unknowns anymore</span></a></code></pre></div>
 <pre><code>##  [1] &quot;40S Ribosome&quot;                         
 ##  [2] &quot;60S Ribosome&quot;                         
 ##  [3] &quot;Actin cytoskeleton&quot;                   
@@ -730,7 +848,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

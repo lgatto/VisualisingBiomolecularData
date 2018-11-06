@@ -46,51 +46,77 @@
 
 
 
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.7.1/plotly.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotlyjs-1.29.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotlyjs-1.29.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -247,64 +273,92 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 5</span> Plotting in R</h1>
 <div id="base-graphics" class="section level2">
 <h2><span class="header-section-number">5.1</span> Base graphics</h2>
-<p>We won’t go through all base graphics plotting functions one by one here. We will encounter and learn several of these functions throughout the course and, if necessary, discuss them when questions arise.</p>
+<p>We won’t go through all base graphics plotting functions one by one
+here. We will encounter and learn several of these functions
+throughout the course and, if necessary, discuss them when questions
+arise.</p>
 </div>
 <div id="plotting-with-ggplot2" class="section level2">
 <h2><span class="header-section-number">5.2</span> Plotting with <code>ggplot2</code></h2>
-<div class="figure">
-<img src="http://hexb.in/hexagons/ggplot2.png" />
-
-</div>
-<p>A useful <code>ggplot2</code> cheet sheet is available <a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">here</a>. More details are available on the <a href="http://ggplot2.tidyverse.org/reference/">documentation page</a>.</p>
-<p>Base graphics uses a <em>canvas model</em> a series of instructions that sequentially fill the plotting canvas. While this model is very useful to build plots bits by bits bottom up, which is useful in some cases, it has some clear drawback:</p>
+<p><img src="http://hexb.in/hexagons/ggplot2.png" /></p>
+<p>A useful <code>ggplot2</code> cheet sheet is available
+<a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">here</a>. More
+details are available on the <a href="http://ggplot2.tidyverse.org/reference/">documentation page</a>.</p>
+<p>Base graphics uses a <em>canvas model</em> a series of instructions that
+sequentially fill the plotting canvas. While this model is very useful
+to build plots bits by bits bottom up, which is useful in some cases,
+it has some clear drawback:</p>
 <ul>
-<li>Layout choices have to be made without global overview over what may still be coming.</li>
-<li>Different functions for different plot types with different interfaces.</li>
+<li>Layout choices have to be made without global overview over what may
+still be coming.</li>
+<li>Different functions for different plot types with different
+interfaces.</li>
 <li>No standard data input.</li>
 <li>Many routine tasks require a lot of boilerplate code.</li>
 <li>No concept of facets/lattices/viewports.</li>
 <li>Poor default colours.</li>
 </ul>
-<p>The <code>ggplot2</code> package implements a grammar of graphics. Users describe what and how to visualise data and the package then generates the figure. The components of <code>ggplot2</code>’s of graphics are</p>
+<p>The <code>ggplot2</code> package implements a grammar of graphics. Users describe
+what and how to visualise data and the package then generates the
+figure. The components of <code>ggplot2</code>’s of graphics are</p>
 <ol style="list-style-type: decimal">
 <li>A <strong>tidy</strong> dataset</li>
-<li>A choice of geometric objects that servers as the visual representation of the data - for instance, points, lines, rectangles, contours.</li>
-<li>A description of how the variables in the data are mapped to visual properties (aesthetics) or the geometric objects, and an associated scale (e.g. linear, logarithmic, polar)</li>
+<li>A choice of geometric objects that servers as the visual
+representation of the data - for instance, points, lines,
+rectangles, contours.</li>
+<li>A description of how the variables in the data are mapped to visual
+properties (aesthetics) or the geometric objects, and an associated
+scale (e.g. linear, logarithmic, polar)</li>
 <li>A statistical summarisation rule</li>
 <li>A coordinate system.</li>
-<li>A facet specification, i.e. the use of several plots to look at the same data.</li>
+<li>A facet specification, i.e. the use of several plots to look at the
+same data.</li>
 </ol>
 <p>Fist of all, we need to load the <code>ggplot2</code> package and load the <code>iprg</code> data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)
-iprg &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgCsv&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
+<a class="sourceLine" id="cb108-2" title="2">iprg &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgCsv&quot;</span>)</a></code></pre></div>
 <p>ggplot graphics are built step by step by adding new elements.</p>
 <p>To build a ggplot we need to:</p>
 <ul>
 <li>bind the plot to a specific data frame using the <code>data</code> argument</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg)</code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg)</a></code></pre></div>
 <ul>
-<li>define aesthetics (<code>aes</code>), by selecting the variables to be plotted and the variables to define the presentation such as plotting size, shape color, etc.</li>
+<li>define aesthetics (<code>aes</code>), by selecting the variables to be plotted
+and the variables to define the presentation such as plotting size,
+shape color, etc.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity))</code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity))</a></code></pre></div>
 <ul>
-<li>add <code>geoms</code> – graphical representation of the data in the plot (points, lines, bars). To add a geom to the plot use <code>+</code> operator</li>
+<li>add <code>geoms</code> – graphical representation of the data in the plot
+(points, lines, bars). To add a geom to the plot use <code>+</code> operator</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb111-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplot3-1.png" width="672" /></p>
-<p>See the <a href="http://ggplot2.tidyverse.org/reference/">documentation page</a> to explore the many available <code>geoms</code>.</p>
-<p>The <code>+</code> in the <code>ggplot2</code> package is particularly useful because it allows you to modify existing <code>ggplot</code> objects. This means you can easily set up plot “templates” and conveniently explore different types of plots, so the above plot can also be generated with code like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Assign plot to a variable
-ints_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity))
-
-## Draw the plot
-ints_plot <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p>See the <a href="http://ggplot2.tidyverse.org/reference/">documentation page</a>
+to explore the many available <code>geoms</code>.</p>
+<p>The <code>+</code> in the <code>ggplot2</code> package is particularly useful because it
+allows you to modify existing <code>ggplot</code> objects. This means you can
+easily set up plot “templates” and conveniently explore different
+types of plots, so the above plot can also be generated with code like
+this:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1"><span class="co">## Assign plot to a variable</span></a>
+<a class="sourceLine" id="cb112-2" title="2">ints_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity))</a>
+<a class="sourceLine" id="cb112-3" title="3"></a>
+<a class="sourceLine" id="cb112-4" title="4"><span class="co">## Draw the plot</span></a>
+<a class="sourceLine" id="cb112-5" title="5">ints_plot <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
 <p>Notes:</p>
 <ul>
-<li><p>Anything you put in the <code>ggplot()</code> function can be seen by any geom layers that you add (i.e., these are universal plot settings). This includes the x and y axis you set up in <code>aes()</code>.</p></li>
-<li><p>You can also specify aesthetics for a given geom independently of the aesthetics defined globally in the <code>ggplot()</code> function.</p></li>
-<li><p>The <code>+</code> sign used to add layers must be placed at the end of each line containing a layer. If, instead, the <code>+</code> sign is added in the line before the other layer, <code>ggplot2</code> will not add the new layer and will return an error message.</p></li>
+<li><p>Anything you put in the <code>ggplot()</code> function can be seen by any geom layers
+that you add (i.e., these are universal plot settings). This includes the x and
+y axis you set up in <code>aes()</code>.</p></li>
+<li><p>You can also specify aesthetics for a given geom independently of the
+aesthetics defined globally in the <code>ggplot()</code> function.</p></li>
+<li><p>The <code>+</code> sign used to add layers must be placed at the end of each
+line containing a layer. If, instead, the <code>+</code> sign is added in the
+line before the other layer, <code>ggplot2</code> will not add the new layer
+and will return an error message.</p></li>
 </ul>
 <blockquote>
 <p><strong>Challenge</strong></p>
@@ -313,236 +367,265 @@ ints_plot <span class="op">+</span><span class="st"> </span><span class="kw">geo
 <li>Log-10 transform the raw intensities on the flight when plotting.</li>
 </ul>
 </blockquote>
-<p><details></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Intensity)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<details>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Intensity)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotchallenge1-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> <span class="kw">log10</span>(Intensity))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/ggplotchallenge1-2.png" width="672" /> </details></p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> <span class="kw">log10</span>(Intensity))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<img src="VisualisingBiomolecularData_files/figure-html/ggplotchallenge1-2.png" width="672" />
+</details>
 </div>
 <div id="building-complex-plots" class="section level2">
 <h2><span class="header-section-number">5.3</span> Building complex plots</h2>
 <p>First, let’s colour the boxplot based on the condition:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg,
-       <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity,
-           <span class="dt">fill =</span> Condition)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg,</a>
+<a class="sourceLine" id="cb115-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity,</a>
+<a class="sourceLine" id="cb115-3" title="3">           <span class="dt">fill =</span> Condition)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb115-4" title="4"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotbuild1-1.png" width="672" /></p>
-<p>Now let’s rename all axis labels and title, and rotate the x-axis labels 90 degrees. We can add those specifications using the <code>labs</code> and <code>theme</code> functions of the <code>ggplot2</code> package.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity, <span class="dt">fill =</span> Condition),
-       <span class="dt">data =</span> iprg) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Log2 transformed intensity distribution per MS run&#39;</span>,
-         <span class="dt">y =</span> <span class="st">&#39;Log2(Intensity)&#39;</span>,
-         <span class="dt">x =</span> <span class="st">&#39;MS run&#39;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>))</code></pre></div>
+<p>Now let’s rename all axis labels and title, and rotate the x-axis
+labels 90 degrees. We can add those specifications using the <code>labs</code>
+and <code>theme</code> functions of the <code>ggplot2</code> package.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity, <span class="dt">fill =</span> Condition),</a>
+<a class="sourceLine" id="cb116-2" title="2">       <span class="dt">data =</span> iprg) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-3" title="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-4" title="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Log2 transformed intensity distribution per MS run&#39;</span>,</a>
+<a class="sourceLine" id="cb116-5" title="5">         <span class="dt">y =</span> <span class="st">&#39;Log2(Intensity)&#39;</span>,</a>
+<a class="sourceLine" id="cb116-6" title="6">         <span class="dt">x =</span> <span class="st">&#39;MS run&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-7" title="7"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>))</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotbuild2-1.png" width="672" /></p>
-<p>And easily switch from a boxplot to a violin plot representation by changing the <code>geom</code> type.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity, <span class="dt">fill =</span> Condition),
-       <span class="dt">data =</span> iprg) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_violin</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Log2 transformed intensity distribution per Subject&#39;</span>,
-         <span class="dt">y =</span> <span class="st">&#39;Log2(Intensity)&#39;</span>,
-         <span class="dt">x =</span> <span class="st">&#39;MS run&#39;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>))</code></pre></div>
+<p>And easily switch from a boxplot to a violin plot representation by
+changing the <code>geom</code> type.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity, <span class="dt">fill =</span> Condition),</a>
+<a class="sourceLine" id="cb117-2" title="2">       <span class="dt">data =</span> iprg) <span class="op">+</span></a>
+<a class="sourceLine" id="cb117-3" title="3"><span class="st">    </span><span class="kw">geom_violin</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb117-4" title="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Log2 transformed intensity distribution per Subject&#39;</span>,</a>
+<a class="sourceLine" id="cb117-5" title="5">         <span class="dt">y =</span> <span class="st">&#39;Log2(Intensity)&#39;</span>,</a>
+<a class="sourceLine" id="cb117-6" title="6">         <span class="dt">x =</span> <span class="st">&#39;MS run&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb117-7" title="7"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>))</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotbuild3-1.png" width="672" /></p>
-<p>Finally, we can also overlay multiple geoms by simply <em>adding</em> them one after the other.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity, <span class="dt">fill =</span> Condition),
-            <span class="dt">data =</span> iprg)
-p <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p>Finally, we can also overlay multiple geoms by simply <em>adding</em> them
+one after the other.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity, <span class="dt">fill =</span> Condition),</a>
+<a class="sourceLine" id="cb118-2" title="2">            <span class="dt">data =</span> iprg)</a>
+<a class="sourceLine" id="cb118-3" title="3">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotbuild4-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>() ## not very usefull</code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>() <span class="co">## not very usefull</span></a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotbuild4-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotbuild4-3.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotbuild4-4.png" width="672" /></p>
 <blockquote>
 <p><strong>Challenge</strong></p>
 <ul>
-<li>Overlay a boxplot goem on top of a jitter geom for the raw or log-10 transformed intensities.</li>
+<li>Overlay a boxplot goem on top of a jitter geom for the raw or
+log-10 transformed intensities.</li>
 <li>Customise the plot as suggested above.</li>
 </ul>
 </blockquote>
-<p><details></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Note how the log10 transformation is applied to both geoms
-<span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> <span class="kw">log10</span>(Intensity))) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/ggplotchallenge2-1.png" width="672" /> </details></p>
-<p>Finally, a very useful feature of <code>ggplot2</code> is <strong>facetting</strong>, that defines how to subset the data into different <em>panels</em> (facets).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(iprg)</code></pre></div>
+<details>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="co">## Note how the log10 transformation is applied to both geoms</span></a>
+<a class="sourceLine" id="cb122-2" title="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> <span class="kw">log10</span>(Intensity))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb122-3" title="3"><span class="st">    </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb122-4" title="4"><span class="st">    </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<img src="VisualisingBiomolecularData_files/figure-html/ggplotchallenge2-1.png" width="672" />
+</details>
+<p>Finally, a very useful feature of <code>ggplot2</code> is <strong>facetting</strong>, that
+defines how to subset the data into different <em>panels</em> (facets).</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1"><span class="kw">names</span>(iprg)</a></code></pre></div>
 <pre><code>## [1] &quot;Protein&quot;       &quot;Log2Intensity&quot; &quot;Run&quot;           &quot;Condition&quot;    
 ## [5] &quot;BioReplicate&quot;  &quot;Intensity&quot;     &quot;TechReplicate&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg,
-       <span class="kw">aes</span>(<span class="dt">x =</span> TechReplicate, <span class="dt">y =</span> Log2Intensity,
-           <span class="dt">fill =</span> Condition)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>Condition)</code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg,</a>
+<a class="sourceLine" id="cb125-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> TechReplicate, <span class="dt">y =</span> Log2Intensity,</a>
+<a class="sourceLine" id="cb125-3" title="3">           <span class="dt">fill =</span> Condition)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb125-4" title="4"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb125-5" title="5"><span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>Condition)</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotfacet-1.png" width="672" /></p>
 </div>
 <div id="colour-scales" class="section level2">
 <h2><span class="header-section-number">5.4</span> Colour scales</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;viridis&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;RColorBrewer&quot;</span>)
-RColorBrewer<span class="op">::</span><span class="kw">display.brewer.all</span>()</code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="kw">library</span>(<span class="st">&quot;viridis&quot;</span>)</a>
+<a class="sourceLine" id="cb126-2" title="2"><span class="kw">library</span>(<span class="st">&quot;RColorBrewer&quot;</span>)</a>
+<a class="sourceLine" id="cb126-3" title="3">RColorBrewer<span class="op">::</span><span class="kw">display.brewer.all</span>()</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scales-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> crcdf,
-            <span class="kw">aes</span>(<span class="dt">x =</span> A1AG2, <span class="dt">y =</span> AFM, <span class="dt">colour =</span> AHSG)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_point</span>()
-
-p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>()</code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> crcdf,</a>
+<a class="sourceLine" id="cb127-2" title="2">            <span class="kw">aes</span>(<span class="dt">x =</span> A1AG2, <span class="dt">y =</span> AFM, <span class="dt">colour =</span> AHSG)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb127-3" title="3"><span class="st">    </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb127-4" title="4"></a>
+<a class="sourceLine" id="cb127-5" title="5">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>()</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>(<span class="dt">option =</span> <span class="st">&quot;A&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>(<span class="dt">option =</span> <span class="st">&quot;A&quot;</span>)</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>)</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-3.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Blues&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Blues&quot;</span>)</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-4.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Purples&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Purples&quot;</span>)</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-5.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Set1&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Set1&quot;</span>)</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalesex1-6.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> crcdf,
-            <span class="kw">aes</span>(<span class="dt">x =</span> A1AG2, <span class="dt">y =</span> AFM, <span class="dt">colour =</span> Sub_group)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_point</span>()
-
-p ## uses scale_color_discrete()</code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> crcdf,</a>
+<a class="sourceLine" id="cb133-2" title="2">            <span class="kw">aes</span>(<span class="dt">x =</span> A1AG2, <span class="dt">y =</span> AFM, <span class="dt">colour =</span> Sub_group)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb133-3" title="3"><span class="st">    </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb133-4" title="4"></a>
+<a class="sourceLine" id="cb133-5" title="5">p <span class="co">## uses scale_color_discrete()</span></a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalesex2-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_grey</span>()</code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_grey</span>()</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalesex2-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalesex2-3.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>, <span class="dt">option =</span> <span class="st">&quot;A&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>, <span class="dt">option =</span> <span class="st">&quot;A&quot;</span>)</a></code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/scalesex2-4.png" width="672" /></p>
 </div>
 <div id="customising-plots" class="section level2">
 <h2><span class="header-section-number">5.5</span> Customising plots</h2>
 <p>Using <code>labs</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> <span class="kw">log10</span>(Intensity))) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A title, at the top&quot;</span>,
-         <span class="dt">subtitle =</span> <span class="st">&quot;A subtitle, under the title&quot;</span>,
-         <span class="dt">caption =</span> <span class="st">&quot;Comes at the bottom of the plot&quot;</span>,
-         <span class="dt">x =</span> <span class="st">&quot;x axis label&quot;</span>,
-         <span class="dt">y =</span> <span class="st">&quot;y axis label&quot;</span>)
-p
-p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> <span class="kw">log10</span>(Intensity))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb137-2" title="2"><span class="st">    </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb137-3" title="3"><span class="st">    </span><span class="kw">geom_boxplot</span>()</a>
+<a class="sourceLine" id="cb137-4" title="4">p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A title, at the top&quot;</span>,</a>
+<a class="sourceLine" id="cb137-5" title="5">         <span class="dt">subtitle =</span> <span class="st">&quot;A subtitle, under the title&quot;</span>,</a>
+<a class="sourceLine" id="cb137-6" title="6">         <span class="dt">caption =</span> <span class="st">&quot;Comes at the bottom of the plot&quot;</span>,</a>
+<a class="sourceLine" id="cb137-7" title="7">         <span class="dt">x =</span> <span class="st">&quot;x axis label&quot;</span>,</a>
+<a class="sourceLine" id="cb137-8" title="8">         <span class="dt">y =</span> <span class="st">&quot;y axis label&quot;</span>)</a>
+<a class="sourceLine" id="cb137-9" title="9">p</a>
+<a class="sourceLine" id="cb137-10" title="10">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
 <p>Setting themes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">theme_gray</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">theme_dark</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">theme_light</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">theme_void</span>()
-## ....</code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a>
+<a class="sourceLine" id="cb138-2" title="2">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_gray</span>()</a>
+<a class="sourceLine" id="cb138-3" title="3">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_dark</span>()</a>
+<a class="sourceLine" id="cb138-4" title="4">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()</a>
+<a class="sourceLine" id="cb138-5" title="5">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_light</span>()</a>
+<a class="sourceLine" id="cb138-6" title="6">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_void</span>()</a>
+<a class="sourceLine" id="cb138-7" title="7"><span class="co">## ....</span></a></code></pre></div>
 <p>See also the <em><a href="https://CRAN.R-project.org/package=ggthemes">ggthemes</a></em> package.</p>
 </div>
 <div id="combine-ggplot-figures" class="section level2">
 <h2><span class="header-section-number">5.6</span> Combine <code>ggplot</code> figures</h2>
 <blockquote>
-<p>The goal of <em><a href="https://github.com/thomasp85/patchwork">patchwork</a></em> patchwork is to make it ridiculously simple to combine separate ggplots into the same graphic. As such it tries to solve the same problem as <code>gridExtra::grid.arrange()</code> and <code>cowplot::plot_grid</code> but using an API that incites exploration and iteration.</p>
+<p>The goal of <em><a href="https://github.com/thomasp85/patchwork">patchwork</a></em> patchwork is to
+make it ridiculously simple to combine separate ggplots into the
+same graphic. As such it tries to solve the same problem as
+<code>gridExtra::grid.arrange()</code> and <code>cowplot::plot_grid</code> but using an
+API that incites exploration and iteration.</p>
 </blockquote>
 <p>Installation:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## install.packages(&quot;devtools&quot;)
-devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;thomasp85/patchwork&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Condition, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> Condition)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)
-p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Intensity, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_point</span>()
-p3 &lt;-<span class="st"> </span>iprg <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">group_by</span>(TechReplicate, BioReplicate) <span class="op">%&gt;%</span>
-<span class="st">    </span>tally <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> TechReplicate,
-               <span class="dt">y =</span> n,
-               <span class="dt">fill =</span> <span class="kw">as.factor</span>(BioReplicate))) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)
-p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iprg, <span class="kw">aes</span>(<span class="dt">x =</span> TechReplicate, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> Condition)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">coord_flip</span>()</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;patchwork&quot;</span>)
-p1 <span class="op">+</span><span class="st"> </span>p2
-p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">2</span>)
-p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)
-p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">-</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)
-(p1 <span class="op">|</span><span class="st"> </span>p2 <span class="op">|</span><span class="st"> </span>p3) <span class="op">/</span><span class="st"> </span>p4
-(p1 <span class="op">+</span><span class="st"> </span>(p2 <span class="op">+</span><span class="st"> </span>p3) <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>))</code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1"><span class="co">## install.packages(&quot;devtools&quot;)</span></a>
+<a class="sourceLine" id="cb139-2" title="2">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;thomasp85/patchwork&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Condition, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb140-2" title="2"><span class="st">    </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> Condition)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb140-3" title="3"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</a>
+<a class="sourceLine" id="cb140-4" title="4">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Intensity, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb140-5" title="5"><span class="st">    </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb140-6" title="6">p3 &lt;-<span class="st"> </span>iprg <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb140-7" title="7"><span class="st">    </span><span class="kw">group_by</span>(TechReplicate, BioReplicate) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb140-8" title="8"><span class="st">    </span>tally <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb140-9" title="9"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> TechReplicate,</a>
+<a class="sourceLine" id="cb140-10" title="10">               <span class="dt">y =</span> n,</a>
+<a class="sourceLine" id="cb140-11" title="11">               <span class="dt">fill =</span> <span class="kw">as.factor</span>(BioReplicate))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb140-12" title="12"><span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb140-13" title="13"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</a>
+<a class="sourceLine" id="cb140-14" title="14">p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iprg, <span class="kw">aes</span>(<span class="dt">x =</span> TechReplicate, <span class="dt">y =</span> Log2Intensity)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb140-15" title="15"><span class="st">    </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> Condition)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb140-16" title="16"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb140-17" title="17"><span class="st">    </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"><span class="kw">library</span>(<span class="st">&quot;patchwork&quot;</span>)</a>
+<a class="sourceLine" id="cb141-2" title="2">p1 <span class="op">+</span><span class="st"> </span>p2</a>
+<a class="sourceLine" id="cb141-3" title="3">p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb141-4" title="4">p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb141-5" title="5">p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">-</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb141-6" title="6">(p1 <span class="op">|</span><span class="st"> </span>p2 <span class="op">|</span><span class="st"> </span>p3) <span class="op">/</span><span class="st"> </span>p4</a>
+<a class="sourceLine" id="cb141-7" title="7">(p1 <span class="op">+</span><span class="st"> </span>(p2 <span class="op">+</span><span class="st"> </span>p3) <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">1</span>))</a></code></pre></div>
 </div>
 <div id="saving-your-figures" class="section level2">
 <h2><span class="header-section-number">5.7</span> Saving your figures</h2>
-<p>You can save plots to a number of different file formats. PDF is by far the most common format because it’s lightweight, cross-platform and scales up well but jpegs, pngs and a number of other file formats are also supported. Let’s redo the last barplot but save it to the file system this time.</p>
+<p>You can save plots to a number of different file formats. PDF is by
+far the most common format because it’s lightweight, cross-platform
+and scales up well but jpegs, pngs and a number of other file formats
+are also supported. Let’s redo the last barplot but save it to the
+file system this time.</p>
 <p>Let’s save the boxplot as pdf file.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>()
-p <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()
-<span class="kw">dev.off</span>()</code></pre></div>
-<p>The default file name is <code>Rplots.pdf</code>. We can customise that file name specifying it by passing the file name, as a character, to the <code>pdf()</code> function.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"><span class="kw">pdf</span>()</a>
+<a class="sourceLine" id="cb142-2" title="2">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</a>
+<a class="sourceLine" id="cb142-3" title="3"><span class="kw">dev.off</span>()</a></code></pre></div>
+<p>The default file name is <code>Rplots.pdf</code>. We can customise that file name
+specifying it by passing the file name, as a character, to the <code>pdf()</code>
+function.</p>
 <blockquote>
 <p><strong>Challenge</strong></p>
-<p>Save a figure of your choice to a pdf file. Read the manual for the <code>png</code> function and save that same image to a png file.</p>
+<p>Save a figure of your choice to a pdf file. Read the manual for the
+<code>png</code> function and save that same image to a png file.</p>
 <p><strong>Tip</strong>: save your figures in a dedicated directory.</p>
 </blockquote>
 </div>
 <div id="exercises" class="section level2">
 <h2><span class="header-section-number">5.8</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>Count the number of quantified proteins for each group, gender and age and visualise the results (suggestion below).</li>
+<li><p>Count the number of quantified proteins for each group, gender and
+age and visualise the results (suggestion below).</p>
+<p><strong>Tips:</strong> For age, you can use <code>cut</code> to bin the ages. You’ll
+probably want to use <code>dplyr::group_by</code> and <code>dplyr::tally</code> to obtain
+the values after converting the <code>crc</code> data to a long format.</p></li>
 </ol>
-<p><strong>Tips:</strong> For age, you can use <code>cut</code> to bin the ages. You’ll probably want to use <code>dplyr::group_by</code> and <code>dplyr::tally</code> to obtain the values after converting the <code>crc</code> data to a long format.</p>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggex1-1.png" width="672" /></p>
-<p><details></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tbl &lt;-<span class="st"> </span><span class="kw">gather</span>(crcdf, <span class="dt">key =</span> Protein, <span class="dt">value =</span> expression,
-              <span class="op">-</span>Sample, <span class="op">-</span>Group, <span class="op">-</span>Age, <span class="op">-</span>Gender, <span class="op">-</span>Cancer_stage,
-              <span class="op">-</span>Tumour_location, <span class="op">-</span>Sub_group) <span class="op">%&gt;%</span>
-<span class="st">    </span>as_tibble
-
-tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(<span class="dt">age =</span> <span class="kw">cut</span>(tbl<span class="op">$</span>Age, <span class="dv">5</span>), Group, Gender) <span class="op">%&gt;%</span>
-<span class="st">    </span>tally <span class="op">%&gt;%</span>
-<span class="st">        </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Gender, <span class="dt">y =</span> n, <span class="dt">colour =</span> age)) <span class="op">+</span>
-<span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span>
-<span class="st">        </span><span class="kw">facet_grid</span>( <span class="op">~</span><span class="st"> </span>Group)</code></pre></div>
-<p></details></p>
+<details>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1">tbl &lt;-<span class="st"> </span><span class="kw">gather</span>(crcdf, <span class="dt">key =</span> Protein, <span class="dt">value =</span> expression,</a>
+<a class="sourceLine" id="cb143-2" title="2">              <span class="op">-</span>Sample, <span class="op">-</span>Group, <span class="op">-</span>Age, <span class="op">-</span>Gender, <span class="op">-</span>Cancer_stage,</a>
+<a class="sourceLine" id="cb143-3" title="3">              <span class="op">-</span>Tumour_location, <span class="op">-</span>Sub_group) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-4" title="4"><span class="st">    </span>as_tibble</a>
+<a class="sourceLine" id="cb143-5" title="5"></a>
+<a class="sourceLine" id="cb143-6" title="6">tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(<span class="dt">age =</span> <span class="kw">cut</span>(tbl<span class="op">$</span>Age, <span class="dv">5</span>), Group, Gender) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-7" title="7"><span class="st">    </span>tally <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-8" title="8"><span class="st">        </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Gender, <span class="dt">y =</span> n, <span class="dt">colour =</span> age)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-9" title="9"><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-10" title="10"><span class="st">        </span><span class="kw">facet_grid</span>( <span class="op">~</span><span class="st"> </span>Group)</a></code></pre></div>
+</details>
 <ol start="2" style="list-style-type: decimal">
-<li>Experiment with <code>goem_line</code> to produce line plots showing the expression data for a subset of samples (below I used those starting with <code>&quot;P1F&quot;</code>). You will need to <strong>group</strong> proteins for the same protein data points in different samples to be linked.</li>
+<li>Experiment with <code>goem_line</code> to produce line plots showing the
+expression data for a subset of samples (below I used those
+starting with <code>&quot;P1F&quot;</code>). You will need to <strong>group</strong> proteins for the
+same protein data points in different samples to be linked.</li>
 </ol>
 <pre><code>## geom_path: Each group consists of only one observation. Do you need to
 ## adjust the group aesthetic?</code></pre>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggex2-1.png" width="672" /></p>
-<p><details></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">filter</span>(tbl, <span class="kw">grepl</span>(<span class="st">&quot;P1F&quot;</span>, tbl<span class="op">$</span>Sample)),
-       <span class="kw">aes</span>(<span class="dt">x =</span> Sample, <span class="dt">y =</span> expression, <span class="dt">colour =</span> Protein)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> Protein)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_grid</span>(Gender <span class="op">~</span><span class="st"> </span>Group) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>,
-          <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>,
-                                     <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
-<p></details></p>
+<details>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">filter</span>(tbl, <span class="kw">grepl</span>(<span class="st">&quot;P1F&quot;</span>, tbl<span class="op">$</span>Sample)),</a>
+<a class="sourceLine" id="cb145-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> Sample, <span class="dt">y =</span> expression, <span class="dt">colour =</span> Protein)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-3" title="3"><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> Protein)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-4" title="4"><span class="st">    </span><span class="kw">facet_grid</span>(Gender <span class="op">~</span><span class="st"> </span>Group) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-5" title="5"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>,</a>
+<a class="sourceLine" id="cb145-6" title="6">          <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>,</a>
+<a class="sourceLine" id="cb145-7" title="7">                                     <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
+</details>
 <ol start="3" style="list-style-type: decimal">
-<li>Plot the expression of all proteins in one sample (for example P1A10) against another one (for example P1A2) and use dataset-wide features such as the log-fold change of all CRC vs. Healthy samples and the grand mean expression intensity.</li>
+<li>Plot the expression of all proteins in one sample (for example
+P1A10) against another one (for example P1A2) and use dataset-wide
+features such as the log-fold change of all CRC vs. Healthy samples
+and the grand mean expression intensity.</li>
 </ol>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggex3-1.png" width="672" /></p>
-<p><details></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>MSnbase<span class="op">::</span><span class="kw">ms2df</span>(crc) <span class="op">%&gt;%</span><span class="st"> </span>as_tibble
-
-x<span class="op">$</span>rm &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(crc), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-fc &lt;-<span class="st"> </span><span class="kw">rowSums</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(crc[, crc<span class="op">$</span>Group <span class="op">==</span><span class="st"> &quot;CRC&quot;</span>]), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span>
-<span class="st">    </span><span class="kw">rowSums</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(crc[, crc<span class="op">$</span>Group <span class="op">!=</span><span class="st"> &quot;CRC&quot;</span>]), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-x<span class="op">$</span>lfc &lt;-<span class="st"> </span><span class="kw">log2</span>(fc)
-
-<span class="kw">ggplot</span>(x, <span class="kw">aes</span>(P1A10, P1A2, <span class="dt">colour =</span> lfc, <span class="dt">size =</span> rm)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>)</code></pre></div>
-<p></details></p>
+<details>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1">x &lt;-<span class="st"> </span>MSnbase<span class="op">::</span><span class="kw">ms2df</span>(crc) <span class="op">%&gt;%</span><span class="st"> </span>as_tibble</a>
+<a class="sourceLine" id="cb147-2" title="2"></a>
+<a class="sourceLine" id="cb147-3" title="3">x<span class="op">$</span>rm &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(crc), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb147-4" title="4">fc &lt;-<span class="st"> </span><span class="kw">rowSums</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(crc[, crc<span class="op">$</span>Group <span class="op">==</span><span class="st"> &quot;CRC&quot;</span>]), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span></a>
+<a class="sourceLine" id="cb147-5" title="5"><span class="st">    </span><span class="kw">rowSums</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(crc[, crc<span class="op">$</span>Group <span class="op">!=</span><span class="st"> &quot;CRC&quot;</span>]), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb147-6" title="6">x<span class="op">$</span>lfc &lt;-<span class="st"> </span><span class="kw">log2</span>(fc)</a>
+<a class="sourceLine" id="cb147-7" title="7"></a>
+<a class="sourceLine" id="cb147-8" title="8"><span class="kw">ggplot</span>(x, <span class="kw">aes</span>(P1A10, P1A2, <span class="dt">colour =</span> lfc, <span class="dt">size =</span> rm)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-9" title="9"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-10" title="10"><span class="st">    </span><span class="kw">scale_color_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>)</a></code></pre></div>
+</details>
 </div>
 <div id="references" class="section level2">
 <h2><span class="header-section-number">5.9</span> References</h2>
 <ul>
 <li><a href="http://www.ggplot2-exts.org/gallery/"><code>ggplot2</code> extensions - gallery</a></li>
 <li><a href="http://ggplot2.tidyverse.org/"><code>ggplot2</code> webpage</a> and documentation</li>
-<li><em>ggplot2: Elegant Graphics for Data Analysis</em> book (source of the book available for free <a href="https://github.com/hadley/ggplot2-book">here</a>).</li>
+<li><em>ggplot2: Elegant Graphics for Data Analysis</em> book (source of the
+book available for free <a href="https://github.com/hadley/ggplot2-book">here</a>).</li>
 </ul>
 
 </div>
@@ -599,7 +682,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
