@@ -436,7 +436,7 @@ the author of the package illustrates how Venn and upset diagrams
 relate to each other.
 
 
-```{r upse2}
+```{r upset2}
 upset(x2, order.by = "freq")
 upset(x2, order.by = "degree")
 upset(x2, order.by = c("freq", "degree"))
