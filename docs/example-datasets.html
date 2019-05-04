@@ -244,7 +244,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>We will used various datasets throughout the course. These data are briefly described below, and we will explore them through various visualisations later.</p>
 <div id="raw-ms-data" class="section level2">
 <h2><span class="header-section-number">2.1</span> Raw MS data</h2>
-<p>Section <em>Using R and Bioconductor for MS-based proteomics</em> shows how to visualise raw mass spectrometry data. The raw data that will be using come from the <em><a href="https://bioconductor.org/packages/3.9/msdata">msdata</a></em> <em><a href="https://bioconductor.org/packages/3.9/MSnbase">MSnbase</a></em> packages. These data will be introduced later.</p>
+<p>Section <em>Using R and Bioconductor for MS-based proteomics</em> shows how to visualise raw mass spectrometry data. The raw data that will be used come from the <em><a href="https://bioconductor.org/packages/3.9/msdata">msdata</a></em> and <em><a href="https://bioconductor.org/packages/3.9/MSnbase">MSnbase</a></em> packages.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;msdata&quot;</span>)</code></pre></div>
 </div>
 <div id="the-iprg-data" class="section level2">
@@ -257,24 +257,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <blockquote>
 <p>Choi M, Eren-Dogu ZF, Colangelo C, Cottrell J, Hoopmann MR, Kapp EA, Kim S, Lam H, Neubert TA, Palmblad M, Phinney BS, Weintraub ST, MacLean B, Vitek O. <em>ABRF Proteome Informatics Research Group (iPRG) 2015 Study: Detection of Differentially Abundant Proteins in Label-Free Quantitative LC-MS/MS Experiments</em>. J Proteome Res. 2017 Feb 3;16(2):945-957. doi: <a href="https://doi.org/10.1021/acs.jproteome.6b00881">10.1021/acs.jproteome.6b00881</a> Epub 2017 Jan 3. PMID: 27990823.</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgCsv&quot;</span>)
-<span class="kw">head</span>(iprg)</code></pre></div>
-<pre><code>##                Protein Log2Intensity                       Run  Condition
-## 1 sp|D6VTK4|STE2_YEAST      26.81232 JD_06232014_sample1_B.raw Condition1
-## 2 sp|D6VTK4|STE2_YEAST      26.60786 JD_06232014_sample1_C.raw Condition1
-## 3 sp|D6VTK4|STE2_YEAST      26.58301 JD_06232014_sample1-A.raw Condition1
-## 4 sp|D6VTK4|STE2_YEAST      26.83563 JD_06232014_sample2_A.raw Condition2
-## 5 sp|D6VTK4|STE2_YEAST      26.79430 JD_06232014_sample2_B.raw Condition2
-## 6 sp|D6VTK4|STE2_YEAST      26.60863 JD_06232014_sample2_C.raw Condition2
-##   BioReplicate Intensity TechReplicate
-## 1            1 117845016             B
-## 2            1 102273602             C
-## 3            1 100526837             A
-## 4            2 119765106             A
-## 5            2 116382798             B
-## 6            2 102328260             C</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(iprg)</code></pre></div>
-<pre><code>## [1] 36321     7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataIprgCsv&quot;</span>)</code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Protein = col_character(),
+##   Log2Intensity = col_double(),
+##   Run = col_character(),
+##   Condition = col_character(),
+##   BioReplicate = col_double(),
+##   Intensity = col_double(),
+##   TechReplicate = col_character()
+## )</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg</code></pre></div>
+<pre><code>## # A tibble: 36,321 x 7
+##    Protein Log2Intensity Run   Condition BioReplicate Intensity
+##    &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+##  1 sp|D6V…          26.8 JD_0… Conditio…            1    1.18e8
+##  2 sp|D6V…          26.6 JD_0… Conditio…            1    1.02e8
+##  3 sp|D6V…          26.6 JD_0… Conditio…            1    1.01e8
+##  4 sp|D6V…          26.8 JD_0… Conditio…            2    1.20e8
+##  5 sp|D6V…          26.8 JD_0… Conditio…            2    1.16e8
+##  6 sp|D6V…          26.6 JD_0… Conditio…            2    1.02e8
+##  7 sp|D6V…          26.6 JD_0… Conditio…            3    1.04e8
+##  8 sp|D6V…          26.5 JD_0… Conditio…            3    9.47e7
+##  9 sp|D6V…          26.5 JD_0… Conditio…            3    9.69e7
+## 10 sp|D6V…          26.6 JD_0… Conditio…            4    1.02e8
+## # … with 36,311 more rows, and 1 more variable: TechReplicate &lt;chr&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(iprg<span class="op">$</span>Condition, iprg<span class="op">$</span>TechReplicate)</code></pre></div>
 <pre><code>##             
 ##                 A    B    C
@@ -284,69 +292,43 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##   Condition4 3027 3026 3027</code></pre>
 <p>This data is in the so-called long format. In some applications, it is more convenient to have the data in wide format, where rows contain the protein expression data for all samples.</p>
 <p>Let’s start by simplifying the data to keep only the relevant columns:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iprg2 &lt;-<span class="st"> </span>iprg[, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>)])</code></pre></div>
-<pre><code>##                Protein                       Run Intensity
-## 1 sp|D6VTK4|STE2_YEAST JD_06232014_sample1_B.raw 117845016
-## 2 sp|D6VTK4|STE2_YEAST JD_06232014_sample1_C.raw 102273602
-## 3 sp|D6VTK4|STE2_YEAST JD_06232014_sample1-A.raw 100526837
-## 4 sp|D6VTK4|STE2_YEAST JD_06232014_sample2_A.raw 119765106
-## 5 sp|D6VTK4|STE2_YEAST JD_06232014_sample2_B.raw 116382798
-## 6 sp|D6VTK4|STE2_YEAST JD_06232014_sample2_C.raw 102328260</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(iprg2 &lt;-<span class="st"> </span>iprg[, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>)])</code></pre></div>
+<pre><code>## # A tibble: 36,321 x 3
+##    Protein              Run                        Intensity
+##    &lt;chr&gt;                &lt;chr&gt;                          &lt;dbl&gt;
+##  1 sp|D6VTK4|STE2_YEAST JD_06232014_sample1_B.raw 117845016.
+##  2 sp|D6VTK4|STE2_YEAST JD_06232014_sample1_C.raw 102273602.
+##  3 sp|D6VTK4|STE2_YEAST JD_06232014_sample1-A.raw 100526837.
+##  4 sp|D6VTK4|STE2_YEAST JD_06232014_sample2_A.raw 119765106.
+##  5 sp|D6VTK4|STE2_YEAST JD_06232014_sample2_B.raw 116382798.
+##  6 sp|D6VTK4|STE2_YEAST JD_06232014_sample2_C.raw 102328260.
+##  7 sp|D6VTK4|STE2_YEAST JD_06232014_sample3_A.raw 103830944.
+##  8 sp|D6VTK4|STE2_YEAST JD_06232014_sample3_B.raw  94660680 
+##  9 sp|D6VTK4|STE2_YEAST JD_06232014_sample3_C.raw  96919972.
+## 10 sp|D6VTK4|STE2_YEAST JD_06232014_sample4_B.raw 102150172.
+## # … with 36,311 more rows</code></pre>
 <p>We can convert the <code>iPRG</code> into a wide format with <code>tidyr::spread</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyr&quot;</span>)
-iprg3 &lt;-<span class="st"> </span><span class="kw">spread</span>(iprg2, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity)
-<span class="kw">head</span>(iprg3)</code></pre></div>
-<pre><code>##                 Protein JD_06232014_sample1_B.raw
-## 1  sp|D6VTK4|STE2_YEAST                 117845016
-## 2  sp|O13297|CET1_YEAST                  27618234
-## 3  sp|O13329|FOB1_YEAST                  10892143
-## 4  sp|O13539|THP2_YEAST                 192490784
-## 5 sp|O13547|CCW14_YEAST                 156581624
-## 6 sp|O13563|RPN13_YEAST                  71664672
-##   JD_06232014_sample1_C.raw JD_06232014_sample1-A.raw
-## 1                 102273602                 100526837
-## 2                  26774670                  27598550
-## 3                  16948335                  11625198
-## 4                 175282010                  20606703
-## 5                 117211277                 145493943
-## 6                  82193735                  75530595
-##   JD_06232014_sample2_A.raw JD_06232014_sample2_B.raw
-## 1                 119765106                 116382798
-## 2                  24114625                  26803677
-## 3                   9448487                  11334921
-## 4                  61781078                  72052121
-## 5                 151407246                 126364703
-## 6                  62998676                  73431260
-##   JD_06232014_sample2_C.raw JD_06232014_sample3_A.raw
-## 1                 102328260                 103830944
-## 2                  25055912                  21977898
-## 3                  14304554                  19285356
-## 4                  62895992                  52653164
-## 5                 123774524                  99222081
-## 6                  67612042                  75916420
-##   JD_06232014_sample3_B.raw JD_06232014_sample3_C.raw
-## 1                  94660680                  96919972
-## 2                  25901361                  26545544
-## 3                  10230925                  13985282
-## 4                  84856844                  63400641
-## 5                 113287367                 129669642
-## 6                  68877388                  72632994
-##   JD_06232014_sample4_B.raw JD_06232014_sample4_C.raw
-## 1                 102150172                  87702341
-## 2                  26305424                  26612349
-## 3                   9414560                  12783705
-## 4                 109094905                  63392610
-## 5                 132444723                 117065261
-## 6                  70708409                  69675572
-##   JD_06232014_sample4-A.raw
-## 1                 105724288
-## 2                  23860882
-## 3                   8592981
-## 4                  35363603
-## 5                 141404829
-## 6                  57600421</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(iprg3)</code></pre></div>
-<pre><code>## [1] 3027</code></pre>
+(iprg3 &lt;-<span class="st"> </span><span class="kw">spread</span>(iprg2, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity))</code></pre></div>
+<pre><code>## # A tibble: 3,027 x 13
+##    Protein JD_06232014_sam… JD_06232014_sam… `JD_06232014_sa…
+##    &lt;chr&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+##  1 sp|D6V…       117845016.       102273602.       100526837.
+##  2 sp|O13…        27618234.        26774670.        27598550.
+##  3 sp|O13…        10892143.        16948335.        11625198.
+##  4 sp|O13…       192490784.       175282010.        20606703.
+##  5 sp|O13…       156581624.       117211277.       145493943.
+##  6 sp|O13…        71664672.        82193735.        75530595.
+##  7 sp|O13…         9087607.         9324409.        10479297.
+##  8 sp|O14…       788997917.      1012548158        670287886.
+##  9 sp|O14…       331891060.       405043875.       383229875.
+## 10 sp|O14…         6989247.         4688128.         4769092.
+## # … with 3,017 more rows, and 9 more variables:
+## #   JD_06232014_sample2_A.raw &lt;dbl&gt;, JD_06232014_sample2_B.raw &lt;dbl&gt;,
+## #   JD_06232014_sample2_C.raw &lt;dbl&gt;, JD_06232014_sample3_A.raw &lt;dbl&gt;,
+## #   JD_06232014_sample3_B.raw &lt;dbl&gt;, JD_06232014_sample3_C.raw &lt;dbl&gt;,
+## #   JD_06232014_sample4_B.raw &lt;dbl&gt;, JD_06232014_sample4_C.raw &lt;dbl&gt;,
+## #   `JD_06232014_sample4-A.raw` &lt;dbl&gt;</code></pre>
 <div class="figure">
 <img src="img/spread.png" alt="Spreading data from long to wide format" />
 <p class="caption">Spreading data from long to wide format</p>
@@ -362,36 +344,32 @@ iprg3 &lt;-<span class="st"> </span><span class="kw">spread</span>(iprg2, <span 
 ## [2,] 2721   4
 ## [3,]  652  11</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iprg3[<span class="kw">unique</span>(k[, <span class="st">&quot;row&quot;</span>]), ]</code></pre></div>
-<pre><code>##                    Protein JD_06232014_sample1_B.raw
-## 2721  sp|Q08236|AVO1_YEAST                        NA
-## 652  sp|P28320|CWC16_YEAST                  961273.8
-##      JD_06232014_sample1_C.raw JD_06232014_sample1-A.raw
-## 2721                  10989286                        NA
-## 652                    1229085                   1108670
-##      JD_06232014_sample2_A.raw JD_06232014_sample2_B.raw
-## 2721                 5407419.7                   2041424
-## 652                   449839.1                   1334009
-##      JD_06232014_sample2_C.raw JD_06232014_sample3_A.raw
-## 2721                  13108081                   4677052
-## 652                    1633894                   1493440
-##      JD_06232014_sample3_B.raw JD_06232014_sample3_C.raw
-## 2721                  10308957                  13639794
-## 652                    2205688                   2120321
-##      JD_06232014_sample4_B.raw JD_06232014_sample4_C.raw
-## 2721                   2592511                  10420338
-## 652                         NA                   1264712
-##      JD_06232014_sample4-A.raw
-## 2721                10377088.4
-## 652                   757082.7</code></pre>
+<pre><code>## # A tibble: 2 x 13
+##   Protein JD_06232014_sam… JD_06232014_sam… `JD_06232014_sa…
+##   &lt;chr&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 sp|Q08…              NA         10989286.              NA 
+## 2 sp|P28…          961274.         1229085.         1108670.
+## # … with 9 more variables: JD_06232014_sample2_A.raw &lt;dbl&gt;,
+## #   JD_06232014_sample2_B.raw &lt;dbl&gt;, JD_06232014_sample2_C.raw &lt;dbl&gt;,
+## #   JD_06232014_sample3_A.raw &lt;dbl&gt;, JD_06232014_sample3_B.raw &lt;dbl&gt;,
+## #   JD_06232014_sample3_C.raw &lt;dbl&gt;, JD_06232014_sample4_B.raw &lt;dbl&gt;,
+## #   JD_06232014_sample4_C.raw &lt;dbl&gt;, `JD_06232014_sample4-A.raw` &lt;dbl&gt;</code></pre>
 <p>The opposite operation to <code>spread</code> is <code>gather</code>, also from the <code>tidyr</code> package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iprg4 &lt;-<span class="st"> </span><span class="kw">gather</span>(iprg3, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity, <span class="op">-</span>Protein))</code></pre></div>
-<pre><code>##                 Protein                       Run Intensity
-## 1  sp|D6VTK4|STE2_YEAST JD_06232014_sample1_B.raw 117845016
-## 2  sp|O13297|CET1_YEAST JD_06232014_sample1_B.raw  27618234
-## 3  sp|O13329|FOB1_YEAST JD_06232014_sample1_B.raw  10892143
-## 4  sp|O13539|THP2_YEAST JD_06232014_sample1_B.raw 192490784
-## 5 sp|O13547|CCW14_YEAST JD_06232014_sample1_B.raw 156581624
-## 6 sp|O13563|RPN13_YEAST JD_06232014_sample1_B.raw  71664672</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(iprg4 &lt;-<span class="st"> </span><span class="kw">gather</span>(iprg3, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity, <span class="op">-</span>Protein))</code></pre></div>
+<pre><code>## # A tibble: 36,324 x 3
+##    Protein               Run                        Intensity
+##    &lt;chr&gt;                 &lt;chr&gt;                          &lt;dbl&gt;
+##  1 sp|D6VTK4|STE2_YEAST  JD_06232014_sample1_B.raw 117845016.
+##  2 sp|O13297|CET1_YEAST  JD_06232014_sample1_B.raw  27618234.
+##  3 sp|O13329|FOB1_YEAST  JD_06232014_sample1_B.raw  10892143.
+##  4 sp|O13539|THP2_YEAST  JD_06232014_sample1_B.raw 192490784.
+##  5 sp|O13547|CCW14_YEAST JD_06232014_sample1_B.raw 156581624.
+##  6 sp|O13563|RPN13_YEAST JD_06232014_sample1_B.raw  71664672.
+##  7 sp|O13585|YP089_YEAST JD_06232014_sample1_B.raw   9087607.
+##  8 sp|O14455|RL36B_YEAST JD_06232014_sample1_B.raw 788997917.
+##  9 sp|O14467|MBF1_YEAST  JD_06232014_sample1_B.raw 331891060.
+## 10 sp|O14468|YO304_YEAST JD_06232014_sample1_B.raw   6989247.
+## # … with 36,314 more rows</code></pre>
 <div class="figure">
 <img src="img/gather.png" alt="Gathering data from wide to long format" />
 <p class="caption">Gathering data from wide to long format</p>
@@ -404,14 +382,21 @@ iprg3 &lt;-<span class="st"> </span><span class="kw">spread</span>(iprg2, <span 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(<span class="kw">na.omit</span>(iprg4))</code></pre></div>
 <pre><code>## [1] 36321</code></pre>
 <p>which can be accounted for by removing rows with missing values by setting <code>na.rm = TRUE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iprg5 &lt;-<span class="st"> </span><span class="kw">gather</span>(iprg3, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity, <span class="op">-</span>Protein, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<pre><code>##                 Protein                       Run Intensity
-## 1  sp|D6VTK4|STE2_YEAST JD_06232014_sample1_B.raw 117845016
-## 2  sp|O13297|CET1_YEAST JD_06232014_sample1_B.raw  27618234
-## 3  sp|O13329|FOB1_YEAST JD_06232014_sample1_B.raw  10892143
-## 4  sp|O13539|THP2_YEAST JD_06232014_sample1_B.raw 192490784
-## 5 sp|O13547|CCW14_YEAST JD_06232014_sample1_B.raw 156581624
-## 6 sp|O13563|RPN13_YEAST JD_06232014_sample1_B.raw  71664672</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(iprg5 &lt;-<span class="st"> </span><span class="kw">gather</span>(iprg3, <span class="dt">key =</span> Run, <span class="dt">value =</span> Intensity, <span class="op">-</span>Protein, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>## # A tibble: 36,321 x 3
+##    Protein               Run                        Intensity
+##    &lt;chr&gt;                 &lt;chr&gt;                          &lt;dbl&gt;
+##  1 sp|D6VTK4|STE2_YEAST  JD_06232014_sample1_B.raw 117845016.
+##  2 sp|O13297|CET1_YEAST  JD_06232014_sample1_B.raw  27618234.
+##  3 sp|O13329|FOB1_YEAST  JD_06232014_sample1_B.raw  10892143.
+##  4 sp|O13539|THP2_YEAST  JD_06232014_sample1_B.raw 192490784.
+##  5 sp|O13547|CCW14_YEAST JD_06232014_sample1_B.raw 156581624.
+##  6 sp|O13563|RPN13_YEAST JD_06232014_sample1_B.raw  71664672.
+##  7 sp|O13585|YP089_YEAST JD_06232014_sample1_B.raw   9087607.
+##  8 sp|O14455|RL36B_YEAST JD_06232014_sample1_B.raw 788997917.
+##  9 sp|O14467|MBF1_YEAST  JD_06232014_sample1_B.raw 331891060.
+## 10 sp|O14468|YO304_YEAST JD_06232014_sample1_B.raw   6989247.
+## # … with 36,311 more rows</code></pre>
 </div>
 <div id="crc-training-data" class="section level2">
 <h2><span class="header-section-number">2.3</span> CRC training data</h2>
@@ -424,33 +409,62 @@ subjectQuant &lt;-<span class="st"> </span><span class="kw">quantification</span
 <p>It provides quantitative information for 72 proteins, including two standard proteins, <em>AIAG-Bovine</em> and <em>FETUA-Bovine</em>. These proteins were targeted for plasma samples with SRM with isotope labeled reference peptides in order to identify candidate protein biomarker for non-invasive detection of CRC. The training cohort included 100 subjects in control group and 100 subjects with CRC. Each sample for subject was measured in a single injection without technical replicate. The training cohort was analyzed with Skyline. The dataset was already normalized as described in manuscript. User do not need extra normalization. NAs should be considered as censored missing. Two standard proteins can be removed for statistical analysis.</p>
 <p>Clinical information where added manually thereafter.</p>
 <p>To load this dataset:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crcdf &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataCrcCsv&quot;</span>)
-crcdf[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
-<pre><code>##       A1AG2      AFM     AHSG
-## 1  14.23816 16.10302 19.95179
-## 2  15.02411 16.02071 19.71592
-## 3  15.63136 16.14380 19.71085
-## 4  15.40137 16.27642 19.70438
-## 5  16.00316 16.95821 20.42033
-## 6  13.93242 16.52772 19.88985
-## 7  14.34155 16.43029 20.10060
-## 8  13.57086 17.11052 19.93833
-## 9  15.83348 15.88189 18.64270
-## 10 15.37996 16.22621 20.09992</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(crcdf &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;http://bit.ly/VisBiomedDataCrcCsv&quot;</span>))</code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   Sample = col_character(),
+##   Group = col_character(),
+##   Gender = col_character(),
+##   Tumour_location = col_character(),
+##   Sub_group = col_character()
+## )</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
+<pre><code>## # A tibble: 200 x 79
+##    A1AG2   AFM  AHSG `AIAG-Bovine`  ANT3  AOC3  APOB  ATRN   BTD C20orf3
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1  14.2  16.1  20.0          15.3  17.2 10.0   15.5  14.4  16.3   10.7 
+##  2  15.0  16.0  19.7          15.2  17.3  9.04  15.1  14.0  16.2   10.7 
+##  3  15.6  16.1  19.7          15.6  17.6 10.4   16.0  14.6  16.5   11.2 
+##  4  15.4  16.3  19.7          15.1  17.4  9.50  15.7  14.1  16.3    9.97
+##  5  16.0  17.0  20.4          15.6  18.0  9.65  16.2  14.2  16.5   12.6 
+##  6  13.9  16.5  19.9          13.4  16.3  9.52  14.5  13.7  15.8   10.6 
+##  7  14.3  16.4  20.1          15.1  17.4  9.72  14.7  13.3  16.4   11.4 
+##  8  13.6  17.1  19.9          14.9  17.3  8.79  14.9  12.7  16.1   10.8 
+##  9  15.8  15.9  18.6          15.1  16.7  8.95  14.7  13.2  15.6   11.6 
+## 10  15.4  16.2  20.1          15.4  17.6 10.3   15.9  14.7  16.5   11.4 
+## # … with 190 more rows, and 69 more variables: CADM1 &lt;dbl&gt;, CD163 &lt;dbl&gt;,
+## #   CD44 &lt;dbl&gt;, CDH5 &lt;dbl&gt;, CFH &lt;dbl&gt;, CFI &lt;dbl&gt;, CLU &lt;dbl&gt;, CP &lt;dbl&gt;,
+## #   CTSD &lt;dbl&gt;, DKFZp686N02209 &lt;dbl&gt;, DSG2 &lt;dbl&gt;, ECM1 &lt;dbl&gt;, F11 &lt;dbl&gt;,
+## #   F5 &lt;dbl&gt;, FCGBP &lt;dbl&gt;, `FETUA-Bovine` &lt;dbl&gt;, FETUB &lt;dbl&gt;, FGA &lt;dbl&gt;,
+## #   FGG &lt;dbl&gt;, FHR3 &lt;dbl&gt;, FN1 &lt;dbl&gt;, GOLM1 &lt;dbl&gt;, HP &lt;dbl&gt;, HRG &lt;dbl&gt;,
+## #   HYOU1 &lt;dbl&gt;, ICAM1 &lt;dbl&gt;, IGFBP3 &lt;dbl&gt;, IGHA2 &lt;dbl&gt;, IGHG2 &lt;dbl&gt;,
+## #   ITIH4 &lt;dbl&gt;, KLKB1 &lt;dbl&gt;, KNG1 &lt;dbl&gt;, LAMP2 &lt;dbl&gt;, LCN2 &lt;dbl&gt;,
+## #   LGALS3BP &lt;dbl&gt;, LRG1 &lt;dbl&gt;, LUM &lt;dbl&gt;, LYVE1 &lt;dbl&gt;, MMRN1 &lt;dbl&gt;,
+## #   MPO &lt;dbl&gt;, MRC2 &lt;dbl&gt;, MST1 &lt;dbl&gt;, NCAM1 &lt;dbl&gt;, ORM1 &lt;dbl&gt;,
+## #   PGCP &lt;dbl&gt;, PIGR &lt;dbl&gt;, PLTP &lt;dbl&gt;, PLXDC2 &lt;dbl&gt;, PON1 &lt;dbl&gt;,
+## #   PRG4 &lt;dbl&gt;, PROC &lt;dbl&gt;, PTPRJ &lt;dbl&gt;, Q5JNX2 &lt;dbl&gt;, SERPINA1 &lt;dbl&gt;,
+## #   SERPINA3 &lt;dbl&gt;, SERPINA6 &lt;dbl&gt;, SERPINA7 &lt;dbl&gt;, THBS1 &lt;dbl&gt;,
+## #   TIMP1 &lt;dbl&gt;, TNC &lt;dbl&gt;, VTN &lt;dbl&gt;, VWF &lt;dbl&gt;, Sample &lt;chr&gt;,
+## #   Group &lt;chr&gt;, Age &lt;dbl&gt;, Gender &lt;chr&gt;, Cancer_stage &lt;dbl&gt;,
+## #   Tumour_location &lt;chr&gt;, Sub_group &lt;chr&gt;</code></pre>
 <p>This dataset is in the wide format. It contains the intensity of the proteins in columns 1 to 72 for each of the 200 samples along the rows. Generally, omics datasets contain the features (proteins, transcripts, …) along the rows and the samples along the columns.</p>
 <p>In columns 73 to 79, we sample metadata.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crcdf[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">73</span><span class="op">:</span><span class="dv">79</span>]</code></pre></div>
-<pre><code>##    Sample Group Age Gender Cancer_stage Tumour_location Sub_group
-## 1   P1A10   CRC  60 female            1           colon       CRC
-## 2    P1A2   CRC  70   male            1          rectum       CRC
-## 3    P1A4   CRC  65   male            1          rectum       CRC
-## 4    P1A6   CRC  65 female            4           colon       CRC
-## 5   P1B12   CRC  62 female            3           colon       CRC
-## 6    P1B2   CRC  55   male            2           colon       CRC
-## 7    P1B3   CRC  61   male            2          rectum       CRC
-## 8    P1B6   CRC  52   male            4          rectum       CRC
-## 9    P1B9   CRC  89 female            4           colon       CRC
-## 10  P1C11   CRC  81   male            1          rectum       CRC</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crcdf[, <span class="dv">73</span><span class="op">:</span><span class="dv">79</span>]</code></pre></div>
+<pre><code>## # A tibble: 200 x 7
+##    Sample Group   Age Gender Cancer_stage Tumour_location Sub_group
+##    &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;    
+##  1 P1A10  CRC      60 female            1 colon           CRC      
+##  2 P1A2   CRC      70 male              1 rectum          CRC      
+##  3 P1A4   CRC      65 male              1 rectum          CRC      
+##  4 P1A6   CRC      65 female            4 colon           CRC      
+##  5 P1B12  CRC      62 female            3 colon           CRC      
+##  6 P1B2   CRC      55 male              2 colon           CRC      
+##  7 P1B3   CRC      61 male              2 rectum          CRC      
+##  8 P1B6   CRC      52 male              4 rectum          CRC      
+##  9 P1B9   CRC      89 female            4 colon           CRC      
+## 10 P1C11  CRC      81 male              1 rectum          CRC      
+## # … with 190 more rows</code></pre>
 <p>A widely used data structure for omics data follows the convention described in the figure below:</p>
 <div class="figure">
 <img src="img/msnset.png" alt="An eSet-type of expression data container" />
@@ -470,7 +484,7 @@ e &lt;-<span class="st"> </span><span class="kw">t</span>(crcdf[, i]) ## express
 <span class="kw">colnames</span>(e) &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">200</span>
 crc &lt;-<span class="st"> </span><span class="kw">readMSnSet2</span>(<span class="kw">data.frame</span>(e), <span class="dt">e =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">200</span>)
 
-pd &lt;-<span class="st"> </span>crcdf[, <span class="op">-</span>i]
+pd &lt;-<span class="st"> </span><span class="kw">data.frame</span>(crcdf[, <span class="op">-</span>i])
 <span class="kw">rownames</span>(pd) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;X&quot;</span>, <span class="kw">rownames</span>(pd))
 <span class="kw">pData</span>(crc) &lt;-<span class="st"> </span>pd
 crc</code></pre></div>
@@ -653,8 +667,7 @@ res &lt;-<span class="st"> </span><span class="kw">topTable</span>(fit3, <span c
 ##                                  4106</code></pre>
 <p>Here, the columns of the data represent fractions along a density gradient used to separate the sub-cellular proteome presented in this data.</p>
 <p>We will be using a simplified version of this data in the next chapters. Below, we retain the first replicate (<code>hyperLOPIT2015$Replicate == 1]</code>) and the marker proteins (using the <code>markerMSnSet</code> function):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;pRoloc&quot;</span>)
-hlm &lt;-<span class="st"> </span><span class="kw">markerMSnSet</span>(hyperLOPIT2015[, hyperLOPIT2015<span class="op">$</span>Replicate <span class="op">==</span><span class="st"> </span><span class="dv">1</span>])
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hlm &lt;-<span class="st"> </span>pRoloc<span class="op">::</span><span class="kw">markerMSnSet</span>(hyperLOPIT2015[, hyperLOPIT2015<span class="op">$</span>Replicate <span class="op">==</span><span class="st"> </span><span class="dv">1</span>])
 <span class="kw">dim</span>(hlm)</code></pre></div>
 <pre><code>## [1] 926  10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getMarkerClasses</span>(hlm) ## no unknowns anymore</code></pre></div>

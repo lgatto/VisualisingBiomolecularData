@@ -9,13 +9,12 @@ visualisations later.
 
 Section *Using R and Bioconductor for MS-based proteomics* shows how
 to visualise raw mass spectrometry data. The raw data that will be
-using come from the `r Biocexptpkg("msdata")` `r Biocpkg("MSnbase")`
-packages. These data will be introduced later.
+used come from the `r Biocexptpkg("msdata")` and `r Biocpkg("MSnbase")`
+packages. 
 
 ```{r}
 library("msdata")
 ```
-
 
 ## The iPRG data
 
@@ -37,15 +36,11 @@ proteins.
 > Epub 2017 Jan 3. PMID: 27990823.
 
 
-
-
 ```{r irpg, cache = TRUE}
-iprg <- read.csv("http://bit.ly/VisBiomedDataIprgCsv")
-head(iprg)
-dim(iprg)
+iprg <- readr::read_csv("http://bit.ly/VisBiomedDataIprgCsv")
+iprg
 table(iprg$Condition, iprg$TechReplicate)
 ```
-
 
 This data is in the so-called long format. In some applications, it is
 more convenient to have the data in wide format, where rows contain
@@ -54,16 +49,14 @@ the protein expression data for all samples.
 Let's start by simplifying the data to keep only the relevant columns:
 
 ```{r iprg2}
-head(iprg2 <- iprg[, c(1, 3, 6)])
+(iprg2 <- iprg[, c(1, 3, 6)])
 ```
 
 We can convert the `iPRG` into a wide format with `tidyr::spread`:
 
 ```{r iprg3}
 library("tidyr")
-iprg3 <- spread(iprg2, key = Run, value = Intensity)
-head(iprg3)
-nrow(iprg3)
+(iprg3 <- spread(iprg2, key = Run, value = Intensity))
 ```
 
 ![Spreading data from long to wide format](./img/spread.png)
@@ -95,7 +88,7 @@ The opposite operation to `spread` is `gather`, also from the `tidyr`
 package:
 
 ```{r iprg4}
-head(iprg4 <- gather(iprg3, key = Run, value = Intensity, -Protein))
+(iprg4 <- gather(iprg3, key = Run, value = Intensity, -Protein))
 ```
 
 ![Gathering data from wide to long format](./img/gather.png)
@@ -114,7 +107,7 @@ which can be accounted for by removing rows with missing values by
 setting `na.rm = TRUE`.
 
 ```{r iprg5}
-head(iprg5 <- gather(iprg3, key = Run, value = Intensity, -Protein, na.rm = TRUE))
+(iprg5 <- gather(iprg3, key = Run, value = Intensity, -Protein, na.rm = TRUE))
 ```
 
 ## CRC training data
@@ -147,8 +140,7 @@ Clinical information where added manually thereafter.
 To load this dataset:
 
 ```{r crcread, cache = TRUE}
-crcdf <- read.csv("http://bit.ly/VisBiomedDataCrcCsv")
-crcdf[1:10, 1:3]
+(crcdf <- readr::read_csv("http://bit.ly/VisBiomedDataCrcCsv"))
 ```
 
 This dataset is in the wide format. It contains the intensity of the
@@ -159,7 +151,7 @@ transcripts, ...) along the rows and the samples along the columns.
 In columns 73 to 79, we sample metadata.
 
 ```{r iprgshow}
-crcdf[1:10, 73:79]
+crcdf[, 73:79]
 ```
 
 A widely used data structure for omics data follows the convention
@@ -203,7 +195,7 @@ e <- t(crcdf[, i]) ## expression data
 colnames(e) <- 1:200
 crc <- readMSnSet2(data.frame(e), e = 1:200)
 
-pd <- crcdf[, -i]
+pd <- data.frame(crcdf[, -i])
 rownames(pd) <- paste0("X", rownames(pd))
 pData(crc) <- pd
 crc
@@ -372,8 +364,7 @@ chapters. Below, we retain the first replicate
 `markerMSnSet` function):
 
 ```{r}
-library("pRoloc")
-hlm <- markerMSnSet(hyperLOPIT2015[, hyperLOPIT2015$Replicate == 1])
+hlm <- pRoloc::markerMSnSet(hyperLOPIT2015[, hyperLOPIT2015$Replicate == 1])
 dim(hlm)
 getMarkerClasses(hlm) ## no unknowns anymore
 ```

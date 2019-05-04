@@ -252,30 +252,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. Enter <strong><code>dplyr</code></strong>. <strong><code>dplyr</code></strong> is a package for making tabular data manipulation easier. It pairs nicely with <strong><code>tidyr</code></strong> which enables you to swiftly convert between different data formats for plotting and analysis.</p>
 <p>We will need the <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> package. This is an “umbrella-package” that installs several packages useful for data analysis which work together well such as <code>dplyr</code>, <code>ggplot2</code> (for visualisation), <code>tibble</code>, etc.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
-<pre><code>## Registered S3 method overwritten by &#39;rvest&#39;:
-##   method            from
-##   read_xml.response xml2</code></pre>
-<pre><code>## ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
-## ✔ purrr   0.3.2       ✔ stringr 1.4.0  
-## ✔ tibble  2.1.1       ✔ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::collapse()   masks IRanges::collapse()
-## ✖ dplyr::combine()    masks MSnbase::combine(), Biobase::combine(), BiocGenerics::combine()
-## ✖ dplyr::desc()       masks IRanges::desc()
-## ✖ purrr::detect()     masks RforProteomics::detect()
-## ✖ tidyr::expand()     masks S4Vectors::expand()
-## ✖ magrittr::extract() masks tidyr::extract()
-## ✖ dplyr::filter()     masks plotly::filter(), stats::filter()
-## ✖ dplyr::first()      masks S4Vectors::first()
-## ✖ dplyr::ident()      masks msdata::ident()
-## ✖ dplyr::lag()        masks stats::lag()
-## ✖ ggplot2::Position() masks BiocGenerics::Position(), base::Position()
-## ✖ purrr::reduce()     masks IRanges::reduce(), MSnbase::reduce()
-## ✖ dplyr::rename()     masks plotly::rename(), S4Vectors::rename()
-## ✖ dplyr::select()     masks plotly::select(), AnnotationDbi::select()
-## ✖ purrr::set_names()  masks magrittr::set_names()
-## ✖ dplyr::slice()      masks plotly::slice(), IRanges::slice()</code></pre>
 <p>The <code>tidyverse</code> package tries to address 3 major problems with some of base R functions:</p>
 <ol style="list-style-type: decimal">
 <li>The results from a base R function sometimes depends on the type of data.</li>
