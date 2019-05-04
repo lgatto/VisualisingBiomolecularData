@@ -1317,15 +1317,14 @@ library("ComplexHeatmap")
 x <- MSnbase::exprs(mulvey2015norm)
 hcl <- hclust(dist(x))
 cl <- cutree(hcl, k = 12)
-ha1 <- HeatmapAnnotation(data.frame(time = factor(mulvey2015norm$time)))
+ha1 <- HeatmapAnnotation(time = factor(mulvey2015norm$time))
 ha2 <- HeatmapAnnotation(boxplot = anno_boxplot(x))
-ha3 <- rowAnnotation(data.frame(cluster = factor(cl)))
+ha3 <- rowAnnotation(cluster = factor(cl))
 Heatmap(x,
 		top_annotation = ha1,
 		bottom_annotation = ha2,
 		column_names_gp = gpar(fontsize = 8),
-		row_names_gp = gpar(fontsize = 3),
-		bottom_annotation_height = unit(3, "cm")) + ha3
+		row_names_gp = gpar(fontsize = 3)) + ha3
 ```
 
 Finally, the `r Githubpkg("talgalili/heatmaply")` and
