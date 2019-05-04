@@ -372,6 +372,7 @@ chapters. Below, we retain the first replicate
 `markerMSnSet` function):
 
 ```{r}
+library("pRoloc")
 hlm <- markerMSnSet(hyperLOPIT2015[, hyperLOPIT2015$Replicate == 1])
 dim(hlm)
 getMarkerClasses(hlm) ## no unknowns anymore

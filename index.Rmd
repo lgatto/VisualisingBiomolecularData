@@ -5,6 +5,7 @@ date: "Last update: `r date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
+always_allow_html: yes
 description: "Visualisation of biomolecular data"
 github-repo: lgatto/VisualisingBiomolecularData
 ---
@@ -82,7 +83,6 @@ See also another, more recent example:
 [The Datasaurus Dozen dataset](https://www.autodeskresearch.com/publications/samestats).
 
 ![](https://d2f99xq7vri1nk.cloudfront.net/DinoSequentialSmaller.gif)
-
 
 
 We will focus on producing visualisation that will enable

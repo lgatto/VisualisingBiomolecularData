@@ -1,8 +1,8 @@
 all:
-	make book
+	make docs/index.html
 	make code
 
-book:
+docs/index.html: *Rmd
 	Rscript -e "bookdown::render_book('index.Rmd')"
 
 code:

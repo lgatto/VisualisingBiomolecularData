@@ -30,7 +30,7 @@ See [`?plotMzDelta`](https://lgatto.github.io/MSnbase/reference/plotMzDelta-meth
 
 ## Exploring the experimental design {-}
 
-```{r crctab, echo=FALSE}
+```{r crctab, echo = FALSE, message = FALSE}
 pd <- pData(crc)
 table(cut(pd$Age, 5), pd$Gender)
 ```
