@@ -140,7 +140,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="plotting-in-r.html"><a href="plotting-in-r.html"><i class="fa fa-check"></i><b>5</b> Plotting in R</a><ul>
 <li class="chapter" data-level="5.1" data-path="plotting-in-r.html"><a href="plotting-in-r.html#base-graphics"><i class="fa fa-check"></i><b>5.1</b> Base graphics</a></li>
 <li class="chapter" data-level="5.2" data-path="plotting-in-r.html"><a href="plotting-in-r.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>5.2</b> Plotting with <code>ggplot2</code></a></li>
-<li class="chapter" data-level="5.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#building-complex-plots"><i class="fa fa-check"></i><b>5.3</b> Building complex plots</a></li>
+<li class="chapter" data-level="5.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#composing-plots"><i class="fa fa-check"></i><b>5.3</b> Composing plots</a></li>
 <li class="chapter" data-level="5.4" data-path="plotting-in-r.html"><a href="plotting-in-r.html#colour-scales"><i class="fa fa-check"></i><b>5.4</b> Colour scales</a></li>
 <li class="chapter" data-level="5.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#customising-plots"><i class="fa fa-check"></i><b>5.5</b> Customising plots</a></li>
 <li class="chapter" data-level="5.6" data-path="plotting-in-r.html"><a href="plotting-in-r.html#combine-ggplot-figures"><i class="fa fa-check"></i><b>5.6</b> Combine <code>ggplot</code> figures</a></li>
@@ -252,6 +252,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. Enter <strong><code>dplyr</code></strong>. <strong><code>dplyr</code></strong> is a package for making tabular data manipulation easier. It pairs nicely with <strong><code>tidyr</code></strong> which enables you to swiftly convert between different data formats for plotting and analysis.</p>
 <p>We will need the <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> package. This is an “umbrella-package” that installs several packages useful for data analysis which work together well such as <code>dplyr</code>, <code>ggplot2</code> (for visualisation), <code>tibble</code>, etc.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;rvest&#39;:
+##   method            from
+##   read_xml.response xml2</code></pre>
+<pre><code>## ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+## ✔ purrr   0.3.2       ✔ stringr 1.4.0  
+## ✔ tibble  2.1.1       ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::collapse()   masks IRanges::collapse()
+## ✖ dplyr::combine()    masks MSnbase::combine(), Biobase::combine(), BiocGenerics::combine()
+## ✖ dplyr::desc()       masks IRanges::desc()
+## ✖ purrr::detect()     masks RforProteomics::detect()
+## ✖ tidyr::expand()     masks S4Vectors::expand()
+## ✖ magrittr::extract() masks tidyr::extract()
+## ✖ dplyr::filter()     masks plotly::filter(), stats::filter()
+## ✖ dplyr::first()      masks S4Vectors::first()
+## ✖ dplyr::ident()      masks msdata::ident()
+## ✖ dplyr::lag()        masks stats::lag()
+## ✖ ggplot2::Position() masks BiocGenerics::Position(), base::Position()
+## ✖ purrr::reduce()     masks IRanges::reduce(), MSnbase::reduce()
+## ✖ dplyr::rename()     masks plotly::rename(), S4Vectors::rename()
+## ✖ dplyr::select()     masks plotly::select(), AnnotationDbi::select()
+## ✖ purrr::set_names()  masks magrittr::set_names()
+## ✖ dplyr::slice()      masks plotly::slice(), IRanges::slice()</code></pre>
 <p>The <code>tidyverse</code> package tries to address 3 major problems with some of base R functions:</p>
 <ol style="list-style-type: decimal">
 <li>The results from a base R function sometimes depends on the type of data.</li>

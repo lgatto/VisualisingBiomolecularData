@@ -140,7 +140,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="plotting-in-r.html"><a href="plotting-in-r.html"><i class="fa fa-check"></i><b>5</b> Plotting in R</a><ul>
 <li class="chapter" data-level="5.1" data-path="plotting-in-r.html"><a href="plotting-in-r.html#base-graphics"><i class="fa fa-check"></i><b>5.1</b> Base graphics</a></li>
 <li class="chapter" data-level="5.2" data-path="plotting-in-r.html"><a href="plotting-in-r.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>5.2</b> Plotting with <code>ggplot2</code></a></li>
-<li class="chapter" data-level="5.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#building-complex-plots"><i class="fa fa-check"></i><b>5.3</b> Building complex plots</a></li>
+<li class="chapter" data-level="5.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#composing-plots"><i class="fa fa-check"></i><b>5.3</b> Composing plots</a></li>
 <li class="chapter" data-level="5.4" data-path="plotting-in-r.html"><a href="plotting-in-r.html#colour-scales"><i class="fa fa-check"></i><b>5.4</b> Colour scales</a></li>
 <li class="chapter" data-level="5.5" data-path="plotting-in-r.html"><a href="plotting-in-r.html#customising-plots"><i class="fa fa-check"></i><b>5.5</b> Customising plots</a></li>
 <li class="chapter" data-level="5.6" data-path="plotting-in-r.html"><a href="plotting-in-r.html#combine-ggplot-figures"><i class="fa fa-check"></i><b>5.6</b> Combine <code>ggplot</code> figures</a></li>
@@ -315,8 +315,8 @@ ints_plot <span class="op">+</span><span class="st"> </span><span class="kw">geo
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg, <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> <span class="kw">log10</span>(Intensity))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggplotchallenge1-2.png" width="672" /> </details></p>
 </div>
-<div id="building-complex-plots" class="section level2">
-<h2><span class="header-section-number">5.3</span> Building complex plots</h2>
+<div id="composing-plots" class="section level2">
+<h2><span class="header-section-number">5.3</span> Composing plots</h2>
 <p>First, let’s colour the boxplot based on the condition:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> iprg,
        <span class="kw">aes</span>(<span class="dt">x =</span> Run, <span class="dt">y =</span> Log2Intensity,

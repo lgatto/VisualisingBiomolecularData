@@ -126,7 +126,7 @@ ggplot(data = iprg, aes(x = Run, y = log10(Intensity))) + geom_boxplot()
 </details>
 
 
-## Building complex plots
+## Composing plots
 
 First, let's colour the boxplot based on the condition:
 
