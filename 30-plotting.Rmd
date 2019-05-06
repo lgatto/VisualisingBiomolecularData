@@ -339,9 +339,32 @@ function.
 >
 > **Tip**: save your figures in a dedicated directory.
 
+
 ## Exercises
 
-1. Count the number of quantified proteins for each group, gender and
+1. Transform the `anscombe` data into a long dataset and visualise the
+   relations between the four$(x_i, y_i)$ pairs.
+
+<details>
+```{r ggans}
+anscombe$point <-  1:11
+anscombe
+
+xs <- gather(anscombe[, 1:4], key = coord, value = x)
+ys <- gather(anscombe[, 5:9], key = coord, value = y, -point)
+
+(ans <- cbind(xs[, 2, drop = FALSE], ys) %>% as_tibble)
+
+ggplot(ans, aes(x = x, y = y, colour = coord)) +
+    geom_point() +
+    facet_wrap(. ~ coord) +
+    geom_smooth(method = "lm")
+```
+</details>
+
+
+
+2. Count the number of quantified proteins for each group, gender and
 age and visualise the results (suggestion below).
 
    **Tips:** For age, you can use `cut` to bin the ages. You'll
@@ -379,7 +402,7 @@ tbl %>% group_by(age = cut(tbl$Age, 5), Group, Gender) %>%
 </details>
 
 
-2. Experiment with `goem_line` to produce line plots showing the
+3. Experiment with `goem_line` to produce line plots showing the
    expression data for a subset of samples (below I used those
    starting with `"P1F"`). You will need to **group** proteins for the
    same protein data points in different samples to be linked.
@@ -408,7 +431,7 @@ ggplot(data = filter(tbl, grepl("P1F", tbl$Sample)),
 </details>
 
 
-3. Plot the expression of all proteins in one sample (for example
+4. Plot the expression of all proteins in one sample (for example
    P1A10) against another one (for example P1A2) and use dataset-wide
    features such as the log-fold change of all CRC vs. Healthy samples
    and the grand mean expression intensity.
