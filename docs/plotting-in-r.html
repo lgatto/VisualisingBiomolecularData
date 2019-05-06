@@ -524,7 +524,28 @@ ys &lt;-<span class="st"> </span><span class="kw">gather</span>(anscombe[, <span
 <span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">facet_wrap</span>(. <span class="op">~</span><span class="st"> </span>coord) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre></div>
-<p><img src="VisualisingBiomolecularData_files/figure-html/ggans-1.png" width="672" /> </details></p>
+<p><img src="VisualisingBiomolecularData_files/figure-html/ggans-1.png" width="672" /></p>
+<p>Or, producing 4 plots and patching them up with <code>patchwork</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe, <span class="kw">aes</span>(<span class="dt">x=</span>x1, <span class="dt">y=</span>y1)) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)
+
+p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe, <span class="kw">aes</span>(<span class="dt">x=</span>x2, <span class="dt">y=</span>y2)) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)
+
+p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe, <span class="kw">aes</span>(<span class="dt">x=</span>x3, <span class="dt">y=</span>y3)) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)
+
+p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe, <span class="kw">aes</span>(<span class="dt">x=</span>x4, <span class="dt">y=</span>y4)) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)
+
+<span class="kw">library</span>(<span class="st">&quot;patchwork&quot;</span>)
+p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/ggans2-1.png" width="672" /></p>
+<p></details></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Count the number of quantified proteins for each group, gender and age and visualise the results (suggestion below).</li>
 </ol>

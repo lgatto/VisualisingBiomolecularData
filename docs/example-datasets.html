@@ -245,7 +245,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>We will used various datasets throughout the course. These data are briefly described below, and we will explore them through various visualisations later.</p>
 <div id="raw-ms-data" class="section level2">
 <h2><span class="header-section-number">2.1</span> Raw MS data</h2>
-<p>Section <em>Using R and Bioconductor for MS-based proteomics</em> shows how to visualise raw mass spectrometry data. The raw data that will be used come from the <em><a href="https://bioconductor.org/packages/3.9/msdata">msdata</a></em> and <em><a href="https://bioconductor.org/packages/3.9/MSnbase">MSnbase</a></em> packages.</p>
+<p>Section <em>Using R and Bioconductor for MS-based proteomics</em> shows how to visualise raw mass spectrometry data. The raw data that will be used come from the <em><a href="https://bioconductor.org/packages/3.10/msdata">msdata</a></em> and <em><a href="https://bioconductor.org/packages/3.10/MSnbase">MSnbase</a></em> packages.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;msdata&quot;</span>)</code></pre></div>
 </div>
 <div id="the-iprg-data" class="section level2">
@@ -401,7 +401,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="crc-training-data" class="section level2">
 <h2><span class="header-section-number">2.3</span> CRC training data</h2>
-<p>This dataset comes from the <em><a href="https://bioconductor.org/packages/3.9/MSstatsBioData">MSstatsBioData</a></em> package and was generated as follows:</p>
+<p>This dataset comes from the <em><a href="https://bioconductor.org/packages/3.10/MSstatsBioData">MSstatsBioData</a></em> package and was generated as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;MSstats&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;MSstatsBioData&quot;</span>)
 <span class="kw">data</span>(SRM_crc_training)
@@ -534,7 +534,7 @@ crc</code></pre></div>
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;pRolocdata&quot;</span>)
 <span class="kw">data</span>(mulvey2015norm)</code></pre></div>
-<p>This <code>MSnSet</code>, available from the <em><a href="https://bioconductor.org/packages/3.9/pRolocdata">pRolocdata</a></em> package, measured the expression profiles of 2337 proteins along 6 time points in triplicate.</p>
+<p>This <code>MSnSet</code>, available from the <em><a href="https://bioconductor.org/packages/3.10/pRolocdata">pRolocdata</a></em> package, measured the expression profiles of 2337 proteins along 6 time points in triplicate.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MSnbase<span class="op">::</span><span class="kw">exprs</span>(mulvey2015norm)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
 <pre><code>##          rep1_0hr rep1_16hr rep1_24hr
 ## P48432   2.479592  1.698630 1.0350877
@@ -596,7 +596,7 @@ ALL</code></pre></div>
 ##       10       37        5       74        1        1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ALL_bcrneg &lt;-<span class="st"> </span>ALL[, ALL<span class="op">$</span>mol.biol <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NEG&quot;</span>, <span class="st">&quot;BCR/ABL&quot;</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;B&quot;</span>, ALL<span class="op">$</span>BT)]
 ALL_bcrneg<span class="op">$</span>mol.biol &lt;-<span class="st"> </span><span class="kw">factor</span>(ALL_bcrneg<span class="op">$</span>mol.biol)</code></pre></div>
-<p>We then use the <em><a href="https://bioconductor.org/packages/3.9/limma">limma</a></em> package to</p>
+<p>We then use the <em><a href="https://bioconductor.org/packages/3.10/limma">limma</a></em> package to</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;limma&quot;</span>)
 design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span><span class="dv">0</span><span class="op">+</span>ALL_bcrneg<span class="op">$</span>mol.biol)
 <span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BCR.ABL&quot;</span>, <span class="st">&quot;NEG&quot;</span>)

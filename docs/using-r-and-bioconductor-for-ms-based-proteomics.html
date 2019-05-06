@@ -245,7 +245,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="introduction-1" class="section level2">
 <h2><span class="header-section-number">7.1</span> Introduction</h2>
 <p>R and Bioconductor offer a range of dedicated packages for the analysis of mass spectrometry-based proteomics. The advantage of such technology-infrastructure is that offer specific behaviour for these kind of data.</p>
-<p>The <em><a href="https://bioconductor.org/packages/3.9/RforProteomics">RforProteomics</a></em> package provides a first introduction to what is available. It is also possible to navigate the <em>biocViews</em> hierarchy (these are tags that are used to describe individual package’s domain of action).</p>
+<p>The <em><a href="https://bioconductor.org/packages/3.10/RforProteomics">RforProteomics</a></em> package provides a first introduction to what is available. It is also possible to navigate the <em>biocViews</em> hierarchy (these are tags that are used to describe individual package’s domain of action).</p>
 <p>The highest level defines 3 types of packages:</p>
 <ul>
 <li>Software: packages providing a specific functionality.</li>
@@ -263,7 +263,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 </div>
 <p>See also this <a href="https://bioconductor.org/developers/how-to/biocViews/">page</a> for additional information.</p>
-<p>Here, we will focus on the <em><a href="https://bioconductor.org/packages/3.9/MSnbase">MSnbase</a></em> package, as it supports all types of MS-based proteomics data and files that one would generally encounter:</p>
+<p>Here, we will focus on the <em><a href="https://bioconductor.org/packages/3.10/MSnbase">MSnbase</a></em> package, as it supports all types of MS-based proteomics data and files that one would generally encounter:</p>
 <ul>
 <li>Raw data</li>
 <li>Identification data</li>
@@ -297,7 +297,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## quantitation     mzTab         readMzTabdata   MSnSet</code></pre>
 <p>To start, let’s load the <code>MSnbase</code> package</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;MSnbase&quot;</span>)</code></pre></div>
-<p>We will make use of test data that is provided by the experiment package <em><a href="https://bioconductor.org/packages/3.9/msdata">msdata</a></em>, that we load below. We then extract the file names that will be used later on.</p>
+<p>We will make use of test data that is provided by the experiment package <em><a href="https://bioconductor.org/packages/3.10/msdata">msdata</a></em>, that we load below. We then extract the file names that will be used later on.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;msdata&quot;</span>)
 rawf &lt;-<span class="st"> </span>msdata<span class="op">::</span><span class="kw">proteomics</span>(<span class="dt">full.names =</span> <span class="ot">TRUE</span>, <span class="dt">pattern =</span> <span class="st">&quot;20141210&quot;</span>)
 <span class="kw">basename</span>(rawf)</code></pre></div>
@@ -323,7 +323,7 @@ rw</code></pre></div>
 ##  Number of spectra: 7534 
 ##  MSn retention times: 0:0 - 60:2 minutes
 ## - - - Processing information - - -
-## Data loaded [Mon May  6 16:14:37 2019] 
+## Data loaded [Tue May  7 00:08:38 2019] 
 ##  MSnbase version: 2.10.0 
 ## - - - Meta data  - - -
 ## phenoData
@@ -625,7 +625,7 @@ rw</code></pre></div>
 ##  Number of spectra: 994 
 ##  MSn retention times: 45:27 - 47:6 minutes
 ## - - - Processing information - - -
-## Data loaded [Mon May  6 16:14:42 2019] 
+## Data loaded [Tue May  7 00:08:43 2019] 
 ##  MSnbase version: 2.10.0 
 ## - - - Meta data  - - -
 ## phenoData
@@ -658,8 +658,8 @@ rw2</code></pre></div>
 ##  Number of spectra: 35 
 ##  MSn retention times: 45:27 - 45:30 minutes
 ## - - - Processing information - - -
-## Data loaded [Mon May  6 16:14:42 2019] 
-## Filter: select parent/children scans for 21945 [Mon May  6 16:14:42 2019] 
+## Data loaded [Tue May  7 00:08:43 2019] 
+## Filter: select parent/children scans for 21945 [Tue May  7 00:08:43 2019] 
 ##  MSnbase version: 2.10.0 
 ## - - - Meta data  - - -
 ## phenoData
@@ -812,7 +812,7 @@ s &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(itraqdata[[<span class="dv">41</span>]], itraqdata[[<span class="dv">42</span>]])</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/psm2-1.png" width="672" /></p>
 <p>See also the <em><a href="https://CRAN.R-project.org/package=protViz">protViz</a></em> package for MS2 spectra annotation and visualisation.</p>
-<p>The <em><a href="https://bioconductor.org/packages/3.9/MSGFgui">MSGFgui</a></em> package provides an interactive interface to navigate and investigate identification data using interactive plots, summary statistics and filtering.</p>
+<p>The <em><a href="https://bioconductor.org/packages/3.10/MSGFgui">MSGFgui</a></em> package provides an interactive interface to navigate and investigate identification data using interactive plots, summary statistics and filtering.</p>
 <div class="figure">
 <img src="https://lgatto.github.io/RforProteomics/articles/figures/MSGFgui.png" />
 
@@ -820,7 +820,7 @@ s &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class
 </div>
 <div id="ms-imaging" class="section level2">
 <h2><span class="header-section-number">7.7</span> MS imaging</h2>
-<p>There are (at least) two packages, namely and <em><a href="https://bioconductor.org/packages/3.9/Cardinal">Cardinal</a></em> (<a href="http://cardinalmsi.org/">web site</a>)</p>
+<p>There are (at least) two packages, namely and <em><a href="https://bioconductor.org/packages/3.10/Cardinal">Cardinal</a></em> (<a href="http://cardinalmsi.org/">web site</a>)</p>
 <div class="figure">
 <img src="img/cardinal.png" alt="Cardinal imaging" />
 <p class="caption">Cardinal imaging</p>

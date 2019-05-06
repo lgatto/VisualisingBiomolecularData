@@ -360,6 +360,30 @@ ggplot(ans, aes(x = x, y = y, colour = coord)) +
     facet_wrap(. ~ coord) +
     geom_smooth(method = "lm")
 ```
+
+Or, producing 4 plots and patching them up with `patchwork`:
+
+```{r ggans2}
+p1 <- ggplot(anscombe, aes(x=x1, y=y1)) + 
+   geom_point() +
+   geom_smooth(method = "lm")
+
+p2 <- ggplot(anscombe, aes(x=x2, y=y2)) + 
+   geom_point() +
+   geom_smooth(method="lm")
+
+p3 <- ggplot(anscombe, aes(x=x3, y=y3)) + 
+   geom_point() +
+   geom_smooth(method = "lm")
+
+p4 <- ggplot(anscombe, aes(x=x4, y=y4)) + 
+   geom_point() +
+   geom_smooth(method = "lm")
+
+library("patchwork")
+p1 + p2 + p3 + p4 + plot_layout(ncol = 2)
+```
+
 </details>
 
 

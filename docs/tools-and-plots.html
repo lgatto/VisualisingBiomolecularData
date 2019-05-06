@@ -414,7 +414,7 @@ affy<span class="op">::</span><span class="kw">ma.plot</span>(A, M)</code></pre>
 <h2><span class="header-section-number">6.3</span> Plots for statistical analyses</h2>
 <div id="p-value-distributions" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> P-value distributions</h3>
-<p>Let’s use the <code>ALL_bclneg</code> dataset, that we already have analysed with <em><a href="https://bioconductor.org/packages/3.9/limma">limma</a></em> in the <em>Data</em> chapter.</p>
+<p>Let’s use the <code>ALL_bclneg</code> dataset, that we already have analysed with <em><a href="https://bioconductor.org/packages/3.10/limma">limma</a></em> in the <em>Data</em> chapter.</p>
 <p>Whenever performing a statistical test, it is important to quality check the distribution of non-adjusted p-values. Below, we see an enrichment of small p-values, as opposed to a uniform distribution to be expected under the null hypothesis of absence of changes between groups.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fvarLabels</span>(ALL_bcrneg)</code></pre></div>
 <pre><code>## [1] &quot;logFC&quot;     &quot;AveExpr&quot;   &quot;t&quot;         &quot;P.Value&quot;   &quot;adj.P.Val&quot; &quot;B&quot;</code></pre>
@@ -1148,7 +1148,7 @@ pca_sign &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span clas
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">heatmap</span>(e, <span class="dt">scale =</span> <span class="st">&quot;column&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Scaling along columns&quot;</span>)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/heatmapscale-3.png" width="672" /></p>
 <p>Based on the caveats above, it is essential to present and interpret heatmaps with great care. It is of course possible to use any type of data, not only expression data, to build a heatmap.</p>
-<p>There exists several packages that allow to produce heatmaps with various levels of sophistication, such as <code>heatmap.2</code> from the <code>r CRANpkg(&quot;gplots&quot;)</code> package, the <em><a href="https://bioconductor.org/packages/3.9/Heatplus">Heatplus</a></em> package, or the <em><a href="https://bioconductor.org/packages/3.9/ComplexHeatmap">ComplexHeatmap</a></em> packages (full documentation <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/index.html">here</a>), demonstrated below.</p>
+<p>There exists several packages that allow to produce heatmaps with various levels of sophistication, such as <code>heatmap.2</code> from the <code>r CRANpkg(&quot;gplots&quot;)</code> package, the <em><a href="https://bioconductor.org/packages/3.10/Heatplus">Heatplus</a></em> package, or the <em><a href="https://bioconductor.org/packages/3.10/ComplexHeatmap">ComplexHeatmap</a></em> packages (full documentation <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/index.html">here</a>), demonstrated below.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ComplexHeatmap&quot;</span>)
 x &lt;-<span class="st"> </span>MSnbase<span class="op">::</span><span class="kw">exprs</span>(mulvey2015norm)
 hcl &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="kw">dist</span>(x))
