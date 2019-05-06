@@ -85,7 +85,9 @@ See also another, more recent example:
 ![](https://d2f99xq7vri1nk.cloudfront.net/DinoSequentialSmaller.gif)
 
 
-We will focus on producing visualisation that will enable
+## Focus of this course
+
+We will focus on producing visualisations that will enable
 **understanding important features** of biomolecular data or the
 effect of their transformation and analyses. With this in mind, the
 beauty of the visualisations we will produce won't be assessed by how

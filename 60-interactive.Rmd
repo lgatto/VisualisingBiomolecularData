@@ -51,7 +51,7 @@ See the [plotly for R](https://plotly-book.cpsievert.me/) book for more details.
 
 ## Interactive apps
 
-## Motivating examples {-}
+### Motivating examples
 
 In this section, we show how to build interactive `shiny`
 applications. `shiny` is widely used to explore and visualise
@@ -105,7 +105,7 @@ Reference:
   reservations]. F1000Research 2016, 5:2926 (doi:
   [10.12688/f1000research.10411.1](https://f1000research.com/articles/5-2926/))
 
-### Introduction {-}
+### Introduction 
 
 A useful `shiny` cheet sheet is available
 [here](https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf).
@@ -163,7 +163,7 @@ knitr::include_app("https://lgatto.shinyapps.io/shiny-app1/",
 The app can also be opened at https://lgatto.shinyapps.io/shiny-app1/
 
 
-### Creation of our fist shiny app {-}
+### Creation of our fist shiny app
 
 1. Create a directory that will contain the app, such as for example
    `"shinyapp"`.
@@ -277,9 +277,7 @@ runApp(app)
 > 2. As above, where the visualisation is a PCA plot and the user chooses
 >    the PCs.
 
-### There's more to `shiny` {-}
-
-#### Sharing `shiny` apps {-}
+### Sharing `shiny` apps {-}
 
 * Share the code file(s) and `runApp`
 * `runUrl`

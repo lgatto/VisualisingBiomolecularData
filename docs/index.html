@@ -107,10 +107,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#installation"><i class="fa fa-check"></i><b>1.1</b> Installation</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#questions"><i class="fa fa-check"></i><b>1.2</b> Questions</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.3</b> License</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#useful-references"><i class="fa fa-check"></i><b>1.4</b> Useful references</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#focus-of-this-course"><i class="fa fa-check"></i><b>1.1</b> Focus of this course</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installation"><i class="fa fa-check"></i><b>1.2</b> Installation</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#questions"><i class="fa fa-check"></i><b>1.3</b> Questions</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.4</b> License</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#useful-references"><i class="fa fa-check"></i><b>1.5</b> Useful references</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="example-datasets.html"><a href="example-datasets.html"><i class="fa fa-check"></i><b>2</b> Example datasets</a><ul>
 <li class="chapter" data-level="2.1" data-path="example-datasets.html"><a href="example-datasets.html#raw-ms-data"><i class="fa fa-check"></i><b>2.1</b> Raw MS data</a></li>
@@ -211,14 +212,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="8" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html"><i class="fa fa-check"></i><b>8</b> Interactive visualisation</a><ul>
 <li class="chapter" data-level="8.1" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#interactive-apps-with-plotly"><i class="fa fa-check"></i><b>8.1</b> Interactive apps with <code>plotly</code></a></li>
-<li class="chapter" data-level="8.2" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#interactive-apps"><i class="fa fa-check"></i><b>8.2</b> Interactive apps</a></li>
-<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#motivating-examples"><i class="fa fa-check"></i>Motivating examples</a><ul>
+<li class="chapter" data-level="8.2" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#interactive-apps"><i class="fa fa-check"></i><b>8.2</b> Interactive apps</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#motivating-examples"><i class="fa fa-check"></i><b>8.2.1</b> Motivating examples</a></li>
 <li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#longitudinal-proteomics-qc"><i class="fa fa-check"></i>Longitudinal proteomics QC</a></li>
 <li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#spatial-proteomics"><i class="fa fa-check"></i>Spatial proteomics</a></li>
-<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#introduction-2"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#creation-of-our-fist-shiny-app"><i class="fa fa-check"></i>Creation of our fist shiny app</a></li>
+<li class="chapter" data-level="8.2.2" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#introduction-2"><i class="fa fa-check"></i><b>8.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="8.2.3" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#creation-of-our-fist-shiny-app"><i class="fa fa-check"></i><b>8.2.3</b> Creation of our fist shiny app</a></li>
 <li class="chapter" data-level="" data-path="interactive-visualisation.html"><a href="interactive-visualisation.html#single-file-app"><i class="fa fa-check"></i>Single-file app</a></li>
-<li><a href="interactive-visualisation.html#theres-more-to-shiny">There’s more to <code>shiny</code></a></li>
+<li><a href="interactive-visualisation.html#sharing-shiny-apps">Sharing <code>shiny</code> apps</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="session-information.html"><a href="session-information.html"><i class="fa fa-check"></i><b>9</b> Session information</a></li>
@@ -242,7 +243,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Visualisation of biomolecular data</h1>
 <p class="author"><em>Laurent Gatto</em></p>
-<p class="date"><em>Last update: Mon May 6 04:28:47 2019</em></p>
+<p class="date"><em>Last update: Mon May 6 14:48:39 2019</em></p>
 </div>
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
@@ -431,27 +432,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <img src="https://d2f99xq7vri1nk.cloudfront.net/DinoSequentialSmaller.gif" />
 
 </div>
+<div id="focus-of-this-course" class="section level2">
+<h2><span class="header-section-number">1.1</span> Focus of this course</h2>
 <p>We will focus on producing visualisation that will enable <strong>understanding important features</strong> of biomolecular data or the effect of their transformation and analyses. With this in mind, the beauty of the visualisations we will produce won’t be assessed by how visually attractive the figures are, but how they help us understand the data. In the process of data exploration and data analysis, we want to be able to quickly generate and interpret figures, to progress in our understanding. It is of course important to polish the graphics to make them visually appealing and improve communication with the audience, but we won’t focus on these aspects here.</p>
 <p>An important aspect of data visualisation is data <strong>manipulation</strong>, transformation and the format of the data. These topics will be introduced and documented throughout the course.</p>
 <p>A last feature of data that is intimately associated with its manipulation and visualisation is its <strong>structure</strong>. Some visualisations will be much easier if the data is formatted in a certain way. As such, we will describe different formats (long, wide) and data structures (dataframes and more specialised data structure).</p>
 <p>The source code for this document is available on GitHub at <a href="https://github.com/lgatto/VisualisingBiomolecularData" class="uri">https://github.com/lgatto/VisualisingBiomolecularData</a></p>
 <p>A short URL for this book is <a href="http://bit.ly/biomolvis" class="uri">http://bit.ly/biomolvis</a></p>
+</div>
 <div id="installation" class="section level2">
-<h2><span class="header-section-number">1.1</span> Installation</h2>
+<h2><span class="header-section-number">1.2</span> Installation</h2>
 <p>To install all dependencies, you can run the <a href="https://github.com/lgatto/VisualisingBiomolecularData/blob/master/src/install.R">installation script</a> by running the following line in R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;http://bit.ly/biomolvis_install&quot;</span>)</code></pre></div>
 <p>A complete session information with all packages used to compile this document is available at the end.</p>
 </div>
 <div id="questions" class="section level2">
-<h2><span class="header-section-number">1.2</span> Questions</h2>
+<h2><span class="header-section-number">1.3</span> Questions</h2>
 <p>For any questions or suggestions, please open an <a href="https://github.com/lgatto/VisualisingBiomolecularData/issues">issue</a>. Please do add the output of your session information and, of possible, a reproducible example describing your question or suggestion.</p>
 </div>
 <div id="license" class="section level2">
-<h2><span class="header-section-number">1.3</span> License</h2>
+<h2><span class="header-section-number">1.4</span> License</h2>
 <p>This material is licensed under the <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 License</a>. Some content is inspired by other sources, see the <em>Credit</em> section in the material.</p>
 </div>
 <div id="useful-references" class="section level2">
-<h2><span class="header-section-number">1.4</span> Useful references</h2>
+<h2><span class="header-section-number">1.5</span> Useful references</h2>
 <p>Gatto L, Breckels LM, Naake T, Gibb S. <em>Visualization of proteomics data using R and bioconductor</em>. Proteomics. 2015 Apr;15(8):1375-89. doi: <a href="https://doi.org/10.1002/pmic.201400392">10.1002/pmic.201400392</a>. PMID: 25690415; PMCID: PMC4510819.</p>
 <p>Key M. <em>A tutorial in displaying mass spectrometry-based proteomic data using heat maps</em>. BMC Bioinformatics. 2012;13 Suppl 16:S10. doi: <a href="http://dx.doi.org/10.1186/1471-2105-13-S16-S10">10.1186/1471-2105-13-S16-S10</a>. Epub 2012 Nov 5. PMID: 23176119; PMCID: PMC3489527.</p>
 <p>Gatto L, Christoforou A. <em>Using R and Bioconductor for proteomics data analysis</em>. Biochim Biophys Acta. 2014 Jan;1844(1 Pt A):42-51. doi: <a href="http://dx.doi.org/10.1016/j.bbapap.2013.04.032">10.1016/j.bbapap.2013.04.032</a>. Epub 2013 May 18. PMID: 23692960.</p>
