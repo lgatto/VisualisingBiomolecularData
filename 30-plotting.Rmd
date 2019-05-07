@@ -447,30 +447,27 @@ tbl %>% group_by(age = cut(tbl$Age, 5), Group, Gender) %>%
 </details>
 
 
-3. Experiment with `goem_line` to produce line plots showing the
-   expression data for a subset of samples (below I used those
-   starting with `"P1F"`). You will need to **group** proteins for the
-   same protein data points in different samples to be linked.
+3. Compare the range of experessions in a subset of samples (below I
+   used those starting with `"P1F"`) and group plots by categories
+   using facets.
 
 ```{r ggex2, echo=FALSE}
 ggplot(data = filter(tbl, grepl("P1F", tbl$Sample)),
-	   aes(x = Sample, y = expression, colour = Protein)) +
-	geom_line(aes(group = Protein)) +
+	   aes(x = Sample, y = expression)) +
+	geom_boxplot() +
 	facet_grid(Gender ~ Group) +
 	theme(legend.position = "none",
-		  axis.text.x = element_text(angle = 90,
-									 hjust = 1))
+		  axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
 <details>
 ```{r ggex2res, eval=FALSE}
 ggplot(data = filter(tbl, grepl("P1F", tbl$Sample)),
-	   aes(x = Sample, y = expression, colour = Protein)) +
-	geom_line(aes(group = Protein)) +
+	   aes(x = Sample, y = expression)) +
+	geom_boxplot() +
 	facet_grid(Gender ~ Group) +
 	theme(legend.position = "none",
-		  axis.text.x = element_text(angle = 90,
-									 hjust = 1))
+		  axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
 </details>

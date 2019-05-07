@@ -580,19 +580,17 @@ tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">grou
 <span class="st">        </span><span class="kw">facet_grid</span>( <span class="op">~</span><span class="st"> </span>Group)</code></pre></div>
 <p></details></p>
 <ol start="3" style="list-style-type: decimal">
-<li>Experiment with <code>goem_line</code> to produce line plots showing the expression data for a subset of samples (below I used those starting with <code>&quot;P1F&quot;</code>). You will need to <strong>group</strong> proteins for the same protein data points in different samples to be linked.</li>
+<li>Compare the range of experessions in a subset of samples (below I used those starting with <code>&quot;P1F&quot;</code>) and group plots by categories using facets.</li>
 </ol>
-<pre><code>## geom_path: Each group consists of only one observation. Do you need to
-## adjust the group aesthetic?</code></pre>
+<pre><code>## Warning: Removed 1 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggex2-1.png" width="672" /></p>
 <p><details></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">filter</span>(tbl, <span class="kw">grepl</span>(<span class="st">&quot;P1F&quot;</span>, tbl<span class="op">$</span>Sample)),
-       <span class="kw">aes</span>(<span class="dt">x =</span> Sample, <span class="dt">y =</span> expression, <span class="dt">colour =</span> Protein)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> Protein)) <span class="op">+</span>
+       <span class="kw">aes</span>(<span class="dt">x =</span> Sample, <span class="dt">y =</span> expression)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">facet_grid</span>(Gender <span class="op">~</span><span class="st"> </span>Group) <span class="op">+</span>
 <span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>,
-          <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>,
-                                     <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
+          <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
 <p></details></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Plot the expression of all proteins in one sample (for example P1A10) against another one (for example P1A2) and use dataset-wide features such as the log-fold change of all CRC vs. Healthy samples and the grand mean expression intensity.</li>
