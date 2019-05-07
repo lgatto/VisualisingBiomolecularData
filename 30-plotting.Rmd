@@ -384,6 +384,27 @@ library("patchwork")
 p1 + p2 + p3 + p4 + plot_layout(ncol = 2)
 ```
 
+Or, in one single pipe (solution by [Aaron
+Storey](https://twitter.com/AaronStorey4) at May Institute 2019).
+
+
+```{r ggans3}
+data(anscombe) 
+anscombe$point <- c(1:11)
+
+as_tibble(anscombe) %>%
+  gather(Variable, Value,-point) %>%
+  mutate(
+    Series_number = str_extract(Variable, "[[:digit:]]"), 
+    Variable = str_extract(Variable, "[[:alpha:]]") 
+  ) %>%
+  spread(Variable, Value) %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~Series_number)
+```
+
 </details>
 
 

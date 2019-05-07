@@ -545,6 +545,22 @@ p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe, <span 
 <span class="kw">library</span>(<span class="st">&quot;patchwork&quot;</span>)
 p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4 <span class="op">+</span><span class="st"> </span><span class="kw">plot_layout</span>(<span class="dt">ncol =</span> <span class="dv">2</span>)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/ggans2-1.png" width="672" /></p>
+<p>Or, in one single pipe (solution by <a href="https://twitter.com/AaronStorey4">Aaron Storey</a> at May Institute 2019).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(anscombe) 
+anscombe<span class="op">$</span>point &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>)
+
+<span class="kw">as_tibble</span>(anscombe) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(Variable, Value,<span class="op">-</span>point) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">Series_number =</span> <span class="kw">str_extract</span>(Variable, <span class="st">&quot;[[:digit:]]&quot;</span>), 
+    <span class="dt">Variable =</span> <span class="kw">str_extract</span>(Variable, <span class="st">&quot;[[:alpha:]]&quot;</span>) 
+  ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">spread</span>(Variable, Value) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Series_number)</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/ggans3-1.png" width="672" /></p>
 <p></details></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Count the number of quantified proteins for each group, gender and age and visualise the results (suggestion below).</li>
