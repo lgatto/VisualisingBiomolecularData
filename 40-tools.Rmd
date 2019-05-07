@@ -67,7 +67,7 @@ panel is controled by a function with signature `function(x, ...)`.
 my.panel <- function(x, y, ...) {
     points(x, y, col = "#00000030", ...)
     grid()
-    abline(0, 1, col = "red")
+    abline(0, 1, col = "blue")
 }
 pairs(iprg3[, 2:5], upper.panel = my.panel, log = "xy")
 ```
@@ -80,7 +80,7 @@ A general technique to overcome overplotting is to set the alpha scale
 (see `bexbin` and `geom_hex`):
 
 ```{r smoothscatter}
-par(mfrow = c(1, 3))
+par(mfrow = c(1, 2))
 plot(x, y, pch = 19, col = "#00000010", log = "xy")
 smoothScatter(log10(x), log10(y))
 ```
@@ -411,7 +411,10 @@ We will use the `crc` feature names to generate a test data:
 set.seed(123)
 x <- replicate(3, sample(featureNames(crc), 35), simplify = FALSE)
 names(x) <- LETTERS[1:3]
+library("Vennerable")
 (v <- Venn(x))
+## access the identifiers
+v@IntersectionSets[["110"]]
 plot(v)
 ```
 

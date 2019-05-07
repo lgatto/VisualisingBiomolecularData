@@ -264,7 +264,7 @@ y &lt;-<span class="st"> </span>iprg3[[<span class="dv">3</span>]]
 <p>It is possible to generalise to production of scatter plots to more samples using the <code>pairs</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairs</span>(iprg3[<span class="dv">2</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">log =</span> <span class="st">&quot;xy&quot;</span>)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/pairs-1.png" width="672" /></p>
-<p>A lot of space is wasted by repeating the same sets of plots in the upper right and lower left triangles of the matrix. Each can be populated independently by setting the <code>upper.panel</code> and <code>lower.panel</code> arguments. The <code>diag.panel</code> can be set to set the plots along the diagonal. The upper and lower panels are set by a function with signature <code>function(x, y, ...)</code> while the diagonal panel is controled by a function with signature <code>function(x, ...)</code>.</p>
+<p>A lot of space is wasted by repeating the same sets of plots in the upper right and lower left triangles of the matrix. Each can be populated independently by setting the <code>upper.panel</code> and <code>lower.panel</code> arguments (see <code>?pairs</code>). In addition, the <code>diag.panel</code> can be set to set the panels along the diagonal. The upper and lower panels are set by a function with signature <code>function(x, y, ...)</code> while the diagonal panel is controled by a function with signature <code>function(x, ...)</code>.</p>
 <blockquote>
 <p><strong>Challenge</strong></p>
 <p>Update the output of <code>pairs</code> by defining the upper and lower panels differently. You can use the <code>panel.smooth</code> or define your own function. See also the <code>pairs</code> documentation page for a <code>panel.cor</code> function that displays the correlation.</p>
@@ -273,16 +273,19 @@ y &lt;-<span class="st"> </span>iprg3[[<span class="dv">3</span>]]
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.panel &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...) {
     <span class="kw">points</span>(x, y, <span class="dt">col =</span> <span class="st">&quot;#00000030&quot;</span>, ...)
     <span class="kw">grid</span>()
-    <span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
+    <span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
 }
 <span class="kw">pairs</span>(iprg3[, <span class="dv">2</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">upper.panel =</span> my.panel, <span class="dt">log =</span> <span class="st">&quot;xy&quot;</span>)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/pairsln-1.png" width="672" /> </details></p>
 <p>See also <code>lattice::splom</code> and <code>GGally::ggairs</code> for alternatives.</p>
-<p>A general technique to overcome overplotting is to set the alpha scale (transparency), of to use <code>graphics::smoothScatter</code>:</p>
+<p>A general technique to overcome overplotting is to set the alpha scale (transparency), to use <code>graphics::smoothScatter</code>, or to use binning (see <code>bexbin</code> and <code>geom_hex</code>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
 <span class="kw">plot</span>(x, y, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;#00000010&quot;</span>, <span class="dt">log =</span> <span class="st">&quot;xy&quot;</span>)
 <span class="kw">smoothScatter</span>(<span class="kw">log10</span>(x), <span class="kw">log10</span>(y))</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/smoothscatter-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;hexbin&quot;</span>)
+<span class="kw">plot</span>(<span class="kw">hexbin</span>(<span class="kw">log10</span>(x), <span class="kw">log10</span>(y)))</code></pre></div>
+<p><img src="VisualisingBiomolecularData_files/figure-html/hexbin-1.png" width="672" /></p>
 </div>
 <div id="fold-changes" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Fold changes</h3>
@@ -511,11 +514,16 @@ tmp &lt;-<span class="st"> </span><span class="kw">apply</span>(res, <span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
 x &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">3</span>, <span class="kw">sample</span>(<span class="kw">featureNames</span>(crc), <span class="dv">35</span>), <span class="dt">simplify =</span> <span class="ot">FALSE</span>)
 <span class="kw">names</span>(x) &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
+<span class="kw">library</span>(<span class="st">&quot;Vennerable&quot;</span>)
 (v &lt;-<span class="st"> </span><span class="kw">Venn</span>(x))</code></pre></div>
 <pre><code>## A Venn object on 3 sets named
 ## A,B,C 
 ## 000 100 010 110 001 101 011 111 
 ##   0  10   9   6   8   7   8  12</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## access the identifiers
+v<span class="op">@</span>IntersectionSets[[<span class="st">&quot;110&quot;</span>]]</code></pre></div>
+<pre><code>## [1] &quot;SERPINA7&quot;     &quot;FETUA-Bovine&quot; &quot;FETUB&quot;        &quot;ANT3&quot;        
+## [5] &quot;BTD&quot;          &quot;TIMP1&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(v)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/venn-1.png" width="672" /></p>
 <p>The <em><a href="https://CRAN.R-project.org/package=UpSetR">UpSetR</a></em> visualises intersections of sets as a matrix in which the rows represent the sets and the columns represent their intersection sizes. For each set that is part of a given intersection, a black filled circle is placed in the corresponding matrix cell. If a set is not part of the intersection, a light gray circle is shown. A vertical black line connects the topmost black circle with the bottom most black circle in each column to emphasise the column-based relationships. The size of the intersections is shown as a bar chart placed on top of the matrix so that each column lines up with exactly one bar. A second bar chart showing the size of the each set is shown to the left of the matrix.</p>
