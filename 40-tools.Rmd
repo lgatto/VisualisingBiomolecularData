@@ -50,10 +50,10 @@ pairs(iprg3[2:6], log = "xy")
 A lot of space is wasted by repeating the same sets of plots in the
 upper right and lower left triangles of the matrix. Each can be
 populated independently by setting the `upper.panel` and `lower.panel`
-arguments. The `diag.panel` can be set to set the plots along the
-diagonal. The upper and lower panels are set by a function with
-signature `function(x, y, ...)` while the diagonal panel is controled
-by a function with signature `function(x, ...)`.
+arguments (see `?pairs`). In addition, the `diag.panel` can be set to
+set the panels along the diagonal. The upper and lower panels are set
+by a function with signature `function(x, y, ...)` while the diagonal
+panel is controled by a function with signature `function(x, ...)`.
 
 > **Challenge**
 >
@@ -65,9 +65,9 @@ by a function with signature `function(x, ...)`.
 <details>
 ```{r pairsln}
 my.panel <- function(x, y, ...) {
-	points(x, y, col = "#00000030", ...)
-	grid()
-	abline(0, 1, col = "red")
+    points(x, y, col = "#00000030", ...)
+    grid()
+    abline(0, 1, col = "red")
 }
 pairs(iprg3[, 2:5], upper.panel = my.panel, log = "xy")
 ```
@@ -76,12 +76,18 @@ pairs(iprg3[, 2:5], upper.panel = my.panel, log = "xy")
 See also `lattice::splom` and `GGally::ggairs` for alternatives.
 
 A general technique to overcome overplotting is to set the alpha scale
-(transparency), of to use `graphics::smoothScatter`:
+(transparency), to use `graphics::smoothScatter`, or to use binning
+(see `bexbin` and `geom_hex`):
 
 ```{r smoothscatter}
-par(mfrow = c(1, 2))
+par(mfrow = c(1, 3))
 plot(x, y, pch = 19, col = "#00000010", log = "xy")
 smoothScatter(log10(x), log10(y))
+```
+
+```{r hexbin}
+library("hexbin")
+plot(hexbin(log10(x), log10(y)))
 ```
 
 ### Fold changes

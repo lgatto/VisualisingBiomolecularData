@@ -2,6 +2,7 @@
 
 ## packages/repos to install
 pks0 <- c("limma",
+          "hexbin",
           "bioDist",
           "remotes",
           "ggplot2",
