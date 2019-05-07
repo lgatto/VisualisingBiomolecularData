@@ -607,7 +607,7 @@ abline(h = 11, col = "red")
 cutree(hcl, k = 4)
 cutree(hcl, h = 11)
 identical(cutree(hcl, k = 4), cutree(hcl, h = 11))
-plot(hcl, labels = cutree(hcl, k = 4))
+plot(hcl, labels = cutree(hcl, k = 5))
 ```
 </details>
 
