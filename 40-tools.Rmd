@@ -1338,9 +1338,9 @@ Heatmap(x,
 		row_names_gp = gpar(fontsize = 3)) + ha3
 ```
 
-Finally, the `r Githubpkg("talgalili/heatmaply")` and
-`r Githubpkg("rstudio/d3heatmap")` packages can be used to
-generate interactive heatmaps.
+Finally, the `r Githubpkg("talgalili/heatmaply")`,
+`r Githubpkg("rstudio/d3heatmap")` and [`iheatmapr`](https://ropensci.github.io/iheatmapr/index.html)
+packages can be used to generate interactive heatmaps.
 
 ```{r heatmaply, eval = FALSE}
 library("heatmaply")

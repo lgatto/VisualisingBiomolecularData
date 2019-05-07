@@ -311,16 +311,16 @@ naplot(naset)
 ## PCA plots
 
 
-```{r plot2D}
-par(mfrow = c(1, 2))
+```{r plot2D, fig.width = 7, fig.height = 10}
+par(mfrow = c(2, 1))
 plot2D(hyperLOPIT2015, main = "Spatial proteomics - features")
 addLegend(hyperLOPIT2015, where = "bottomleft", cex = .5)
 plot2D(t(mulvey2015norm), fcol = "times", main = "Time course - samples")
 addLegend(t(mulvey2015norm), where = "bottomright", fcol = "times")
 ```
 
-```{r plot2Dnipal}
-par(mfrow = c(1, 3))
+```{r plot2Dnipal, fig.width = 7, fig.height = 13}
+par(mfrow = c(3, 1))
 plot2D(naset, fcol = NULL, col = "black", main = "NA dropped")
 plot2D(filterNA(naset), fcol = NULL, col = "black", main = "NA filtered")
 plot2D(naset, fcol = NULL, col = "black", method = "nipals", main = "NIPALS")

@@ -323,7 +323,7 @@ rw</code></pre></div>
 ##  Number of spectra: 7534 
 ##  MSn retention times: 0:0 - 60:2 minutes
 ## - - - Processing information - - -
-## Data loaded [Tue May  7 04:03:00 2019] 
+## Data loaded [Tue May  7 12:10:37 2019] 
 ##  MSnbase version: 2.10.0 
 ## - - - Meta data  - - -
 ## phenoData
@@ -625,7 +625,7 @@ rw</code></pre></div>
 ##  Number of spectra: 994 
 ##  MSn retention times: 45:27 - 47:6 minutes
 ## - - - Processing information - - -
-## Data loaded [Tue May  7 04:03:05 2019] 
+## Data loaded [Tue May  7 12:10:42 2019] 
 ##  MSnbase version: 2.10.0 
 ## - - - Meta data  - - -
 ## phenoData
@@ -658,8 +658,8 @@ rw2</code></pre></div>
 ##  Number of spectra: 35 
 ##  MSn retention times: 45:27 - 45:30 minutes
 ## - - - Processing information - - -
-## Data loaded [Tue May  7 04:03:05 2019] 
-## Filter: select parent/children scans for 21945 [Tue May  7 04:03:05 2019] 
+## Data loaded [Tue May  7 12:10:42 2019] 
+## Filter: select parent/children scans for 21945 [Tue May  7 12:10:42 2019] 
 ##  MSnbase version: 2.10.0 
 ## - - - Meta data  - - -
 ## phenoData
@@ -844,13 +844,13 @@ s &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class
 </div>
 <div id="pca-plots" class="section level2">
 <h2><span class="header-section-number">7.9</span> PCA plots</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))
 <span class="kw">plot2D</span>(hyperLOPIT2015, <span class="dt">main =</span> <span class="st">&quot;Spatial proteomics - features&quot;</span>)
 <span class="kw">addLegend</span>(hyperLOPIT2015, <span class="dt">where =</span> <span class="st">&quot;bottomleft&quot;</span>, <span class="dt">cex =</span> <span class="fl">.5</span>)
 <span class="kw">plot2D</span>(<span class="kw">t</span>(mulvey2015norm), <span class="dt">fcol =</span> <span class="st">&quot;times&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Time course - samples&quot;</span>)
 <span class="kw">addLegend</span>(<span class="kw">t</span>(mulvey2015norm), <span class="dt">where =</span> <span class="st">&quot;bottomright&quot;</span>, <span class="dt">fcol =</span> <span class="st">&quot;times&quot;</span>)</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/plot2D-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>))
 <span class="kw">plot2D</span>(naset, <span class="dt">fcol =</span> <span class="ot">NULL</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;NA dropped&quot;</span>)</code></pre></div>
 <pre><code>## Removed 388 row(s) with &#39;NA&#39; values.
 ## Consider using &#39;nipals&#39; to retain all features.</code></pre>

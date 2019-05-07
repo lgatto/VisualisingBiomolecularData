@@ -663,7 +663,7 @@ Figure 6.3: Cutting the dendrogram at height 15.
 <span class="kw">cutree</span>(hcl, <span class="dt">k =</span> <span class="dv">4</span>)
 <span class="kw">cutree</span>(hcl, <span class="dt">h =</span> <span class="dv">11</span>)
 <span class="kw">identical</span>(<span class="kw">cutree</span>(hcl, <span class="dt">k =</span> <span class="dv">4</span>), <span class="kw">cutree</span>(hcl, <span class="dt">h =</span> <span class="dv">11</span>))
-<span class="kw">plot</span>(hcl, <span class="dt">labels =</span> <span class="kw">cutree</span>(hcl, <span class="dt">k =</span> <span class="dv">4</span>))</code></pre></div>
+<span class="kw">plot</span>(hcl, <span class="dt">labels =</span> <span class="kw">cutree</span>(hcl, <span class="dt">k =</span> <span class="dv">5</span>))</code></pre></div>
 <p></details></p>
 <p>For more advanced dendrogram visualisations, see <em><a href="https://CRAN.R-project.org/package=dendextend">dendextend</a></em>.</p>
 </div>
@@ -1170,7 +1170,7 @@ ha3 &lt;-<span class="st"> </span><span class="kw">rowAnnotation</span>(<span cl
         <span class="dt">column_names_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontsize =</span> <span class="dv">8</span>),
         <span class="dt">row_names_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontsize =</span> <span class="dv">3</span>)) <span class="op">+</span><span class="st"> </span>ha3</code></pre></div>
 <p><img src="VisualisingBiomolecularData_files/figure-html/complexheatmap-1.png" width="672" /></p>
-<p>Finally, the <em><a href="https://github.com/talgalili/heatmaply">heatmaply</a></em> and <em><a href="https://github.com/rstudio/d3heatmap">d3heatmap</a></em> packages can be used to generate interactive heatmaps.</p>
+<p>Finally, the <em><a href="https://github.com/talgalili/heatmaply">heatmaply</a></em>, <em><a href="https://github.com/rstudio/d3heatmap">d3heatmap</a></em> and <a href="https://ropensci.github.io/iheatmapr/index.html"><code>iheatmapr</code></a> packages can be used to generate interactive heatmaps.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;heatmaply&quot;</span>)
 <span class="kw">heatmaply</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(hlm)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, ])</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">heatmaply</span>(MSnbase<span class="op">::</span><span class="kw">exprs</span>(hlm)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, ],
