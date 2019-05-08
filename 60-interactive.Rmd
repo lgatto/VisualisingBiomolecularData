@@ -119,8 +119,8 @@ package [website](https://shiny.rstudio.com/):
 > apps straight from R.
 
 When using [`shiny`](https://shiny.rstudio.com/), one tends to aim for
-more complete, long-lasting applications, rather then *simply* and
-transient visualisations.
+more complete, long-lasting applications, rather than transient
+visualisations.
 
 A [`shiny`](https://shiny.rstudio.com/) application is composed of a
 *ui* (user interface) and a *server* that exchange information using a
@@ -139,13 +139,12 @@ output is updated accordingly.
   respective inputs are changed.
 
 - An application is run with the `shiny::runApp()` function, that
-  takes the directory containing the two files as input.
+  takes the directory containing the *ui* and *server* as input.
 
-Before looking at the details of such an architecture, let's build a
-simple example from scratch, step by step. This app, shown below, uses
-the `faithful` data, describing the wainting time between eruptions
-and the duration of the reuption for the Old Faithful geyser in
-Yellowstone National Park, Wyoming, USA.
+Let's build a simple example from scratch, step by step. This app,
+shown below, uses the `faithful` data, describing the wainting time
+between eruptions and the duration of the reuption for the Old
+Faithful geyser in Yellowstone National Park, Wyoming, USA.
 
 ```{r faithfuldata}
 head(faithful)
